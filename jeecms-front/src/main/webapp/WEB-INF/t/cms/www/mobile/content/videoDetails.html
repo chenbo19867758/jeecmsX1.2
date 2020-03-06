@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>视频详情</title>
+	
+</head>
+<body>
+	[#assign type="1" channelTitle="视频详情"/]
+	[#include "../includes/header.html"]
+	<!--顶部导航 over-->
+	<script type="text/javascript">
+	    $(function () {
+	        Cms.viewCount("${base}", "${content.id}");
+genPermCheck( "${content.id}")
+	    });
+function genPermCheck(contentId,channelId) {
+            $.ajax({
+                url: "${base}/permCheck",
+                data: {
+                    contentId:contentId,
+                    channelId:channelId
+                },
+                success: function (result) {
+                    console.log(result.data)
+                }
+            });
+        }
+	</script>
+	<link rel="stylesheet" href="${mobileRes}/css/wtt-common.css" />
+	<link rel="stylesheet" type="text/css" href="${mobileRes}/css/videoDetails.css"/>
+	<div id="videoDetails" class="videoDetails">
+		<video src="${content.attr.videoSrc.resUrl!}" autoplay controls></video>
+		<h3 class="Regular">[@text_cut s=content.title len=40 append='...'/]</h3>
+		<div class="text Regular">
+			[#if (content.source.sourceName)?? && (content.source.sourceName) != ""]
+			<a href="${(content.source.sourceLink)!}"><p>来源：${(content.source.sourceName)!}</p></a> 
+			[#else]
+				<p>来源：JEECMS演示站</p>
+			[/#if]
+			<p>${content.releaseTime!}</p>
+			<p><img src="${mobileRes}/images/icon/yueduliang-m.png" > ${content.views!}</p>
+		</div>
+	</div>
+	[#assign contentId=content.id ups=content.ups/]
+	[#include "hotComments.html"]
+	<div class="relate">
+		<div class="r-title">
+			<h4 class="Light">推荐视频</h4>
+			<span class="Light"></span>
+		</div>
+		<div class="relate-con clearfix">
+			[@cms_content_list channelPath='video' count='4' orderBy='3' siteId='1']
+			[#list tag_list as a]
+			<div class="box">
+				<a href="${a.url}">
+					<div class="image" style="background-image: url('${(a.attr.shoujidatu.resUrl)!}');"></div>
+					<h4 class="Medium">[@text_cut s=a.title len=24 append='...' /]</h4>
+					<div class="bottom">
+						<div>
+							<img src="${mobileRes}/images/icon/liualnliang-s-bai.png" alt="">
+							<span class="Regular">
+								${a.views!}
+							</span>
+						</div>
+						<div>
+							<img src="${mobileRes}/images/icon/xiaobofang.png" >
+							<span class="Regular">${(a.attr.videoSrc.resDuration)!'00:00:00'}</span>
+						</div>
+					</div>
+					<img class="play-icon" src="${mobileRes}/images/icon/bofan-b.png" >
+				</a>
+			</div>
+			[/#list]
+			[/@cms_content_list]
+		</div>
+		<a class="read-more Light" href="${(content.channel.url)!}">
+			观看更多视频
+		</a>
+	
+	</div>
+	[#assign contentId=content.id comments=content.comments title=content.title desc=content.description imgUrl=content.attr.shoujidatu.resUrl/]
+	[#include "bottom.html"]
+</body>
+<script type="text/javascript">
+</script>
+</html>

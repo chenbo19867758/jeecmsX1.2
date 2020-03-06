@@ -1,0 +1,284 @@
+.hotComments .dianzan{
+	border:1px solid rgba(204,204,204,1);
+	border-radius:0.35rem 0.36rem 0.36rem 0.36rem;
+	margin: 0 auto;
+	margin-top: 0.53rem;
+	margin-bottom: 0.6rem;
+	padding: 0.16rem 0;
+	width: 3rem;
+	
+	display: flex;
+	justify-content: center;
+}
+.hotComments{
+	line-height: 1;
+}
+.hotComments .dianzan>div{
+	display: flex;
+	align-items: center;
+}
+.hotComments .inner{
+	width: 6.7rem;
+	margin: 0 auto;
+}
+.hotComments .dianzan img{
+	width: 0.44rem;
+	height: 0.4rem;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: 0.3rem;
+}
+ .hotComments .dianzan span{
+	font-size:0.32rem;
+    font-family:PingFang SC;
+	color:rgba(51,51,51,1);
+}
+ .hotComments .dianzan span:last-child{
+	 margin-left: 0.1rem;
+ }
+ .hotComments .grey-blank{
+ 	width:100vw;
+ 	height:0.2rem;
+ 	background:rgba(245,245,250,1);
+ }
+  .hotComments img.blank{
+	  width: 6.1rem;
+	  height: 4.32rem;
+	  margin: 0 auto;
+	  margin-top: 0.3rem;
+	  margin-left: 0.3rem;
+  }
+  .hotComments p.blank-text{
+  	text-align: center;
+	color: #999999;
+	font-size: 0.3rem;
+	margin: 0.2rem auto 0.3rem;
+  }
+ .hotComments span.red-radius{
+ 	width:0.06rem;
+ 	height:0.34rem;
+ 	background:rgba(227,11,32,1);
+ 	border-radius:0px 0.06rem 0.06rem 0px;
+ 	margin-right: 0.1rem;
+ }
+ .hotComments h2.title{
+	 display: flex;
+ 	align-items: center;
+ 	margin-top: 0.58rem;
+ }
+  .hotComments span.title-con{
+ 	font-size:0.34rem;
+ 	font-family:PingFang SC;
+ 	color:rgba(51,51,51,1);
+ }
+ ul.comment-list{
+	 padding-top: 0.3rem;
+ }
+ ul.comment-list li.box{
+	 padding: 0.3rem 0;
+	 border-bottom-width: 0.01rem;
+	 border-style: solid;
+	 border-color: rgba(240,240,240,1);
+	 display: flex;
+ }
+ ul.comment-list li.box .right{
+	 flex-grow: 1;
+ }
+ ul.comment-list li.box>a div{
+	 width: 0.8rem;
+	 height: 0.8rem;
+	 border-radius: 50%;
+	 overflow: hidden;
+	 display: flex;
+ }
+  ul.comment-list li.box>a div img{
+	  width: 0.8rem;
+	  height: 0.8rem;
+  }
+  ul.comment-list li.box .right-top{
+	  display: flex;
+	  justify-content: space-between;
+	  align-items: center;
+	  margin-bottom: 0.29rem;
+  }
+  ul.comment-list li.box .right-top>span{
+	 font-size:0.30rem;
+	 font-family:PingFang SC;
+	 color:rgba(77,77,77,1);
+  }
+  ul.comment-list li.box .r-t-r{
+	  display: flex;
+	  justify-content: space-between;
+	  align-items: center;
+  }
+  ul.comment-list li.box .r-t-r>div:first-child{
+	  display: flex;
+	  align-items: center;
+	  margin-right: 0.4rem;
+  }
+  ul.comment-list li.box .r-t-r>div:last-child,ul.comment-list li.box .r-t-r>div:last-child a{
+  	  display: flex;
+  	  align-items: center;
+  }
+   ul.comment-list li.box .r-t-r img{
+	   width: 0.34rem;
+	   height: 0.3rem;
+   }
+  ul.comment-list li.box .r-t-r>div:first-child>span{
+	 font-size:0.28rem;
+	 font-family:PingFang SC;
+	 color:rgba(51,51,51,1); 
+  }
+  ul.comment-list li.box .r-t-r>div:first-child .image{
+	  position: relative;
+	  background-image: url('../images/icon/dianzan-m.png');
+	  background-size: 100% 100%;
+	  background-position: center;
+	  width: 0.34rem;
+	  height: 0.34rem;
+	  margin-right: 0.2rem;
+  }
+   ul.comment-list li.box .r-t-r div:first-child .image.red{
+	   background-image: url('../images/icon/dianzan-m-h.png');
+   }
+   ul.comment-list li.box .r-t-r div:first-child .image span{
+	   opacity: 0;
+	   width:0.44rem;
+	   height:0.24rem;
+	   border-radius:0.12rem;
+	   font-size:0.20rem;
+	   font-family:PingFang SC;
+	   color:rgba(255,255,255,1);
+	   line-height: 0.24rem;
+	   position: absolute;
+	   left: -0.05rem;
+	   top: 0;
+	   text-align: center;
+   }
+    ul.comment-list li.box .r-t-r div:first-child .image span.plus{
+		background:rgba(244,80,80,1);
+	}
+	ul.comment-list li.box .r-t-r div:first-child .image span.sub{
+		background:rgba(204,204,204,1);
+	}
+	.yinying{
+		animation: yinying 1s;
+		-moz-animation: yinying 1s;	/* Firefox */
+		-webkit-animation: yinying 1s;	/* Safari 和 Chrome */
+		-o-animation: yinying 1s;
+	}
+	@keyframes yinying
+	{
+	0%   {background: #FFFFFF;}
+	25%  {background:rgba(0,0,0,0.06);}
+	100% {background: #FFFFFF;}
+	}
+	
+	@-moz-keyframes yinying /* Firefox */
+	{
+	0%   {background: #FFFFFF;}
+	25%  {background:rgba(0,0,0,0.06);}
+	100% {background: #FFFFFF;}
+	}
+	
+	@-webkit-keyframes yinying /* Safari 和 Chrome */
+	{
+	0%   {background: #FFFFFF;}
+	25%  {background:rgba(0,0,0,0.06);}
+	100% {background: #FFFFFF;}
+	}
+	
+	@-o-keyframes yinying /* Opera */
+	{
+	0%   {background: #FFFFFF;}
+	25%  {background:rgba(0,0,0,0.06);}
+	100% {background: #FFFFFF;}
+	}
+	ul.comment-list li.box .r-t-r div:first-child .image span.animation{
+		animation: plus 2s;
+		-moz-animation: plus 2s;	/* Firefox */
+		-webkit-animation: plus 2s;	/* Safari 和 Chrome */
+		-o-animation: plus 2s;
+	}
+	@keyframes plus
+	{
+	0%   {opacity: 0;top: 0;}
+	50%  {opacity: 1;top: -0.29rem;}
+	100% {opacity: 0;top: -0.29rem;}
+	}
+	
+	@-moz-keyframes plus /* Firefox */
+	{
+	0%   {opacity: 0;top: 0;}
+	50%  {opacity: 1;top: -0.29rem;}
+	100% {opacity: 0;top: -0.29rem;}
+	}
+	
+	@-webkit-keyframes plus /* Safari 和 Chrome */
+	{
+	0%   {opacity: 0;top: 0;}
+	50%  {opacity: 1;top: -0.29rem;}
+	100% {opacity: 0;top: -0.29rem;}
+	}
+	
+	@-o-keyframes plus /* Opera */
+	{
+	0%   {opacity: 0;top: 0;}
+	50%  {opacity: 1;top: -0.29rem;}
+	100% {opacity: 0;top: -0.29rem;}
+	}
+	ul.comment-list li.box .right-center p{
+		font-size:0.30rem;
+		font-family:PingFang SC;
+		color:rgba(51,51,51,1);
+		line-height:0.50rem;
+		margin-bottom: 0.14rem;
+	}
+	ul.comment-list li.box a.left{
+		margin-right: 0.3rem;
+	}
+	ul.comment-list li.box .right-bottom ul{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+	ul.comment-list li.box .right-bottom ul li{
+		line-height: 1;
+		display: flex;
+	}
+	ul.comment-list li.box .right-bottom ul li a{
+		display: flex;
+	}
+	
+	ul.comment-list li.box .right-bottom li:first-child span,ul.comment-list li.box .right-bottom li:first-child+li{
+		font-size:0.24rem;
+		font-family:PingFang SC;
+		color:rgba(153,153,153,1);
+	}
+	ul.comment-list li.box .right-bottom li:first-child+li{
+		margin: 0 0.23rem;
+	}
+	ul.comment-list li.box .right-bottom li:last-child span{
+		font-size:0.22rem;
+		font-family:PingFang SC;
+		color:rgba(51,51,51,1);
+		padding: 0.13rem 0.3rem;
+		background:rgba(245,245,245,1);
+		border-radius:0.25rem;
+	}
+	.hotComments .allComments{
+		line-height: 1;
+		display: block;
+		width: 3rem;
+		font-size:0.32rem;
+		font-family:PingFang SC;
+		color:rgba(227,11,32,1);
+		margin: 0.6rem auto;
+		padding: 0.2rem 0;
+		text-align: center;
+		background:rgba(255,255,255,1);
+		border:1px solid rgba(227,11,32,1);
+		border-radius:0.35rem 0.36rem 0.36rem 0.36rem;
+	}
+	
+ 

@@ -1,0 +1,96 @@
+/* @font-face {
+    font-family: icomoon;
+    src: url(icon/iconfont.css);
+    src: url(icon/iconfont.eot) format('embedded-opentype'), url(icon/iconfont.ttf) format('truetype'), url(icon/iconfont.woff) format('woff'), url(icon/iconfont.svg) format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+[class^=icon-],
+[class*=" icon-"] {
+    font-family: icomoon !important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: middle;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+} */
+
+.icon-check-alt {
+    background-image: url(../images/info/success.png);
+    background-size: 26px 26px;
+}
+
+.icon-bubble {
+    background-image: url(../images/info/tips.png);
+    background-size: 26px 26px;
+}
+
+.icon-notification {
+	background-size: 26px 26px;
+    background-image: url(../images/info/error.png);
+}
+
+.icon-cancel-circle {
+    background-image: url(../images/info/warning.png);
+    background-size: 26px 26px;
+}
+
+/* .icon-check-alt:before {
+    content: "\e900";
+}
+
+.icon-bubble:before {
+    content: "\e96b";
+}
+
+.icon-notification:before {
+    content: "\ea08";
+}
+
+.icon-cancel-circle:before {
+    content: "\e681";
+} */
+
+.m-message {
+    pointer-events: none;
+    position: fixed;
+    overflow: hidden;
+    z-index: 1001;
+}
+
+.c-message-notice {
+	position: fixed;
+	z-index: 999;
+	top: 50%;
+	left: 48%;
+	margin-top: -33px;
+}
+.m_content {
+    font-family: microsoft yahei, å®‹ä½“;
+    display:block;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    color: #555;
+    padding: 0 45px;
+    background-color: #fff;
+    height: 66px;
+    line-height: 66px;
+}
+
+.m_content span {
+    margin-left: 5px;
+    display: inline-block;
+	font-size: 20px;
+}
+.m_content i{
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+	margin-bottom: -5px;
+}

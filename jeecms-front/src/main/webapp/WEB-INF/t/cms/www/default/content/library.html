@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JEECMS文库</title>
+	</head>
+	<!-- 引入element -->
+	<!-- <link rel="stylesheet" href="../../src/css/element.css"> -->
+	<!-- <script src="../../src/js/element.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="${res}/css/library.css"/>
+	<body>
+		<!-- 顶部导航 -->
+		<div class="header-children">
+		[#include "../includes/header.html"/]
+<script type="text/javascript">
+			$(function () {
+				Cms.viewCount("${base}", "${content.id}");
+				getContentUp("${content.id}");
+				getUsercomment("${content.id}");
+				genPermCheck("${content.id}")
+			});
+			function genPermCheck(contentId,channelId) {
+				$.ajax({
+					url: "${base}/permCheck",
+					data: {
+						contentId:contentId,
+						channelId:channelId
+					},
+					success: function (result) {
+						if(result.data!=1){location.href = "${base}/login"}
+					}
+				});
+			}
+		</script>
+		</div>
+		<!--顶部导航 over-->
+		<div class="library-top">
+			<div class="library-boutique">
+				<div class="library-boutique-title">
+					<h3>精品文库</h3>
+					<ul>
+						<li class="optfor pitch">工作总结</li>
+						<li class="title-border"></li>
+						<li class="pitch">求职简历</li>
+						<li class="title-border"></li>
+						<li class="pitch">学习资料</li>
+					</ul>
+				</div>
+				<div class="boutique-content">
+					<ul>
+						<li>
+							<div class="content-image"><img class="hover" src="${res}/images/library/WK_ZJ01.png" ></div>
+							<div class="content-title">宇宙系统的神秘设计</div>
+							<div class="content-details">科学家进一步揭秘宇宙的奥秘。</div>
+						</li>
+						<li>
+							<div class="content-image"><img class="hover" src="${res}/images/library/WK_ZJ02.png" ></div>
+							<div class="content-title">中国法院信息化第三方评估报告</div>
+							<div class="content-details">首部法院信息化第三方评估报告发布 全国法院向“智慧法院”升级。</div>
+						</li>
+						<li>
+							<div class="content-image"><img class="hover" src="${res}/images/library/WK_ZJ03.png" ></div>
+							<div class="content-title">2019年细分行业薪酬报告</div>
+							<div class="content-details">中国薪酬网独家首发，覆盖各地区，各专业各学历的专业毕业生薪酬报告分享。</div>
+						</li>
+						<li>
+							<div class="content-image"><img class="hover" src="${res}/images/library/WK_ZJ04.png" ></div>
+							<div class="content-title">2019高考状元笔记</div>
+							<div class="content-details">分科分章巧复习，内含状元做题方法总结。</div>
+						</li>
+						<li>
+							<div class="content-image"><img class="hover" src="${res}/images/library/WK_ZJ05.png" ></div>
+							<div class="content-title">教师资格证面试通关秘笈</div>
+							<div class="content-details">科学备考，直击面试。</div>
+						</li>
+						<li>
+							<div class="content-image"><img class="hover" src="${res}/images/library/WK_ZJ06.png" ></div>
+							<div class="content-title">2019年全国I卷理科数学高考真题</div>
+							<div class="content-details">普通高等学校招生全国统一考试试卷</div>
+						</li>
+						<div class="clearfix"></div>
+					</ul>
+				</div>
+			</div>
+			<div class="library-hot">
+				<div class="hot-title"><i></i><span>热门文档</span><i></i></div>
+				<ul class="hot-content">
+					<li><strong>1</strong><span>习近平：奋力开创中部地区崛起局面</span></li>
+					<li><strong>2</strong><span>外媒：中国农业作为重点发展关键领域</span></li>
+					<li><strong>3</strong><span>全国人大常委会出台规划 五年摸清国有</span></li>
+					<li><strong>4</strong><span>依法治国办中组部就有关《意见》答问</span></li>
+					<li><strong>5</strong><span>习近平：奋力开创中部地区崛起局面</span></li>
+					<li><strong>6</strong><span>全国人大常委会出台规划 五年摸清国有</span></li>
+					<li><strong>7</strong><span>全国人大常委会出台规划 五年摸清国有</span></li>
+					<li><strong>8</strong><span>中央宣传部授予杜富国"时代楷模"称号</span></li>
+					<li><strong>9</strong><span>习近平：奋力开创中部地区崛起局面</span></li>
+					<li><strong>10</strong><span>传承红色基因 习近平强调四个"不忘"</span></li>
+				</ul>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="library-bottom">
+			<h3>其他文库</h3>
+			<ul>
+				<li>
+					<div class="image"><img class="hover" src="${res}/images/library/WK_QT01.png" ></div>
+					<div class="rest-box">
+						<div class="rest-title">
+							<span class="icon iconfont iconppt"></span>
+							<span>绩效考核KPI指标库</span>
+						</div>
+						<div class="rest-text">首部法院信息化第三方评估报告发布 全国法院向“智慧法院”升级</div>
+						<div class="rest-bottom">
+							<span class="rest-time">上传于2019-05-24  0:33:01</span>
+							<div class="rest-icon">
+								<div>
+									<span class="icon iconfont iconliulang"></span>
+									<span>931</span>
+								</div>
+								<div>
+									<span class="icon iconfont icondownload--line"></span>
+									<span>800</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="image"><img class="hover" src="${res}/images/library/WK_QT02.png" ></div>
+					<div class="rest-box">
+						<div class="rest-title">
+							<span class="icon iconfont iconPDF"></span>
+							<span>中国绿色金融发展评估报</span>
+						</div>
+						<div class="rest-text">首部法院信息化第三方评估报告发布 全国法院向“智慧法院”升级</div>
+						<div class="rest-bottom">
+							<span class="rest-time">上传于2019-05-24  0:33:01</span>
+							<div class="rest-icon">
+								<div>
+									<span class="icon iconfont iconliulang"></span>
+									<span>931</span>
+								</div>
+								<div>
+									<span class="icon iconfont icondownload--line"></span>
+									<span>800</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="image"><img class="hover" src="${res}/images/library/WK_QT03.png" ></div>
+					<div class="rest-box">
+						<div class="rest-title">
+							<span class="icon iconfont iconword"></span>
+							<span>美国对接“一带一路”——案例研究与行动指南</span>
+						</div>
+						<div class="rest-text">首部法院信息化第三方评估报告发布 全国法院向“智慧法院”升级</div>
+						<div class="rest-bottom">
+							<span class="rest-time">上传于2019-05-24  0:33:01</span>
+							<div class="rest-icon">
+								<div>
+									<span class="icon iconfont iconliulang"></span>
+									<span>931</span>
+								</div>
+								<div>
+									<span class="icon iconfont icondownload--line"></span>
+									<span>800</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="image"><img class="hover" src="${res}/images/library/WK_QT04.png" ></div>
+					<div class="rest-box">
+						<div class="rest-title">
+							<span class="icon iconfont iconppt"></span>
+							<span>未来,哪些人在职场中更有前途？</span>
+						</div>
+						<div class="rest-text">首部法院信息化第三方评估报告发布 全国法院向“智慧法院”升级</div>
+						<div class="rest-bottom">
+							<span class="rest-time">上传于2019-05-24  0:33:01</span>
+							<div class="rest-icon">
+								<div>
+									<span class="icon iconfont iconliulang"></span>
+									<span>931</span>
+								</div>
+								<div>
+									<span class="icon iconfont icondownload--line"></span>
+									<span>800</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="image"><img class="hover" src="${res}/images/library/WK_QT05.png" ></div>
+					<div class="rest-box">
+						<div class="rest-title">
+							<span class="icon iconfont iconppt"></span>
+							<span>百度人脸识别的行业应用与发展</span>
+						</div>
+						<div class="rest-text">首部法院信息化第三方评估报告发布 全国法院向“智慧法院”升级</div>
+						<div class="rest-bottom">
+							<span class="rest-time">上传于2019-05-24  0:33:01</span>
+							<div class="rest-icon">
+								<div>
+									<span class="icon iconfont iconliulang"></span>
+									<span>931</span>
+								</div>
+								<div>
+									<span class="icon iconfont icondownload--line"></span>
+									<span>800</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="image"><img class="hover" src="${res}/images/library/WK_QT06.png" ></div>
+					<div class="rest-box">
+						<div class="rest-title">
+							<span class="icon iconfont iconTxt"></span>
+							<span>浅谈罗辑思维,与他的社群运营策略</span>
+						</div>
+						<div class="rest-text">首部法院信息化第三方评估报告发布 全国法院向“智慧法院”升级</div>
+						<div class="rest-bottom">
+							<span class="rest-time">上传于2019-05-24  0:33:01</span>
+							<div class="rest-icon">
+								<div>
+									<span class="icon iconfont iconliulang"></span>
+									<span>931</span>
+								</div>
+								<div>
+									<span class="icon iconfont icondownload--line"></span>
+									<span>800</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="loadings Semilight hover"><a href="javascript:;">加载更多</a></div>
+		</div>
+		<!--底部导航 -->
+		[#include "../includes/footer.html"/]
+		<!--底部导航 over-->
+	</body>
+</html>

@@ -1,0 +1,237 @@
+<link rel="stylesheet" href="${res}/css/reset.css">
+<link rel="stylesheet" href="${res}/css/header.css" />
+<link rel="stylesheet" href="${res}/icon/iconfont.css">
+<link rel="stylesheet" href="${res}/css/jquery.my-message.1.1.css">
+
+<script src="${res}/js/jquery-1.12.4.js"></script>
+<script src="${res}/js/crypto-js.js"></script>
+<script src="${res}/js/jquery.my-message.1.1.js"></script>
+<script src="${res}/js/jquery.validate.js"></script>
+<script src="${res}/js/jquery.page.js"></script>
+<script src="${res}/js/chinese.js"></script>
+<script src="${res}/js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="${res}/js/app.js"></script>
+<!-- 顶部 -->
+<div class="barrierBed none"></div>
+<div class="header">
+	<!-- 搜索隐藏模块展开 -->
+	<div class="search-show none">
+		<div class="search-top">
+			<div class="box">
+				<div class="title">
+					<input type="text" id="headerKeyword" placeholder="请输入你要查找的内容">
+					<i onclick="upSearch()" class="iconfont iconsousuo1"></i>
+				</div>
+				<i class="iconfont iconguanbi"></i>
+				<div class="hotBot">
+					<div class="text">热搜词</div>
+					[@cms_search_word_list count='10']
+					<ul>
+						[#list tag_list as a]
+						<li><a href="${base}/search.htm?keyword=${a.word!}" target='_blank'>${a.word!}</a></li>
+						[/#list]
+						<div class="clearfix"></div>
+					</ul>
+					[/@cms_search_word_list]
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="typeArea">
+		<div class="logo logo-index">
+			<a href="${base}/"><img src="${res}/images/index/logo-title.png" alt=""></a>
+		</div>
+		<div class="logo logo-children">
+			<a href="${base}/"><img src="${res}/images/index/logo-foot.png" alt=""></a>
+		</div>
+		<div class="navbar Regular">
+			[@cms_channel_list count='6']
+			<ul>
+				[#list tag_list as a]
+				<li> <a href="${a.url!}">${a.name!}</a></li>
+				[/#list]
+			</ul>
+			[/@cms_channel_list]
+		</div>
+		<div class="conceal">
+			<!-- <div class="mobile">
+				<span>移动端
+					
+					<div class="mobile-show none">
+						<div class="mobile-box">
+							<ul>
+								<li>
+									<a href="javascript:;"><img src="" alt=""></a>
+									<span>手机版</span>
+								</li>
+								<li>
+									<a href="javascript:;"><img src="" alt=""></a>
+									<span>微信小程序</span>
+								</li>
+								<li>
+									<a href="javascript:;"><img src="" alt=""></a>
+									<span>微信公众号</span>
+								</li>
+								<li>
+									<a href="javascript:;"><img src="" alt=""></a>
+									<span>新浪微博</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</span>
+				<i class="iconfont icondaohanjiantousvg1"></i>
+				<i class="iconfont icondaohanjiantousvg none"></i>
+			</div>
+            -->
+			<div class="typeface">
+				<span>简体</span>
+				<div class="font-show none">
+					<div class="background">
+						<a>简体</a>
+					</div>
+					<div class="background1">
+						<a>繁体</a>
+					</div>
+				</div>
+				<i class="iconfont iconfanhui-copy-copy-copy-copy"></i>
+				<i class="iconfont iconfanhui-copy-copy-copy-copy1 none"></i>
+			</div>
+		</div>
+		<div class="function">
+			<i class="search iconfont iconsousuo1 pointer"></i>
+			<span class="stateUser"></span>
+			<i class="network iconfont iconrss-line pointer"></i>
+		</div>
+	</div>
+</div>
+<div id="goTop" class="pointer">
+	<span>返回<br>顶部</span>
+	<i class="iconfont iconjiantousvg"></i>
+</div>
+<script>
+	var linkTag = $('<link rel="icon" type="image/x-icon" href="${site.systemIco!}"/>');
+	$($('head')[0]).append(linkTag);
+
+	function quitLogin() {
+		api.POST('/logout', {}, function (result) {
+			if (result.code === 200) {
+				myMessage.add(result.message, 'success');
+				localStorage.setItem('JEECMS-Auth-Token', '');
+				userLoad()
+			} else {
+				myMessage.add(result.message, 'error');
+			}
+		})
+	}
+
+	function userLoad() {
+		$(".stateUser").load("${base}/csi-loginStatus.htm")
+	}
+	userLoad()
+
+	$('.stateUser').on('mouseenter', function () {
+		$('.stateUser ul').stop().slideDown(500);
+	});
+
+	$('.stateUser').on('mouseleave', function () {
+		$('.stateUser ul').stop().slideUp(500);
+	});
+	// var isTypeface = true
+	//更换简体繁体
+	// $('.typeface .background a').on('click',function(){
+	// 	if(isTypeface){
+	// 		$('.typeface>span').text('简体');
+	// 		$(this).css('color','#E30B20');
+	// 		$('.typeface .background1 a').css('color','#333');
+	// 		zh_tran('s')
+	// 		isTypeface = false
+	// 	}
+	// 	else{
+	// 		// $('.typeface>span').text('简体');
+	// 		// $(this).text('繁体');
+	// 		zh_tran('s')
+	// 		isTypeface = true
+	// 	}
+
+	// });
+	// $('.typeface .background1 a').on('click',function(){
+	// 	if(isTypeface){
+	// 		$('.typeface>span').text('繁体');
+	// 		$(this).css('color','#E30B20');
+	// 		$('.typeface .background a').css('color','#333');
+	// 		zh_tran('t')
+	// 		isTypeface = false
+	// 	}
+	// 	else{
+	// 		// $('.typeface>span').text('简体');
+	// 		// $(this).text('繁体');
+	// 		zh_tran('s')
+	// 		isTypeface = true
+	// 	}
+
+	// });
+	$('.typeface .background a').on('click', function () {
+		$('.typeface>span').text('简体');
+		$(this).css('color', '#E30B20');
+		$('.typeface .background1 a').css('color', '#333');
+		console.log('简体')
+		zh_tran('s')
+	});
+	$('.typeface .background1 a').on('click', function () {
+		$('.typeface>span').text('繁体');
+		$(this).css('color', '#E30B20');
+		$('.typeface .background a').css('color', '#333');
+		console.log('繁体')
+		zh_tran('t')
+	});
+
+	function upSearch() {
+		var headerKeyword = $('#headerKeyword').val()
+		window.open('${base}/search.htm?keyword=' + headerKeyword);
+	}
+
+	$("#headerKeyword").keypress(function (e) {
+		if (e.which == 13) {
+			var headerKeyword = $('#headerKeyword').val()
+			window.open('${base}/search.htm?keyword=' + headerKeyword);
+		}
+	});
+
+
+	//简体繁体切换
+	$('.typeface').on('mouseenter', function () {
+		$('.typeface .iconfanhui-copy-copy-copy-copy').addClass('none');
+		$('.typeface .iconfanhui-copy-copy-copy-copy1').removeClass('none');
+	});
+	$('.typeface').on('mouseleave', function () {
+		$('.typeface .iconfanhui-copy-copy-copy-copy1').addClass('none');
+		$('.typeface .iconfanhui-copy-copy-copy-copy').removeClass('none');
+	});
+	$(function () {
+		/*固定*/
+		var sTop = 0;
+		$(window).scroll(function () {
+			sTop = $(this).scrollTop();
+			if (sTop > 600) {
+				$('#goTop').css({
+					'display': 'block'
+				})
+			} else {
+				$('#goTop').css({
+					'display': 'none'
+				})
+			}
+		});
+
+		$('#goTop').click(function () {
+			$body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $(
+				'html,body');
+			$body.animate({
+				scrollTop: 0
+			}, 1000);
+		});
+
+	})
+</script>
+</body>

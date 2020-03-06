@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+</head>
+<body>
+	<!-- 头部导航 -->
+	[#assign type="4" backHref='/xzfl1' contentTitle=channel.name/]
+	[#include "../includes/header.html"] 
+	<!-- 头部导航 -->
+	<link rel="stylesheet" href="${mobileRes}/css/wtt-common.css">
+	<link rel="stylesheet" href="${mobileRes}/css/bignav.css" />
+	<script src="${mobileRes}/js/loading.js" type="text/javascript" charset="utf-8"></script>
+	<div class="download-yingyong" id="yingyong">
+		<div class="channel">
+			<ul>
+				<li>
+					<a href="${channel.url!}" class="mark-red Medium">全部
+					</a>
+				</li>
+				[@cms_channel_list siteId='1' parentId=channel.id]
+				[#list tag_list as a]<li >
+					<a href="${a.url!}" class="Regular">${a.name!}
+					</a>
+				</li>
+				[/#list]
+				[/@cms_channel_list]
+				
+				
+			</ul>
+		</div>
+		<!-- 应用列表部分 -->
+		
+		<div class="download-list">
+			
+			[@cms_content_list channelId=channel.id count='10' siteId='1']
+			[#list tag_list as a]
+			<div class="box">
+				<a href="${a.url!}" class="left" >
+					<div>
+						<div class="image" [#if (a.attr.shoujitubiao.resUrl)??&&(a.attr.shoujitubiao.resUrl)!='']style="background-image: url('${(a.attr.shoujitubiao.resUrl)!}');"[#else]style="background-image: url('${mobileRes}/images/icon/noImg.png');"[/#if]></div>
+						
+						<article>
+							<h4 class="Regular">[@text_cut s=a.title len=8 append='...'
+								/]</h4>
+							<div class="rongliang">
+								<span>${(a.attr.mobileFile.fileSize)!}</span>
+								<span class="line"></span>
+								<span>${a.downloads!}次下载</span>
+							</div>
+						</article>
+					</div>
+				</a>
+				<a href="${a.url!}" class="down-load">下载</a>
+			</div>
+			[/#list]
+			[#assign listLength=tag_list?size/]
+			[/@cms_content_list]
+			<div class="box" v-for="topic in list" :key="topic.id">
+				<a :href="topic.url" class="left" >
+					<div>
+						<div class="image" v-if="topic.attr&&topic.attr.shoujitubiao&&topic.attr.shoujitubiao.resUrl" :style="{backgroundImage:'url('+topic.attr.shoujitubiao.resUrl+')'}"></div>
+						<div class="image" v-else style="background-image: url('${mobileRes}/images/icon/noImg.png');"></div>
+						
+						<article>
+							<h4 class="Medium" v-if="topic.title.length <= 8" v-text="topic.title"></h4>
+							<h4 class="Medium" v-else v-text="topic.title.slice(0,8)+'...'"></h4>
+							<div class="rongliang">
+								<span v-if="topic.attr.mobileFile" v-text="topic.attr.mobileFile.fileSize"></span>
+								<span v-else>0KB</span>
+								<span class="line"></span>
+								<span v-text="topic.downloads+'次下载'"></span>
+							</div>
+						</article>
+					</div>
+				</a>
+				<a :href="topic.url" class="down-load">下载</a>
+			</div>
+			<my-loading :load="load" :isload="isload"></my-loading>
+		
+		</div>
+		
+		<!-- 应用列表部分 -->
+	</div>
+	[#include "../includes/footerTabbar.html"]
+	<script type="text/javascript">
+		//获取要定位元素距离浏览器顶部的距离
+		var navH = $(".channel").offset().top;
+		// console.log(navH);
+		//滚动条事件
+		$(window).scroll(function() {
+			//获取滚动条的滑动距离
+			var scroH = $(this).scrollTop();
+			// console.log(scroH);
+			//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+			if (scroH >= navH) {
+				$(".channel").css({
+					"position": "sticky",
+					"top": '0.96rem',
+					"z-index": 10
+				});
+				
+			}else if (scroH < navH) {
+				$(".channel").css({
+					"position": "static"
+				});
+			}
+		})
+		new Vue({
+			el: '#yingyong',
+			data: {
+				load: '加载更多',
+				isload: false,
+				list: [],
+				newPage: [],
+				getData:{
+					channelPaths: '${channel.path}',
+					orderBy: 29,
+					page:1,
+					size:10
+				},
+				last:false,
+				uploading:true,
+				listLength:'${listLength}'
+			},
+			mounted() {
+				if(this.listLength<10){
+					this.load='没有更多了'
+					this.isload=false
+					this.last=true
+				}
+			},
+			methods: {
+				loading() {
+					if(this.uploading){
+						this.uploading=false
+						if(!this.last){
+							this.load='加载中'
+							this.isload=true
+							this.getData.page+=1
+							this.getContentPage()
+						}else{
+							this.load='没有更多了'
+							this.isload=false
+						}
+					}
+				},
+				getContentPage() {
+					var that=this
+					api.GET('/content/page', that.getData, function(res) {
+						if(res.code==200){
+							that.last=res.data.last
+						if(that.last){
+							that.load='没有更多了'
+							that.isload=false
+						}else{
+							that.load='加载更多'
+							that.isload=false
+						}
+						that.newPage = res.data.content;
+						that.list = that.list.concat(that.newPage)
+						that.uploading=true
+						}
+						
+					})
+					
+				}
+			}
+			
+		})
+	</script>
+</body>
+</html>

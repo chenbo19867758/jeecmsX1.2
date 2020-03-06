@@ -1,0 +1,151 @@
+.fixed-bottom{
+	position: fixed;
+	width: 100%;
+	box-shadow:0px 0.02rem 0.30rem 0px rgba(18,39,104,0.1);
+	height: 0.98rem;
+	left: 0;
+	bottom: 0;
+	background: #fff;
+	z-index: 10;
+}
+.fixed-bottom>.inner{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.19rem 0;
+}
+.fixed-bottom input{
+	width: 4.64rem;
+	height: 0.6rem;
+	padding: 0.16rem 0;
+	padding-right: 0.27rem;
+	font-size:0.28rem;
+	font-family:PingFang SC;
+	color:rgba(51,51,51,1);
+	background-color: rgba(240,240,240,1);
+	border-radius:0.30rem;
+	border: 0;
+	padding-left: 0.27rem;
+	margin-right: 0.3rem;
+}
+.fixed-bottom input.tubiao{
+	padding-left: 0.76rem;
+	background-image: url('../images/icon/bianji.png');
+	background-repeat: no-repeat;
+	background-size: 0.28rem 0.28rem;
+	background-position: 0.27rem 0.16rem;	
+}
+.fixed-bottom .inner>a {
+	margin: 0 0.3rem;
+}
+.fixed-bottom .image{
+	width: 0.43rem;
+	height: 0.4rem;
+	margin: 0 0;
+	background-image: url('../images/icon/pinglun-b.png');
+	background-repeat:no-repeat ;
+	background-size: 100% 100%;
+	background-position: center;
+	position: relative;
+}
+.fixed-bottom .image span{
+	display: block;
+	position: absolute;
+	background:rgba(227,11,32,1);
+	border:1px solid rgba(210,5,5,1);
+	border-radius:0.12rem;
+	bottom:100%;
+	left:100%;
+	padding: 0.04rem 0.07rem;
+	font-size:0.16rem;
+	font-family:PingFang SC;
+	color:rgba(255,255,255,1);
+	transform: translateX(-50%) translateY(50%);
+}
+.fixed-bottom .image span.round{
+	border-radius:50% ;
+	width: 0.24rem;
+	height: 0.24rem;
+	padding: 0;
+	line-height: 0.24rem;
+	text-align: center;
+}
+.fixed-bottom img{
+	width: 0.43rem;
+	height: 0.4rem;
+	margin: 0 0.3rem;
+}
+.fixed-bottom img:last-child{
+	width: 0.43rem;
+	margin-right: 0;
+	margin-left: 0.3rem;
+}
+.fixed-bottom .inner{
+	width: 6.7rem;
+	margin: 0 auto;
+}
+.fixed-bottom img:last-child+img{
+	width: 0.43rem;
+}
+.modal-black{
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background:rgba(0,0,0,1);
+	box-shadow:0px 0.02rem 0.30rem 0px rgba(18,39,104,0.1);
+	opacity:0.6;
+	z-index: 20;
+}
+.modal{
+	width:100vw;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	z-index: 30;
+	background:rgba(255,255,255,1);
+	box-shadow:0px 0.02rem 0.30rem 0px rgba(18,39,104,0.1);
+	border-radius:0.40rem 0.40rem 0px 0px;
+}
+.modal .top .inner{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 0.6rem;
+	padding-bottom: 0.49rem;
+	border-bottom-width: 0.01rem;
+	border-color: rgba(245,245,245,1);
+	border-style: solid;
+}
+.modal .top .inner a{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	justify-content: center;
+	align-items: center;
+	margin: 0 0.39rem;
+}
+.modal .top .inner a img{
+	width: 0.5rem;
+	height: 0.4rem;
+	margin-bottom: 0.29rem;
+}
+.modal .top .inner a span{
+	font-size:0.22rem;
+font-family:PingFang SC;
+color:rgba(102,102,102,1);
+}
+.modal .bottom .inner{
+	display: flex;
+}
+.modal button{
+	width: 100%;
+	padding: 0.3rem 0;
+	font-size:0.28rem;
+	font-family:PingFang SC;
+	color:rgba(153,153,153,1);
+	text-align: center;
+	border: none;
+	background: rgba(255,255,255,1);
+}

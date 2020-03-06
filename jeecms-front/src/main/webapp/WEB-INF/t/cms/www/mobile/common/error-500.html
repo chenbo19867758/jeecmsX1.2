@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>500页面</title>
+    <style>
+		*{
+			box-sizing:border-box;
+			margin:0;
+			padding:0;
+		}
+		body{
+			width:100%;
+		}
+		.error{
+			display:flex;
+			justify-content:flex-end;
+		}
+        .error img{
+			
+			margin-top:2.21rem;
+			width:6.78rem;
+            /* margin:216px 0px 0px 80px; */
+			
+        }
+		.text{
+			
+			margin-top:0.47rem;
+			margin-bottom:0.7rem;
+			
+			
+		}
+		.text p{
+			text-align: center;
+		    font-size:0.3rem;
+			font-family:PingFang SC;
+			font-weight:400;
+			color:rgba(153,153,153,1);
+			line-height:0.48rem;
+			margin:0;
+			padding:0;
+
+		}
+		.refresh a{
+			width:4.58rem;
+			height:0.86rem;
+			margin:0 auto;
+			display:block;
+			font-size:0.3rem;
+			text-align:center;
+			text-decoration:none;
+			font-family:PingFang SC;
+			font-weight:500;
+			color:rgba(255,255,255,1);
+			line-height:0.86rem;
+			background:rgba(227,11,32,1);
+			border-radius:0.43rem;
+		}
+    </style>
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header header-children"></div>
+    <!--顶部导航 over-->
+
+    <div class="error">
+        <img src="${mobileRes}/images/error/500.png" alt="">
+    </div>
+	<div class="text">
+		<p>服务器异常</p>
+		<p style='text-align:center'>系统君正在努力恢复中...</p>
+	</div>
+	
+    <!-- 顶部导航 -->
+    <div class="footer"></div>
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <!-- <script src="../../src/js/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".header").load("../include/header.html")
+            $(".footer").load("../include/footer.html")
+        });
+    </script> -->
+	<script>
+      document.documentElement.style.fontSize =
+        document.documentElement.clientWidth / 7.5 + "px";
+    </script>
+</body>
+
+</html>

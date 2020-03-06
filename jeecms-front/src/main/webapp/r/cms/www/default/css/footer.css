@@ -1,0 +1,430 @@
+.footer {
+	width: 100%;
+	height: 200px;
+	position: relative;
+	background-color: #F5F5F5
+}
+
+.footer .typeArea {
+	width: 1200px;
+	height: 200px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.footer .typeArea .body-top {
+	position: relative;
+	width: 1260px;
+	height: 75px
+}
+
+.footer .typeArea .body-top .body-top-logo {
+	float: left;
+	width: 345px;
+	height: 55px;
+	margin-top: 20px
+}
+
+.footer .typeArea .body-top .body-top-logo img {
+	width: 290px;
+	height: 36px;
+}
+
+.footer .typeArea .body-top .dody-top-line {
+	width: 2px;
+	height: 45px;
+	background-color: #E5E5E5;
+	position: absolute;
+	left: 344px;
+	line-height: 75px;
+	margin-top: 15px
+}
+
+.footer .typeArea .body-top .body-top-nav {
+	float: left;
+	width: 915px;
+	height: 75px
+}
+
+.footer .typeArea .body-top .body-top-nav ul {
+	margin-left: 50px
+}
+
+.footer .typeArea .body-top .body-top-nav ul li {
+	float: left;
+	margin-right: 59px
+}
+
+.footer .typeArea .body-top .body-top-nav ul li a {
+	font-size: 16px;
+	font-family: Microsoft YaHei Light;
+	font-weight: 400;
+	color: #333;
+	line-height: 75px;
+	height: 75px
+}
+
+.footer .typeArea .body-top .body-top-nav ul li a:hover {
+	color: #E30B20
+}
+
+.footer .typeArea .body-bottom {
+	width: 1200px;
+	height: 123px;
+	border-top: 1px solid #e5e5e5;
+	overflow: hidden
+}
+
+.footer .typeArea .body-bottom .body-bottom-function {
+	float: left;
+	width: 345px;
+	height: 93px;
+	padding-top: 30px;
+	border-right: 1px solid #E5E5E5
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .phone {
+	float: left;
+	margin-right: 30px;
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .phone a {
+	font-size: 52px;
+	color: #bbb
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .phone a:hover {
+	color: #E30B20
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .phone a:hover .erweima-box {
+	position: absolute;
+	padding: 20px;
+	border: 1px solid #E5E5E5;
+	border-radius: 4px;
+	behavior: url(../../src/pie/PIE.htc);
+	background-color: #fff;
+	width: 186px;
+	height: 186px;
+	top: -94px;
+	left: -64px;
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .phone a:hover .erweima-box img {
+	width: 144px;
+	height: 144px
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .phone a:hover .erweima-box .arrows {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	font-size: 0;
+	line-height: 0;
+	border-width: 10px;
+	border-style: solid dashed dashed dashed;
+	border-color: #fff transparent transparent transparent;
+	margin: 0 auto;
+	margin-top: 14px;
+	position: absolute;
+	top: 172px;
+	left: 82px;
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .phone a .erweima-box {
+	width: 0;
+	height: 0
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .phone a .erweima-box img {
+	width: 0;
+	height: 0
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weixin {
+	float: left;
+	margin-right: 30px;
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weixin a {
+	font-size: 52px;
+	color: #bbb
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weixin a:hover {
+	color: #E30B20
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weixin a:hover .erweima-box {
+	position: absolute;
+	top: -94px;
+	left: 15px;
+	padding: 20px;
+	border-radius: 4px;
+	behavior: url(../../src/pie/PIE.htc);
+	background-color: #fff;
+	width: 186px;
+	height: 186px;
+	border: 1px solid #E5E5E5;
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weixin a:hover .erweima-box img {
+	width: 144px;
+	height: 144px
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weixin a:hover .erweima-box .arrows {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	font-size: 0;
+	line-height: 0;
+	border-width: 10px;
+	border-style: solid dashed dashed dashed;
+	border-color: #fff transparent transparent transparent;
+	margin: 0 auto;
+	margin-top: 14px;
+	position: absolute;
+	top: 172px;
+	left: 82px;
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weixin a .erweima-box {
+	width: 0;
+	height: 0
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weixin a .erweima-box img {
+	width: 0;
+	height: 0
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .applet {
+	float: left;
+	margin-right: 30px;
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .applet a {
+	font-size: 52px;
+	color: #bbb
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .applet a:hover {
+	color: #E30B20
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .applet a:hover .erweima-box {
+	position: absolute;
+	top: -94px;
+	left: 100px;
+	padding: 20px;
+	border-radius: 4px;
+	behavior: url(../../src/pie/PIE.htc);
+	background-color: #fff;
+	width: 186px;
+	height: 186px;
+	border: 1px solid #E5E5E5;
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .applet a:hover .erweima-box img {
+	width: 144px;
+	height: 144px
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .applet a:hover .erweima-box .arrows {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	font-size: 0;
+	line-height: 0;
+	border-width: 10px;
+	border-style: solid dashed dashed dashed;
+	border-color: #fff transparent transparent transparent;
+	margin: 0 auto;
+	margin-top: 14px;
+	position: absolute;
+	top: 172px;
+	left: 82px;
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .applet a .erweima-box {
+	width: 0;
+	height: 0
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .applet a .erweima-box img {
+	width: 0;
+	height: 0
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weibo {
+	float: left;
+	margin-right: 30px;
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weibo a {
+	font-size: 52px;
+	color: #bbb
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weibo a:hover {
+	color: #E30B20
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weibo a:hover .erweima-box {
+	position: absolute;
+	top: -94px;
+	left: 180px;
+	padding: 20px;
+	border-radius: 4px;
+	behavior: url(../../src/pie/PIE.htc);
+	background-color: #fff;
+	width: 186px;
+	height: 186px;
+	border: 1px solid #E5E5E5;
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weibo a:hover .erweima-box img {
+	width: 144px;
+	height: 144px
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weibo a:hover .erweima-box .arrows {
+	width: 0;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+	border-width: 10px;
+	border-style: solid dashed dashed dashed;
+	border-color: #fff transparent transparent transparent;
+	margin: 0 auto;
+	margin-top: 14px;
+	position: absolute;
+	top: 172px;
+	left: 82px;
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weibo a .erweima-box {
+	width: 0;
+	height: 0
+}
+
+.footer .typeArea .body-bottom .body-bottom-function .weibo a .erweima-box img {
+	width: 0;
+	height: 0
+}
+
+.footer .typeArea .body-bottom .statistics {
+	width: 370px;
+	height: 93px;
+	padding-top: 30px;
+	margin-left: 50px;
+	border-right: 1px solid #E5E5E5;
+	float: left
+}
+
+.footer .typeArea .body-bottom .statistics .clicks li {
+	float: left;
+	margin-right: 40px
+}
+
+.footer .typeArea .body-bottom .statistics .clicks li a {
+	font-size: 14px;
+	color: #666
+}
+.footer .typeArea .body-bottom .statistics .clicks li .reds {
+	color: #E30B20;
+}
+.footer .typeArea .body-bottom .statistics .clicks li a:hover {
+	color: #E30B20;
+}
+.footer .typeArea .body-bottom .statistics .click-content{
+	width: 312px;
+	height: 20px;
+}
+.footer .typeArea .body-bottom .statistics .click-content .quantity {
+	margin-top: 35px;
+	width: 100%;
+	height: 100%;
+}
+.footer .typeArea .body-bottom .statistics .click-content .quantity .left{
+	float: left;
+}
+.footer .typeArea .body-bottom .statistics .click-content .quantity .middle{
+	margin-left: 10%;
+}
+.footer .typeArea .body-bottom .statistics .click-content .quantity .right{
+	float: right;
+}
+.footer .typeArea .body-bottom .statistics .click-content .quantity li {
+	float: left;
+	font-size: 14px;
+	color: #999;
+	font-family: Microsoft YaHei Light;
+	font-weight: 400
+}
+
+.footer .typeArea .body-bottom .statistics .click-content .quantity li span {
+	font-size: 14px;
+	color: #666
+}
+
+.footer .typeArea .body-bottom .putonrecords {
+	float: left;
+	padding-top: 26px;
+	margin-left: 50px
+}
+
+.footer .typeArea .body-bottom .putonrecords P {
+	font-size: 12px;
+	font-family: Microsoft YaHei Light;
+	font-weight: 400;
+	color: #666;
+	line-height: 28px
+}
+
+.footer .blogroll {
+	position: absolute;
+	top: -218px;
+	color: #333;
+	font-size: 16px;
+	font-family: Microsoft YaHei Light;
+}
+.footer .blogroll:hover{
+	display: block !important;
+}
+.footer .blogroll .arrows{
+	width: 18px;
+    height: 18px;
+    margin: 0 auto;
+    transform: rotate(45deg);
+    background-color: #fff;
+    margin-top: -10px;
+    border-right: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+}
+.footer .blogroll  ul {
+	border-radius: 4px;
+	behavior: url(../../src/pie/PIE.htc);
+	height: 220px;
+	padding: 29px 30px;
+	background-color: #fff;
+	border: 1px solid #E5E5E5;
+}
+
+.footer .blogroll ul li {
+	margin-bottom: 14px
+}
+
+.footer .blogroll ul li a {
+	font-size: 14px;
+	color: #333
+}
+
+.footer .blogroll ul li a:hover {
+	color: #E30B20
+}
+
+.footer .blogroll ul li:hover {
+	color: #E30B20
+}

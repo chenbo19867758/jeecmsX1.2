@@ -1,0 +1,49 @@
+.wh_content {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	width: 100%;
+	border-radius: 0.1rem;
+	margin-bottom: 0.5rem;
+}
+
+.wh_swiper {
+	width: 100%;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-moz-transition-duration: 0s linear;
+	-webkit-transition-duration: 0s linear;
+	-o-transition-duration: 0s linear;
+	transition-duration: 0s linear;
+	border-radius: 0.1rem;
+}
+.wh_slide,.wh_slide img{
+	border-radius: 0.1rem;
+	line-height: 0;
+	height: 3.8rem;
+}
+
+.wh_indicator {
+	position: absolute;
+	bottom: 0.2rem;
+	width: 100%;
+	text-align: center;
+	background: 0 0;
+}
+
+.wh_indicator_item {
+	display: inline-block;
+	margin: 0 0.2rem;
+	cursor: pointer;
+	width:0.16rem;
+	height:0.16rem;
+	border:1px solid rgba(255,255,255,1);
+	border-radius:50%;
+}
+
+.wh_show_bgcolor {
+	background: rgba(255,255,255,0.8);
+}

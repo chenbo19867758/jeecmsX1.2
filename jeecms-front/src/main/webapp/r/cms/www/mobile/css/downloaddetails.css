@@ -1,0 +1,240 @@
+body {
+	width: 7.5rem;
+	line-height: 1;
+}
+.appdetails{
+	margin-top: 0.96rem;
+}
+.appdetails .download-list .image {
+	width: 1.6rem;
+	height: 1.6rem;
+}
+#tabs,.tabs{
+	background: rgba(255,255,255,1);
+}
+.horizontal {
+	margin-top: 0.2rem;
+	height: 0.7rem;
+	width: 100%;
+	border-style: solid;
+	border-color: rgba(240,240,240,1);
+	border-bottom-width: 0.01rem;
+}
+ul.horizontal {
+	display: flex;
+	width: 100vw;
+	padding: 0 0.4rem 0 0.4rem;
+}
+.horizontal li {
+	width: 33.3%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.horizontal li:first-child {
+	justify-content: flex-start;
+}
+
+.horizontal li:last-child {
+	justify-content: flex-end;
+}
+.horizontal li a {
+	display: block;
+	font-size: 0.26rem;
+	font-family: PingFang SC;
+	padding-top: 0.2rem;
+	padding-bottom: 0.24rem;
+	color: rgba(102, 102, 102, 1);
+}
+.horizontal li.selectActive a {
+	color: rgba(227, 11, 32, 1);
+	border-color: rgba(227,11,32,1);
+	border-bottom-width: 0.04rem;
+	border-style:solid;
+	margin-bottom: -0.01rem;
+}
+.swiper-container1 {
+	margin: 0.3rem 0;
+	/* overflow: auto;
+	overflow-y:scroll; */
+	margin-left: 0.4rem;
+	width: 100%;
+	height: 4.76rem;
+	width: auto;
+	overflow: scroll;
+}
+.swiper-container1 .swiper-slide {
+	display: flex;
+}
+.swiper-container1::-webkit-scrollbar {
+	display: none;
+}
+.swiper-container::-webkit-scrollbar {
+	display: none;
+}
+.swiper-container{
+	width: 100vw;
+}
+.swiper-container .swiper-wrapper{
+	display: flex;
+}
+.swiper-container .swiper-slide:first-child::-webkit-scrollbar {
+	display: none;
+}
+.swiper-container1 .swiper-slide:first-child {
+	overflow: scroll;
+
+}
+.swiper-container1 .swiper-slide::-webkit-scrollbar {
+	display: none;
+}
+.swiper-container1 .swiper-wrapper {
+	display: flex;
+	overflow-y: hidden;
+}
+.swiper-container1 .swiper-slide img,
+.swiper-container1 .swiper-slide .image {
+	width: 2.56rem;
+	height: 4.76rem;
+	border-radius: 0.2rem;
+}
+
+.swiper-container1 .swiper-slide a {
+	display: block;
+}
+
+.swiper-container1 .slide+.slide,
+.swiper-container1 .slide:first-child {
+	margin-right: 0.3rem;
+}
+
+.tag ul {
+	display: flex;
+}
+.tag li:first-child{
+	background:rgba(250,96,96,1);
+}
+.tag li:first-child+li{
+	background:rgba(248,163,81,1);
+}
+.tag li:first-child+li+li{
+	background:rgba(136,99,228,1);
+}
+.tag li:last-child{
+	background:rgba(45,210,135,1);
+}
+.tag li+li,
+.tag li:first-child {
+	margin-right: 0.2rem;
+}
+
+.tag li {
+	padding: 0.12rem 0.15rem;
+	border-radius: 0.1rem;
+	font-size: 0.26rem;
+	font-family: PingFang SC;
+
+	color: rgba(255, 255, 255, 1);
+}
+
+.description {
+	margin-top: 0.4rem;
+}
+
+.guess-youlike h4 {
+	font-size: 0.28rem;
+	font-family: PingFang SC;
+	color: rgba(51, 51, 51, 1);
+}
+
+.guess-youlike {
+	margin-top: 0.37rem;
+}
+
+.appdetails .fourbox {
+	margin-top: 0.37rem;
+}
+
+.appdetails .fourbox .hot-con {
+	margin-top: 0.3rem;
+}
+.appdetails .download-list {
+	padding-bottom: 0;
+}
+.description .txt img{
+	width: 100% !important;
+}
+#downloaddetails{
+	overflow: scroll !important;
+}
+.swiper-container1 .swiper-slide{
+	width: 2.56rem;
+}
+.swiper-container1 .swiper-slide+.swiper-slide,.swiper-container1 .swiper-slide:first-child{
+	margin-right: 0.3rem;
+}
+.swiper-container1 .swiper-slide:last-child{
+	margin-right: 0;
+}
+.swiper-container1 .swiper-wrapper{
+	width: auto;
+}
+.txt p{
+	font-size:0.22rem !important;
+	font-family:PingFang SC !important;
+	color:rgba(51,51,51,1) !important;
+	line-height:0.40rem !important;
+}
+.appdetails .det.download-list a.down-load{
+	background:rgba(227,11,32,1);
+	border: none;
+	color:rgba(255,255,255,1);
+}
+article {
+	display: flex;
+	flex-direction: column;
+}
+.det.download-list a.down-load:hover{
+	background:rgba(227,11,32,1);
+}
+.det.download-list .box a>div .rongliang{
+	flex-direction: row;
+}
+.det.download-list .box a>div h4{
+	font-size:0.40rem;
+	padding-top: 0;
+	color:rgba(51,51,51,1);
+	padding-bottom: 0.3rem;
+}
+.det.download-list .box a>div .image{
+	width: 1.6rem;
+	height: 1.6rem;
+}
+.det.download-list .box a>div article span{
+	font-size: 0.26rem;
+}
+.header{
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+}
+.hotComments img.blank{
+	margin-left: 0.7rem !important;
+}
+.swiper-container .con-item{
+	display: none;
+	width: 100%;
+	overflow: scroll;
+}
+.swiper-container .con-item.show{
+	display: block;
+}
+.fixTitle{
+	position: sticky;
+	top: 0.96rem;
+	left: 0;
+	z-index: 100;
+}
+

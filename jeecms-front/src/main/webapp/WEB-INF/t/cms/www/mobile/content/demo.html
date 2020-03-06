@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document1</title>
+</head>
+
+<body>
+    [@cms_content_page count='2' pageNo='0' path='cslm0820']
+    <table>
+        [#list tag_pagination.content as a]
+        <tr>
+            <td>id：${a.id!}</td>
+            <td>名称：${a.title!}</td>
+            <td>内容标题是否加粗：[#if a.titleIsBold] <strong>标题</strong> [#else]标题[/#if]</td>
+            <td>内容标题的颜色：${a.titleColor!}</td>
+            <td>短标题：${a.shortTitle!}</td>
+            <td>发布时间：${a.releaseTime!}</td>
+            <td>发布时间：${a.releaseTimeString!}</td>
+            <td>访问量：${a.views!}</td>
+            <td>评论量：${a.comments!}</td>
+            <td>点赞量：${a.ups!}</td>
+            <td>点踩量：${a.downs!}</td>
+            <td>下载量：${a.downloads!}</td>
+            <td>是否置顶：[#if a.top] <strong>置顶</strong> [#else]不置顶[/#if]</td>
+            <td>置顶时间：${(a.topStartTime?string('yyyy-MM-dd HH:mm:ss'))!}</td>
+            <td>访问地址：${a.url!}</td>
+            <td>浏览设置（1-允许游客访问 2-登录后访问）：${a.viewControl!}</td>
+            <td>新窗口打开外部链接（0-否 1-是）：[#if a.contentExt??&&a.contentExt.isNewTarget] target="_blank" [/#if]</td>
+            <td>作者：${(a.contentExt.author)!}</td>
+            <td>摘要：${(a.contentExt.description)!}</td>
+            <td>关键词：${(a.contentExt.keyWord)!}</td>
+            <td>关键字：${(a.contentExt.keyword)!}</td>
+            <td>外部链接：${(a.contentExt.outLink)!}</td>
+            <td>图片别名：${(a.reData.alias)!}</td>
+            <td>图片大小：${(a.reData.sizeUnit)!}</td>
+            <td>图片路径：${(a.reData.url)!}</td>
+        </tr>
+        [/#list]
+    </table>
+    [/@cms_content_page]
+</body>
+
+</html>

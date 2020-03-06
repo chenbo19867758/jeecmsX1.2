@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="${mobileRes}/css/style.css" />
+	<script src="${mobileRes}/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="${mobileRes}/js/touchslider.js" type="text/javascript" charset="utf-8"></script>
+	<script src="${mobileRes}/js/zepto_min.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<!-- 头部导航 -->
+		[#assign type="2" contentTitle=content.title/]
+		[#include "../includes/header.html"]
+		<!-- 头部导航 -->
+		<script type="text/javascript">
+			$(function() {
+				Cms.viewCount("${base}", "${content.id}");
+			});
+		</script>
+		<link rel="stylesheet" href="${mobileRes}/css/wtt-common.css" />
+		<link rel="stylesheet" href="${mobileRes}/css/swiper.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/downloaddetails.css" />
+
+		<div class="appdetails">
+			<div class="inner">
+				<div class="download-list det" style="padding-bottom: 0;">
+					<div class="box">
+						<a href="" class="left">
+							<div>
+								<div class="image" [#if (content.attr.shoujitubiao.resUrl)??&&(content.attr.shoujitubiao.resUrl)!='']style="background-image: url('${(content.attr.shoujitubiao.resUrl)!}');"[#else]style="background-image: url('${mobileRes}/images/icon/noImg.png');"[/#if]></div>
+								<article>
+									<h4 class="Medium">[@text_cut s=content.title len=5 append='...' /]</h4>
+									<div class="rongliang">
+										<span>
+											<div><span>${(content.attr.mobileFile.fileSize)!}</span></div>
+										</span>
+										<span class="line"></span>
+										<span>${(content.downloads)!}次下载</span>
+									</div>
+								</article>
+							</div>
+						</a>
+						<a href="${base}/download/byField?contentId=${content.id}&field=mobileFile" class="down-load">下载</a>
+					</div>
+				</div>
+			</div>
+			<div class="tabs">
+				<ul class="horizontal">
+					<li class="selectActive">
+						<a href="" class="Regular ">
+							详情
+					
+						</a>
+					</li>
+					<li >
+						<a href="${base}/content-downloadcomment.htm?contentId=${content.id}" class="Regular ">
+							评论
+						</a>
+					</li>
+					<li>
+						<a href="${base}/content-downloaddetails_recommend.htm?contentId=${content.id}" class="Regular">
+							推荐
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="box swiper-container">
+				<div class="content swiper-wrapper">
+					<div class="con-item show" id="downloaddetails">
+						<div class="swiper-container1" v-if="pictures.length">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide" v-for="picture in pictures" :key="picture.id">
+									<div class="slide">
+										<div class="image" :style="{backgroundImage:'url('+picture.resUrl+')'}"></div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="inner">
+							<div class="tag" v-if="tags.length">
+								<ul>
+									<li class="Regular" v-for="tag in tags" :key="tag.id" v-text="tag.tagName"></li>
+								</ul>
+							</div>
+
+							<div class="description">
+								<p style="font-size:0.24rem;font-family:PingFang SC;color:rgba(153,153,153,1);opacity:0.6;padding-bottom: 0.16rem;"
+								 class="Regular">${content.releaseTime?string("yyyy-MM-dd")}更新版本</p>
+								<div class="Regular txt">${txt!}</div>
+							</div>
+							<div class="guess-youlike fourbox">
+								<h4 class="Regular">猜你喜欢</h4>
+								<div class="hot-con">
+									[@cms_content_list typeId='215' count='4']
+									[#list tag_list as a]
+									<div class="box">
+										<a href="${a.url!}" class="jump-to-appdetails">
+
+											<div class="image" [#if (a.attr.shoujitubiao.resUrl)??&&(a.attr.shoujitubiao.resUrl)!='']style="background-image: url('${(a.attr.shoujitubiao.resUrl)!}');"[#else]style="background-image: url('${mobileRes}/images/icon/noImg.png');"[/#if]></div>
+											<span>[@text_cut s=a.title len=5 append='...' /]</span>
+										</a>
+										<a href="${a.url!}" class="down-load">下载</a>
+									</div>
+									[/#list]
+									[/@cms_content_list]
+								</div>
+							</div>
+
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+		</div>
+		<script type="text/javascript">
+			api.GET('/content/'+getUrlArg('contentId'),{},function(res){
+				if(res.code==200){
+					$('.header-contentTitle').text(res.data.title)
+				}
+			})
+		</script>
+		<script>
+			var downloaddetails = new Vue({
+				el: "#downloaddetails",
+				data: {
+					contentid: '${content.id}',
+					pictures: [],
+					tags: [],
+					current: 0,
+					navList: ['详情', '评论', '推荐']
+				},
+				created() {
+					var that = this
+					api.GET("/content/" + this.contentid, {}, function(res) {
+						if(res.data.attr.xiazaiduotu&&res.data.attr.xiazaiduotu.contentAttrRes){
+							that.pictures = res.data.attr.xiazaiduotu.contentAttrRes
+						}
+						if(res.data.contentTags){
+							that.tags = res.data.contentTags
+						}
+					})
+				},
+				methods: {
+					// 切换导航
+					tabChange(index) {
+						this.current = index
+					},
+				}
+
+			})
+			$(function() {
+				$('.txt p').addClass('Regular')
+				var mySwiper1 = new Swiper('.swiper-container1', {
+					direction: 'horizontal',
+					slidesPerView: 'auto',
+					freeMode: true
+				})
+
+				
+				//获取要定位元素距离浏览器顶部的距离
+				var navH = $(".tabs").offset().top;
+				// console.log(navH);
+				//滚动条事件
+				$(window).scroll(function() {
+					//获取滚动条的滑动距离
+					var scroH = $(this).scrollTop();
+					// console.log(scroH);
+					//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+					if (scroH >= navH) {
+						$(".tabs").css({
+							"position": "sticky",
+							"top": '0.96rem',
+							"z-index": 10
+						});
+					} else if (scroH < navH) {
+						$(".tabs").css({
+							"position": "static"
+						});
+					}
+				})
+				$('.banner-wrapper').on('touchstart', function(event) {
+					event.preventDefault();
+				})
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>${content.title!}-${site.name}</title>
+		<link rel="stylesheet" href="${res}/css/pageDetails.css">
+		<link rel="stylesheet" href="${res}/css/jSlider.css">
+		<link rel="stylesheet" href="${res}/fonts/share.min.css">
+		<script src="${res}/js/front.js" type="text/javascript" charset="utf-8"></script>
+		<meta name="title" content="${site.seoTitle!}" />
+		<meta name="keywords" content="${site.seoKeyword!}" />
+		<meta name="description" content="${site.seoDescription!}" />
+	</head>
+
+	<body>
+		<!-- 顶部导航 -->
+		<div class="header-children">
+			[#include "../includes/header.html"/]
+
+		</div>
+		<!--顶部导航 over-->
+		<script type="text/javascript">
+			$(function () {
+				Cms.viewCount("${base}", "${content.id}");
+				getContentUp("${content.id}");
+				getUsercomment("${content.id}");
+				genPermCheck("${content.id}")
+			});
+			function genPermCheck(contentId,channelId) {
+				$.ajax({
+					url: "${base}/permCheck",
+					data: {
+						contentId:contentId,
+						channelId:channelId
+					},
+					success: function (result) {
+						if(result.data!=1){location.href = "${base}/login"}
+					}
+				});
+			}
+		</script>
+
+		<!-- 遮挡层 -->
+		<div class="hide none"></div>
+		<!-- 弹窗 -->
+		<div class="win none">
+			<div class="remove"><i class="iconfont iconguanbi block hover pointer"></i></div>
+			<div class="content">
+				<div class="top overflow">
+					<div class="top-left fl overflow">
+						<i class="iconfont iconliulangwanbi fl block"></i><span class="fl block Semilight">图集已浏览完毕</span>
+					</div>
+					<div class="top-right fr overflow hover">
+						<i class="iconfont iconchongxinliulang block fl hover"></i><span class="fl block Semilight hover">重新浏览</span>
+					</div>
+				</div>
+				<div class="middle overflow">
+					[@cms_content id=content.id next=0 channelId=content.channel.id]
+					[#if tag_bean??]
+					<div class="middle-left fl">
+						<a href="${tag_bean.url!}" target="_blank">
+							[@cms_content id=tag_bean.id]
+							[#if tag_bean??]
+							[#assign a=tag_bean/]
+							[#list a.attr.photos.contentAttrRes as attr]
+							[#if attr_index==0]
+							<img src="${attr.resUrl!}" alt="">
+							[/#if]
+							[/#list]
+							[/#if]
+							[/@cms_content]
+							<div class="left-content overflow"><i class="iconfont iconarrow-left-circle-line block fl"></i><span class="block fl Semilight">上一图集</span></div>
+
+						</a>
+
+
+					</div>
+					[/#if]
+					[/@cms_content]
+
+					[@cms_content id=content.id next=1 channelId=content.channel.id]
+					[#if tag_bean??]
+					<div class="middle-right fl">
+						<a href="${tag_bean.url!}" target="_blank">
+							[@cms_content id=tag_bean.id]
+							[#if tag_bean??]
+							[#assign a=tag_bean/]
+							[#list a.attr.photos.contentAttrRes as attr]
+							[#if attr_index==0]
+							<img src="${attr.resUrl!}" alt="">
+							[/#if]
+							[/#list]
+							[/#if]
+							[/@cms_content]
+							<div class="right-content overflow"></i><span class="block fl Semilight">下一图集</span><i class="iconfont iconarrow-right-circle-line block fl"></i></div>
+
+						</a>
+
+					</div>
+					[/#if]
+					[/@cms_content]
+				</div>
+				<div class="bottom Semilight hover"><a href="javascript:;">返回图库首页</a></div>
+			</div>
+		</div>
+		<!-- 中间部分 -->
+		<div class="container overflow">
+			<div class="details-guide Semilight">
+				<a href="${base}/" class="black Semilight">首页</a> > [#list content.channel.nodeList as n]<a target="_blank" href="${n.url}"
+				 class="black Semilight">${n.name}</a>[#if n_has_next] > [/#if][/#list] > <span class="gray Semilight">正文</span>
+			</div>
+			<div class="big-title Bold">
+				<div class="left fl">${content.title!}</div>
+				<div class="right fr Semilight">
+					<div class="heart cartoon">
+						<p class="Semilight plus bubble">+1</p>
+						<p class="Semilight sub bubble">-1</p>
+						[#if content.collection??&&content.collection]
+						<i id="heart" name="1" onclick="Collect('${content.id}')" class="iconfont iconheart-fill"></i>
+						<p>收藏</p>
+						[#else]
+						<i id="heart" name="2" onclick="Collect('${content.id}')" class="iconfont iconheart hover"></i>
+						<p>收藏</p>
+						[/#if]
+					</div>
+					<div class="zan cartoon">
+						<p class="Semilight plus bubble">+1</p>
+						<p class="Semilight sub bubble">-1</p>
+						<i id="isZan" name="2" onclick="like('${content.id}')" class="iconfont iconthumb-up-line hover"></i>
+						<p>点赞<span id="contentUp">${content.ups!}</span></p>
+					</div>
+					<div class="discuss"><a href="#comment">
+							<i class="iconfont iconmessage--line1 hover"></i></a>
+						<p>评论${content.comments!}</p>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="info Semilight">
+				<div class="left fl">
+					<span>${content.releaseTime!}</span>
+					<a href="${(content.source.sourceLink)!}" [#if content.source??&&content.source.isOpenTarget ]target="_blank"[/#if]><span>来源：[#if (content.source.sourceName)?? && (content.source.sourceName) != ""]${(content.source.sourceName)}[#else]JEECMS演示站[/#if]</span></a>
+					<span>作者：[#if content.author?? && content.author != ""]${content.author}[#else]本站编辑[/#if]</span>
+					<span>阅读量：${content.views!}</span>
+				</div>
+				<div class="right fr">
+					<span class="share block fl">分享</span>
+					<div id="share-2"></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<!-- 轮播图部分 -->
+			<div class="zx_slider">
+
+				<div class="imgbox">
+					[#list content.attr.photos.contentAttrRes as a]
+					<img alt="Danx" src="${a.resUrl!}" />
+					[/#list]
+				</div>
+				<div class="png"></div>
+
+				<div class="lbtn zuo-btn"><i class="left iconfont iconjiaodiantujiantouzuo block hover pointer"></i></div>
+				<div class="rbtn you-btn"><i class="right iconfont iconjiaodiantujiantou block hover pointer"></i></div>
+				<div class="btnbox">
+					[#list content.attr.photos.contentAttrRes as a]
+					<a onmouseover="btn_m_over(${a_index})"><img alt="Danx" id="btn_img${a_index}" [#if a_index<1]class="thumb img_hover"
+						 [#else]class="thumb" [/#if] src="${a.resUrl!}" /></a>
+					[/#list]
+				</div>
+
+				<div class="lbtn"><i class="left iconfont iconjiaodiantujiantouzuo block hover pointer"></i></div>
+				<div class="rbtn"><i class="right iconfont iconjiaodiantujiantou block hover pointer"></i></div>
+
+				<div class="slider_p">
+
+					[#list content.attr.photos.contentAttrRes as a]
+					<div id="slider_p${a_index}" class="slider_p_div">
+						<div class="content">
+							<div class="number Bold">${a_index+1}<span>/${content.attr.photos.contentAttrRes?size}</span></div>
+							<div class="text Semilight">
+								${a.description!}
+							</div>
+						</div>
+					</div>
+					[/#list]
+
+				</div>
+
+			</div>
+			<div class="comment-area overflow Regular">
+				<div class="big fl">评论</div>
+				<div class="small fr">已有<span id="totalElements">${content.comments!}条</span>评论</div>
+			</div>
+			<div class="comment-input">
+				<textarea id="usercomments" maxlength="150"></textarea>
+				<div class="limit Semilight" id="commentsLength">0/150</div>
+				<!-- <div class="success none Semilight">
+                <div class="text"><i class="iconfont iconliulangwanbi"></i>提交成功</div>
+            </div> -->
+				<a onclick="toUsercomment('${content.id}')" class="Regular">提交</a>
+			</div>
+			<div class="hot-title Regular">热门评论</div>
+			<div class="hot-comment overflow">
+				<!-- <div class="user-icon pointer fl">
+                <img src="${res}/images/pagelist/TP_XJD01.png" alt="">
+            </div>
+            <div class="hot-text fl">
+                <div class="user-line overflow Semilight">
+                    <span class="username block fl">阿瑾</span>
+                    <span class="time block fl">20秒前</span>
+                    <div class="warning fr hover pointer"><i class="iconfont iconalarm-warning-fill"></i>举报</div>
+                </div>
+                <div class="user-text Regular">
+                    走在前，作表率”，这六个字是习近平总书记对中央和国家机关党的建设工作所提出的明确要求。对此，中央和国家机关党员干部倍感振奋光荣。“走在前，作表率”，这六个字是习近平总书记对中央和
+
+国家机关党的
+                </div>
+                <div class="text-details">
+                    <div class="text-list pointer hover">
+                        <a href="javascript:;"
+                            class="list-title block overfow-text Semilight">暗號.：党的建设质量，在深入学习贯彻党的思想理论上作表率，深入在始终同党中央保持高度一致</a>
+                        <div class="others overflow Semilight">
+                            <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                            <a href="javascript:;" class="sending block fl">·<span
+                                    class="common-red hover">回复</span></a>
+                            <a href="javascript:;" class="back block fl">·<span class="common-red hover">收起</span></a>
+                            <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                            <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                        </div>
+                        <div class="send-input none">
+                            <textarea></textarea>
+                            <a href="javascript:;" class="Semilight block">回复</a>
+                        </div>
+                    </div>
+                    <div class="text-list pointer hover">
+                        <a href="javascript:;" class="list-title block overfow-text Semilight">阿瑾：党中央现在发展的越来越好</a>
+                        <div class="others overflow Semilight">
+                            <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                            <a href="javascript:;" class="block fl">·<span class="common-red hover">回复</span></a>
+                            <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                            <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                        </div>
+                    </div>
+                    <div class="text-list pointer hover">
+                        <a href="javascript:;" class="list-title block overfow-text Semilight">暗號 回复 阿瑾：对，你说的很对！</a>
+                        <div class="others overflow Semilight">
+                            <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                            <a href="javascript:;" class="block fl">·<span class="common-red hover">回复</span></a>
+                            <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                            <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                        </div>
+                    </div>
+                    <div class="send-number pointer Semilight">
+                        查看全部<span class="font-hover">34</span>条回复 >
+                    </div>
+                </div>
+                <div class="zan-send overflow Semilight">
+                    <div class="zan fl hover pointer">
+                        <i class="iconfont iconthumb-up-fill"></i>赞1100
+                    </div>
+                    <div class="send fl hover pointer">
+                        <i class="iconfont iconmessage--fill"></i>回复
+                    </div>
+                </div>
+                <div class="lookingAll pointer hover Semilight">
+                    <a href="javascript:;">查看全部评论</a>
+                </div>
+            </div> -->
+			</div>
+			<div onclick="uplookingAll('${content.id}')" class="lookingAll pointer hover Semilight">
+				<a>查看更多评论</a>
+			</div>
+			<div class="hot-page Regular pointer">
+				<span></span>
+				<h2 class="Regular">热门图集</h2>
+				<div></div>
+			</div>
+			<div class="img-list overflow">
+				[@cms_content_list channelPath='photo' count='4' orderBy='3' siteId='1']
+				[#list tag_list as a]
+				[#if a.iconUrl??&&a.iconUrl!=""]
+				<div class="first">
+					<a href="${a.url!}" target="_blank">
+						[#if a.attr.photos??&&a.attr.photos.contentAttrRes??&&(a.attr.photos.contentAttrRes)?size>0]
+						[#list a.attr.photos.contentAttrRes as attr]
+						[#if attr_index==0]
+						<img src="${a.attr.listImg.resUrl!}" alt="">
+						[/#if]
+						[/#list]
+						[#else]
+						<img src="${a.attr.listImg.resUrl!}" alt="">
+						[/#if]
+					</a>
+					<div class="text Regular"><a href="${a.url!}" target="_blank">[@text_cut s=a.title len=30 append='...' /]</a></div>
+
+				</div>
+				[/#if]
+				[/#list]
+				[/@cms_content_list]
+			</div>
+		</div>
+
+		<!-- 顶部导航 -->
+		[#include "../includes/footer.html"/]
+		<!--顶部导航 over-->
+		<!-- 底部模块 -->
+		<script src="${res}/js/jquery.jSlider.js"></script>
+		<script src="${res}/js/newsDetails.js"></script>
+		<script src="${res}/js/jquery.share.min.js"></script>
+		<script>
+			$('#share-2').share({
+				sites: ['wechat', 'qq', 'weibo', 'qzone', 'douban']
+			});
+			// 打开全部评论
+			function uplookingAll() {
+				window.open('${base}/content-commentList.htm?contentId=' + '${content.id}');
+			}
+		</script>
+		<script type="text/javascript">
+			$(function(){
+				if(getUrlArg('comments')){
+					var height=$('.comment-area').offset().top-56;
+					$("html,body").animate({ scrollTop: height}, 500);
+				}
+			})
+			var slider_count = $('.zx_slider .btnbox a').length - 1;
+			$(".slider_p_div").hide();
+			$("#slider_p0").show();
+			$(".hi_btn").hide();
+			$("#hi_btn0").show();
+
+			var slider_i = 1;
+			var m_over = true;
+
+			function zx_slider() {
+				if (m_over) {
+					//p
+					$(".slider_p_div").hide();
+					$("#slider_p" + slider_i).show();
+					//p end
+					//hi_btn
+					$(".hi_btn").hide();
+					$("#hi_btn" + slider_i).show();
+					//hi_btn end
+					//btn
+					$(".btnbox img").stop(true, true);
+					$(".btnbox img").removeClass("img_hover");
+					$(".btnbox img").animate({
+						bottom: '0px'
+					}, 200);
+					$("#btn_img" + slider_i).addClass("img_hover");
+
+					//btn end
+					$(".imgbox").stop();
+					$(".imgbox").animate({
+						left: '-810' * slider_i + 'px'
+					});
+				}
+			}
+			$(".win .remove").click(function() {
+				$('.hide').addClass('none');
+				$('.win').addClass('none');
+			});
+			$(".win .top-right").click(function() {
+				$('.hide').addClass('none');
+				$('.win').addClass('none');
+			});
+			$(".win .bottom").click(function() {
+				window.location.href = "/photo";
+			});
+			$(".hide").click(function() {
+				$('.hide').addClass('none');
+				$('.win').addClass('none');
+			});
+			if ($(".win .middle-left").siblings().length == 0) {
+				$('.win .middle').addClass("one")
+			}else{
+				$('.win .middle.one').removeClass("one")
+			}
+			if ($(".win .middle-right").siblings().length == 0) {
+				$('.win .middle').addClass("one")
+			}else{
+				$('.win .middle.one').removeClass("one")
+			}
+			
+			$(".lbtn").click(function() {
+
+				if (slider_i == 0) {
+					$('.hide.none').removeClass('none');
+					$('.win.none').removeClass('none');
+				} else {
+					slider_i--;
+					$('.hide').addClass('none');
+					$('.win').addClass('none');
+				}
+				m_over = true;
+				zx_slider();
+				m_over = false;
+			});
+
+			$(".rbtn").click(function() {
+				if (slider_i >= 0 && slider_i < slider_count) {
+					slider_i++;
+					$('.hide').addClass('none');
+					$('.win').addClass('none');
+				} else {
+					$('.hide.none').removeClass('none');
+					$('.win.none').removeClass('none');
+					slider_i = 0
+				}
+				m_over = true;
+				zx_slider();
+				m_over = false;
+			});
+
+			function btn_m_over(btn_i) {
+				if (slider_i - 1 != btn_i) {
+					m_over = true;
+					slider_i = btn_i;
+					zx_slider();
+					m_over = false;
+				}
+			}
+			// clearInterval(zx_timer)
+			// zx_timer = setInterval("zx_slider();", 5000);
+			$(".zx_slider").mouseover(function() {
+				m_over = false;
+			});
+			$(".zx_slider").mouseout(function() {
+				m_over = true;
+			});
+			// $('#share-2 icon-weixin').removeClass('icon-weixin').addClass('iconweixin')
+			// $('#share-2 icon-qq').removeClass('icon-qq').addClass('iconQQ')
+			// $('#share-2 icon-weibo').removeClass('icon-weibo').addClass('iconweibo')
+			// $('#share-2 icon-qzone').removeClass('icon-qzone').addClass('iconQQkongjian')
+			// $('#share-2 icon-douban').removeClass('icon-douban').addClass('icondouban')
+			// $('#share-2 .icon-weixin').hover(function(){
+			// 	$(this).removeClass('icon-weixin').addClass('iconweixin2')
+			// },function(){
+			// 	$(this).addClass('icon-weixin').removeClass('iconweixin2')
+			// })
+			// $('#share-2 .icon-qq').hover(function(){
+			// 	$(this).removeClass('icon-qq').addClass('iconQQ2')
+			// },function(){
+			// 	$(this).addClass('icon-qq').removeClass('iconQQ2')
+			// })
+			// $('#share-2 .icon-weibo').hover(function(){
+			// 	$(this).removeClass('icon-weibo').addClass('iconweibo2')
+			// },function(){
+			// 	$(this).addClass('icon-weibo').removeClass('iconweibo2')
+			// })
+			// $('#share-2 .icon-qzone').hover(function(){
+			// 	$(this).removeClass('icon-qzone').addClass('iconQQkongjian2')
+			// },function(){
+			// 	$(this).addClass('icon-qzone').removeClass('iconQQkongjian2')
+			// })
+			// $('#share-2 .icon-douban').hover(function(){
+			// 	$(this).removeClass('icon-douban').addClass('icondouban2')
+			// },function(){
+			// 	$(this).addClass('icon-douban').removeClass('icondouban2')
+			// })
+		</script>
+	</body>
+
+</html>

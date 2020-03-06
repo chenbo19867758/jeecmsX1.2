@@ -1,0 +1,10 @@
+.class
+target
+.idea
+.settings
+.checkstyle
+.classpath
+.project
+.iml
+logs
+**.iml

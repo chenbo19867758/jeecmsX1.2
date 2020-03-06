@@ -1,0 +1,519 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>首页-${site.name!}</title>
+    <link rel="stylesheet" href="${res}/css/jSlider.css">
+    <link rel="stylesheet" href="${res}/css/index.css">
+    <meta name="title" content="${site.seoTitle!}" />
+    <meta name="keywords" content="${site.seoKeyword!}" />
+    <meta name="description" content="${site.seoDescription!}" />
+
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    [#include "../includes/header.html"/]
+    <!--顶部导航 over-->
+    <!-- 大中部整体模块 -->
+    <div class="section">
+        <div class="typeArea">
+            <div class="right-info">网站支持IPv6</div>
+            <div class="title">
+                <div class="headline">
+                    <div class="logo Regular">
+                        <span>头条</span> 
+                    </div>
+                    [@cms_content_list channelPath='news' typeId='149' orderBy='29' count='1' siteId='1']
+                    [#list tag_list as a]
+
+                    <div class="title-top Bold"><a href="${a.url}" target="_blank">
+                            [@text_cut s=a.title len=20 append='...' /]
+                        </a></div>
+
+                    [/#list]
+                    [/@cms_content_list]
+                    <div class="clearfix"></div>
+                </div>
+                <div class="title-bottom Regular">
+                    [@cms_content_list channelPath='news' typeId='149' orderBy='29' siteId='1' count='3']
+                    <ul>
+                        [#list tag_list as a]
+                        [#if a_index>0&&a_index<5] <li>[#if a_index==1][#else]<span>|</span>[/#if]<a href="${a.url}"
+                                target="_blank">${a.title!}</a></li>
+                            [/#if]
+                            [/#list]
+                    </ul>
+                    [/@cms_content_list]
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!-- 轮播图模块 -->
+            <div class="lunbo">
+                <!-- <div id="slider1" class="jSlider" data-loop="true" data-navigation="always" data-indicator="always">
+                    [@cms_content_list typeId='186' orderBy='29' siteId='1']
+                    [#list tag_list as a]
+                    <div>
+                        <a href="${a.url}" target="_blank"><img src="${a.iconUrl!}" alt="" />
+                            <div class="text Regular">${a.title!}</div>
+                        </a>
+                    </div>
+
+                    [/#list]
+                    [/@cms_content_list]
+                </div> -->
+                <div class="banner" id="b04">
+                    [@cms_content_list channelPath='news' typeId='175' orderBy='29' siteId='1' count='5']
+                    <ul>
+                        [#list tag_list as a]
+                        <li>
+                            <a href="${a.url}" target="_blank"><img src="${a.iconUrl!}" alt="" />
+                                <div class="text Regular hover">${a.title!}</div>
+                            </a>
+                        </li>
+                        [/#list]    
+                    </ul>
+                    [/@cms_content_list]
+                    <a href="javascript:void(0);" class="unslider-arrow04 prev hover">
+                        <i class="iconfont iconjiaodiantujiantouzuo arrow" id="al"></i>
+                        </a>
+                    <a href="javascript:void(0);" class="unslider-arrow04 next hover">
+                        <i class="iconfont iconjiaodiantujiantou arrow" id="ar"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- 热点要闻模块 -->
+            <div class="hot">
+                <div class="nav">
+                    [@cms_channel path='yw' siteId='1'][#if tag_bean??]<div class="title Regular"><a
+                            href="${tag_bean.url!}">${tag_bean.name!}</a></div>[/#if][/@cms_channel]
+                    <div class="more Light">
+                        [@cms_channel path='yw' siteId='1'][#if tag_bean??]<a href="${tag_bean.url!}"
+                            target="_blank">更多</a>[/#if][/@cms_channel]
+                        [@cms_channel path='yw' siteId='1'][#if tag_bean??]<a href="${tag_bean.url!}" target="_blank"
+                            class="search iconfont icongengduo"></a>[/#if][/@cms_channel]
+                    </div>
+                </div>
+                <!-- 左侧要闻列表 -->
+                <div class="new-list">
+                    <div class="new-left Semilight">
+                        [@cms_content_list channelPath='news' typeId='263' orderBy='29' count='18' siteId='1']
+                        <dl>
+                            [#list tag_list as a]
+                            [#if a_index==0||a_index==9]
+                            <dt><a href="${a.url}" class="Bold" target="_blank">[@text_cut s=a.title append='...'
+                                    /]</a></dt>
+                            [#else]
+                            <dd><a href="${a.url}" target="_blank">[@text_cut s=a.title append='...' /]</a></dd>
+                            [/#if]
+                            [#if (a_index+1)%9=0]
+                        </dl>
+                    </div>
+                    <div class="new-right Semilight">
+                        <dl>
+                            [/#if]
+                            [/#list]
+                        </dl>
+                        [/@cms_content_list]
+                    </div>
+                </div>
+                <!-- 右侧热点排行 -->
+                <div class="ranking">
+                    <div class="box">
+                        <div class="logo Regular">
+                            <span>热点排行</span>
+                            <i class="iconfont iconpaihang"></i>
+                        </div>
+                    </div>
+                    [@cms_content_list channelPath='news' orderBy='3' count='3' siteId='1']
+                    <ul id="hotList">
+                        [#list tag_list as a]
+                        <li>
+                            <span class="num Bold fl">${a_index+1}</span>
+                            <a class="rank-img fl" href="${a.url}"><img src="${(a.attr.xinwenliebiaotu.resUrl)!}" alt=""></a>
+                            <a href="${a.url}" class="text Semilight fl">[@text_cut s=a.title len=15 append='...' /]</a>
+                            <span class="read Semilight">${a.views!}人阅读</span>
+                        </li>
+                        [/#list]
+                    </ul>
+                    [/@cms_content_list]
+                    <div class="slide">
+                        <a class="left" onclick="hotPrevious()" target="_blank">
+                            <i class="iconfont iconjiantousvg"></i>
+                        </a>
+                        <a class="right" onclick="hotNextPage()" target="_blank">
+                            <i class="iconfont iconjiantou"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="chatu">
+                <a href="http://www.jeecms.com" target="_blank"><img src="${res}/images/index/chatu.png" alt=""></a>
+            </div>
+            <!-- 国内模块 -->
+            <div class="inland">
+                <div class="nav">
+                    <div class="title Regular"><a>专题</a></div>
+                    <div class="navbar Semilight">
+                        [@cms_content_list channelPath='zt' orderBy='29' count='8' siteId='1']
+                        <ul>
+                            [#list tag_list as a]
+                            [#if a_index>4]
+                            <li><a href="${a.url}" target="_blank">${a.title!}</a></li>
+                            [/#if]
+                            [/#list]
+                            <li class="clearfix"></li>
+                        </ul>
+                        [/@cms_content_list]
+                    </div>
+                </div>
+                <div class="imgbox">
+                    <div class="text">
+                        <div class="wenzi Regular">专题聚焦</div>
+                        <div class="sanjiao"></div>
+                    </div>
+
+                    [@cms_content_list channelPath='zt' orderBy='29' count='10' siteId='1']
+                    <ul>
+                        [#list tag_list as a]
+                        [#if a_index<5] <li><a href="${a.url}" target="_blank"><img class="img-scale"
+                                    src="${a.iconUrl!}" alt=""></a>
+                            </li>
+                            [/#if]
+                            [/#list]
+                            <li class="clearfix"></li>
+                    </ul>
+                    [/@cms_content_list]
+
+                </div>
+            </div>
+            <!-- 分类主题模块 -->
+            <div class="module-box">
+                <!-- 国内主题 -->
+                <div class="module-inland">
+                    <div class="nav">
+                        [@cms_channel path='gn' siteId='1'][#if tag_bean??]<div class="title Regular"><a
+                                href="${tag_bean.url!}">${tag_bean.name!}</a></div>
+                        <div class="more Light">
+                            <a href="${tag_bean.url!}">更多</a>
+                            <a href="${tag_bean.url!}" class="search iconfont icongengduo"></a>
+                        </div>[/#if]
+                        [/@cms_channel]
+                    </div>
+                    <div class="subject Semilight">
+                        [@cms_content_list channelPath='gn' orderBy='29' isTop='1' count='1' siteId='1']
+                        [#list tag_list as a]
+                        <div class="image">
+                            <a href="${a.url}" class="img" target="_blank"><img class="img-scale" src="${a.iconUrl!}"
+                                    alt=""></a>
+                            <div class="text">
+                                <a href="${a.url}" target="_blank">[@text_cut s=a.title len=20 append='...' /]</a>
+                            </div>
+                        </div>
+                        [/#list]
+                        [/@cms_content_list]
+                        [@cms_content_list channelPath='gn' orderBy='29' isTop='0' count='4' siteId='1']
+                        <ul>
+                            [#list tag_list as a]
+                            <li><a href="${a.url}" target="_blank">[@text_cut s=a.title append='...' /]</a></li>
+                            [/#list]
+                        </ul>
+                        [/@cms_content_list]
+                    </div>
+                </div>
+                <!-- 国际主题 -->
+                <div class="module-international">
+                    <div class="nav">
+                        [@cms_channel path='gj' siteId='1'][#if tag_bean??]<div class="title Regular"><a
+                                href="${tag_bean.url!}">${tag_bean.name!}</a></div>
+                        <div class="more Light">
+                            <a href="${tag_bean.url!}">更多</a>
+                            <a href="${tag_bean.url!}" class="search iconfont icongengduo"></a>
+                        </div>[/#if]
+                        [/@cms_channel]
+                    </div>
+                    <div class="subject Semilight">
+                        [@cms_content_list channelPath='gj' orderBy='29' isTop='1' count='1' siteId='1']
+                        [#list tag_list as a]
+                        <div class="image">
+                            <a href="${a.url}" class="img" target="_blank"><img class="img-scale" src="${a.iconUrl!}"
+                                    alt=""></a>
+                            <div class="text">
+                                <a href="${a.url}" target="_blank">[@text_cut s=a.title len=20 append='...' /]</a>
+                            </div>
+                        </div>
+                        [/#list]
+                        [/@cms_content_list]
+                        [@cms_content_list channelPath='gj' orderBy='29' isTop='0' count='4' siteId='1']
+                        <ul>
+                            [#list tag_list as a]
+                            <li><a href="${a.url}" target="_blank">[@text_cut s=a.title append='...' /]</a></li>
+                            [/#list]
+                        </ul>
+                        [/@cms_content_list]
+                    </div>
+                </div>
+                <!-- 财经主题 -->
+                <div class="module-financeAndEconomics">
+                    <div class="nav">
+                        [@cms_channel path='cj' siteId='1'][#if tag_bean??]<div class="title Regular"><a
+                                href="${tag_bean.url!}">${tag_bean.name!}</a></div>
+                        <div class="more Light">
+                            <a href="${tag_bean.url!}">更多</a>
+                            <a href="${tag_bean.url!}" class="search iconfont icongengduo"></a>
+                        </div>[/#if]
+                        [/@cms_channel]
+                    </div>
+                    <div class="subject Semilight">
+                        [@cms_content_list channelPath='cj' orderBy='29' isTop='1' count='1' siteId='1']
+                        [#list tag_list as a]
+                        <div class="image">
+                            <a href="${a.url}" class="img" target="_blank"><img class="img-scale" src="${a.iconUrl!}"
+                                    alt=""></a>
+                            <div class="text">
+                                <a href="${a.url}" target="_blank">[@text_cut s=a.title len=20 append='...' /]</a>
+                            </div>
+                        </div>
+                        [/#list]
+                        [/@cms_content_list]
+                        [@cms_content_list channelPath='cj' orderBy='29' isTop='0' count='4' siteId='1']
+                        <ul>
+                            [#list tag_list as a]
+                            <li><a href="${a.url}" target="_blank">[@text_cut s=a.title append='...' /]</a></li>
+                            [/#list]
+                        </ul>
+                        [/@cms_content_list]
+                    </div>
+                </div>
+                <!-- 体育主题 -->
+                <div class="module-sports">
+                    <div class="nav">
+                        [@cms_channel path='ty' siteId='1'][#if tag_bean??]<div class="title Regular"><a
+                                href="${(tag_bean.url)!}">${tag_bean.name!}</a></div>
+                        <div class="more Light">
+                            <a href="${(tag_bean.url)!}">更多</a>
+                            <a href="${(tag_bean.url)!}" class="search iconfont icongengduo"></a>
+                        </div>[/#if]
+                        [/@cms_channel]
+                    </div>
+                    <div class="subject Semilight">
+                        [@cms_content_list channelPath='ty' orderBy='29' isTop='1' count='1' siteId='1']
+                        [#list tag_list as a]
+                        <div class="image">
+                            <a href="${a.url}" class="img" target="_blank"><img class="img-scale" src="${a.iconUrl!}"
+                                    alt=""></a>
+                            <div class="text">
+                                <a href="${a.url}" target="_blank">[@text_cut s=a.title len=20 append='...' /]</a>
+                            </div>
+                        </div>
+                        [/#list]
+                        [/@cms_content_list]
+                        [@cms_content_list channelPath='ty' orderBy='29' isTop='0' count='5' siteId='1']
+                        <ul>
+                            [#list tag_list as a]
+                            <li><a href="${a.url}" target="_blank">[@text_cut s=a.title append='...' /]</a></li>
+                            [/#list]
+                        </ul>
+                        [/@cms_content_list]
+                    </div>
+                </div>
+                <!-- 文库主题 -->
+                <div class="module-library">
+                    <div class="nav">
+                        [@cms_channel path='doc' siteId='1'][#if tag_bean??]<div class="title Regular"><a
+                                href="${tag_bean.url!}">${tag_bean.name!}</a></div>
+                        <div class="more Light">
+                            <a href="${tag_bean.url!}">更多</a>
+                            <a href="${tag_bean.url!}" class="search iconfont icongengduo"></a>
+                        </div>[/#if]
+                        [/@cms_channel]
+                    </div>
+                    <div class="subject Semilight">
+                        [@cms_content_list channelPath='doc' orderBy='29' typeId='175' count='1' siteId='1']
+                        [#list tag_list as a]
+                        <div class="image">
+                            <a href="${a.url}" class="img" target="_blank"><img class="img-scale" src="${a.iconUrl!}"
+                                    alt=""></a>
+                            <div class="text">
+                                <a href="${a.url}" target="_blank">[@text_cut s=a.title len=20 append='...' /]</a>
+                            </div>
+                        </div>
+                        [/#list]
+                        [/@cms_content_list]
+                        [@cms_content_list channelPath='doc' orderBy='29' typeId='175' count='6' siteId='1']
+                        <ul>
+                            [#list tag_list as a]
+                            [#if a_index>0]
+                            <li><a href="${a.url}" target="_blank">[@text_cut s=a.title append='...' /]</a></li>
+                            [/#if]
+                            [/#list]
+                        </ul>
+                        [/@cms_content_list]
+                    </div>
+                </div>
+                <!-- 下载主题 -->
+                <div class="module-download">
+                    <div class="nav">
+                        [@cms_channel path='dl' siteId='1'][#if tag_bean??]<div class="title Regular"><a
+                                href="${tag_bean.url!}">${tag_bean.name!}</a></div>
+                        <div class="more Light">
+                            <a href="${tag_bean.url!}">更多</a>
+                            <a href="${tag_bean.url!}" class="search iconfont icongengduo"></a>
+                        </div>[/#if]
+                        [/@cms_channel]
+                    </div>
+                    <div class="subject Semilight">
+                        [@cms_content_list channelPath='dl' orderBy='29' typeId='175' count='1' siteId='1']
+                        [#list tag_list as a]
+                        <div class="image">
+                            <a href="${a.url}" class="img" target="_blank"><img class="img-scale"
+                                    src="${(a.iconUrl)!}" alt=""></a>
+                            <div class="text">
+                                <a href="${a.url}" target="_blank">[@text_cut s=a.title len=20 append='...' /]</a>
+                            </div>
+                        </div>
+                        [/#list]
+                        [/@cms_content_list]
+                        [@cms_content_list channelPath='dl' orderBy='29' typeId='175' count='6' siteId='1']
+                        <ul>
+                            [#list tag_list as a]
+                            [#if a_index>0]
+                            <li><a href="${a.url}" target="_blank">[@text_cut s=a.title append='...' /]</a></li>
+                            [/#if]
+                            [/#list]
+                        </ul>
+                        [/@cms_content_list]
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!-- 视频模块 -->
+            <div class="video">
+                <div class="nav Regular">
+                    [@cms_channel path='video' siteId='1'][#if tag_bean??]<div class="title"><a
+                            href="${tag_bean.url!}">${tag_bean.name!}</a></div>[/#if][/@cms_channel]
+                    <!--
+                    <div class="navbar">
+                        <ul>
+                            <li><a href="javascript:;">动漫</a></li>
+                            <li><a href="javascript:;">综艺</a></li>
+                            <li><a href="javascript:;">电视剧</a></li>
+                            <li><a href="javascript:;">电影</a></li>
+                        </ul>
+                    </div>  
+                    -->
+                </div>
+                [@cms_content_list channelPath='video'  orderBy='29' count='5' siteId='1']
+                <ul class="subject-box Semilight">
+                    [#list tag_list as a]
+                    <li class="subject">
+                        <a href="${a.url}" class="img" target="_blank">
+                            <img class="img-scale" src="${a.iconUrl!}" alt="">
+                            <div>
+                                <i class="iconfont iconbofang"></i>
+                            </div>
+                        </a>
+                        <div class="text">
+                            <a href="${a.url}" target="_blank">[@text_cut s=a.title len=12 append='...' /]</a>
+                        </div>
+                    </li>
+                    [/#list]
+                    <div class="clearfix"></div>
+                </ul>
+                [/@cms_content_list]
+            </div>
+            <!-- 图片模块 -->
+            <div class="images-box">
+                <div class="nav Regular">
+                    [@cms_channel path='photo' siteId='1'][#if tag_bean??]<div class="title"><a
+                            href="${tag_bean.url!}">${tag_bean.name!}</a></div>
+                    <div class="more Light">
+                        <a href="${tag_bean.url!}">更多</a>
+                        <a href="${tag_bean.url!}" class="search iconfont icongengduo"></a>
+                    </div>[/#if]
+                    [/@cms_channel]
+                </div>
+                <div class="zuo Light">
+                    [@cms_content_list channelPath='photo' typeId='175' orderBy='29' count='2' siteId='1']
+                    [#list tag_list as a]
+                    [#if a_index<2] <div class="images zuo-img1">
+                        <a href="${a.url}" target="_blank"><img src="${a.iconUrl!}" alt=""></a>
+                        <div class="text none">
+                            <h4><a href="${a.url}" style="font-size: 18px;" target="_blank">[@text_cut s=a.title
+                                    append='...'
+                                    /]</a></h4>
+                            <p><a href="${a.url}" style="font-size: 14px;" target="_blank">[@text_cut s=a.description
+                                    
+                                    append='...' /]</a></p>
+                        </div>
+                </div>
+                [/#if]
+                [/#list]
+                [/@cms_content_list]
+            </div>
+            <div class="zhong Light">
+                [@cms_content_list channelPath='photo' typeId='224' orderBy='29' count='1' siteId='1']
+                [#list tag_list as a]
+                <div class="images zhong-img">
+                    <a href="${a.url}" target="_blank"><img src="${(a.attr.inds.resUrl)!}" alt=""></a>
+                    <div class="text none">
+                        <h4><a href="${a.url}" style="font-size: 18px;" target="_blank">[@text_cut s=a.title
+                                append='...' /]</a>
+                        </h4>
+                        <p><a href="${a.url}" style="font-size: 14px;" target="_blank">[@text_cut s=a.description
+                                append='...'
+                                /]</a></p>
+                    </div>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+            </div>
+            <div class="you Light">
+                [@cms_content_list channelPath='photo' typeId='175' orderBy='29' count='4' siteId='1']
+                [#list tag_list as a]
+                [#if a_index>1]
+                <div class="images you-img1">
+                    <a href="${a.url}" target="_blank"><img src="${a.iconUrl!}" alt=""></a>
+                    <div class="text none">
+                        <h4><a href="${a.url}" style="font-size: 18px;" target="_blank">[@text_cut s=a.title
+                                append='...' /]</a>
+                        </h4>
+                        <p><a href="${a.url}" style="font-size: 14px;" target="_blank">[@text_cut s=a.description
+                                append='...' /]</a></p>
+                    </div>
+                </div>
+                [/#if]
+                [/#list]
+                [/@cms_content_list]
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <!-- 顶部导航 -->
+    [#include "../includes/footer.html"/]
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <script src="${res}/js/jquery.jSlider.js"></script>
+    <script src="${res}/js/unslider.min.js"></script>
+    <script src="${res}/js/index.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            var unslider04 = $('#b04').unslider({
+                    dots: true
+                }),
+                data04 = unslider04.data('unslider');
+
+            $('.unslider-arrow04').click(function () {
+                var fn = this.className.split(' ')[1];
+                data04[fn]();
+            });
+        });
+    </script>
+</body>
+
+</html>

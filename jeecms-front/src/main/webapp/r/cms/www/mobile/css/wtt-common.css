@@ -1,0 +1,439 @@
+
+body{
+	line-height: 1;
+}
+.title{
+	display: flex;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+span.red-radius{
+ 	width:0.06rem;
+ 	height:0.34rem;
+ 	background:rgba(227,11,32,1);
+ 	border-radius:0px 0.06rem 0.06rem 0px;
+ 	margin-right: 0.1rem;
+ }
+.title .title-con{
+	margin-top: 1px;
+	margin: 0;
+	padding: 0;
+}
+.down-load{
+	display: block;
+	width:1rem;
+	height:0.48rem;
+	border:1px solid rgba(227,11,32,1);
+	border-radius:0.24rem;
+	font-size:0.24rem;
+	font-family:PingFang SC;
+	font-weight:300;
+	line-height: 0.43rem;
+	color:rgba(227,11,32,1);
+	text-align: center;
+	text-decoration: none;
+}
+.down-load:hover{
+	background:rgba(0,0,0,0.06);
+}
+
+.download-list {
+	width: 6.7rem;
+	margin: 0 auto;
+}
+.download-list .box {
+	width: 100%;
+	
+	margin-top: 0.4rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.download-list .box a{
+	text-decoration: none;
+}
+
+.download-list .box a>div {
+	display: flex;
+	align-items: center;
+}
+
+.download-list .box a>div .image {
+	width: 1.2rem;
+	margin-right: 0.29rem;
+	height: 1.2rem;
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	border-radius: 0.1rem;
+}
+.download-list .box a>div img{
+	width: 1.2rem;
+	margin-right: 0.29rem;
+	height: 1.2rem;
+	border-radius: 0.1rem;
+}
+
+.download-list .box a>div h4 {
+	font-size: 0.3rem;
+	font-family: PingFang SC;
+	
+	color: rgba(51, 51, 51, 1);
+	padding-bottom: 0.29rem;
+	margin: 0;
+}
+.download-list .box a>div .rongliang{
+	display: flex;
+	align-items: center;
+}
+.download-list .box a>div article span{
+	font-size:0.24rem;
+font-family:PingFang SC;
+font-weight:300;
+color:rgba(179,179,179,1);
+}
+.download-list .box a>div span.line{
+	width:1px;
+	height:0.2rem;
+	background:rgba(230,230,230,1);
+	border-radius:1px;
+	margin: 0 0.3rem;
+}
+.inner{
+	width: 6.7rem;
+	margin: 0 auto;
+}
+.fourbox {
+	width: 6.7rem;
+	margin: 0 auto;
+	margin-top: 0.57rem;
+	margin-bottom: 0.4rem;
+}
+.fourbox .title {
+	display: flex;
+}
+.fourbox .title .title-con {
+	display: block;
+	font-size: 0.34rem;
+	font-family: PingFang SC;	
+	color: rgba(51, 51, 51, 1);
+	line-height: 1;
+}
+
+.fourbox .hot-con {
+	margin-top: 0.4rem;
+	display: flex;
+	justify-content: space-between;
+}
+.fourbox .hot-con .box {
+	width: 1.2rem;
+	text-align: center;
+}
+
+.fourbox .hot-con .box .image {
+	width: 100%;
+	height: 1.2rem;
+	margin-bottom: 0.28rem;
+	border-radius: 0.1rem;
+}
+.fourbox .hot-con .box span {
+	font-size: 0.26rem;
+	font-family: PingFang SC;
+	color: rgba(51, 51, 51, 1);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.fourbox .hot-con .box .jump-to-appdetails {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 0.3rem;
+}
+
+.fourbox .hot-con .box a.down-load {
+	display: block;
+	width: 1rem;
+	margin-left: 0.1rem;
+	height: 0.48rem;
+	border: 1px solid rgba(227, 11, 32, 1);
+	border-radius: 0.24rem;
+	font-size: 0.24rem;
+	font-family: PingFang SC;
+	font-weight: 300;
+	line-height: 0.43rem;
+	color: rgba(227, 11, 32, 1);
+}
+body{
+	width: 7.5rem;
+	width: 100vw;
+}
+.channel{
+	height: 0.8rem;
+	width: 100%;
+	border-style: solid;
+	border-color: rgba(245,245,245,1);
+	border-bottom-width: 0.01rem;
+}
+.channel ul{
+	display: flex;
+	padding: 0 0.4rem 0 0.4rem;
+	justify-content: space-between;
+}
+.channel li a{
+	display: block;
+	font-size:0.26rem;
+	font-family:PingFang SC;
+	padding-top:0.24rem ;
+	padding-bottom: 0.24rem;
+	color:rgba(102,102,102,1);
+}
+.channel li a.mark-red{
+	border-color: rgba(227,11,32,1);
+	border-bottom-width: 0.04rem;
+	border-style:solid;
+	
+}
+/* .channel li .mark-red span:first-child{
+	color:rgba(227,11,32,1);
+} */
+
+span.line{
+	width: 1px;
+}
+span.line{
+width:1px;
+	height:0.2rem;
+	background:rgba(230,230,230,1);
+	border-radius:1px;
+	margin: 0 0.3rem;	
+}
+.image {
+	background-position: center center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+.download-list{
+	padding-bottom: 0.64rem;
+}
+.channel a{
+	line-height: 1;
+}
+.news-list li.box {
+	padding: 0.4rem 0;
+	border-bottom-width: 0.01rem;
+	border-style: solid;
+	border-color: rgba(240,240,240,1);
+}
+.news-list li.box a{
+	display: block;
+}
+.news-list li.box .top{
+	margin-bottom: 0.31rem;
+}
+.news-list li.pic .top{
+	margin-bottom: 0.58rem;
+	display: flex;
+	justify-content: space-between;
+}
+.news-list li.pic .top-left{
+	width: 4.2rem;
+	display: flex;
+	flex-direction: column;
+}
+.news-list li.box  h4{
+	font-size:0.32rem;
+	font-family:PingFang SC;
+	color:rgba(51,51,51,1);
+	line-height:0.48rem;
+	margin-bottom: 0.14rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.news-list li.pic  h4{
+	margin-top: 0.1rem;
+	margin-bottom: 0.16rem;
+}
+.news-list li.box .top p{
+	display: flex;
+	flex-direction: row;
+	font-size: 0.2rem;
+	font-family:PingFang SC;
+}
+.news-list li.box .top p span:first-child{
+	color:rgba(51,51,51,1);
+	margin-right:0.48rem ;
+}
+.news-list li.box .top p span:last-child{
+	color:rgba(153,153,153,1);
+}
+.news-list li .top-right .image{
+	width:2.18rem;
+	height:1.60rem;
+	border-radius:0.10rem;
+}
+.news-list li .bottom{
+	display: flex;
+	justify-content: space-between;
+}
+.news-list li .bottom a{
+	width: 25%;
+	display: flex;
+	align-items: center;
+}
+.news-list li .bottom a>div{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 0.7rem;
+	display: flex;
+	justify-content: flex-start;
+}
+.news-list li .bottom a:last-child>div{
+	justify-content: space-between;
+}
+.news-list li .bottom a:last-child,.news-list li .bottom a:first-child+a+a{
+	justify-content: flex-end;
+}
+.news-list li .bottom a:first-child+a{
+	justify-content: center;
+}
+.news-list li .bottom a div span{
+	font-size:0.22rem;
+	font-family:PingFang SC;
+	color:rgba(102,102,102,1);
+	display: block;
+}
+.news-list li .bottom a:first-child+a div span{
+	width: 0.7rem;
+}
+.news-list li .bottom a .image,
+.news-list li .bottom a:last-child img{
+	margin-right: 0.1rem;
+}
+.news-list li .bottom a:first-child .image{
+	width: 0.22rem;
+	height: 0.2rem;
+}
+.news-list li .bottom a:first-child+a .image{
+	width: 0.23rem;
+	height: 0.22rem;
+}
+.news-list li .bottom a:first-child+a+a .image{
+	width: 0.25rem;
+	height: 0.22rem;
+}
+.news-list li .bottom a:last-child img{
+	width: 0.24rem;
+	height: 0.22rem;
+}
+/* .news-list li .bottom a:first-child div,
+.news-list li .bottom a:first-child+a div{
+	justify-content: flex-start;
+}
+.news-list li .bottom a:last-child div{
+	justify-content: flex-end;
+} */
+
+.r-title{
+	display: flex;
+	align-items: center;
+}
+.r-title h4{
+	color:rgba(153,153,153,1);
+}
+.r-title span{
+	background:rgba(240,240,240,1);
+	flex-grow: 1;
+	height: 1px;
+}
+.r-title h4{
+	font-size:0.26rem;
+	font-family:PingFang SC;
+	width: 1.05rem;
+	margin-right: 0.09rem;
+	flex-shrink: 1;
+}
+a.read-more{
+	width: 3rem;
+	margin: 0 auto;
+	margin-top: 0.6rem;
+	display: block;
+	text-align: center;
+	line-height: 0.72rem;
+	font-size:0.32rem;
+	font-family:PingFang SC;
+	color:rgba(227,11,32,1);
+	border:1px solid rgba(227,11,32,1);
+	border-radius:0.35rem 0.36rem 0.36rem 0.36rem;
+}
+a.read-more:hover{
+	background:rgba(0,0,0,0.06);
+}
+
+.newsdetails h4.bigtitle{
+	font-size:0.40rem;
+	font-family:PingFang SC;
+	color:rgba(51,51,51,1);
+	line-height:0.60rem;
+	padding-top: 0.3rem;
+	padding-bottom: 0.35rem;
+}
+.newsdetails .from{
+	display: flex;
+	align-items: center;
+}
+.newsdetails .from .left,.newsdetails .from .left a,.from .center,.from .right{
+	display: flex;
+	align-items: center;
+}
+.newsdetails .from .left span{
+	font-size:0.26rem;
+	font-family:PingFang SC;
+	color:rgba(77,77,77,1);
+}
+.newsdetails .from .center span{
+	font-size:0.26rem;
+	font-family:PingFang SC;
+	color:rgba(179,179,179,1);
+}
+.newsdetails .from .center{
+	margin: 0 0.4rem;
+}
+.newsdetails .from .right .image{
+	width:0.28rem;
+	height: 0.24rem;
+	margin-right: 0.1rem;
+}
+.newsdetails .from .right span{
+	font-size:0.26rem;
+	font-family:PingFang SC;
+	color:rgba(153,153,153,1);
+}
+.clearfix:after{
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: "";
+	clear: both;
+	height: 0;
+}
+.relate{
+	padding: 0.6rem 0.4rem;
+	margin-bottom: 0.98rem;	
+}
+.header-contentTitle{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.grey-blank{
+	width:7.50rem;
+	height:0.20rem;
+	background:rgba(245,245,250,1);
+}
+.download-yingyong,.news,.newschild,.photo{
+	margin-top: 0.96rem;
+}

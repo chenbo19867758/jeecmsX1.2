@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>视频详情</title>
+	
+</head>
+<body>
+	[#assign type="1" channelTitle="音频详情"/]
+	[#include "../includes/header.html"]
+	<!--顶部导航 over-->
+	<script type="text/javascript">
+	    $(function () {
+	        Cms.viewCount("${base}", "${content.id}");
+	    });
+	</script>
+	<link rel="stylesheet" type="text/css" href="${mobileRes}/css/musicDetails.css"/>
+	<div class="videoDetails">
+		<audio autoplay controls loop src="${(content.attr.music.resUrl)!}"></audio>
+		<h3 class="Regular">[@text_cut s=content.title len=40 append='...'/]</h3>
+		<div class="text Regular">
+			[#if (content.source.sourceName)?? && (content.source.sourceName) != ""]
+			<a href="${(content.source.sourceLink)!}"><p>来源：${(content.source.sourceName)!}</p></a> 
+			[#else]
+				<p>来源：JEECMS演示站</p>
+			[/#if]
+			<p>${content.releaseTime!}</p>
+			<p><img src="${mobileRes}/images/icon/yueduliang-m.png" > ${content.views!}</p>
+		</div>
+		
+	</div>
+	[#assign contentId=content.id ups=content.ups/]
+	[#include "hotComments.html"]
+	
+	[#assign contentId=content.id comments=content.comments title=content.title desc=content.description imgUrl=content.iconUrl/]
+	[#include "bottom.html"]
+</body>
+</html>

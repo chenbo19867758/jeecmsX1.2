@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+	</head>
+	<body>
+		<!-- 头部导航 -->
+		[#assign type="1" channelTitle="投票调查"/]
+		[#include "../includes/header.html"]
+		<!-- 头部导航 -->
+		<link rel="stylesheet" href="${mobileRes}/css/wtt-common.css" />
+		<link rel="stylesheet" href="${mobileRes}/css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/bignav.css" />
+    <link rel="stylesheet" type="text/css" href="${mobileRes}/css/vote.css" />
+    <script src="${mobileRes}/js/loading.js" type="text/javascript" charset="utf-8"></script>
+		<div class="vote" id="vote">
+      <div class="inner">
+          <ul class="vote-list">
+              <li class="Medium" v-for="(a,index) in list" :key="index">
+                <div class="vote-item" v-if="a.coverPicUrl">
+                  <div class="vote-item-left">
+                    <a :href="'${base}/interact-vote.htm?id='+a.id">
+                      <h4 class="Medium" v-text="a.title.slice(0,15)"></h4>
+                    </a>
+                    <p class="voteBox">
+                      <span class="status-box3" v-if='a.status===3'>进行中</span><span class="status-box4" v-if='a.status===4'>已结束</span><span class="detail">{{a.answerCount}}人参与&nbsp;&nbsp;{{a.deadline}}<span v-if='a.deadline'>截止</span></span>
+                    </p>
+                  </div>
+                  <div class="vote-item-right">
+                    <a :href="'${base}/interact-vote.htm?id='+a.id">
+                      <img :src="a.coverPicUrl">
+                    </a>
+                  </div>
+                </div>
+
+                <div class="vote-item-no"  v-else>
+                  <div class="vote-item-left">
+                    <a :href="'${base}/interact-vote.htm?id='+a.id">
+                      <h4 class="Medium" v-text="a.title.slice(0,15)"></h4>
+                    </a>
+                    <p class="voteBox">
+                      <span class="status-box3" v-if='a.status===3'>进行中</span><span class="status-box4" v-if='a.status===4'>已结束</span><span class="detail">{{a.answerCount}}人参与&nbsp;&nbsp;{{a.deadline}}<span v-if='a.deadline'>截止</span></span>
+                    </p>
+                  </div>
+                </div>
+
+              </li>
+            </ul>
+        <my-loading :load="load" :isload="isload"></my-loading>
+      </div>
+		</div>
+		[#include "../includes/footerTabbar.html"]
+	</body>
+	<script type="text/javascript" src="${mobileRes}/js/swiper.min.js"></script>
+
+	<script>
+		var news = new Vue({
+			el: '#vote',
+			data: {
+				load: '加载更多',
+				uploading: true,
+				getData: {
+					orderBy: 1,
+					page: 1,
+					size: 10
+				},
+				isload: false,
+				list: [],
+				newPage: [],
+				last: false,
+				uped: false
+			},
+			mounted() {
+        this.getContentPage()
+			},
+			filters: {
+				ellipsis(value) {
+					if (!value) return ''
+					if (value.length > 22) {
+						return value.slice(0, 22) + '...'
+					}
+					return value
+				}
+			},
+			methods: {
+				loading() {
+					if (this.uploading) {
+						this.uploading = false
+						if (!this.last) {
+							this.load = '加载更多'
+							this.isload = true
+							this.getData.page += 1
+							this.getContentPage()
+						} else {
+							this.load = '没有更多了'
+							this.isload = false
+						}
+					}
+				},
+				getContentPage() {
+					var that = this
+					api.GET('/questionnaire/page', that.getData, function(res) {
+						if (res.code == 200) {
+							that.last = res.data.last
+							if (!that.last) {
+								that.load = '加载更多'
+								that.isload = true
+							} else {
+								that.load = '没有更多了'
+								that.isload = false
+							}
+							that.newPage = res.data.content;
+							that.list = that.list.concat(that.newPage)
+							that.uploading = true
+            }
+          })
+				}
+			}
+		})
+	</script>
+</html>

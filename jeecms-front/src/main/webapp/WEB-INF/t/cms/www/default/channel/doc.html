@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>${channel.name}-${site.name}</title>
+<meta name="title" content="${site.seoTitle!}" />
+    <meta name="keywords" content="${site.seoKeyword!}" />
+	<meta name="description" content="${site.seoDescription!}" />
+	</head>
+	<!-- 引入element -->
+	<!-- <link rel="stylesheet" href="../../src/css/element.css"> -->
+	<!-- <script src="../../src/js/element.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="${res}/css/library.css"/>
+	<body>
+		<!-- 顶部导航 -->
+		<div class="header-children">
+		[#include "../includes/header.html"/]
+		</div>
+		<!--顶部导航 over-->
+		<div class="library-top">
+			<div class="library-boutique">
+				<div class="library-boutique-title">
+					<h3>精品文库</h3>
+					 [@cms_channel_list parentId=channel.id count='5']
+		            	<ul>
+                      [#list tag_list as a]
+                        [#if a_index>0]<li class="title-border"></li>[/#if]
+						<li class="pitch">${a.name}</li>
+                        [/#list]
+			            </ul>
+                     [/@cms_channel_list]
+				</div>
+                 [@cms_channel_list parentId=channel.id count='5']
+                 [#list tag_list as c]
+				<div class="boutique-content boutique">
+                [@cms_content_list channelId=c.id isTop='1' count='6' orderBy='29' siteId='1']		
+					<ul>
+                    [#list tag_list as a]
+						<li>
+							<div class="content-image"><a href="${a.url}" target="_blank"><img class="hover" src="${(a.attr.wenkuliebiaotu.resUrl)!}" ></a></div>
+							<div class="content-title"><a href="${a.url}" target="_blank" class="hover">[@text_cut s=a.title len=12 append='...' /]</a></div>
+							<div class="content-details">[@text_cut s=a.description! len=35 append='...' /]</div>
+						</li>
+						[/#list]
+						<div class="clearfix"></div>
+					</ul>
+                 [/@cms_content_list]
+				</div>
+                [/#list]
+                [/@cms_channel_list]
+			</div>
+			<div class="library-hot">
+				<div class="hot-title"><i></i><span>热门文档</span><i></i></div>
+                [@cms_content_list channelPath='doc' count='10' orderBy='3' siteId='1']		
+					<ul class="hot-content">
+                    [#list tag_list as a]
+					<li><strong>${a_index+1}</strong><a href="${a.url}" target="_blank">[@text_cut s=a.title len=15 append='...' /]</a></li>
+					[/#list]
+				</ul>
+                 [/@cms_content_list]
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="library-bottom">
+			<h3>其他文库</h3>
+            [@cms_content_list channelPath='doc' count='10' orderBy='29' siteId='1']	
+			<ul id="docList">
+            [#list tag_list as a]
+				<li class="docList">
+					<div class="image"><a href="${a.url}" target="_blank"><img class="hover" src="${(a.attr.wenkuliebiaotu.resUrl)!}" ></a></div>
+					<div class="rest-box">
+						<div class="rest-title">
+							<!--<span class="icon iconfont iconppt"></span>-->
+							<a href="${a.url}" class="hover">[@text_cut s=a.title len=20 append='...' /]</a>
+						</div>
+						<div class="rest-text">[@text_cut s=a.description! len=35 append='...' /]</div>
+						<span class="rest-time"><span>${a.releaseTime!}</span></span>
+						<div class="box clearfix">
+						
+							<a class="uicon fr "><i class="iconfont iconliulang"></i><span>${a.views!}</span></a>
+						
+							<a class="uicon fr hover ups"><i class="iconfont iconthumb-up-line"></i><span>${a.ups!}</span></a>
+							<a class="uicon fr hover comments" href="${a.url}?comments=1" target="_blank"><i class="iconfont iconmessage--line1"></i><span>${a.comments!}</span>
+							</a>
+						</div>
+					</div>
+				</li>
+				[/#list]
+			</ul>
+			[/@cms_content_list]
+			<div class="loading loadings Semilight hover" id="upLoading" onclick="loading(${channel.id})">加载更多</div>
+		</div>
+		<!--底部导航 -->
+		[#include "../includes/footer.html"/]
+		<!--底部导航 over-->
+		<script>
+			$(document).ready(function(){
+				$('.pitch').eq(0).addClass("optfor")
+				$('.boutique').hide()
+				$('.boutique:first').show()
+				$('.pitch').mouseenter(function(){
+						$('.pitch').removeClass("optfor");
+						this.classList.add("optfor")
+						$('.boutique').hide()
+						if($(this).index()==0){
+							$('.boutique').eq(0).show()
+						}else if($(this).index()==2){
+							$('.boutique').eq(1).show()
+						}else if($(this).index()==4){
+							$('.boutique').eq(2).show()
+						}
+					});
+				$('.uicon.comments').hover(function() {
+					$(this).children('i').removeClass("iconmessage--line1").addClass('iconmessage--fill')
+				}, function() {
+					$(this).children('i').addClass("iconmessage--line1").removeClass('iconmessage--fill')
+				});
+			});
+		</script>
+		<script src="${res}/js/doc.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

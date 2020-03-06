@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>找回密码</title>
+    <link rel="stylesheet" href="${res}/css/login-findpsword.css">
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+        [#include "../includes/header.html"/]
+    </div>
+    <!--顶部导航 over-->
+
+    <!-- 中间部分 -->
+    <div class="main">
+        <div class="login-part overflow" id="verify">
+            <div class="reg Regular">
+                <span>找回密码</span>
+            </div>
+            <form action="" id="codeForm">
+                <div class="username">
+                    <label class="Light" for=""><span>*</span>用户名/邮箱:</label>
+                    <input type="text" name="targetNumber" id="targetNumber" placeholder="请输入用户名或注册邮箱" autocomplete="off">
+                    <div class="errors Light"></div>
+                </div>
+                <div class="psword">
+                    <label class="Light" for=""><span>*</span>邮箱验证码:</label>
+                    <input type="text" name="validateCode" id="validateCode" placeholder="请输入获取的邮箱验证码" autocomplete="off">
+                    <div onclick="getCode()" id="getEmail" class="getcode Semilight pointer">获取邮箱验证码</div>
+                    <div class="errors Light"></div>
+                </div>
+                <a class="Semilight pointer block" href="${base}/login">取消</a>
+                <input class="Semilight pointer" type="submit" value="下一步">
+            </form>
+        </div>
+        <div id="modifier" class="login-part overflow none">
+            <div class="reg Regular">
+                <span>修改密码</span>
+            </div>
+            <form action="" id="newPassword">
+                <div class="username">
+                    <label class="Light" for=""><span>*</span>新密码:</label>
+                    <input type="password" name="pStr" id="pStr" placeholder="请输入新密码">
+                    <div class="errors Light"></div>
+                </div>
+                <div class="psword">
+                    <label class="Light" for=""><span>*</span>确认新密码:</label>
+                    <input type="password" name="repsword" id="repsword" placeholder="请再次输入新密码">
+                    <div class="errors Light"></div>
+                </div>
+                <a class="Semilight pointer block" href="${base}/login">取消</a>
+                <input class="Semilight pointer" type="submit" value="完成">
+            </form>
+        </div>
+    </div>
+
+    <!-- 底部导航 -->
+    [#include "../includes/tipFooter.html"/]
+    <!--底部导航 over-->
+    <!-- 底部模块 -->
+    <script src="${res}/js/login.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#codeForm').validate({
+                rules: {
+                    targetNumber: {
+                        required: true
+                    },
+                    validateCode: {
+                        required: true
+                    }
+                },
+                messages: {
+                    targetNumber: {
+                        required: "请输入用户名或邮箱"
+                    },
+                    validateCode: {
+                        required: "请输入验证码"
+                    }
+                },
+                //错误提示标签
+                errorElement: 'p',
+                //获得焦点时，错误提示消失 
+                focusCleanup: true,
+                focusInvalid: false,
+                //失去焦点时，进行验证
+                onfocusout: function (element) {
+                    $(element).valid();
+                },
+                //错误提示的位置
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent('div').find('.errors'));
+                },
+                submitHandler: function () {
+                    var email = $('#targetNumber').val();
+                    var code = $('#validateCode').val();
+                    var data = {
+                        'email': email,
+                        'code': code,
+                        'type': 2
+                    }
+                    api.GET('/register/mail/authcode', data, function (result) {
+                        if (result.code == 200) {
+                            myMessage.add(result.message, 'success');
+                            $('#verify').hide()
+                            $('#modifier').show()
+                        } else {
+                            myMessage.add(result.message, 'error');
+                        }
+                    })
+                }
+            })
+            $('#newPassword').validate({
+                rules: {
+                    pStr: {
+                        required: true,
+                        secret: true
+                    },
+                    repsword: {
+                        required: true,
+                        equalTo: '#pStr'
+                    }
+                },
+                messages: {
+                    pStr: {
+                        required: "请输入新密码"
+                    },
+                    repsword: {
+                        required: "请再次输入密码",
+                        equalTo: "两次密码不一致"
+                    }
+                },
+                //错误提示标签
+                errorElement: 'p',
+                //获得焦点时，错误提示消失 
+                focusCleanup: true,
+                focusInvalid: false,
+                //失去焦点时，进行验证
+                onfocusout: function (element) {
+                    $(element).valid();
+                },
+                //错误提示的位置
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent('div').find('.errors'));
+                },
+                submitHandler: function () {
+                    var password = ''
+                    // var obj = {};
+                    // obj.pStr = 
+                    // var passwords = JSON.stringify(obj);
+                    password = desEncrypt($('#pStr').val());
+
+                    api.POST('/register/rectrieve/key', {
+                        'key': $('#targetNumber').val(),
+                        'validateCode': $('#validateCode').val(),
+                        'pStr': password
+                    }, function (result) {
+                        if (result.code == 200) {
+                            myMessage.add(result.message, 'success');
+                            location.href = '${base}/login';
+                        } else {
+                            myMessage.add(result.message, 'error');
+                        }
+                    })
+                }
+            });
+            $.validator.addMethod('secret', function (value, element) {
+                var identReg = /^[^\u4e00-\u9fa5]{6,18}$/;
+                return this.optional(element) || (identReg.test(value));
+            }, '请输入正确的密码格式');
+        })
+        // 获取验证码
+        var emailTime = 60
+
+        function getCode() {
+            if ($('#targetNumber').val()) {
+                if (emailTime === 60) {
+                    var data = {
+                        'type': 2,
+                        'targetNumber': $('#targetNumber').val()
+                    }
+                    api.POST('/register/sendEmailMsg', data, function (data) {
+                        if (data.code === 200) {
+                            myMessage.add(data.message,'success');
+                            $('#getEmail').text(emailTime)
+                            clearInterval(countEmail)
+                            var countEmail = setInterval(function () {
+                                emailTime -= 1
+                                $('#getEmail').text(emailTime)
+                                if (emailTime <= 0) {
+                                    clearInterval(countEmail)
+                                    emailTime = 60
+                                    $('#getEmail').text('获取验证码')
+                                }
+                            }, 1000)
+                        } else {
+                            myMessage.add(data.message, 'warning');
+                        }
+                    })
+
+                }
+            } else {
+                myMessage.add('请输入用户名或邮箱', 'warning');
+            }
+        }
+    </script>
+</body>
+
+</html>

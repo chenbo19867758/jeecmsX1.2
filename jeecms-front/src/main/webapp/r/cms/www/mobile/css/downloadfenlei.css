@@ -1,0 +1,109 @@
+body {
+	width: 7.5rem;
+	line-height: 1;
+}
+.download-fenlei{
+	margin-top: 0.96rem;
+	min-height: 100vh;
+}
+.box{
+	margin-top: 0.4rem;
+	background:rgba(255,255,255,1);
+	box-shadow:0px 1px 0.1rem 0px rgba(9,48,119,0.11);
+	border-radius:0.1rem;
+	padding: 0.36rem;
+	display: flex;
+	align-items: center;
+}
+.box .left {
+	margin-right: 0.67rem;
+}
+.box .left a{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.box .image{
+	width: 0.5rem;
+	height: 0.5rem;
+	margin-bottom: 0.2rem;
+}
+.box .left a span{
+	font-size:0.26rem;
+font-family:PingFang SC;
+color:rgba(138,87,245,1);
+}
+.box .right ul{
+	display: flex;
+	align-items: center;
+}
+.box .right li a{
+	display: block;
+	font-size:0.26rem;
+font-family:PingFang SC;
+color:rgba(51,51,51,1);
+}
+
+.box{
+	margin-top: 0.4rem;
+	background:rgba(255,255,255,1);
+	box-shadow:0px 1px 0.1rem 0px rgba(9,48,119,0.11);
+	border-radius:0.1rem;
+	padding: 0.36rem;
+	display: flex;
+	align-items: center;
+}
+.box .image{
+	width: 0.5rem;
+	height: 0.5rem;
+	margin-bottom: 0.2rem;
+}
+.box .right ul{
+	display: flex;
+	align-items: center;
+}
+.box .right li{
+	font-size:0.26rem;
+font-family:PingFang SC;
+font-weight:300;
+color:rgba(51,51,51,1);
+}
+span.line{
+	height: 0.22rem;
+	width: 1px;
+}
+.box .right{
+	display: flex;
+	flex-direction: column;
+}
+.box .right ul:first-child{
+	margin-bottom: 0.39rem;
+}
+.box .right ul li{
+	display: flex;
+	flex-direction: row;
+}
+.box .right ul li:first-child{
+	width: 1.1rem;
+	justify-content: flex-start;
+}
+.box .right ul li:first-child+li+li{
+	justify-content: center;
+	width: 1.7rem;
+}
+.box .right ul li:first-child+li+li+li+li{
+	width: 1.1rem;
+	justify-content: flex-end;
+}
+span.line{
+	margin: 0;
+	height: 0.22rem;
+	width: 1px;
+}
+
+
+
+
+
+

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>预览${site.name!}</title>
+    <link rel="stylesheet" href="${res}/css/reset.css">
+    <script src="${res}/js/jquery-1.12.4.js"></script>
+    <style>
+    html,body,.container{
+        height: 100%;
+    }
+    .container{
+        width: 100%;
+    }
+    .container .header {
+        height: 66px;
+		padding: 15px;
+		background-color: #ececec;
+		padding-left: 38px;
+    }
+    .container .header a {
+        display: inline-block;
+        color: #333;
+        font-size: 16px;
+        text-align: center;
+        width: 97px;
+        height: 32px;
+        line-height: 32px;
+        border: 1px solid #E5E5E5;
+        border-radius: 4px;
+        behavior: url(../src/pie/PIE.htc);
+		background-color: #fff;
+    }
+    .container .header a:hover {
+        background-color: #3AC6DF;
+        color: #ffffff;
+    }
+	.container .header a.pitch{
+		background-color: #3AC6DF;
+		color: #ffffff;
+	}
+    .container .header a + a {
+        margin-left: 10px;
+    }
+    .container .header span{
+        line-height: 40px;
+        padding-right: 20px;
+        font-size: 16px;
+        color: #333333;
+    }
+    iframe{
+        width: 100%;
+        height: calc(100% - 80px);
+    }
+    iframe.is-mobile{
+        width: 375px;
+        height: 667px;
+        margin: 0 auto;
+        padding-top: 50px;
+    }
+	iframe.is-tablet{
+	    width: 555px;
+	    height: 756px;
+	    margin: 0 auto;
+	    padding-top: 50px;
+	}
+    </style>
+</head>
+<body>
+<div class='container'>
+    <div class='header'>
+        <span>终端：</span>
+        <a href='javascript:;' id='pc' class="pitch">PC</a>
+        <a href='javascript:;' id='tel'>手机端</a>
+		<a href='javascript:;' id='tablet'>平板端</a>
+    </div>
+    <iframe id='iframe' class='iframe-wrap' src="${loadUrl!}" frameborder="0"></iframe>
+</div>
+<script>
+$('#pc').click(function(){
+    $.ajax({
+        type:'PUT',
+        url: "${base}/preview",
+        data: {
+            device: 'pc'
+        },
+        success: function (result) {
+            if(result.code===200){
+				$('.header a').removeClass('pitch')
+				$('#pc').addClass('pitch')
+                $('#iframe').removeClass('is-mobile')
+				$('#iframe').removeClass('is-tablet')
+                $('#iframe').attr('src', $('#iframe').attr('src'));
+            }
+        }
+    });
+})
+$('#tel').click(function(){
+    $.ajax({
+        type:'PUT',
+        url: "${base}/preview",
+        data: {
+            device: 'mobile'
+        },
+        success: function (result) {
+            if(result.code===200){
+				$('.header a').removeClass('pitch')
+				$('#tel').addClass('pitch')
+				$('#iframe').removeClass('is-tablet')
+                $('#iframe').addClass('is-mobile')
+                $('#iframe').attr('src', $('#iframe').attr('src'));
+            }
+        }
+    });
+})
+$('#tablet').click(function(){
+    $.ajax({
+        type:'PUT',
+        url: "${base}/preview",
+        data: {
+            device: 'tablet'
+        },
+        success: function (result) {
+            if(result.code===200){
+				$('.header a').removeClass('pitch')
+				$('#tablet').addClass('pitch')
+				$('#iframe').removeClass('is-mobile')
+                $('#iframe').addClass('is-tablet')
+                $('#iframe').attr('src', $('#iframe').attr('src'));
+            }
+        }
+    });
+})
+</script>
+</body>
+</html>

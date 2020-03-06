@@ -1,0 +1,142 @@
+
+select{margin:0;}
+/*共用样式*/
+html{
+  background-color: #F0F0F0;
+}
+.t-red{ color: #FF0000;}
+.impro{padding-left: 8px;}
+.t-color66{color: #666666;}
+.t-color99{color: #999999;}
+.t-font30{font-size: 30px !important;}
+.t-font12{font-size: 12px;}
+.t-img{width: 100%;height: auto;display: block;}
+.t-cursor{cursor: pointer;}
+.relative{position: relative;display: inline-block;background-color: transparent;z-index: 99;}
+.t-radio{display: inline-block;vertical-align: middle;width: 14px;height: 14px;border: 1px solid #ccc;
+  cursor: pointer;text-align: center;line-height: 12px;border-radius: 4px;position: relative;bottom: 1px;}
+.t-cont-radios.active .t-radio{background-color: #45A5FF;border-color: #45A5FF;}
+.t-radio .iconfont{color: transparent;font-size: 12px;position: relative;right: 0px;}
+.t-radio .single{color: transparent;font-size: 12px;position: relative;right: -0.5px;}
+.t-cont-radios.active .iconfont{color: #fff;}
+.t-radius{border-radius: 100%;behavior: url(../src/pie/PIE.htc);}
+.t-input,.t-select{border: 1px solid #E8E8E8;height: 40px;border-radius: 4px;behavior: url(../src/pie/PIE.htc);
+  padding:9px 20px;box-sizing: border-box;font-size: 14px;background-color: transparent;margin:6px 0 20px;}
+.t-input{margin-top: 12px;}
+.t-input:focus{border:  1px solid #45A5FF;}
+.t-select:focus{border:  1px solid #45A5FF;border-bottom: none;border-radius: 4px 4px 0 0;}
+.t-input::-moz-focus-inner,.t-select::-moz-focus-inner{border-color: #45A5FF;}
+.t-select{ appearance:none; -moz-appearance:none;-webkit-appearance:none;}
+.t-select option{height: 40px;line-height: 40px;}
+.t-input input{border: none;font-size: 100%;line-height: 1;width: 100%;}
+.t-input textarea{border: none;font-size: 100%;line-height: 1;}
+.t-w130{width:130px;}
+.t-w414{width: 414px;} 
+/* 容器 */
+.t-vote-wrap{ width: 100%; background-color: #F0F0F0;padding: 80px 0;box-sizing: border-box;background-attachment: fixed;}
+.container{width: 1000px;margin: 0 auto;background-color: #fff;}
+.t-vote-head{width: 100%;background-color: #e8e8e8;}
+.t-vote-cont{padding: 0 86px;line-height: 1;box-sizing: border-box;border-style: solid;}
+.t-vote-title{font-size: 24px;width: 100%;text-align: center;padding: 36px 0 32.5px;line-height: 40px;}
+.t-vote-detail{font-size: 14px;width: 100%;text-align: left;padding: 0 10px;box-sizing: border-box; margin-bottom: 51.5px;line-height: 1.5;}
+/* 单个题目 */
+.t-cont-ques{ width: 100%;padding-bottom: 15px;position: relative;}
+.t-cont-title{ font-size: 14px;color: #333333;margin-bottom: 7px;line-height: 24px;}
+.t-cont-prompt{margin:2px 0 6px;font-size: 12px;color: #333;padding-left: 10px;line-height: 20px;}
+.t-cont-radios{padding:8px 10px;box-sizing: border-box;border-radius: 4px;
+  font-size: 14px;color: #333333;margin-bottom: 4px;vertical-align: top;}
+.t-cont-radios:hover{ background-color: #F3F3F3;}
+.active-radio:hover{ background-color: #fff;}
+.t-cont-radios .t-input{margin-top: 0;}
+.t-radio-emty{margin-left: 10px;position: relative;}
+.t-radio-emty .impro{left: -18px;position: absolute;}
+.sub-btn-wrap{width:100%;padding-bottom: 50px;padding-top: 25px;}
+.sub-btn-wrap .sub-btn{width:77px;height:32px;background-color: #1EC6DF; border-style: solid; border-radius: 4px;behavior: url(../src/pie/PIE.htc);margin: 0 auto;font-size: 14px;text-align: center;cursor: pointer;}
+/* 附件 */
+.t-file-upload{width: 414px;height: 91px;border: 1px dashed #e8e8e8;margin-top:8px;padding-top: 20px;box-sizing: border-box;text-align: center;}
+.t-file-upload .t-font12{margin-top: 9px;position: relative;}
+.select-icon{position: absolute;right: 2px;top: 5px;font-size: 43px !important;color: #999;z-index:-1}
+.up-file{display: none;} 
+.file-list{width:414px;}
+.file-item{border: 1px solid #e8e8e8;padding:0 10px 0 20px;margin-top: 10px;line-height: 38px;color:#3178EE;height: 40px;position: relative;font-size: 14px;border-radius: 4px;}
+.file-del{width: 14px;height: 14px;position: absolute;right: 10px;color: #B3B3B3;cursor: pointer;}
+/* 弹窗提示 */
+.mode{position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: rgba(0, 0, 0, 0.7);z-index: 10000;display: none;
+  filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#b2000000, endColorstr=#b2000000);}
+.mode-box{background-color: #fff;width: 632px;height:234px;margin: 25% auto;border-radius: 4px;behavior: url(../src/pie/PIE.htc);}
+.mode-title{font-size: 24px;color: #333333;text-align: center;line-height: 44px;padding: 64px 0 50px;}
+.mode-title .iconfont{font-size: 44px;color: #6AC043;margin-right: 20px;}
+.mode-info{font-size: 16px;color: #666666;text-align: center;}
+.mode-result,.mode-success,.mode-code{display: none;} 
+.mode-btn{width: 77px;height: 32px;background-color: #1EC6DF;color: #fff;text-align: center;
+  line-height: 32px;margin: 14px auto 0;cursor: pointer;display: block;border-radius: 4px;}
+.code-box{ padding: 59px 69px 0; box-sizing: border-box;position: relative;}
+.code-box .code{position: relative;height: 50px;}
+.code-label{ margin-right: 24px;}
+.code-input{ width: 375px; height: 50px;padding: 8px 8px 7px 15px;box-sizing: border-box;border: 1px solid #E5E5E5;}
+
+.code .letter {line-height: 37px;  letter-spacing: 15px; font-weight: bolder; font-size: 18px; }
+.pointer{cursor: pointer;}
+.code .letter { width: 125px;height: 35px; position: absolute;right: 50px;top: 8px;font-weight: bolder;}
+.code-btns{margin-top: 63px;text-align: center;}
+.code-btns .btn{display: inline-block;width: 77px;height: 32px;line-height: 30px;text-align: center;cursor: pointer;
+    box-sizing: border-box;border-radius: 4px;behavior: url(../src/pie/PIE.htc);}
+.code-btns .code-yes{background-color: #1EC6DF;color: #fff;margin-right: 8px;}
+.code-btns .code-no{background-color: #CCCCCC;color: #fff;}
+
+.select-emty{display: none;}
+.cascade-child,.cascade-children,.cascade-childrens{display: none;margin-left: 6px;margin-right: 4px;}
+.image-radio{
+  width: 100%;
+  min-height: 191px;
+  border: 1px solid #e8e8e8;
+  background-color: #fff;
+  padding: 6px;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.radio-img{max-width: 100%;height: 140px;margin-bottom: 10px;border-radius: 4px; background-color: #f8f8f8;overflow: hidden;}
+.radio-img .t-img{max-height: 100%;height: fit-content;}
+.t-inline{display: inline-block;}
+.pic-box{margin-right: -4px;}
+.pic-box:last-of-type{margin-right:0px}
+
+/* 预览 */
+.header-btns{ height: 66px;width:100%; background-color: #E6E6E6;padding-left: 38px;font-size: 0;}
+.header-btn-label{color: #333333;line-height: 66px;font-size: 16px;}
+.header-btn{display: inline-block;vertical-align: top;margin:16px 5px 0;width: 97px;height: 32px;border: 1px solid #999999;text-align: center;
+  line-height: 30px;color: #666666;border-radius: 4px;behavior: url(../src/pie/PIE.htc);font-size: 16px;}
+.header-btn .iconfont{font-size: 16px;}
+.header-btn.active{background-color: #1CC0D8;border-color: #1CC0D8;color: #fff;}
+.header-app{display: none;}
+.t-nothing{width: 320px;margin: 15% 40% 0;padding: 20px 30px;font-size: 18px;font-weight: bold;text-align: center;background-color: #fff;border-radius: 10px;}
+
+/* 移动端效果 */
+.header-app{padding: 70px 80px 0;box-sizing: border-box;}
+.yd-wrap{width: 352px;height: 725px;position: relative;margin: 0 auto;}
+.yd-bg{width: 100%;height: 100%;z-index: -1;position: absolute;}
+.yd-cont{width: 320px;height: 569px;margin:0 16px;box-sizing: border-box;background-color: #fff;overflow: hidden;position: relative;top:75px;left: 10px;}
+.yd-box{overflow-y: auto;height: 100%;}
+.yd-box .t-vote-cont{padding: 0 20px;}
+.yd-box .t-w414{width: 100%;}
+.yd-box .t-w130{width: 100%;}
+.yd-box .relative{width: 100%;}
+.yd-box .t-file-upload{max-width: 100%;}
+.yd-box .t-radio-emty{width: 95%;margin-top: 10px;}
+.yd-box .cascade-child, .yd-box .cascade-children, .yd-box .cascade-childrens{margin:0;width: 100%;}
+.header-app .t-vote-head{height: 150px;}
+.header-app .t-vote-head .t-img{height: 100%;width: fit-content;}
+.header-app .t-vote-title{padding: 24px 0 32.5px;line-height: 1.4;}
+.header-app .radio-img{height: 105px;}
+.header-app .image-radio{min-height: 154px;}
+.header-app .t-cont-radios{padding: 5px;}
+
+/*----- 滚动条 -------*/
+::-webkit-scrollbar-track { background-color: rgba(0,0,0,0.2); }
+::-webkit-scrollbar {  width: 0px;height:8px;  background-color: #F5F5F5;border-radius: 5px;  }
+::-webkit-scrollbar-thumb { /* */background: #F5F5F5;border-radius: 5px; }
+::-webkit-scrollbar-corner{ background-color: #F5F5F5;}
+
+
+
+

@@ -1,0 +1,58 @@
+.box .bottom {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.44rem;
+}
+
+.box .bottom div {
+	display: flex;
+	align-items: center;
+}
+
+.box .bottom div span {
+	font-size: 0.26rem;
+	font-family: PingFang SC;
+	color: rgba(51, 51, 51, 1);
+}
+
+.box .bottom div:first-child span {
+	font-size: 0.24rem;
+	font-family: PingFang SC;
+	color: rgba(153, 153, 153, 1);
+}
+
+.box .bottom div:first-child+div {
+	margin: 0 0.4rem;
+}
+
+.box .bottom div img {
+	width: 0.28rem;
+	height: 0.24rem;
+	margin-right: 0.1rem;
+}
+.box h4{
+	font-size:0.40rem;
+	font-family:PingFang SC;
+	color:rgba(51,51,51,1);
+	margin-bottom: 0.29rem;
+	margin-top: 0.6rem;
+}
+.docdetails{
+	width: 100%;
+}
+button.dl{
+	display: block;
+	width:4.58rem;
+	height:0.86rem;
+	background:rgba(227,11,32,1);
+	border-radius:0.43rem;
+	font-size:0.30rem;
+	font-family:PingFang SC;
+	color:rgba(255,255,255,1);
+	text-align: center;
+	border: none;
+	line-height: 0.86rem;
+	margin-left: 1.06rem;
+	margin-top: 0.5rem;
+	margin-bottom: 1.5rem;
+}

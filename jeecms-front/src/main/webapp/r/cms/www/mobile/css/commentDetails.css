@@ -1,0 +1,41 @@
+#commentDetails .comment-list li{
+	background-color: #F5F5FA;
+	padding: 0.3rem 0.4rem;
+}
+#commentDetails .comment-list li:first-child{
+	background-color: #FFFFFF;
+}
+#commentDetails ul.comment-list li.box .r-t-r>div:last-child, ul.comment-list li.box .r-t-r>div:last-child a p{
+	color: #999999;
+	font-size: 0.28rem;
+}
+#commentDetails ul.comment-list p.time{
+	color: #999999;
+	font-size: 0.24rem;
+	margin-top: 0.3rem;
+}
+#commentDetails ul.comment-list .details-replay{
+	line-height: 0;
+	margin-top: 0.2rem;
+	position: relative;
+	padding-bottom: 0.9rem;
+}
+#commentDetails ul.comment-list .details-replay textarea{
+	border-radius: 0.08rem;
+	min-height: 1.4rem !important;
+}
+#commentDetails ul.comment-list .details-replay button{
+	width: 1.20rem;
+	height: 0.7rem;
+	background: rgba(227, 11, 32, 1);
+	border-radius: 0.10rem;
+	font-size: 0.28rem;
+	font-family: PingFang SC;
+	color: rgba(255, 255, 255, 1);
+	line-height: 0.7rem;
+	text-align: center;
+	border: none;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}

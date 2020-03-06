@@ -1,0 +1,344 @@
+.container .left {
+	margin-top: 50px;
+	margin-right: 28px;
+}
+
+.container .left a {
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 16px;
+	color: #333;
+}
+
+.container .left .active {
+	background-color: #E30B20;
+	color: #fff;
+	border-radius: 0px 0px 4px 4px;
+	behavior: url(../pie/PIE.htc); 
+}
+
+.container .left .no-active {
+	border: 1px solid #E5E5E5;
+	border-radius: 4px 4px 0px 0px;
+	behavior: url(../pie/PIE.htc);
+}
+
+.container .right {
+	margin-top: 50px;
+	width: 1052px;
+}
+
+.container .right .right-theme {
+	font-size: 24px;
+	color: #333;
+	margin-bottom: 36px;
+	margin-top: -4px;
+}
+
+.container .right .video-list .video-left {
+	width: 667px;
+	margin-right: 45px;
+}
+
+.container .right .video-list .video-left .video-item {
+	width: 100%;
+	height: 500px;
+	padding: 11px 11px 0 11px;
+	border: 1px solid #E5E5E5;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+	position: relative;
+	margin-bottom: 40px;
+}
+.container .right .video-list .video-left .video-item:last-child{
+	margin-bottom: 0;
+}
+
+.container .right .video-list .video-left .video-item .video-img {
+	display: block;
+	width: 644px;
+	height: 370px;
+	margin-bottom: 24px;
+	overflow: hidden;
+}
+
+.container .right .video-list .video-left .video-item img {
+	width: 644px;
+	height: 370px;
+	display: block;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc)
+}
+.container .right .video-list .video-left .video-item img:hover{
+	transform: scale(1.05);
+
+}
+
+.container .right .video-list .video-left .video-item .video-title {
+	font-size: 20px;
+	color: #333333;
+	margin-bottom: 28px;
+}
+
+.container .right .video-list .video-left .video-item .video-title:hover a {
+	color: #E30B20;
+}
+
+.container .right .video-list .video-left .video-item .small {
+	position: absolute;
+	bottom: 25px;
+	width: 100%;
+}
+
+.container .right .video-list .video-left .video-item .small .small-left {
+	font-size: 14px;
+	color: #999;
+}
+
+.container .right .video-list .video-left .video-item .small .small-right {
+	padding-right: 20px;
+}
+
+.container .right .video-list .video-left .video-item .small .small-right .icon-item {
+	font-size: 12px;
+	cursor: pointer;
+	color: #333;
+	margin-left: 20px;
+}
+
+.container .right .video-list .video-left .video-item .small .small-right .icon-item i {
+	font-size: 14px;
+	color: #999;
+	margin-right: 10px;
+}
+
+.container .right .video-list .video-left .video-item .small .small-right .icon-item:hover {
+	color: #E30B20;
+}
+
+.container .right .video-list .video-left .video-item .small .small-right .icon-item:hover i {
+	color: #E30B20;
+}
+
+.container .right .video-list .video-left .video-item .player {
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	border-radius: 50%;
+	background-color: #000;
+	opacity: 0.7;
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	top: 155px;
+	left: 298px;
+}
+
+.container .right .video-list .video-left .video-item .player i {
+	color: #fff;
+	font-size: 27px;
+	margin-left: 8px;
+}
+
+.container .right .video-list .video-left .video-item .player-time {
+	padding: 0 10px;
+	line-height: 25px;
+	text-align: center;
+	border-radius: 13px;
+	background-color: rgba(0,0,0,0.5);
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	top: 335px;
+	left: 21px;
+	color: #fff;
+}
+.container .right .video-list .video-left .video-item .player-time span{
+	opcity:1;
+	font-size: 12px;
+}
+.container .right .video-list .video-left .video-item .player-time i {
+	margin-right: 10px;
+	font-size: 12px;
+	opcity:1;
+}
+
+.container .right .video-list .video-right {
+	width: 340px;
+}
+
+.container .right .video-list .video-right .video-tuijian {
+	width: 100%;
+	position: relative;
+	padding-left: 10px;
+	font-size: 16px;
+	color: #333;
+}
+
+.container .right .video-list .video-right .video-tuijian div.cut {
+	border-bottom: 1px solid #E5E5E5;
+	width: 252px;
+	position: absolute;
+	top: 10px;
+	left: 87px;
+	
+}
+
+
+.container .right .video-list .video-right .video-tuijian .hot-right {
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 4px;
+	border-radius: 0 3px 3px 0;
+	background-color: #E30B20;
+}
+
+.container .right .video-list .video-right .video-tuijian div.update {
+	font-size: 14px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	color: #999;
+}
+
+.container .right .video-list .video-right .video-tuijian div.update i {
+	margin-right: 10px;
+	display: block;
+}
+.container .right .video-list .video-right .video-tuijian div.update i.trans{
+	transform: rotate(180deg);
+	
+}
+
+.container .right .video-list .video-right .video-tuijian div.update:hover {
+	color: #e30b20;
+	cursor: pointer;
+}
+
+.container .right .video-list .video-right .small-video {
+	margin-top: 25px;
+	width: 100%;
+	height: 240px;
+	position: relative;
+}
+.container .right .video-list .video-right .small-video a{
+	display: block;
+}
+.container .right .video-list .video-right .small-video a:first-child{
+	overflow: hidden;
+}
+.container .right .video-list .video-right .small-video img {
+	width: 100%;
+	display: block;
+	height: 200px;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+}
+.container .right .video-list .video-right .small-video img:hover{
+	transform: scale(1.05);
+}
+
+.container .right .video-list .video-right .small-video .content {
+	font-size: 16px;
+	color: #000;
+	margin-top: 16px;
+}
+
+.container .right .video-list .video-right .small-video .content:hover a {
+	color: #E30B20;
+}
+
+.container .right .video-list .video-right .small-video .small-time {
+	padding: 0 10px;
+	line-height: 25px;
+	text-align: center;
+	border-radius: 13px;
+	background-color: rgba(0,0,0,0.5);
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	bottom: 50px;
+	left: 10px;
+	color: #fff;
+}
+.container .right .video-list .video-right .small-video .small-time span{
+	opcity:1;
+	font-size: 12px;
+}
+.container .right .video-list .video-right .small-video .small-time i {
+	margin-right: 10px;
+	font-size: 12px;
+	opcity:1;
+}
+
+.container .right .loading {
+	font-size: 14px;
+	color: #333;
+	width: 100%;
+	margin: 35px 0;
+	height: 50px;
+	line-height: 50px;
+	background-color: #F5F5F5;
+	text-align: center;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+}
+
+.container .right .loading:hover {
+	background-color: #EDEDED;
+	cursor: pointer;
+	color: #E30B20;
+}
+
+/*# sourceMappingURL=videoList-newest.css.map */
+.container .right .video-list .video-left .video-item .small .small-right {
+	font-size: 12px;
+	display: inline-block;
+	color: #333333;
+}
+.container .right .video-list .video-left .video-item .small .small-right a {
+	font-size: 12px;
+	color: #333333;
+}
+.container .right .video-list .video-left .video-item .small .small-right{
+	float: right;
+	margin-left: -20px;
+}
+.container .right .video-list .video-left .video-item .small .small-right a{
+	display: block;
+	float: left;
+	margin-left: 20px;
+}
+.container .right .video-list .video-left .video-item .small .small-right a.hover:hover i{
+	color: #E30B20;
+}
+.container .right .video-list .video-left .video-item .small .small-right a.hover:hover{
+	color: #E30B20;
+}
+.container .right .video-list .video-left .video-item .small .small-right i {
+	font-size: 14px;
+	margin-right: 10px;
+	color: #999;
+}
+
+.container .right .video-list .video-left .video-item .small .small-right .uicon.hover:hover i{
+	color: #E30B20;
+}
+
+.container .right .video-list .video-left .video-item .small .small-right .uicon.hover:hover span{
+	color: #E30B20;
+}
+.container .none-loading {
+	font-size: 14px;
+	color: #333;
+	width: 100%;
+	margin: 35px 0;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+}

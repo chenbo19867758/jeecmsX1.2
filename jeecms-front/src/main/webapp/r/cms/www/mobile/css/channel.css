@@ -1,0 +1,75 @@
+h2.title{
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	padding-top: 0.4rem;
+	padding-bottom: 0.3rem;
+}
+h2.title>div{
+	display: flex;
+	align-items: flex-end;
+}
+h2.title>div p{
+	font-size:0.20rem;
+	font-family:PingFang SC;
+	color:rgba(153,153,153,1);
+}
+h2.title img{
+	width: 0.3rem;
+	height: 0.3rem;
+}
+span.red-radius{
+ 	width:0.06rem;
+ 	height:0.34rem;
+ 	background:rgba(227,11,32,1);
+ 	border-radius:0px 0.06rem 0.06rem 0px;
+ 	margin-right: 0.1rem;
+ }
+ .title span.title-con{
+ 	font-size:0.34rem;
+ 	font-family:PingFang SC;
+ 	color:rgba(51,51,51,1);
+	margin-right: 0.2rem;
+ }
+ .title i{
+	 display: flex;
+	 align-items: flex-end;
+ }
+ li{
+	 padding: 0.3rem 0;
+	 border-top-width: 0.01rem;
+	 border-color: rgba(240,240,240,1);
+	 border-style: solid;
+ }
+ .bbox{
+	border-radius:0.34rem; 
+ }
+ .box{
+	 border-radius:0.29rem;
+ }
+ .bbox,.box{
+	 width: 1.4rem;
+	 height:0.58rem;
+	 background:rgba(245,245,245,1);
+	 font-size:0.24rem;
+	 font-family:PingFang SC;
+	 color:rgba(77,77,77,1);
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+ }
+ .bbox.red{
+	 color:rgba(227,11,32,1);
+ }
+ .content{
+	 display: flex;
+ }
+ 
+ .box{
+	 margin-right: 0.37rem;
+ }
+  .bbox{
+	  font-size: 0.26rem;
+	  height: 0.68rem;
+	  margin-bottom: 0.3rem;
+  }

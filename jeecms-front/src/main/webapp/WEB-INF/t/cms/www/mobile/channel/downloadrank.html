@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+	</head>
+	<body>
+		<!-- 头部导航 -->
+		[#assign type="1" channelTitle="下载"/]
+		[#include "../includes/header.html"]
+		<!-- 头部导航 -->
+		<link rel="stylesheet" href="${mobileRes}/css/wtt-common.css" />
+		<link rel="stylesheet" href="${mobileRes}/css/bignav.css" />
+		<link rel="stylesheet" href="${mobileRes}/css/downloadrank.css" />
+		<script src="${mobileRes}/js/loading.js" type="text/javascript" charset="utf-8"></script>
+		<div class="download-rank" id="rank">
+			<div class="channel">
+				<ul>
+					[@cms_channel path='dl' siteId='1']<li>
+						<a href="${tag_bean.url!}" class="Regular">
+							推荐
+						</a>
+					</li>
+					[/@cms_channel]
+					[@cms_channel path='xzpx1' siteId='1']<li>
+						<a href="${tag_bean.url!}" class="mark-red Medium">排行
+						</a>
+					</li>
+					[/@cms_channel]
+					[@cms_channel path='xzfl1' siteId='1']<li>
+						<a href="${tag_bean.url!}" class="Regular">分类
+						</a>
+					</li>
+					[/@cms_channel]
+				</ul>
+			</div>
+			<!-- 排名前三部分 -->
+			<div class="rank-topthree">
+				[@cms_content_list channelPath='dl' count='2' orderBy='35' siteId='1']
+				[#list tag_list as a]
+				[#if a_index==1]
+				<div class="box toptwo two">
+					<div class="image" style="background-image:url('${mobileRes}/images/download/paiming-02.png')"></div>
+
+					<div class="image" [#if (a.attr.shoujitubiao.resUrl)??&&(a.attr.shoujitubiao.resUrl)!='']style="background-image: url('${(a.attr.shoujitubiao.resUrl)!}');"[#else]style="background-image: url('${mobileRes}/images/icon/noImg.png');"[/#if]></div>
+					
+					<a href="${a.url!}">
+						<h5 class="Regular">[@text_cut s=a.shortTitle len=8 append='...' /]</h5>
+					</a>
+					<span class="Light">${a.downloads!}次下载</span>
+					<a href="${a.url!}" class="down-load">下载</a>
+				</div>
+				[/#if]
+				[/#list]
+				[/@cms_content_list]
+
+				[@cms_content_list channelPath='dl' count='1' orderBy='35' siteId='1']
+				[#list tag_list as a]
+				[#if a_index==0]
+				<div class="box topone">
+					<div class="image" style="background-image: url('${mobileRes}/images/download/paiming-01.png')"></div>
+
+					<div class="image" style="background-image: url('${(a.attr.shoujitubiao.resUrl)!}');"[#if (a.attr.shoujitubiao.resUrl)??&&(a.attr.shoujitubiao.resUrl)!='']style="background-image: url('${(a.attr.shoujitubiao.resUrl)!}');"[#else]style="background-image: url('${mobileRes}/images/icon/noImg.png');"[/#if]></div>
+					<a href="${a.url!}">
+						<h5>[@text_cut s=a.shortTitle len=8 append='...' /]</h5>
+					</a>
+					<span class="Light">${a.downloads!}次下载</span>
+					<a href="${a.url!}" class="down-load">下载</a>
+				</div>
+				[/#if]
+				[/#list]
+				[/@cms_content_list]
+
+				[@cms_content_list channelPath='dl' count='3' orderBy='35' siteId='1']
+				[#list tag_list as a]
+				[#if a_index==2]
+				<div class="box topthree two">
+					<div class="image" style="background-image:url('${mobileRes}/images/download/paiming-03.png')"></div>
+					<div class="image" style="background-image: url('${(a.attr.shoujitubiao.resUrl)!}');"></div>
+					<a href="${a.url!}">
+						<h5>[@text_cut
+							s=a.shortTitle len=8 append='...' /]</h5>
+					</a>
+					<span class="Light">${a.downloads!}次下载</span>
+					<a href="${a.url!}" class="down-load">下载</a>
+				</div>
+				[/#if]
+				[/#list]
+				[/@cms_content_list]
+
+
+			</div>
+			<!-- 排名前三部分 -->
+			<!-- 灰色空白部分 -->
+			<div class="grey-blank"></div>
+			<!-- 灰色空白部分 -->
+			<!-- 排名第四及以后部分 -->
+			<div class="inner">
+				<div class="download-list">
+					[@cms_content_list channelPath='dl' count='10' orderBy='35' siteId='1']
+					[#list tag_list as a]
+					<div class="box">
+						<a href="${a.url!}" class="left">
+							<div>
+								<span class="num">${a_index+1}</span>
+
+								<div class="image" [#if (a.attr.shoujitubiao.resUrl)??&&(a.attr.shoujitubiao.resUrl)!='']style="background-image: url('${(a.attr.shoujitubiao.resUrl)!}');"[#else]style="background-image: url('${mobileRes}/images/icon/noImg.png');"[/#if]></div>
+								<article>
+									<h4 class="Regular">[@text_cut s=a.title len=8 append='...'
+										/]</h4>
+									<div class="rongliang">
+										<span>${(a.attr.mobileFile.fileSize)!}</span>
+										<span class="line"></span>
+										<span>${a.downloads!}次下载</span>
+									</div>
+								</article>
+							</div>
+						</a>
+						<a href="${a.url!}" class="down-load">下载</a>
+					</div>
+
+					[/#list]
+					[#assign listLength=tag_list?size/]
+					[/@cms_content_list]
+
+					<div class="box" v-for="(topic,index) in list" :key="topic.id">
+						<a :href="topic.url" class="left">
+							<div>
+								<span class="num" v-text="index+11"></span>
+								<div class="image" v-if="topic.attr&&topic.attr.shoujitubiao&&topic.attr.shoujitubiao.resUrl" :style="{backgroundImage:'url('+topic.attr.shoujitubiao.resUrl+')'}"></div>
+								<div class="image" v-else style="background-image: url('${mobileRes}/images/icon/noImg.png');"></div>
+								
+								<article>
+									<h4 class="Medium" v-if="topic.title.length <= 8" v-text="topic.title"></h4>
+									<h4 class="Medium" v-else v-text="topic.title.slice(0,8)+'...'"></h4>
+									<div class="rongliang">
+										<span v-if="topic.attr.mobileFile" v-text="topic.attr.mobileFile.fileSize"></span>
+										<span v-else>0KB</span>
+										<span class="line"></span>
+										<span v-text="topic.downloads+'次下载'"></span>
+									</div>
+								</article>
+							</div>
+						</a>
+						<a :href="topic.url" class="down-load">下载</a>
+					</div>
+					<my-loading :load="load" :isload="isload"></my-loading>
+				</div>
+			</div>
+			<!-- 排名第四及以后部分 -->
+		</div>
+		[#include "../includes/footerTabbar.html"]
+	</body>
+	<script type="text/javascript">
+		//获取要定位元素距离浏览器顶部的距离
+		var navH = $(".channel").offset().top;
+		// console.log(navH);
+		//滚动条事件
+		$(window).scroll(function() {
+			//获取滚动条的滑动距离
+			var scroH = $(this).scrollTop();
+			// console.log(scroH);
+			//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+			if (scroH >= navH) {
+				$(".channel").css({
+					"position": "sticky",
+					"top": '0.96rem',
+					"z-index": 10
+				});
+				
+			}else if (scroH < navH) {
+				$(".channel").css({
+					"position": "static"
+				});
+			}
+		})
+		new Vue({
+			el: '#rank',
+			data: {
+				load: '加载更多',
+				isload: false,
+				list: [],
+				newPage: [],
+				getData:{
+					channelPaths: 'dl',
+					orderBy: 35,
+					page:1,
+					size:10
+				},
+				last:false,
+				uploading:true,
+				listLength:'${listLength}'
+			},
+			mounted() {
+				if(this.listLength<10){
+					this.load='没有更多了'
+					this.isload=false
+					this.last=true
+				}
+			},
+			methods: {
+				loading() {
+					if(this.uploading){
+						this.uploading=false
+						if(!this.last){
+							this.load='加载中'
+							this.isload=true
+							this.getData.page+=1
+							this.getContentPage()
+						}else{
+							this.load='没有更多了'
+							this.isload=false
+						}
+					}
+				},
+				getContentPage() {
+					var that=this
+					api.GET('/content/page', that.getData, function(res) {
+						if(res.code==200){
+							that.last=res.data.last
+						if(that.last){
+							that.load='没有更多了'
+							that.isload=false
+						}else{
+							that.load='加载更多'
+							that.isload=false
+						}
+						that.newPage = res.data.content;
+						that.list = that.list.concat(that.newPage)
+						that.uploading=true
+						}
+						
+					})
+					
+				}
+			}
+			
+		})
+	</script>
+</html>

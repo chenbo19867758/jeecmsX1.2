@@ -1,0 +1,116 @@
+.videoDetails{
+	padding: 0.4rem;
+}
+.videoDetails video{
+	width: 100%;
+}
+.videoDetails h3{
+	margin-top: 0.6rem;
+	font-size: 0.4rem;
+	color: #333333;
+}
+.videoDetails .text{
+	margin-top: 0.4rem;
+	display: flex;
+	justify-content: space-between;
+	font-size: 0.26rem;
+}
+.videoDetails .text p:first-child{
+	color: #4D4D4D;
+}
+.videoDetails .text p:nth-child(2){
+	color: #B3B3B3;
+}
+.videoDetails .text p:last-child{
+	color: #999999;
+}
+.videoDetails .text p:last-child img{
+	width: 0.28rem;
+	height: 0.24rem;
+}
+.videoDetails .like-big{
+	display: flex;
+	justify-content: center;
+}
+.videoDetails .Like{
+	padding: 0.2rem 0.55rem 0.2rem 0.4rem;
+	margin: 0 anto;
+	margin-top: 0.8rem;
+	font-size: 0.32rem;
+	color: #333333;
+	margin-bottom: 0.6rem;
+	border: 1px solid #CCCCCC;
+	border-radius: 0.5rem;
+	line-height: 0.32rem;
+}
+.videoDetails .Like img{
+	width: 0.43rem;
+	height: 0.4rem;
+	margin-right: 0.1rem;
+}
+.videoDetails .Like .zan{
+	margin-right: 0.1rem;
+}
+.videoDetails .Like span{
+	margin-top: -0.1rem;
+}
+
+.relate-con .box{
+	width: 3.2rem;
+	height: 3.8rem;
+	position: relative;
+}
+.relate-con .box:nth-child(2n+1){
+	float: left;
+}
+.relate-con .box:nth-child(2n){
+	float: right;
+}
+.relate-con .box:first-child ,.relate-con .box:first-child+.box{
+	margin-top: 0.3rem;
+}
+	
+.relate-con .box .image{
+	width: 3.2rem;
+	height: 2.64rem;
+	margin-bottom: 0.13rem;
+	border-radius: 0.05rem;
+}
+.relate-con .box h4{
+	font-size:0.26rem;
+	font-family:PingFang SC;
+	color:rgba(51,51,51,1);
+	line-height:0.40rem;
+}
+.relate-con .box .bottom{
+	display: flex;
+	justify-content: space-between;
+	padding: 0 0.19rem;
+	position: absolute;
+	bottom: 1.3rem;
+	width: 100%;
+}
+.relate-con .box .bottom div{
+	display: flex;
+	align-items: center;
+}
+.relate-con .box .bottom div:first-child{
+	margin-right: 0.49rem;
+}
+.relate-con .box .bottom div img{
+	height: 0.16rem;
+	margin-right: 0.13rem;
+}
+.relate-con .box .bottom div span{
+	font-size:0.20rem;
+	font-family:PingFang SC;
+	color: #FFF;
+}
+.relate-con .box .play-icon{
+	position: absolute;
+	bottom: 2rem;
+	width: 0.61rem;
+	height: 0.61rem;
+	left: 50%;
+	margin-left: -0.305rem;
+}

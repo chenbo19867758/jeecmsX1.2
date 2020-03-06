@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+	</head>
+	<body>
+		[#assign type="2" contentTitle="评论详情"/]
+		[#include "../includes/header.html"]
+		<link rel="stylesheet" href="${mobileRes}/css/hotComments.css">
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/element.css" />
+		<script src="${mobileRes}/js/element.js" type="text/javascript" charset="utf-8"></script>
+		<script src="${mobileRes}/js/loading.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="${mobileRes}/css/commentList.css" />
+		<link rel="stylesheet" href="${mobileRes}/css/commentDetails.css" />
+		<div id="commentDetails" class="commentList hotComments">
+			<div class="input-box">
+				<div class="inner clearfix">
+					<div class="left">
+						<el-input v-if="parentDetails.user&&parentDetails.user.username" type="textarea" autosize :placeholder="'评论 '+parentDetails.user.username" maxlength='150' v-model="textarea">
+						</el-input>
+						<el-input v-else type="textarea" maxlength='150' autosize placeholder="评论 匿名用户" v-model="textarea">
+						</el-input>
+					</div>
+					<button class="Regular" @click="issueComment()">发表</button>
+				</div>
+			</div>
+			<div>
+				<ul class="comment-list">
+					<li class="box">
+						<a class="left">
+							<div>
+								<img v-if="parentDetails.user&&parentDetails.user.userExt&&parentDetails.user.userExt.userImgUrl!=''" :src="parentDetails.user.userExt.userImgUrl"
+								 alt="">
+								<img src="${mobileRes}/images/photo/touxiang-01.png" alt="" v-else>
+							</div>
+						</a>
+						<div class="right">
+							<div class="right-top">
+								<span v-if="parentDetails.user&&parentDetails.user.username!=''" class="Light" v-text="parentDetails.user.username"></span>
+								<span v-else class="Light">匿名用户</span>
+								<div class="r-t-r">
+									<div>
+										<div :class="parentDetails.isLike?'image':'image red'" @click="comDianzan()">
+											<span :class="parentDetails.animationPlus?'animation Light plus':'Light plus'">+1</span>
+											<span :class="parentDetails.animationSub?'animation Light sub':'Light sub'">-1</span>
+										</div>
+										<span class="Light" v-text="parentDetails.upCount"></span>
+									</div>
+								</div>
+							</div>
+							<div class="right-center">
+								<a>
+									<p class="Semilight" v-text="parentDetails.commentText"></p>
+								</a>
+							</div>
+							<p class="time" v-text="parentDetails.distanceTime"></p>
+						</div>
+					</li>
+					<li v-for="(a,index) in detailsList" :key="index" class="box">
+						<a class="left">
+							<div>
+								<img v-if="a.user&&a.user.userExt&&a.user.userExt.userImgUrl!=''" :src="a.user.userExt.userImgUrl" alt="">
+								<img src="${mobileRes}/images/photo/touxiang-01.png" alt="" v-else>
+							</div>
+						</a>
+						<div class="right">
+							<div class="right-top">
+								<span v-if="a.user&&a.user.username!=''" class="Light" v-text="a.user.username"></span>
+								<span v-else class="Light">匿名用户</span>
+								<div class="r-t-r">
+									<div>
+										<div :class="a.isLike?'image':'image red'" @click="commentsDianzan(a)">
+											<span :class="a.animationPlus?'animation Light plus':'Light plus'">+1</span>
+											<span :class="a.animationSub?'animation Light sub':'Light sub'">-1</span>
+										</div>
+										<span class="Light" v-text="a.upCount"></span>
+										
+									</div>
+									<div>
+										<a @click="upDetailsReplay(a)">回复</a>
+									</div>
+								</div>
+							</div>
+							<div class="right-center">
+								<a>
+									<p v-if="a.replyParent" class="Semilight" v-text="a.commentText"></p>
+									<p v-else-if="a.replyUser&&!a.replyParent" class="Semilight">
+										<span style="color: #999999;">回复 </span>
+										<span v-text="'@'+a.replyUser.username+':'"></span>
+										<span v-text="a.commentText"></span>
+									</p>
+									<p v-else class="Semilight">
+										<span style="color: #999999;">回复 </span>
+										<span>@匿名用户：</span>
+										<span v-text="a.commentText"></span>
+									</p>
+								</a>
+							</div>
+							<p class="time" v-text="a.distanceTime"></p>
+							<div v-if="a.upReply" class="details-replay">
+								<el-input v-if="a.user&&a.user.username" type="textarea" autosize :placeholder="'评论 '+a.user.username" maxlength='150' v-model="a.replyText">
+								</el-input>
+								<el-input v-else type="textarea" autosize maxlength='150' placeholder="评论 匿名用户" v-model="a.replyText">
+								</el-input>
+								<button class="Regular" @click="isreplay(a)">回复</button>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<my-loading :load="load" :isload="isload"></my-loading>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var commentDetails = new Vue({
+			el: '#commentDetails',
+			data: {
+				contentId: getUrlArg('contentId'),
+				textarea: '',
+				parentId: getUrlArg('parentId'),
+				detailsList: [],
+				parentDetails: {},
+				load:"没有更多了",
+				isload:true
+			},
+			mounted() {
+				this.getDetalilsList()
+			},
+			methods: {
+				getDetalilsList() {
+					let _this = this
+					api.GET('/usercomment/' + _this.parentId, {}, function(res) {
+						if (res.code == 200) {
+							_this.parentDetails = res.data
+							_this.detailsList = res.data.children
+							_this.detailsList = _this.detailsList.map(item => {
+								return {
+									...item,
+									replyText: '',
+									upReply: false
+								}
+							})
+							_this.parentDetails.animationPlus=false
+							_this.parentDetails.animationSub=false
+						} else {
+							errorTip(res.message)
+						}
+					})
+				},
+				issueComment() {
+					let _this = this
+					if (_this.textarea) {
+						api.POST('/usercomment', {
+							contentId: _this.contentId,
+							commentText: _this.textarea,
+							parentId: _this.parentId,
+							userCommentId: _this.parentId
+						}, function(res) {
+							if (res.code == 200) {
+								winTip('评论成功')
+								_this.textarea = ''
+							} else {
+								errorTip(res.message)
+							}
+						})
+					} else {
+						errorTip('请输入评论内容')
+					}
+
+				},
+				upDetailsReplay(a){
+					if(this.detailsList.find(item => item.id == a.id).upReply){
+						this.detailsList.find(item => item.id == a.id).upReply = false
+					}else{
+						this.detailsList.find(item => item.id == a.id).upReply = true
+					}
+					
+				},
+				isreplay(a){
+					let _this = this
+					if(_this.detailsList.find(item => item.id == a.id).replyText){
+						api.POST('/usercomment', {
+							contentId: _this.contentId,
+							commentText: _this.detailsList.find(item => item.id == a.id).replyText,
+							parentId: _this.parentId,
+							userCommentId: a.id
+						}, function(res) {
+							if (res.code == 200) {
+								winTip('评论成功')
+								_this.detailsList.find(item => item.id == a.id).replyText = ''
+								_this.detailsList.find(item => item.id == a.id).upReply = false
+							} else {
+								errorTip(res.message)
+							}
+						})
+					}else{
+						errorTip('请输入评论内容')
+					}
+				},
+				comDianzan(){
+					let _this = this
+					if(_this.parentDetails.isLike){
+						api.POST('/usercomment/up', {
+							commentId: _this.parentDetails.id
+						}, function(res) {
+							if (res.code == 200) {
+								_this.parentDetails.isLike = false
+								_this.parentDetails.upCount += 1
+								_this.parentDetails.animationPlus = true
+								winTip('点赞成功')
+							} else {
+								errorTip(res.message)
+							}
+						})
+					}else{
+						api.POST('/usercomment/cancel/up', {
+							commentId: _this.parentDetails.id
+						}, function(res) {
+							if (res.code == 200) {
+								_this.parentDetails.isLike = true
+								_this.parentDetails.upCount -= 1
+								_this.parentDetails.animationSub = true
+								winTip('取消点赞成功')
+							} else {
+								errorTip(res.message)
+							}
+						})
+					}
+				},
+				// 点赞
+				commentsDianzan(a) {
+					var that = this
+					that.detailsList = that.detailsList.map(item => {
+						return {
+							...item,
+							animationPlus: false,
+							animationSub: false
+						}
+					})
+					if (a.isLike) {
+						api.POST('/usercomment/up', {
+							commentId: a.id
+						}, function(res) {
+							if (res.code == 200) {
+								that.detailsList.find(item => item.id == a.id).isLike = false
+								that.detailsList.find(item => item.id == a.id).upCount += 1
+								that.detailsList.find(item => item.id == a.id).animationPlus = true
+								winTip('点赞成功')
+							} else {
+								errorTip(res.message)
+							}
+						})
+					} else {
+						api.POST('/usercomment/cancel/up', {
+							commentId: a.id
+						}, function(res) {
+							if (res.code == 200) {
+								that.detailsList.find(item => item.id == a.id).isLike = true
+								that.detailsList.find(item => item.id == a.id).upCount -= 1
+								that.detailsList.find(item => item.id == a.id).animationSub = true
+								winTip('取消点赞成功')
+							} else {
+								errorTip(res.message)
+							}
+						})
+					}
+				},
+				loading(){
+					this.load='没有更多了'
+					this.isload=false
+				}
+			}
+		})
+	</script>
+</html>

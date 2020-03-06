@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>无访问权限页面</title>
+    <style>
+		*{
+			box-sizing:border-box;
+			margin:0;
+			padding:0;
+		}
+		body{
+			width:100%;
+		}
+		.error{
+			width:100%;
+			margin-top:2.8rem;
+		}
+        .error img{
+			display: block;
+			height: 4.68rem;
+			width:6.22rem;
+			margin: 0 auto;
+            /* margin:216px 0px 0px 80px; */
+			
+        }
+		.text{		
+			margin-top:0.72rem;
+			margin-left: 1.65rem;
+			margin-right: 1.65rem;
+		}
+		.text p{
+			text-align: center;
+		    font-size:0.3rem;
+			font-family:PingFang SC;
+			font-weight:400;
+			color:rgba(153,153,153,1);
+			line-height:0.48rem;
+			margin:0;
+			padding:0;
+
+		}
+		
+    </style>
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header header-children"></div>
+    <!--顶部导航 over-->
+
+    <div class="error">
+        <img src="${mobileRes}/images/error/meiyouquanxian.png" alt="">
+    </div>
+	<div class="text">
+		<p>没有访问权限</p>	
+		<p style='text-align:center'>很抱歉，系统君拒绝了您的访问</p>
+	</div>
+	
+	
+
+    <!-- 顶部导航 -->
+    <div class="footer"></div>
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <!-- <script src="../../src/js/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".header").load("../include/header.html")
+            $(".footer").load("../include/footer.html")
+        });
+    </script> -->
+	<script>
+      document.documentElement.style.fontSize =
+        document.documentElement.clientWidth / 7.5 + "px";
+    </script>
+</body>
+
+</html>

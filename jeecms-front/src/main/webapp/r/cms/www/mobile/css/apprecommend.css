@@ -1,0 +1,10 @@
+.inner> h3{
+	padding-top: 0.4rem;
+	font-size:0.34rem;
+	font-family:PingFang SC;
+	font-weight:500;
+	color:rgba(51,51,51,1);
+}
+.apprecommend .download-list .box:first-child{
+	margin-top: 0.34rem;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+	</head>
+	<body>
+		<!-- 头部导航 -->
+		[#assign type="1" channelTitle="文库详情" /]
+		[#include "../includes/header.html"]
+		<!-- 头部导航 -->
+		<script type="text/javascript">
+			$(function() {
+				Cms.viewCount("${base}", "${content.id}");
+			});
+		</script>
+		<link rel="stylesheet" href="${mobileRes}/css/wtt-common.css" />
+		<link rel="stylesheet" href="${mobileRes}/css/docdetails.css" />
+		<div class=" inner">
+			<div class="docdetails" id="docdetails" v-if="content">
+				<div class="box">
+					<h4 class="Regular">${content.title!}</h4>
+					<div class="bottom">
+						<div>
+							<span class="Regular" v-text="content.releaseTimeString.slice(0,10)"></span>
+						</div>
+						
+						<div>
+							<img src="${mobileRes}/images/icon/yueduliang-m.png" alt="">
+							<span class="Regular">${content.views!}</span>
+						</div>
+						<div>
+							<img src="${mobileRes}/images/icon/xiazai.png" alt="">
+							<span class="Regular">${content.downloads!}</span>
+						</div>
+					</div>
+				</div>
+				<iframe src="${base}/thirdparty/pdfjs/web/viewer.html?file=${content.pdfUrl!}" id="iframepage" width="100%" height="362px" frameborder="0" scrolling="no"></iframe>
+				</iframe>
+				<button class="dl Medium" @click="down" >下载</button>
+
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var docdetails=new Vue({
+			el:'#docdetails',
+			data:{
+				content:null,
+				id:'${content.id}'
+			},
+			created() {
+				var that=this
+				api.GET('/content/'+this.id,{},function(res){
+					if(res.code==200){
+						that.content=res.data
+					}
+					
+				})
+			},
+			methods:{
+				down(){
+					window.open("${base}/download/o_doc_download?contentId=" + this.id);
+				}
+			}
+		})
+	</script>
+</html>

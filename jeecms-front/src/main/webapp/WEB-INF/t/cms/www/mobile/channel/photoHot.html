@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+	</head>
+	<body>
+		<!-- 头部导航 -->
+		[#assign type="1" channelTitle="图片"/]
+		[#include "../includes/header.html"]
+		<!-- 头部导航 -->
+		<link rel="stylesheet" href="${mobileRes}/css/wtt-common.css" />
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/newsList.css" />
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/bignav.css" />
+		<link rel="stylesheet" href="${mobileRes}/css/photo.css">
+		<script src="${mobileRes}/js/loading.js" type="text/javascript" charset="utf-8"></script>
+		<div class="photo">
+			<div class="channel">
+				<ul>
+					[@cms_channel_list count='5' parentId='1748']
+					[#list tag_list as a]
+					[#if a.id==channel.id]<li>
+						<a href="${a.url!}" [#if a.id=channel.id] class="mark-red Medium"[#else] class="Medium"[/#if]>${a.name!}
+						</a>
+					</li>
+					[#else]<li>
+						<a href="${a.url!}" [#if a.id=channel.id] class="mark-red Medium"[#else] class="Medium"[/#if]>${a.name!}
+						</a>
+					</li>
+					[/#if]
+					[/#list]
+					[/@cms_channel_list]
+				</ul>
+			</div>
+			<div class="inner">
+				<div class="photo-list" id="sssd">
+					[@cms_content_list channelPath='sssd' orderBy='3' siteId='1' count='5']
+					[#list tag_list as a]
+					<div class="box">
+						[#if (a.attr.shoujidatu.resUrl)??&&(a.attr.shoujidatu.resUrl)!='']
+						<div class="top">
+							<a href="${a.url!}">
+								<div class="image" style="background-image: url('${(a.attr.shoujidatu.resUrl)!}');"></div>
+								<span class="num Regular">[#if
+									a.attr.photos??&&a.attr.photos.contentAttrRes??&&(a.attr.photos.contentAttrRes)?size>0]${(a.attr.photos.contentAttrRes)?size}[#else]1[/#if]图</span>
+							</a>
+						</div>
+						[/#if]
+						<a href="${a.url!}">
+							<h4 class="Medium">[@text_cut s=a.title len=25 append='...' /]</h4>
+						</a>
+						<div class="from">
+							<span class="Regular">[#if
+								(a.source)??&&(a.source.sourceName)??&&(a.source.sourceName)!=""]${a.source.sourceName!}[#else]JEECMS演示站[/#if]</span>
+							<span class="Regular">${a.releaseTimeString!}</span>
+						</div>
+						<!-- 底部 -->
+						<div class="important-bottom">
+							<a href="${a.url!}">
+								<div>
+									<img src="${mobileRes}/images/icon/liulanliang-l.png">
+									<span class="Regular">${a.views!}</span>
+								</div>
+							</a>
+
+							<a href="${a.url!}">
+								<div>
+									<img src="${mobileRes}/images/icon/pinglun-i.png">
+									<span class="Regular">${a.comments!}</span>
+								</div>
+							</a>
+							<a href="${a.url!}">
+								<div>
+									<img src="${mobileRes}/images/icon/dianzan-l.png">
+									<span class="Regular">${a.ups!}</span>
+								</div>
+							</a>
+						</div>
+					</div>
+					[/#list]
+					[#assign listLength=tag_list?size/]
+					[/@cms_content_list]
+					<div class="box" v-for="(a,index) in list" :key="index">
+						<div class="top" v-if="a.attr&&a.attr.shoujidatu&&a.attr.shoujidatu.resUrl">
+							<a :href="a.url">
+								<div class="image" :style="{backgroundImage:'url('+a.attr.shoujidatu.resUrl+')'}"></div>
+								<span class="num Regular" v-if="a.attr.photos&&a.attr.photos.contentAttrRes&&a.attr.photos.contentAttrRes.length"
+								 v-text="a.attr.photos.contentAttrRes.length+'图'">
+
+								</span>
+								<span v-else class="num Regular">1图</span>
+							</a>
+						</div>
+						<a :href="a.url">
+							<h4 class="Medium" v-if="a.title.length <= 25" v-text="a.title"></h4>
+							<h4 class="Medium" v-else v-text="a.title.slice(0,25)+'...'"></h4>
+						</a>
+						<div class="from">
+							<span class="Regular" v-text="!a.source?'JEECMS演示站':!(a.source.sourceName)?'JEECMS演示站':(a.source.sourceName)==''?'JEECMS演示站':(a.source.sourceName)"></span>
+							<span class="Regular" v-text="a.releaseTimeString"></span>
+						</div>
+						<!-- 底部 -->
+						<div class="important-bottom">
+							<a :href="a.url">
+								<div>
+									<img src="${mobileRes}/images/icon/liulanliang-l.png">
+									<span class="Regular" v-text="a.views"></span>
+								</div>
+							</a>
+							
+							<a :href="a.url">
+								<div>
+									<img src="${mobileRes}/images/icon/pinglun-i.png">
+									<span class="Regular" v-text="a.comments"></span>
+								</div>
+							</a>
+							<a :href="a.url">
+								<div>
+									<img src="${mobileRes}/images/icon/dianzan-l.png">
+									<span class="Regular" v-text="a.ups"></span>
+								</div>
+							</a>
+						</div>
+					</div>
+					<my-loading :isload="isLoad" :load="load"></my-loading>
+
+				</div>
+			</div>
+		</div>
+		[#include "../includes/footerTabbar.html"]
+	</body>
+	<script type="text/javascript">
+		//获取要定位元素距离浏览器顶部的距离
+		var navH = $(".channel").offset().top;
+		// console.log(navH);
+		//滚动条事件
+		$(window).scroll(function() {
+			//获取滚动条的滑动距离
+			var scroH = $(this).scrollTop();
+			// console.log(scroH);
+			//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+			if (scroH >= navH) {
+				$(".channel").css({
+					"position": "sticky",
+					"top": '0.96rem',
+					"z-index": 10
+				});
+
+			} else if (scroH < navH) {
+				$(".channel").css({
+					"position": "static"
+				});
+			}
+		})
+		var sssd = new Vue({
+			el: '#sssd',
+			data: {
+				getData: {
+					channelPaths: 'sssd',
+					orderBy: '3',
+					page: 1,
+					size: 5
+				},
+				uploading: true,
+				isLoad: false,
+				load: '加载更多',
+				last: false,
+				list: [],
+				listLength: '${listLength}'
+			},
+			mounted() {
+				if (this.listLength < 5) {
+					this.load = '没有更多了'
+					this.isload = false
+					this.last = true
+				}
+			},
+			methods: {
+				loading() {
+					if (this.uploading) {
+						this.uploading = false
+						if (!this.last) {
+							this.load = '加载中'
+							this.isLoad = true
+							this.getData.page += 1
+							this.getContentPage()
+						} else {
+							this.load = '没有更多了'
+							this.isLoad = false
+						}
+					}
+				},
+				getContentPage() {
+					var that = this
+					api.GET('/content/page', that.getData, function(res) {
+						if (res.code == 200) {
+							that.last = res.data.last
+							if (!that.last) {
+								that.load = '加载更多'
+								that.isLoad = true
+							} else {
+								that.load = '没有更多了'
+								that.isLoad = false
+							}
+							that.list = that.list.concat(res.data.content)
+							that.uploading = true
+						}
+
+					})
+				}
+			}
+		})
+	</script>
+</html>

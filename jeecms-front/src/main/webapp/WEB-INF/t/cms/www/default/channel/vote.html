@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>${channel.name}-${site.name}</title>
+    <meta name="title" content="${site.seoTitle!}" />
+    <meta name="keywords" content="${site.seoKeyword!}" />
+	  <meta name="description" content="${site.seoDescription!}" />
+	</head>
+	<link rel="stylesheet" type="text/css" href="${res}/css/vote.css"/>
+	<body>
+		<!-- 顶部导航 -->
+		<div class="header-children">
+		[#include "../includes/header.html"/]
+		</div>
+		<!--列表区 over-->
+		<div class="vote">
+      <div class="list">
+        <div class="list-content"></div>
+      </div>
+      <div class="pageDiv"></div>
+		</div>
+		<!--底部导航 -->
+		[#include "../includes/footer.html"/]
+		<!--底部导航 over-->
+		<script>
+			$(document).ready(function(){
+				var draftPage = 1
+        var draftTotalPages = Number
+        function contribution(p) {
+          var page = ''
+            if (p) {
+                page = p
+                draftPage = p
+            } else {
+                page = draftPage
+            }
+            api.GET('/questionnaire/page', {
+                'page': page,
+                'size': 10
+            },function (result) {
+              if (result.code == 200) { 
+                $("#voteList").remove()
+                  var cont = result.data.content;  
+                  var $text = '<ul id="voteList">'
+                    for(var i = 0; i < cont.length; i++){
+                      $text +='<li class="voteLi">'
+                      $text += '<div class="image"><a href="${base}/interact-vote.htm?id='+cont[i].id+'" target="_blank"><img class="hover" src='+cont[i].coverPicUrl+' ></a></div>'
+                      $text += '<div class="rest-box">'
+                      $text += '<div class="rest-title">'
+                      $text += '<a href="${base}/interact-vote.htm?id='+cont[i].id+'" target="_blank">'+cont[i].title+'</a>'
+                      $text += '</div>'
+                      $text +='<div class="rest-content">'+cont[i].details+'</div>'
+                      $text += '<div class="rest-bottom">'
+                        if(cont[i].status===3){
+                         $text += '<span class="status-box3">进行中</span>' 
+                        }else if(cont[i].status===4){ 
+                          $text += '<span class="status-box4">已结束</span>'
+                        }
+                        if(cont[i].answerCount>0){
+                          // $text += '<span class="detail">'+cont[i].answerCount+'人参与&nbsp;&nbsp; 截止时间：'+cont[i].deadline+' </span>'
+                          $text += '<span class="detail">'+cont[i].answerCount+'人参与&nbsp;&nbsp;'
+                          if(cont[i].deadline){
+                            $text += '截止时间：'+cont[i].deadline
+                          }
+                          $text +=' </span>'
+                        }else{
+                          $text += '<span class="detail">'+0+'人参与&nbsp;&nbsp;'
+                          if(cont[i].deadline){
+                            $text += '截止时间：'+cont[i].deadline
+                          }
+                          $text +=' </span>'
+                        }   
+                      $text += '</div>'
+                      $text += '</div>' 
+                      $text += '</li>'
+                    }   
+                      $text += '</ul>'
+                      $('.list').append($text);
+                      if (draftTotalPages != result.data.totalPages) {
+                            draftTotalPages = result.data.totalPages
+                            $(".pageDiv").createPage({
+                                pageCount: draftTotalPages, //总页数
+                                current: page, //当前页
+                                turndown: 'true', //是否显示跳转框，显示为true，不显示为false,一定记得加上引号...
+                                backFn: function (p) {
+                                    contribution(p)
+                                }
+                            });
+                        }
+                        if(!result.data.content){
+                          $(".pageDiv").css('display','none')
+                          $empty ='<p class="empty">当前暂无数据</p>'
+                          $('.vote').append($empty);
+                        }
+              }
+            })
+        }
+        contribution()
+        console.log($(window).height())
+        $(".vote").css('minHeight',$(window).height()-290)
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,511 @@
+.container .big-title {
+	width: 100%;
+	margin-top: 52px;
+	font-size: 36px;
+	color: #333;
+}
+
+.container .info {
+	width: 100%;
+	margin-bottom: 42px;
+	padding: 8px 0;
+	margin-top: 8px;
+}
+
+.container .info span {
+	color: #999;
+	font-size: 14px;
+	margin-right: 79px;
+}
+
+.container .comment-area {
+	width: 100%;
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.container .comment-area .big {
+	font-size: 26px;
+	color: #333333;
+}
+
+.container .comment-area .small {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 14px;
+}
+
+.container .comment-area .small span {
+	color: #E30B20;
+}
+
+.container .comment-input {
+	position: relative;
+	width: 100%;
+}
+
+.container .comment-input textarea {
+	width: 1192px;
+	height: 109px;
+	overflow: hidden;
+	resize: none;
+	border: 2px solid #E5E5E5;
+	border-radius: 4px;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.container .comment-input .limit {
+	height: 30px;
+	line-height: 30px;
+	color: #666666;
+	font-size: 12px;
+	text-align: right;
+}
+
+.container .comment-input .success {
+	position: absolute;
+	top: 20px;
+	left: 500px;
+	height: 65px;
+	width: 210px;
+	border-radius: 4px;
+	box-shadow: 0 0 12px #f2f2f2;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.container .comment-input .success .text {
+	text-align: center;
+	line-height: 65px;
+	height: 65px;
+	color: #333333;
+}
+
+.container .comment-input .success .text i {
+	color: #2bae1d;
+	margin-right: 16px;
+}
+
+.container .comment-input a {
+	display: block;
+	color: #fff;
+	text-align: center;
+	line-height: 45px;
+	border-radius: 24px;
+	font-size: 16px;
+	width: 131px;
+	height: 45px;
+	background-color: #E30B20;
+}
+
+.container .comment-input a:hover {
+	background-color: #FB0C23;
+}
+
+.container .hot-title {
+	margin-top: 57px;
+	margin-bottom: -10px;
+	font-size: 20px;
+	color: #333;
+	position: relative;
+}
+
+.container .hot-title .latest {
+	position: absolute;
+	bottom: 0;
+	left: 95px;
+	font-size: 16px;
+	color: #999;
+}
+
+.container .hot-title .latest .onspan {
+	color: #333;
+}
+
+.container .hot-comment {
+	width: 100%;
+	margin-top: 40px;
+}
+
+.container .hot-comment .user-icon {
+	width: 50px;
+	height: 50px;
+	color: #cccccc;
+	position: relative;
+}
+.container .hot-comment .user-icon i {
+	font-size: 50px;
+	position: absolute;
+	top: -5px;
+	color: #cccccc;
+}
+.container .hot-comment .user-icon img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.container .hot-comment .hot-text {
+	width: 1150px;
+	border-bottom: 1px solid #E5E5E5;
+}
+.container .hot-comment .comment-list:last-child .hot-text{
+	border-bottom: none;
+}
+.container .hot-comment .hot-text .user-line {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.container .hot-comment .hot-text .user-line .username {
+	font-size: 16px;
+	margin-left: 20px;
+}
+
+.container .hot-comment .hot-text .user-line .time {
+	color: #999999;
+	font-size: 12px;
+	margin-left: 20px;
+	margin-top: 3px;
+}
+
+.container .hot-comment .hot-text .user-line .warning {
+	color: #999999;
+	font-size: 12px;
+}
+
+.container .hot-comment .hot-text .user-line .warning i {
+	margin-right: 5px;
+	font-size: 12px;
+	position: relative;
+	top: -1px;
+}
+
+.container .hot-comment .hot-text .user-line .warning:hover {
+	color: #E30B20;
+}
+.container .hot-comment .hot-text .user-line .nowarning {color: #E30B20;font-size: 14px;}
+
+.container .hot-comment .hot-text .user-text {
+	margin-left: 20px;
+	font-size: 14px;
+	line-height: 24px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+
+.container .hot-comment .hot-text .text-details {
+	width: 100%;
+	background-color: whitesmoke;
+	margin-top: 18px;
+	padding: 0 20px 8px 20px;
+	line-height: 1;
+}
+
+.container .hot-comment .hot-text .text-details .text-list {
+	width: 100%;
+	padding-bottom: 12px;
+}
+
+.container .hot-comment .hot-text .text-details .text-list .list-title {
+	width: 100%;
+	font-size: 14px;
+	padding-top: 20px;
+}
+
+.container .hot-comment .hot-text .text-details .text-list .others {
+	margin-top: 12px;
+}
+.container .hot-comment .hot-text .text-details .text-list .others:last-child{
+	margin-bottom: 0;
+}
+.container .hot-comment .hot-text .text-details .text-list .others a {
+	font-size: 12px;
+	color: #999999;
+	margin-right: 5px;
+}
+
+.container .hot-comment .hot-text .text-details .text-list .others a span {
+	margin-left: 5px;
+}
+.container .hot-comment .hot-text .text-details .text-list .others a span:hover{
+	color: #E30B20;
+}
+.container .hot-comment .hot-text .text-details .text-list .others .sign-red { color: #E30B20; }
+.container .hot-comment .hot-text .text-details .text-list .others .hidden {
+	display: none;
+}
+
+.container .hot-comment .hot-text .text-details .text-list .others .back {
+	display: none;
+}
+
+.container .hot-comment .hot-text .text-details .text-list:hover .hidden {
+	display: block;
+}
+
+.container .hot-comment .hot-text .text-details .text-list .send-input {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.container .hot-comment .hot-text .text-details .text-list .send-input textarea {
+	width: 100%;
+	height: 80px;
+	resize: none;
+	border: 1px solid #E5E5E5;
+	border-radius: 4px;
+	behavior: url(../src/pie/PIE.htc);
+	overflow: hidden;
+}
+
+.container .hot-comment .hot-text .text-details .text-list .send-input a {
+	width: 77px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	margin-top: 10px;
+	font-size: 14px;
+	color: #fff;
+	background-color: #E30B20;
+	border-radius: 16px;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.container .hot-comment .hot-text .text-details .text-list .send-input a:hover {
+	background-color: #FB0C23;
+}
+
+.container .hot-comment .hot-text .text-details .send-number {
+	margin-top: 20px;
+	font-size: 14px;
+	color: #999999;
+}
+
+.container .hot-comment .hot-text .text-details .send-number span {
+	margin: 0 5px;
+}
+
+.container .hot-comment .hot-text .text-details .more-send {
+	margin-top: 20px;
+	font-size: 12px;
+	color: #333333;
+	border-left: 4px solid #E30B20;
+	padding-left: 18px;
+	position: relative;
+}
+
+.container .hot-comment .hot-text .text-details .more-send div {
+	border-bottom: 1px solid #666666;
+	width: 1071px;
+	position: absolute;
+	top: 8px;
+	left: 79px;
+}
+
+.container .hot-comment .hot-text .text-details .action {
+	text-align: center;
+	height: 34px;
+	line-height: 34px;
+	padding-top: 10px;
+}
+
+.container .hot-comment .hot-text .text-details .action a {
+	font-size: 14px;
+	color: #666;
+	margin-right: 60px;
+}
+
+.container .hot-comment .hot-text .zan-send {
+	margin-top: 15px;
+	margin-bottom: 40px;
+	font-size: 12px;
+	line-height: 1;
+}
+.container .hot-comment .hot-text .zan-send i { color: #999999; margin-right: 5px; font-size: 14px;}
+.container .hot-comment .hot-text .zan-send .yeslike { margin-left: 25px; margin-right: 35px;}
+.container .hot-comment .hot-text .zan-send .yeslike i{ color: #E30B20;}
+.container .hot-comment .hot-text .zan-send .zan { margin-left: 25px; margin-right: 35px;}
+.container .hot-comment .hot-text .zan-send .zan:hover { color: #E30B20; }
+.container .hot-comment .hot-text .zan-send .zan:hover i { color: #E30B20; }
+.container .hot-comment .hot-text .zan-send div:hover{
+	color: #E30B20;
+}
+.container .hot-comment .hot-text .zan-send div:hover i{
+	color: #E30B20;
+}
+.container .hot-comment .hot-text .zan-send span:hover{
+	color: #E30B20;
+}
+.container .hot-comment .comment-list{
+	padding-top: 38px;
+}
+.container .hot-comment .comment-list:first-child{
+	padding-top: 0;
+}
+ .lookingAll {
+	width: 100%;
+	margin-top: 30px;
+	margin-bottom: 60px;
+	height: 50px;
+	line-height: 50px;
+	background-color: #F5F5F5;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 4px;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.lookingAll a {
+	color: #333333;
+}
+
+.lookingAll:hover {
+	background-color: #EDEDED;
+}
+
+.lookingAll:hover a {
+	color: #E30B20;
+}
+.lookingNo{
+	width: 100%;
+	margin-top: 30px;
+	margin-bottom: 60px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 4px;
+	behavior: url(../src/pie/PIE.htc);
+}
+.container .hot-video {
+	width: 100%;
+	position: relative;
+	padding-left: 10px;
+	border-left: 4px solid #e30b20;
+	color: #333;
+	font-size: 16px;
+	margin-bottom: 30px;
+}
+
+.container .hot-video div {
+	border-bottom: 1px solid #e5e5e5;
+	width: 1100px;
+	position: absolute;
+	top: 10px;
+	left: 100px;
+}
+
+.container .img-list {
+	width: 100%;
+	height: 265px;
+	margin-bottom: 58px;
+}
+
+.container .img-list div {
+	position: relative;
+	margin-left: 20px;
+	float: left;
+	width: 285px;
+}
+
+.container .img-list div img {
+	display: block;
+}
+
+.container .img-list div .text {
+	font-size: 16px;
+	line-height: 24px;
+	color: #000000;
+	padding-top: 20px;
+	margin-left: 0;
+}
+
+.container .img-list div .video-timer {
+	width: 71px;
+	height: 25px;
+	text-align: center;
+	line-height: 25px;
+	font-size: 12px;
+	color: #fff;
+	position: absolute;
+	top: 165px;
+	left: 10px;
+	background-color: #000000;
+	opacity: 0.5;
+	border-radius: 13px;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.container .img-list div .video-timer i {
+	margin-right: 10px;
+}
+
+.container .img-list div.first {
+	margin-left: 0;
+}
+.packup{
+	margin-bottom: 5px;
+}    
+.hot-comment .hot-text .text-details .text-list .send-input {
+	width: 100%;
+}
+
+.hot-comment .hot-text .text-details .text-list .send-input textarea {
+	width: 100%;
+	height: 80px;
+	resize: none;
+	border: 1px solid #E5E5E5;
+	border-radius: 4px;
+	behavior: url(../src/pie/PIE.htc);
+	overflow: hidden;
+}
+
+.hot-comment .hot-text .text-details .text-list .send-input a {
+	width: 77px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	margin-top: 10px;
+	font-size: 14px;
+	color: #fff;
+	background-color: #E30B20;
+	border-radius: 16px;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.hot-comment .hot-text .text-details .text-list .send-input a:hover {
+	background-color: #FB0C23;
+}
+
+.hot-comment .hot-text .send-input {
+	width: 100%;
+}
+
+.hot-comment .hot-text .send-input textarea {
+	width: 100%;
+	height: 80px;
+	resize: none;
+	border: 1px solid #E5E5E5;
+	border-radius: 4px;
+	behavior: url(../src/pie/PIE.htc);
+	overflow: hidden;
+}
+
+.hot-comment .hot-text .send-input a {
+	width: 77px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	margin-top: 10px;
+	font-size: 14px;
+	color: #fff;
+	background-color: #E30B20;
+	border-radius: 16px;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+/*# sourceMappingURL=commentList.css.map */

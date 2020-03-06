@@ -1,0 +1,261 @@
+<link rel="stylesheet" href="${mobileRes}/css/hotComments.css">
+<div class="hotComments" id="hotComments">
+	<div :class="yinying1?'dianzan yinying':'dianzan'" @click="dianzan">
+		<div>
+			<img :src="uped?'${mobileRes}/images/icon/dianzan-b-h.png':'${mobileRes}/images/icon/dianzan-b.png'" alt="">
+			<span class="Light">点赞</span>
+			<span class="Light" v-text="ups"></span>
+		</div>
+
+	</div>
+	<div class="grey-blank"></div>
+	<div class="inner">
+		<div class="comments">
+			<h2 class="title">
+				<span class="red-radius"></span>
+				<span class="title-con Medium" v-if="count1||!count2">热门评论</span>
+				<span class="title-con Medium" v-if="count2&&!count1">最新评论</span>
+			</h2>
+			<ul class="comment-list" v-if="commentList.length">
+				<li v-for="(a,index) in commentList" :key="index" class="box">
+					<a :href="'${base}/content-commentDetails.htm?contentId='+contentId+'&&parentId='+a.id" class="left">
+						<div>
+							<img :src="a.user.userExt.userImgUrl" alt="" v-if="a.user&&a.user.userExt&&a.user.userExt.userImgUrl!=''">
+							<img src="${mobileRes}/images/photo/touxiang-01.png" alt="" v-else>
+						</div>
+					</a>
+					<div class="right">
+						<div class="right-top">
+							<span v-if="a.user&&a.user.username!=''" class="Light" v-text="a.user.username"></span>
+							<span v-else class="Light">匿名用户</span>
+							<div class="r-t-r">
+								<div>
+									<div :class="a.isLike?'image':'image red'" @click="commentsDianzan(a)">
+										<span :class="a.animationPlus?'animation Light plus':'Light plus'">+1</span>
+										<span :class="a.animationSub?'animation Light sub':'Light sub'">-1</span>
+									</div>
+									<span class="Light" v-text="a.upCount"></span>
+								</div>
+								<div>
+									<a :href="'${base}/content-commentDetails.htm?contentId='+contentId+'&&parentId='+a.id">
+										<img src="${mobileRes}/images/icon/pinglun-m.png" alt="">
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="right-center">
+							<a :href="'${base}/content-commentDetails.htm?contentId='+contentId+'&&parentId='+a.id">
+								<p class="Regular" v-text="a.commentText"></p>
+							</a>
+						</div>
+						<div class="right-bottom">
+							<ul>
+								<li>
+									<span class="Light" v-text="a.distanceTime"></span>
+								</li>
+								<li>·</li>
+								<li v-if="a.childrenNum>0"><a :href="'${base}/content-commentDetails.htm?contentId='+contentId+'&&parentId='+a.id"><span
+										 class="Light" v-text="a.childrenNum+'条回复'"></span></a></li>
+								<li v-else><a :href="'${base}/content-commentDetails.htm?contentId='+contentId+'&&parentId='+a.id"><span class="Light">回复TA</span></a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<img src="${mobileRes}/images/blank/meiyoupinglun.png" alt="" class="blank" v-if="!count2">
+			<p class="blank-text" v-if="!count2">暂无热门评论</p>
+			<button :class="yinying2?'allComments Light yinying':'allComments Light'"  v-text="'全部评论 ('+count+')'"
+			 @click="openList" v-if="count"></button>
+		</div>
+	</div>
+	<div class="grey-blank"></div>
+</div>
+
+<script type="text/javascript">
+	var hotComments = new Vue({
+		el: '#hotComments',
+		data: {
+			ups: '${ups}',
+			uped: false,
+			contentId: '${contentId}',
+			getData: {
+				contentId: null,
+				page: 1,
+				size: 2
+			},
+			count1: 1,
+			count2: 1,
+			commentList: [],
+			newList: [],
+			count: 0,
+			yinying1: false,
+			yinying2: false
+		},
+		created() {
+			var that = this
+			// 判断内容是否点赞
+			that.isUp(that.contentId)
+			// 查询该内容拥有的所有评论数量
+			that.getCount(that.contentId)
+			that.getData.contentId = that.contentId
+			// 获取评论列表(手机端)
+			that.getComments(that.getData)
+		},
+		methods: {
+			// 获取内容信息
+			getContent(contentId) {
+				var that = this
+				api.GET("/content/" + contentId, {}, function(res) {
+
+					that.ups = res.data.ups
+				})
+			},
+			// 判断内容是否点赞
+			isUp(contentId) {
+				var that = this
+				api.GET("/content/isUp", {
+					"contentId": contentId
+				}, function(res) {
+
+					if (res.code == 200) {
+						if (res.data) {
+							that.uped = true
+						} else {
+							that.uped = false
+						}
+					}
+				})
+			},
+			// 查询该内容拥有的所有评论数量
+			getCount(contentId) {
+				var that = this
+				api.GET("/usercomment/count/" + contentId, {}, function(res) {
+					that.count = res.data
+				})
+			},
+			// 获取热门评论列表
+			getComments(getData) {
+				var that = this
+				api.GET('/usercomment/mobile/hottest', getData, function(res) {
+					if (res.code == 200) {
+						that.count1 = res.data.list.length
+						if (that.count1) {
+							that.commentList = res.data.list
+						}else{
+							that.getNewestComments(getData)
+						}
+					}
+				})
+			},
+			// 获取最新评论列表
+			getNewestComments(getData) {
+				var that = this
+				api.GET("/usercomment/mobile/latest", getData, function(res) {
+					if (res.code == 200) {
+						that.commentList =res.data.page.content
+						that.count2 = res.data.page.content.length
+					}
+				})
+			},
+			// 内容赞操作
+			dianzan() {
+				var that = this
+				if (!this.uped) {
+					this.yinying1 = false
+					this.toUp(this.contentId)
+				} else {
+					this.cancelUp(this.contentId)
+					this.yinying1 = false
+				}
+			},
+			// 内容点赞
+			toUp(contentId) {
+				var that = this
+				api.POST('/content/up', {
+					contentId: contentId
+				}, function(res) {
+					if (res.code == 200) {
+						that.uped = true
+						that.ups++
+						that.yinying1 = true
+						winTip('点赞成功')
+					} else {
+						errorTip(res.message)
+					}
+				})
+			},
+			// 内容取消赞
+			cancelUp(contentId) {
+				var that = this
+				api.POST('/content/cancelUp', {
+					contentId: contentId
+				}, function(res) {
+					if (res.code == 200) {
+						that.uped = false
+						that.ups--
+						that.yinying1 = true
+						winTip('取消点赞成功')
+					} else {
+						errorTip(res.message)
+					}
+				})
+			},
+			// 评论列表赞操作
+			commentsDianzan(a) {
+				var that = this
+				that.commentList = that.commentList.map(item => {
+					return {
+						...item,
+						animationPlus: false,
+						animationSub: false
+					}
+				})
+				if (a.isLike) {
+					this.listUp(a.id)
+				} else {
+					this.listCancelUp(a.id)
+				}
+			},
+			// 评论列表点赞
+			listUp(itemId) {
+				var that = this
+				api.POST('/usercomment/up', {
+					commentId: itemId
+				}, function(res) {
+					console.log(res)
+					if (res.code == 200) {
+						that.commentList.find(item => item.id == itemId).isLike = false
+						that.commentList.find(item => item.id == itemId).upCount += 1
+						that.commentList.find(item => item.id == itemId).animationPlus = true
+						winTip('点赞成功')
+					} else {
+						errorTip(res.message)
+					}
+				})
+			},
+			// 评论列表取消赞
+			listCancelUp(itemId) {
+				var that = this
+				api.POST('/usercomment/cancel/up', {
+					commentId: itemId
+				}, function(res) {
+					console.log(res)
+					if (res.code == 200) {
+						that.commentList.find(item => item.id == itemId).isLike = true
+						that.commentList.find(item => item.id == itemId).upCount -= 1
+						that.commentList.find(item => item.id == itemId).animationSub = true
+						winTip('取消点赞成功')
+					} else {
+						errorTip(res.message)
+					}
+				})
+			},
+			// 跳转到全部评论
+			openList() {
+				window.location.href = ('${base}/content-commentList.htm?contentId=' + this.contentId)
+				this.yinying2 = true
+			}
+
+		},
+	})
+</script>

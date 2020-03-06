@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title></title>
+	</head>
+
+	<body>
+		<!-- 头部导航 -->
+		[#assign type="2" contentTitle='详情'/]
+		[#include "../includes/header.html"]
+		<!-- 头部导航 -->
+
+		<link rel="stylesheet" href="${mobileRes}/css/wtt-common.css" />
+		<link rel="stylesheet" href="${mobileRes}/css/swiper.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/downloaddetails.css" />
+
+		<div class="appdetails" id="comment">
+			<div class="inner">
+				<div class="download-list det" style="padding-bottom: 0;">
+					<div class="box" v-if="content">
+						<a href="" class="left">
+							<div>
+								<div class="image" v-if="content.attr&&content.attr.shoujitubiao&&content.attr.shoujitubiao.resUrl" :style="{backgroundImage:'url('+content.attr.shoujitubiao.resUrl+')'}"></div>
+								<div class="image" v-else style="background-image: url('${mobileRes}/images/icon/noImg.png');"></div>
+								<article>
+									<h4 class="Medium" v-text="content.title.slice(0,5)"></h4>
+									<div class="rongliang">
+										<span>
+											<div><span v-text="content.attr.mobileFile.fileSize?content.attr.mobileFile.fileSize:''"></span></div>
+										</span>
+										<span class="line"></span>
+										<span v-text="content.downloads+'次下载'"></span>
+									</div>
+								</article>
+							</div>
+						</a>
+						<a :href="'${base}/download/byField?contentId='+content.id+'&field=mobileFile'" class="down-load">下载</a>
+					</div>
+				</div>
+			</div>
+			
+				<div class="tabs" >
+					<ul class="horizontal" v-if="content">
+						<li>
+							<a :href="content.url" class="Regular ">
+								详情
+
+							</a>
+						</li>
+						<li>
+							<a :href="'${base}/content-downloadcomment.htm?contentId='+contentId" class="Regular ">
+								评论
+							</a>
+						</li>
+						<li class="selectActive">
+							<a :href="'${base}/content-downloaddetails_recommend.htm?contentId='+contentId" class="Regular">
+								推荐
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="box swiper-container">
+					<div class="content swiper-wrapper">
+						<div class="con-item show">
+							<div id="details_recommend">
+								<div class="inner">
+									<div class="download-list">
+										[@cms_content_list typeId='215' count='10']
+										[#list tag_list as a]
+										<div class="box">
+											<a href="${a.url!}" class="left">
+												<div>
+													<div class="image" [#if (a.attr.shoujitubiao.resUrl)??&&(a.attr.shoujitubiao.resUrl)!='']style="background-image: url('${(a.attr.shoujitubiao.resUrl)!}');"[#else]style="background-image: url('${mobileRes}/images/icon/noImg.png');"[/#if]></div>
+													<article>
+														<h4 class="Regular">[@text_cut s=a.title len='5' append='…'/]</h4>
+														<div class="rongliang">
+															<span>${(a.attr.mobileFile.fileSize)!}</span>
+															<span class="line"></span>
+															<span>${a.downloads!}次下载</span>
+														</div>
+													</article>
+												</div>
+											</a>
+											<a href="${a.url!}" class="down-load">下载</a>
+										</div>
+										[/#list]
+										[/@cms_content_list]
+
+
+
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+
+					</div>
+				</div>
+			
+
+
+
+		</div>
+		<script type="text/javascript">
+			api.GET('/content/' + getUrlArg('contentId'), {}, function(res) {
+				if (res.code == 200) {
+					$('.header-contentTitle').text(res.data.title)
+				}
+			})
+			$(function() {
+				//获取要定位元素距离浏览器顶部的距离
+				var navH = $(".tabs").offset().top;
+				// console.log(navH);
+				//滚动条事件
+				$(window).scroll(function() {
+					//获取滚动条的滑动距离
+					var scroH = $(this).scrollTop();
+					// console.log(scroH);
+					//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+					if (scroH >= navH) {
+						$(".tabs").css({
+							"position": "sticky",
+							"top": '0.96rem',
+							"z-index": 10
+						});
+					} else if (scroH < navH) {
+						$(".tabs").css({
+							"position": "static"
+						});
+					}
+				})
+			
+			})
+		</script>
+		<script>
+			new Vue({
+				el: "#comment",
+				data: {
+					contentId: getUrlArg('contentId'),
+					pictures: [],
+					tags: [],
+					current: 0,
+					navList: ['详情', '评论', '推荐'],
+					content: null
+				},
+				created() {
+					this.getContent()
+				},
+				filters: {
+					ellipsis(value) {
+						if (!value) return ''
+						if (value.length > 5) {
+							return value.slice(0, 5) + '...'
+						}
+						return value
+					}
+				},
+				methods: {
+					// 获取content
+					getContent() {
+						var that = this
+						api.GET('/content/' + this.contentId, {}, function(res) {
+							if (res.code == 200) {
+								that.content = res.data
+							}
+						})
+					}
+				}
+
+			})
+			
+		</script>
+	</body>
+</html>

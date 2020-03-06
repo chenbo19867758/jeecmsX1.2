@@ -1,0 +1,158 @@
+.header {
+	width: 100%;
+	height: 0.96rem;
+	padding: 0.28rem 0.39rem;
+	background: #fff;
+	display: flex;
+	justify-content: space-between;
+	line-height: 0.38rem;
+	align-items: center;
+}
+
+.header .header-left {
+	width: 35%;
+	display: flex;
+	/* align-items: center; */
+}
+.header .header-right {
+	width: 35%;
+	padding-top: 0.03rem;
+}
+
+.header .header-right i {
+	float: right;
+	margin-left: 0.32rem;
+}
+
+.header i {
+	height: 0.31rem;
+}
+
+.header i img {
+	height: 0.31rem;
+	display: block;
+}
+
+.header a {
+	height: 0.31rem;
+	padding-top: 0.03rem;
+}
+
+.header a img {
+	height: 0.31rem;
+	display: block;
+}
+.header .header-divide{
+	width: 1px;
+	height: 0.4rem;
+	background-color: #E6E6E6;
+	margin-left: 0.3rem;
+	margin-right: 0.3rem;
+}
+.header .header-channelTitle{
+	font-size: 0.32rem;
+	color: #333333;
+	line-height: 0.4rem;
+}
+.header .header-contentTitle{
+	font-size: 0.32rem;
+	color: #333333;
+	text-align: center;
+	line-height: 1;
+}
+.my-loading{
+	padding: 0.5rem 0;
+	text-align: center;
+	font-size: 0.24rem;
+	color: #999999;
+}
+.my-loading .my-loading-i{
+	background-image: url(../images/icon/jiazai.png);
+	width: 0.24rem;
+	height: 0.24rem;
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	background-position: center center;
+	display: inline-block;
+	margin-right: 0.1rem;
+	position: relative;
+	top: 0.03rem;
+}
+
+/* 成功提示框的样式 */
+.win-tip {
+	display: block;
+	background:rgba(0,0,0,.7);
+	color: #fff;
+	padding: 0.22rem 0.47rem;
+	line-height: 0.33rem;
+	position: fixed;
+	left: 50%;
+	top: 25%;
+	-webkit-transform: translate(-50%);
+	transform: translate(-50%);
+	border-radius: 5px;
+	display: none;
+	z-index: 9999;
+	font-size: 0.26rem;
+	text-align: center;
+}
+
+/* 失败提示框的样式 */
+
+.error-tip {
+	display: block;
+	background:rgba(227,11,32,.7);
+	color: #fff;
+	padding: 0.22rem 0.47rem;
+	line-height: 0.33rem;
+	position: fixed;
+	left: 50%;
+	top: 25%;
+	-webkit-transform: translate(-50%);
+	transform: translate(-50%);
+	border-radius: 5px;
+	display: none;
+	z-index: 9999;
+	font-size: 0.26rem;
+	text-align: center;
+}
+
+/* 字体标红 */
+.highlight{
+	color: #E30B20;
+}
+.Return>div{
+	width:0.90rem;
+	height:0.90rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background:rgba(255,255,255,1);
+	box-shadow:0px 0.02rem 0.13rem 0px rgba(18,39,104,0.1);
+	border-radius:50%;
+}
+.Return>div:first-child{
+	margin-bottom: 0.6rem;
+}
+.Return.home>div:first-child{
+	margin-bottom: 0;
+}
+.Return>div a{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.Return.home>div{
+	margin-top: 1.5rem;
+}
+.Return>div img{
+	width: 0.32rem;
+	height: 0.36rem;
+}
+.Return{
+	position: fixed;
+	right: 0.4rem;
+	bottom: 10%;
+	z-index: 1000;
+}

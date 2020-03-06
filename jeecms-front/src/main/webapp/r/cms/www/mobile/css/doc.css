@@ -1,0 +1,81 @@
+.doc{
+	line-height: 1;
+	margin-top:0.96rem;
+}
+
+.box a{
+	display: flex;
+	align-items: center;
+	padding: 0.4rem 0;
+}
+.box{
+	border-bottom-width: 0.01rem;
+	border-color: rgba(240,240,240,1);
+	border-style: solid;
+}
+.header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+
+.box .image {
+	width: 1rem;
+	height: 1.2rem;
+	margin-right: 0.3rem;
+}
+.box .txt{
+	background-image: url('../images/icon/txt.png');
+}
+.box .pdf{
+	background-image: url('../images/icon/pdf.png');
+}
+.box .excel{
+	background-image: url('../images/icon/excel.png');
+}
+.box .word{
+	background-image: url('../images/icon/word.png');
+}
+.box .ppt{
+	background-image: url('../images/icon/ppt.png');
+}
+
+.box h4 {
+	font-size: 0.32rem;
+	font-family: PingFang SC;
+	color: rgba(51, 51, 51, 1);
+	margin-bottom: 0.29rem;
+}
+
+.box .bottom {
+	display: flex;
+	align-items: center;
+}
+
+.box .bottom div {
+	display: flex;
+	align-items: center;
+}
+
+.box .bottom div span {
+	font-size: 0.26rem;
+	font-family: PingFang SC;
+	color: rgba(51, 51, 51, 1);
+}
+
+.box .bottom div:first-child span {
+	font-size: 0.24rem;
+	font-family: PingFang SC;
+	color: rgba(153, 153, 153, 1);
+}
+
+.box .bottom div:first-child+div {
+	margin: 0 0.4rem;
+}
+
+.box .bottom div img {
+	width: 0.28rem;
+	height: 0.24rem;
+	margin-right: 0.1rem;
+}

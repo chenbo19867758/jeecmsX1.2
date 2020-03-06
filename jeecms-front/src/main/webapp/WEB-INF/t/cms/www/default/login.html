@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>会员登录</title>
+    <link rel="stylesheet" href="${res}/css/jSlider.css">
+    <link rel="stylesheet" href="${res}/css/login.css">
+    <link rel="stylesheet" href="${res}/css/reset.css">
+    <link rel="stylesheet" href="${res}/icon/iconfont.css">
+    <link rel="stylesheet" href="${res}/css/jquery.my-message.1.1.css">
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+    [#include "includes/header.html"/]
+    </div>
+    <!--顶部导航 over-->
+    <!-- 中间部分 -->
+    <div class="main">
+        <div class="login-part overflow">
+            <div class="login-left fl">
+                <div class="reg Regular">
+                    <span>会员登录</span>
+					[#if site.globalConfig.memberRegisterOpen??&&site.globalConfig.memberRegisterOpen]
+                    <a class="hover" href="${base}/register.htm">立即注册</a>
+					[/#if]
+                </div>
+                <div class="formtable">
+                    <div class="username">
+                        <i class="iconfont iconiconlineuser ago"></i>
+                        <input type="text" id="identity" name="identity" placeholder="请输入用户名">
+                        <p class="Light none">该用户名不存在</p>
+                    </div>
+                    <div class="psword">
+                        <i class="iconfont iconmima ago"></i>
+                        <input type="password" id="desStr" name="desStr" placeholder="请输入密码">
+                        <p class="Light none">密码错误</p>
+                        <i class="iconfont iconeye-close-line close pointer"></i>
+                        <i class="iconfont iconliulang look none pointer"></i>
+                    </div>
+                    <div class="code none">
+                        <i class="iconfont iconyanzhengma1 ago"></i>
+                        <input type="text" id="captcha" name="captcha" placeholder="请输入验证码">
+                        <div class="letter pointer" id="getCapatchImg"><img id="capatchImg" onclick="genCapatch()" />
+                        </div>
+                    </div>
+                    <div class="box Semilight">
+                        <input type="checkbox" id="remember">
+                        <span>下次自动登录</span>
+                        <a onclick="findPassword()" href="#">忘记密码?</a>
+                    </div>
+                    <a class="alogin Semilight pointer block" onclick="getLogin()">登录</a>
+                </div>
+                <div class="fast-login Semilight">快速登录</div>
+                <div class="fast-icon overflow">
+					[#if globalConfig.qqOpen??&&globalConfig.qqOpen]
+                    <!-- href="${base}/thirdParty/qq/pc" --><a class="one pointer"  onclick="qqLogin()"><i class="iconfont iconQQ2"></i></a>
+					[/#if]
+					[#if globalConfig.weiboOpen??&&globalConfig.weiboOpen]
+                    <!-- href="${base}/thirdParty/sina/pc" --><a class="twos pointer"  onclick="weiboLogin()"><i class="iconfont iconweibo2"></i></a>[/#if]
+					[#if globalConfig.wechatOpen??&&globalConfig.wechatOpen]
+                    <!-- href="${base}/thirdParty/wechat/pc" --><a class="three pointer"  onclick="weixinLogin()"><i class="iconfont iconweixin2"></i></a>[/#if]
+                </div>
+            </div>
+            <div class="login-right fl">
+                <div class="lunbo hover">
+                    <div id="slider1" class="jSlider" data-loop="true" data-navigation="always" data-indicator="always">
+                        
+						<div><a href="#"><img src="${res}/images/login-register/1.png" alt="" /></a></div>
+						
+                        <div><a href="#"><img src="${res}/images/login-register/2.png" alt="" /></a>
+                        </div>
+                        <div><a href="#"><img src="${res}/images/login-register/3.png" alt="" /></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="logo-img">
+                    <img class="block" src="${res}/images/login-register/denglulogo.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部导航 -->
+    [#include "includes/tipFooter.html"/]
+    <!--底部导航 over-->
+    <script src="${res}/js/jquery.jSlider.js"></script>
+    <script src="${res}/js/login.js"></script>
+    <script type="text/javascript">
+        //回车登录
+        $('body').keydown(function(event){
+            if(event.keyCode==13){
+                $('.alogin').click();
+            }
+        });
+		var errorNumber = 0
+        $(function () {
+            genCapatch();
+            $("#getCapatchImg").on("click", function (event) {
+                genCapatch();
+            });
+        });
+		var sessionId = ''
+        function genCapatch() {
+            $.ajax({
+                url: "${base}/common/kaptcha",
+                data: {},
+                success: function (result) {
+                    document.getElementById('capatchImg').src = "data:image/png;base64," + result.data.img;
+					sessionId=result.data.sessionId
+                }
+            });
+        }
+
+        function getLogin() {
+			if(!$('#identity').val() || !$('#desStr').val()){
+				myMessage.add('用户名或密码不能为空', 'warning');
+				return
+			}
+			if(errorNumber >= 3){
+				if(!$('#captcha').val()){
+					myMessage.add('请输入验证码', 'warning');
+					return
+				}
+			}
+            var obj = {};
+            obj.identity = $('#identity').val();
+            var obj2 = {};
+            obj2.pStr = $('#desStr').val();
+            var password = JSON.stringify(obj2);
+            obj.desStr = desEncrypt(password);
+            obj.captcha = $('#captcha').val();
+            obj.rememberMe =$('#remember').is(':checked');
+			if(sessionId){
+				obj.sessionId=sessionId
+			}
+			
+            $.ajax({
+                type: "POST",
+                url: "/login",
+                data: obj,
+                success: function (result) {
+                    if (result.code == 200) {
+                        if(result.data['JEECMS-Auth-Token']){
+                            myMessage.add(result.message, 'success');
+						    localStorage.setItem('JEECMS-Auth-Token', result.data['JEECMS-Auth-Token']);
+							if(result.redirectUrl){
+								location.href = result.redirectUrl
+							}else{
+								location.href = './member-vipcenter.htm';
+							}
+							
+						}else if(result.nextNeedCaptcha){
+							genCapatch();
+                            $('.code').css('display','block');
+                            $('.fast-login').css('bottom','130px');
+                            myMessage.add(result.message, 'error');
+                        }else{
+							genCapatch();
+                            myMessage.add(result.message, 'error');
+                        }
+                        
+                    }else if(result.code == 14504){
+						genCapatch();
+						myMessage.add(result.message, 'warning');
+					}else {
+						genCapatch();
+                        errorNumber+=1
+                        if(errorNumber>=3){
+                            $('.code').css('display','block');
+                            $('.fast-login').css('bottom','130px');
+                        }
+						myMessage.add(result.message, 'error');
+                    }
+                }
+            });
+        }
+
+        // 找回密码
+        function findPassword(){
+            $.ajax({
+				type:'GET',
+			    url: "/register/addition/model",
+			    success: function (result) {
+                    if(result.code===200){
+                        var data = result.data.enableJson.formListBase
+                        var array = []
+                        for(var i =0;i<data.length;i++){
+                            array.push(data[i].value.name)
+                        }
+                        if(array.indexOf('email') > 0){
+                            location.href='./content-loginfindpsword.htm'
+                        }
+                    }
+                }
+            });
+        }
+
+        function qqLogin(){
+            location.href='${base}/thirdParty/qq/pc'
+        }
+        function weiboLogin(){
+            location.href='${base}/thirdParty/sina/pc'
+        }
+        function weixinLogin(){
+            location.href='${base}/thirdParty/wechat/pc'
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>${channel.name}-${site.name}</title>
+		<link rel="stylesheet" href="${res}/css/jSlider.css">
+		<link rel="stylesheet" href="${res}/css/newslist.css">
+		<meta name="title" content="${site.seoTitle!}" />
+		<meta name="keywords" content="${site.seoKeyword!}" />
+		<meta name="description" content="${site.seoDescription!}" />
+	</head>
+
+	<body>
+		<!-- 顶部导航 -->
+		<div class="header-children">
+			[#include "../includes/header.html"/]
+		</div>
+		<!--顶部导航 over-->
+
+		<!-- 中间部分 -->
+		<div class="main">
+			<!-- 轮播图模块 -->
+			<div class="lunbo hover overflow">
+				<!-- <div id="slider1" class="jSlider" data-loop="true" data-navigation="always" data-indicator="always">
+                [@cms_content_list channelPath='yw,gn,gj,cj,ty' typeId='186' orderBy='2' siteId='1']
+                [#list tag_list as a]
+                <div>
+                    <a href="${a.url}" target="_blank"><img src="${a.iconUrl!}" alt="" /></a>
+                    <div class="text Light"><a href="${a.url}" target="_blank">${a.title!}</a></div>
+
+                </div>
+
+                [/#list]
+                [/@cms_content_list]
+            </div> -->
+				<div class="banner" id="b04">
+					[@cms_content_list channelPath='yw,gn,gj,cj,ty' typeId='186' orderBy='2' siteId='1']
+					<ul>
+						[#list tag_list as a]
+						<li>
+							<a href="${a.url}" target="_blank"><img src="${(a.attr.xinwenliebiaotu.resUrl)!}" alt="" /></a>
+							<div class="text Light"><a href="${a.url}" target="_blank">${a.title!}</a></div>
+						</li>
+						[/#list]
+					</ul>
+					[/@cms_content_list]
+					<a href="javascript:void(0);" class="unslider-arrow04 prev hover">
+						<i class="iconfont iconjiaodiantujiantouzuo arrow" id="al"></i>
+					</a>
+					<a href="javascript:void(0);" class="unslider-arrow04 next hover">
+						<i class="iconfont iconjiaodiantujiantou arrow" id="ar"></i>
+					</a>
+				</div>
+			</div>
+
+
+
+			<!-- 轮播图右侧 -->
+			<div class="lunbo-right">
+				[@cms_content_list channelPath='yw,gn,gj,cj,ty' orderBy='29' count='4' siteId='1']
+				[#list tag_list as a]
+				[#if a_index==0]
+				<h4 class="Bold"><a href="${a.url}" target="_blank">[@text_cut s=a.title append='...' /]</a></h4>
+				[#else]
+				<div class="Semilight"><a href="${a.url}" target='_blank'>[@text_cut s=a.title append='...' /]</a>
+				</div>
+				[/#if]
+				[/#list]
+				[/@cms_content_list]
+			</div>
+			<div class="lunbo-bottom">
+				[@cms_content_list channelPath='yw,gn,gj,cj,ty' orderBy='29' count='5' siteId='1']
+				[#list tag_list as a]
+				[#if a_index>3]
+				<h4 class="Bold"><a href="${a.url}" target='_blank'>[@text_cut s=a.title append='...' /]</a></h4>
+				[/#if]
+				[/#list]
+				[/@cms_content_list]
+
+				[@cms_content_list channelPath='yw,gn,gj,cj,ty' orderBy='29' count='10' siteId='1']
+				[#list tag_list as a]
+				[#if a_index>6]
+				<div class="Semilight"><a href="${a.url}" target='_blank'>[@text_cut s=a.title append='...' /]</a>
+				</div>
+				[/#if]
+				[/#list]
+				[/@cms_content_list]
+			</div>
+			<!-- 新闻列表左侧 -->
+			<div class="news-left">
+				<div class="news-header Regular overflow">
+					<ul>
+						[@cms_channel path='news']<li class="active"><a [#if tag_bean??]href="${tag_bean.url!}"[/#if] target='_blank'>全部</a></li>
+						[/@cms_channel]
+						[@cms_channel_list siteId='1' parentId='1747']
+						[#list tag_list as c]
+						<li><a href="${c.url!}">${c.name!}</a></li>
+						[/#list]
+						[/@cms_channel_list]
+					</ul>
+				</div>
+				[@cms_content_list channelId=channel.id count='10' orderBy='29']
+				[#list tag_list as a]
+				<div class="item">
+					<div class="item-left">
+						<img src="${(a.attr.xinwenliebiaotu.resUrl)!}" alt="">
+					</div>
+					<div class="item-right">
+						<a href="${a.url}" class="Regular" target="_blank">${a.title!}</a>
+						<div class="bottom Semilight">
+							<ul>
+								<li>[#if a.source?? && a.source.sourceName?? && a.source.sourceName != ""]${(a.source.sourceName)}[#else]JEECMS演示站[/#if]</li>
+								<li class="time">${a.releaseTimeString!}</li>
+								<!-- <li><i class="iconfont iconshare-line"></i>500</li> -->
+								<li class="box clearfix">
+
+									<a class="uicon fr "><i class="iconfont iconliulang"></i><span>${a.views!}</span></a>
+
+									<a class="uicon fr hover ups"><i class="iconfont iconthumb-up-line"></i><span>${a.ups!}</span></a>
+									<a class="uicon fr hover comments" href="${a.url}?comments=1" target="_blank"><i class="iconfont iconmessage--line1"></i><span>${a.comments!}</span>
+									</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="addone none">+1</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				[/#list]
+				[/@cms_content_list]
+
+				<div class="loading Semilight hover" id="upLoading" onclick="loading(${channel.id})">加载更多</div>
+			</div>
+			<!-- 新闻列表右侧 -->
+			<div class="news-right">
+				<div class="hot-search Regular">热搜关键词<div></div>
+					<div class="hot-right"></div>
+				</div>
+				<div class="right-tag Semilight">
+					[@cms_search_word_list count='12']
+					<ul>
+						[#list tag_list as a]
+						<li><a href="${base}/search.htm?keyword=${a.word!}" target='_blank'>${a.word!}</a></li>
+						[/#list]
+						<div class="clearfix"></div>
+					</ul>
+					[/@cms_search_word_list]
+				</div>
+				<div class="today-news Regular">今日要闻<div class="cut"></div>
+					<div class="hot-right"></div>
+					<div class="update Semilight hover clearfix" onclick="inabatch()"><i class="iconfont iconhuanyipi hover fl"></i><span>换一批</span></div>
+				</div>
+				<div class="right-main-news overflow">
+					[@cms_content_list channelPath='news' orderBy='29' count='5' siteId='1']
+					[#list tag_list as a]
+					<div class="main-news pointer overflow">
+						<div class="left-img"><a href="${a.url}" target="_blank"><img src="${(a.attr.xinwenliebiaotu.resUrl)!}" alt=""></a></div>
+						<div class="right-text Semilight">
+							<a href="${a.url}" target="_blank">[@text_cut s=a.title len=20 append='...' /]</a>
+							<div><i class="iconfont iconliulang"></i>${a.views!}</div>
+						</div>
+					</div>
+					[/#list]
+					[/@cms_content_list]
+				</div>
+				<div class="hot-sort Regular">热点排行<div></div>
+					<div class="hot-right"></div>
+				</div>
+				<div class="sorting overflow">
+					[@cms_content_list orderBy='3' count='10' siteId='1']
+					[#list tag_list as a]
+					<div class="item overflow">
+						[#if a_index<3]<div class="number fl before-three Bold">[#else]<div class="number fl Bold">
+								[/#if]${a_index+1}</div>
+							<div class="text fl Semilight"><a href="${a.url}" target="_blank">[@text_cut s=a.title len=20
+									append='...'
+									/]</a></div>
+					</div>
+					[/#list]
+					[/@cms_content_list]
+				</div>
+
+			</div>
+
+
+		</div>
+
+		<!-- 顶部导航 -->
+		[#include "../includes/footer.html"/]
+		<!--顶部导航 over-->
+		<!-- 底部模块 -->
+		<script src="${res}/js/jquery.jSlider.js"></script>
+		<script src="${res}/js/unslider.min.js"></script>
+		<script src="${res}/js/newslist.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(e) {
+				var unslider04 = $('#b04').unslider({
+						dots: true,
+						speed: 1000, //  The speed to animate each slide (in milliseconds)
+						delay: 4000
+					}),
+					data04 = unslider04.data('unslider');
+
+				$('.unslider-arrow04').click(function() {
+					var fn = this.className.split(' ')[1];
+					data04[fn]();
+				});
+			});
+
+			$('.uicon.comments').hover(function() {
+				$(this).children('i').removeClass("iconmessage--line1").addClass('iconmessage--fill')
+			}, function() {
+				$(this).children('i').addClass("iconmessage--line1").removeClass('iconmessage--fill')
+			});
+			$('.today-news .update').hover(function() {
+				$(this).children('.iconhuanyipi').addClass('trans')
+			},function() {
+				$(this).children('.iconhuanyipi').removeClass('trans')
+			})
+		</script>
+	</body>
+
+</html>

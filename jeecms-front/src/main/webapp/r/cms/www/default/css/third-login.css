@@ -1,0 +1,43 @@
+.main { background-color: #ebeced; height: 760px; padding-top: 215px; }
+.main .third-login { width: 697px; height: 329px; background-color: #fff; margin: auto; padding: 40px 33px 33px 40px; }
+.main .third-login .weixin { color: #333; font-size: 20px; }
+.main .third-login .bind { color: #333; font-size: 14px; margin-left: 321px; margin-bottom: 5px; }
+.main .third-login .login .left { width: 280px; position: relative; border-right: 1px solid #E5E5E5; }
+.main .third-login .login .left .info { font-size: 14px; color: #666; margin-top: 27px; margin-bottom: 32px; }
+.main .third-login .login .left .info span { color: #E30B20; margin-right: 5px; }
+.main .third-login .login .left input { width: 240px; border: 0; border-bottom: 1px solid #E5E5E5; }
+.main .third-login .login .left p { position: absolute; left: 0; top: 103px; color: #E30B20; font-size: 14px; }
+.main .third-login .login .left a { margin-top: 40px; margin-bottom: 24px; width: 240px; height: 43px; color: #fff; font-size: 16px; background-color: #E30B20; line-height: 43px; text-align: center; border-radius: 21px; behavior: url(../src/pie/PIE.htc); }
+.main .third-login .login .right { padding-left: 40px; padding-top: 15px; position: relative; }
+.main .third-login .login .right form input::-webkit-input-placeholder { font-weight: 300; color: #999; font-size: 14px; }
+.main .third-login .login .right form input::-moz-placeholder { /* Mozilla Firefox 19+ */ font-weight: 300; color: #999; font-size: 14px; }
+.main .third-login .login .right form input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ font-weight: 300; color: #999; font-size: 14px; }
+.main .third-login .login .right form input:-ms-input-placeholder { /* Internet Explorer 10-11 */ font-weight: 300; color: #999; font-size: 14px; }
+.main .third-login .login .right form div { height: 35px; line-height: 40px; }
+.main .third-login .login .right form div label { color: #999; text-align: right; width: 68px; display: inline-block; font-size: 14px; }
+.main .third-login .login .right form div label span { color: #E30B20; margin-right: 5px; }
+.main .third-login .login .right form div input { border: 0; border-bottom: 1px solid #E5E5E5; width: 216px; height: 35px; padding: 5px 0; }
+.main .third-login .login .right form div.username { margin-bottom: 16px; }
+.main .third-login .login .right form div.psword { margin-bottom: 18px; }
+.main .third-login .login .right form .forget { display: inline-block; width: 105%; color: #2676B5; text-align: right; font-size: 14px; }
+.main .third-login .login .right form .bind-login { 
+    display: block;
+    width: 219px;
+    height: 43px;
+    line-height: 43px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    margin-left: 60px;
+    margin-right: 0px;
+    border: 0;
+    margin-top: 5px;
+    background-color: #E30B20;
+    border-radius: 21px;
+    behavior: url(../src/pie/PIE.htc); }
+.main .third-login .login .right form p { color: #E30B20; font-size: 14px; }
+.main .third-login .login .right form p.error-user { position: absolute; left: 112px; top: 42px; }
+.main .third-login .login .right form p.error-psword { position: absolute; left: 112px; top: 93px; }
+.main .third-login .login .right form i { position: absolute; right: -15px; top: 72px; color: #999; font-size: 8px; }
+
+/*# sourceMappingURL=third-login.css.map */

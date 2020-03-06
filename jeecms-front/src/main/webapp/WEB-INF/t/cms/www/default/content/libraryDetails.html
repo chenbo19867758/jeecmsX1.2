@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>${content.title!}-${site.name}</title>
+    <link rel="stylesheet" type="text/css" href="${res}/css/libraryDetails.css" />
+	<script src="${res}/js/front.js" type="text/javascript" charset="utf-8"></script>
+    <meta name="title" content="${site.seoTitle!}" />
+    <meta name="keywords" content="${site.seoKeyword!}" />
+	<meta name="description" content="${site.seoDescription!}" />
+</head>
+
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+    [#include "../includes/header.html"/]
+    </div>
+	<!--顶部导航 over-->
+   <script type="text/javascript">
+			$(function () {
+				Cms.viewCount("${base}", "${content.id}");
+				getContentUp("${content.id}");
+				getUsercomment("${content.id}");
+				genPermCheck("${content.id}")
+			});
+			function genPermCheck(contentId,channelId) {
+				$.ajax({
+					url: "${base}/permCheck",
+					data: {
+						contentId:contentId,
+						channelId:channelId
+					},
+					success: function (result) {
+						if(result.data!=1){location.href = "${base}/login"}
+					}
+				});
+			}
+		</script>
+	<!-- 内容 -->
+	<div class="library-details">
+		<p class="Semilight details-guide">
+        <a href="${base}/" class="black Semilight">首页</a> > [#list content.channel.nodeList as n]<a target="_blank" href="${n.url}" class="black Semilight" >${n.name}</a>[#if n_has_next] > [/#if][/#list] > <span class="gray Semilight">正文</span>
+        </p>
+		<div class="content">
+			<div class="content-left">
+				<h3 class="Bold big-title">${content.title!}</h3>
+				<div class="Semilight subtitle">
+					<span>${content.releaseTime!?string("yyyy-MM-dd HH:mm:ss")}</span>
+					<a href="${(content.source.sourceLink)!}" [#if content.source??&&content.source.isOpenTarget ]target="_blank"[/#if]><span>来源：[#if (content.source.sourceName)?? && (content.source.sourceName) != ""]${(content.source.sourceName)}[#else]JEECMS演示站[/#if]</span></a>
+                <span>作者：[#if content.author?? && content.author != ""]${content.author}[#else]本站编辑[/#if]</span>
+                    <span>阅读量：${content.views!}</span>
+					<div class="clearfix"></div>
+				</div>
+				<div class="explain Semilight">${content.description!}</div>
+                <div>
+                <iframe src="${base}/thirdparty/pdfjs/web/viewer.html?file=${content.pdfUrl!}" id="iframepage" width="100%" height="700px" frameborder="0" scrolling="no"></iframe>
+				<div class="library-bottom-border"></div>
+                </div>
+				<div class="download">
+					<a href="#" class="Regular hover" onclick="down('${content.id}')">下载</a>
+					<p class="download-explain">
+						<span>文件大小：10M</span>
+						<span>下载次数：${content.downloads!}次</span>
+						<div class="clearfix"></div>
+					</p>
+				</div>
+				<div class="recommend Regular">相关推荐</div>
+                [@cms_content_list channelPath='news' count='5' relate='2' orderBy='29' siteId='1']
+                        [#list tag_list as a]
+                        <div class="library-item">
+                            <div class="item-left">
+                                <img src="${a.iconUrl!}" alt="">
+                            </div>
+                            <div class="item-right">
+                                <a href="${a.url!}" class="Regular" target="_blank">[@text_cut s=a.title len=35 append='...' /]</a>
+                                <div class="bottom Semilight">
+                                    <ul>
+                                        <li class="color6 fl">${a.channelName}</li>
+                                        <li class="time fl">${a.releaseTimeString!}</li>
+                                        <!--<li><i class="iconfont iconshare-line"></i>500</li>-->
+                                        <li class="box clearfix">
+                                        
+                                        	<a class="uicon fr "><i class="iconfont iconliulang"></i><span>${a.views!}</span></a>
+                                        
+                                        	<a class="uicon fr hover ups"><i class="iconfont iconthumb-up-line"></i><span>${a.ups!}</span></a>
+                                        	<a class="uicon fr hover comments" href="${a.url}?comments=1" target="_blank"><i class="iconfont iconmessage--line1"></i><span>${a.comments!}</span>
+                                        	</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="addone none">+1</div>
+                            </div>
+                        </div>
+                        [/#list]
+                        [/@cms_content_list]
+                
+				
+			</div>
+			<div class="content-right">
+
+				<div class="hot-search Regular">热搜关键词<div></div><div class="hot-right"></div>
+				</div>
+				<div class="right-tag Semilight">
+					[@cms_search_word_list count='10']
+                <ul>
+                    [#list tag_list as a]
+                    <li><a href="${base}/search.htm?keyword=${a.word!}"  target='_blank'>${a.word!}</a></li>
+                    [/#list]
+                    <div class="clearfix"></div>
+
+                </ul>
+                [/@cms_search_word_list]
+				</div>
+				<div class="today-news Regular">今日要闻<div class="cut"></div><div class="hot-right"></div>
+					 <div class="update Semilight clearfix" onclick="inabatch(${content.channel.id})"><i class="iconfont iconhuanyipi fl"></i>换一批</div><div class="hot-right"></div>
+				</div>
+				<div class="right-main-news overflow">
+					 [@cms_content_list channelPath='news' orderBy='29' count='5' siteId='1']
+                [#list tag_list as a]
+                <div class="main-news pointer overflow">
+                    <div class="left-img"><a href="${a.url}" target="_blank"><img src="${a.iconUrl!}" alt=""></a></div>
+                    <div class="right-text Semilight">
+                        <a href="${a.url}" target="_blank">[@text_cut s=a.title len=20 append='...' /]</a>
+                        <div><i class="iconfont iconliulang"></i>${a.views!}</div>
+                    </div>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+				</div>
+				<div class="hot-sort Regular">热点排行<div></div><div class="hot-right"></div>
+				</div>
+				<div class="sorting overflow">
+					 [@cms_content_list orderBy='3' count='10' siteId='1']
+                [#list tag_list as a]
+                <div class="item overflow">
+                    [#if a_index<3]<div class="number fl before-three Bold">[#else]<div class="number fl Bold">
+                            [/#if]${a_index+1}</div>
+                        <div class="text fl Semilight"><a href="${a.url}" target="_blank">[@text_cut s=a.title len=20 append='...'
+                                /]</a></div>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+				</div>
+
+
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!--底部导航 -->
+	[#include "../includes/footer.html"/]
+	<!--底部导航 over-->
+</body>
+<script type="text/javascript">
+	$('.uicon.comments').hover(function() {
+		$(this).children('i').removeClass("iconmessage--line1").addClass('iconmessage--fill')
+	}, function() {
+		$(this).children('i').addClass("iconmessage--line1").removeClass('iconmessage--fill')
+	});
+	$('.today-news .update').hover(function() {
+		$(this).children('.iconhuanyipi').addClass('trans')
+	},function() {
+		$(this).children('.iconhuanyipi').removeClass('trans')
+	})
+	var batchPage = 1
+	var batchLast = false
+	function inabatch(){
+		if(batchPage<5 && !batchLast){
+			batchPage += 1
+		}else{
+			batchPage = 1
+		}
+		api.GET('/content/page',{
+			"contentId": "",
+			"channelIds":"" ,
+			"tagIds": "",
+			"channelPaths": "news",
+			"siteIds": "",
+			"typeIds": "",
+			"title": "",
+			"isNew": "",
+			"isTop": "",
+			"timeBegin": "",
+			"timeEnd": "",
+			"excludeId": "",
+			"orderBy": "",
+			"page": batchPage,
+			"size": 5,
+			"releaseTarget": ""
+		},function(res){
+			if(res.code===200){
+				var data = res.data.content
+				batchLast = res.data.last
+				var html = ""
+				for(var i=0;i<data.length;i++){
+					html += '<div class="main-news pointer overflow"><div class="left-img"><a href="'+data[i].url+'" target="_blank"><img src="'+data[i].iconUrl+'"></a></div>'
+					html += '<div class="right-text Semilight"> <a href="'+data[i].url+'" target="_blank">'+data[i].title+'</a><div><i class="iconfont iconliulang"></i>'+data[i].views+'</div></div></div>'
+				}
+				$('.right-main-news').html(html)
+			}else{
+				myMessage.add(result.message, 'error');
+			}
+		})
+	}
+
+/** 导出，下载处理文件流
+     * @method $exportClick
+     * @param {res：文件流，name ： 下载文件名}
+    */
+    function exportClick(res, name) {
+      var content = res
+      const blob = new Blob([content])
+      const fileName = name+'.docx'
+      if ('download' in document.createElement('a')) { // 非IE下载
+        const elink = document.createElement('a')
+        elink.download = fileName
+        elink.style.display = 'none'
+        elink.href = URL.createObjectURL(blob)
+        document.body.appendChild(elink)
+        elink.click()
+        URL.revokeObjectURL(elink.href) // 释放URL 对象
+        document.body.removeChild(elink)
+      } else { // IE10+下载
+        navigator.msSaveBlob(blob, fileName)
+      }
+    }
+
+
+
+	function down(id){
+		// var data = {
+		// 	'contentId':id
+		// }
+		// api.GET('/download/o_doc_download',data,function(result){
+		// });
+		// $.ajax({
+		// 	url:"${base}/download/o_doc_download?contentId="+id,
+		// 	type:'GET',
+		// 	headers:{'JEECMS-Auth-Token':localStorage.getItem('JEECMS-Auth-Token'),'Redirect-Header':false,'Content-Type':'application/json'},
+		// 	success:function(result){
+		// 		exportClick(result,title);
+		// 	}
+		// })
+		window.open("${base}/download/o_doc_download?contentId="+id);
+	}
+</script>
+
+</html>

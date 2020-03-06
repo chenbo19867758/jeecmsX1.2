@@ -1,0 +1,341 @@
+body {
+    background-color: #ebeced;
+    height: 100vh;
+    max-height: 100vh;
+    width: 100%;
+}
+.main{
+    position: fixed;
+    top: 50%;
+    margin-top: -327px;
+    left: 50%;
+    margin-left: -495px;
+    box-shadow: 0 0 12px #DDDEDF;
+    behavior: url(../src/pie/PIE.htc);
+}
+.main .login-part {
+    width: 990px;
+    height: 558px;
+    background-color: #fff;
+    margin: auto;
+    border-radius: 4px;
+    behavior: url(../src/pie/PIE.htc);
+}
+
+.main .login-part .login-left {
+    width: 430px;
+    height: 558px;
+    padding-left: 40px;
+    padding-right: 35px;
+    position: relative;
+}
+
+.main .login-part .login-left .reg {
+    height: 62px;
+    margin-bottom: 62px;
+    position: relative;
+}
+
+.main .login-part .login-left .reg span {
+    color: #333;
+    font-size: 20px;
+    position: absolute;
+    top: 35px;
+    left: 0;
+}
+
+.main .login-part .login-left .reg a {
+    display: inline-block;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    width: 86px;
+    height: 32px;
+    line-height: 30px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    behavior: url(../src/pie/PIE.htc);
+    position: absolute;
+    right: 0;
+    top: 30px;
+}
+
+.main .login-part .login-left .reg a:hover {
+    color: #E30B20;
+    border-color: #E30B20;
+}
+
+.main .login-part .login-left .formtable {
+    width: 285px;
+    border-bottom: 1px solid #E5E5E5;
+    margin-left: 34px;
+}
+.main .login-part .login-left .formtable input::-webkit-input-placeholder {
+    font-weight: 300;
+    color: #999;
+    font-size: 14px;
+}
+
+.main .login-part .login-left .formtable input::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    font-weight: 300;
+    color: #999;
+    font-size: 14px;
+}
+
+.main .login-part .login-left .formtable input:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    font-weight: 300;
+    color: #999;
+    font-size: 14px;
+}
+
+.main .login-part .login-left .formtable input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    font-weight: 300;
+    color: #999;
+    font-size: 14px;
+}
+
+.main .login-part .login-left .formtable .ago {
+    font-size: 15px;
+    color: #999;
+}
+
+.main .login-part .login-left .formtable div {
+    height: 28px;
+    line-height: 28px;
+    margin-bottom: 22px;
+    position: relative;
+}
+
+.main .login-part .login-left .formtable div i {
+    font-size: 15px;
+    color: #999;
+}
+
+.main .login-part .login-left .formtable div .ago {
+    position: absolute;
+    left: 4px;
+}
+
+.main .login-part .login-left .formtable div input {
+    padding-left: 26px;
+    height: 28px;
+    width: 283px;
+    border: 0;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.main .login-part .login-left .formtable div .close,
+.main .login-part .login-left .formtable div .look {
+    position: absolute;
+    right: 5px;
+    top: 0;
+}
+
+.main .login-part .login-left .formtable div p {
+    color: #E30B20;
+    font-size: 14px;
+    position: absolute;
+    left: 25px;
+    top: 22px;
+}
+
+.main .login-part .login-left .formtable div.code {
+    position: relative;
+}
+
+.main .login-part .login-left .formtable div.code .letter {
+    width: 125px;
+    height: 35px;
+    position: absolute;
+    right: 0;
+    top: -10px;
+    font-weight: bolder;
+}
+
+.main .login-part .login-left .formtable div.box {
+    height: 20px;
+    line-height: 20px;
+    margin-top: -4px;
+    position: relative;
+}
+
+.main .login-part .login-left .formtable div.box input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    left: -4px;
+    top: 0;
+}
+
+.main .login-part .login-left .formtable div.box input[type="checkbox"]::after {
+    width: 12px;
+    height: 12px;
+    content: " ";
+    background-color: #fff;
+    color: #333;
+    display: inline-block;
+    visibility: visible;
+    border-radius: 2px;
+    behavior: url(../src/pie/PIE.htc);
+    border: 1px solid #E5E5E5;
+    position: absolute;
+    top: 0;
+    
+}
+
+.main .login-part .login-left .formtable div.box input[type=checkbox]:checked:after {
+	width: 12px;
+	height: 12px;
+    content: "";
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    top: 18px;
+    border: 0;
+    color: #fff;
+	background-image: url(../images/login-register/yes.png);
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.main .login-part .login-left .formtable div.box span {
+    color: #999;
+    font-size: 14px;
+    position: absolute;
+    left: 20px;
+}
+
+.main .login-part .login-left .formtable div.box a {
+    font-size: 14px;
+    color: #2676B5;
+    position: absolute;
+    right: 0;
+}
+
+.main .login-part .login-left .formtable .alogin{
+    width: 285px;
+    height: 43px;
+    line-height: 43px;
+    text-align: center;
+    background-color: #E30B20;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 22px;
+    behavior: url(../src/pie/PIE.htc);
+    margin-top: 31px;
+    margin-bottom: 56px;
+}
+.main .login-part .login-left .formtable .alogin:hover{
+    background-color: #FB0C23;
+}
+
+.main .login-part .login-left .fast-login {
+    width: 76px;
+    font-size: 14px;
+    color: #888888;
+    position: absolute;
+    bottom: 180px;
+    left: 178px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.main .login-part .login-left .fast-icon {
+    margin-top: 36px;
+	text-align: center;
+}
+
+.main .login-part .login-left .fast-icon a {
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+    background-color: #f5f5f5;
+    margin-right: 15px;
+    text-align: center;
+    border-radius: 50%;
+    position: relative;
+}
+.main .login-part .login-left .fast-icon a i{
+    font-size: 18px;
+    position: absolute;
+    top: 8px;
+    left: 9px;
+}
+.main .login-part .login-left .fast-icon a i.iconQQ2{
+    color: #36B7F6;
+}
+.main .login-part .login-left .fast-icon a i.iconweibo2{
+    color: #FC304B;
+}
+.main .login-part .login-left .fast-icon a i.iconweixin2{
+    color: #4BB83F;
+}
+.main .login-part .login-left .fast-icon a.one:hover {
+    background-color: #36B7F6;
+}
+.main .login-part .login-left .fast-icon a.twos:hover {
+    background-color: #FC304B;
+}
+.main .login-part .login-left .fast-icon a.three:hover {
+    background-color: #4BB83F;
+}
+.main .login-part .login-left .fast-icon a:hover i{
+    color: #fff;
+}
+
+.main .login-part .login-right {
+    width: 560px;
+    height: 558px;
+    position: relative;
+}
+
+.main .login-part .login-right .lunbo {
+    position: relative;
+    width: 560px;
+    height: 558px;
+    border-radius: 4px;
+    behavior: url(../src/pie/PIE.htc);
+}
+
+.main .login-part .login-right .lunbo .jSlider .navigator .prev {
+    display: none;
+    margin-left: -30px;
+}
+
+.main .login-part .login-right .lunbo .jSlider .navigator .next {
+    display: none;
+    margin-right: -30px;
+}
+
+.main .login-part .login-right .lunbo .jSlider img {
+    width: 560px;
+    height: 558px;
+}
+
+/* .main .login-part .login-right .lunbo .jSlider .controller {
+    /* display: none; */
+/* } */ 
+
+.main .login-part .login-right .lunbo .jSlider .controller .indicator span {
+    width: 8px;
+    height: 8px;
+    opacity: 0.2;
+    filter: progid:DXImageTrans.formtable.Microsoft.gradient(startColorstr=#66000000, endColorstr=#66000000);
+}
+
+.main .login-part .login-right .lunbo .jSlider .controller .indicator .selected {
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+
+.main .login-part .login-right .logo-img {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+/*# sourceMappingURL=login.css.map */

@@ -1,0 +1,149 @@
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<link rel="stylesheet" type="text/css" href="${mobileRes}/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="${mobileRes}/css/public.css" />
+<script src="${mobileRes}/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="${mobileRes}/js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="${mobileRes}/js/bscroll.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+</script>
+<script src="${mobileRes}/js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="${mobileRes}/js/app.js" type="text/javascript" charset="utf-8"></script>
+<div id="topbar" class="header" :style="{background:headerBack}">
+	<div class="header-left">
+		<a href="/" v-if="type == 1"><img src="${mobileRes}/images/icon/shouye.png"></a>
+		<i v-if="type == 2" @click="back()"><img src="${mobileRes}/images/icon/houtui.png"></i>
+		<a href="/" v-if="type == 3"><img src="${mobileRes}/images/icon/logo-bai.png"></a>
+		<a :href="backHref" v-if="type == 4"><img src="${mobileRes}/images/icon/houtui.png"></a>
+		<a href="/" v-if="type == 5"><img src="${mobileRes}/images/icon/shouye-bai.png"></a>
+		<i v-if="type == 1 || type == 5" :style="{'background-color':divideColor||'#E6E6E6'}" class="header-divide"></i>
+		<span v-if="channelTitle" :style="{'color':channelTitleColor||'#333333'}" class="header-channelTitle Medium" v-text="channelTitle"></span>
+	</div>
+	<span v-if="contentTitle" :style="{'color':contentTitleColor||'#333333'}" class="header-contentTitle Medium" v-text="contentTitle"></span>
+	<div class="header-right">
+		<!-- <button class="btn btn-red" type="button" id="postMessage">postMessage</button> -->
+		[#if (channel.id)??]
+		<a href="${base}/content-channel.htm?channelId=${(channel.id)!}" v-if="type == 3"><i><img src="${mobileRes}/images/icon/caidan.png"></i></a>
+		[#else]
+		<a href="${base}/content-channel.htm" v-if="type == 3"><i><img src="${mobileRes}/images/icon/caidan.png"></i></a>
+		[/#if]
+		[#if site.globalConfig.memberOpen??&&site.globalConfig.memberOpen]
+		[#if user??]
+		<i v-if="type == 3" class="toLogin"><a href="${base}/h5center/index.html#/pages/personal/index/index"><img src="${mobileRes}/images/icon/geren.png"></a></i>
+		[#else]
+		<i v-if="type == 3" class="toLogin"><a href="${base}/h5center/index.html#/pages/login/login"><img src="${mobileRes}/images/icon/geren.png"></a></i>
+		[/#if]
+		[/#if]
+		<i v-if="type == 3"><a href="${base}/search.htm"><img src="${mobileRes}/images/icon/sousuo-bai.png"></a></i>
+		[#if (channel.id)??]
+		<a href="${base}/content-channel.htm?channelId=${(channel.id)!}"  v-if="type == 5">
+		<i><img src="${mobileRes}/images/icon/caidan.png"></i></a>
+		[#else]
+		<a href="${base}/content-channel.htm"  v-if="type == 5">
+		<i><img src="${mobileRes}/images/icon/caidan.png"></i></a>
+		[/#if]
+		[#if site.globalConfig.memberOpen??&&site.globalConfig.memberOpen]
+		[#if user??]
+		<i v-if="type == 5" class="toLogin"><a href="${base}/h5center/index.html#/pages/personal/index/index"><img src="${mobileRes}/images/icon/geren.png"></a></i>
+		[#else]
+		<i v-if="type == 5" class="toLogin"><a href="${base}/h5center/index.html#/pages/login/login"><img src="${mobileRes}/images/icon/geren.png"></a></i>
+		[/#if]
+		[/#if]
+		[#if (channel.id)??]
+		<a href="${base}/content-channel.htm?channelId=${(channel.id)!}" v-if="type != 3&&type != 5"><i><img src="${mobileRes}/images/icon/cebian-hei.png"></i></a>
+		[#else]
+		<a href="${base}/content-channel.htm" v-if="type != 3&&type != 5"><i><img src="${mobileRes}/images/icon/cebian-hei.png"></i></a>
+		[/#if]
+		[#if site.globalConfig.memberOpen??&&site.globalConfig.memberOpen]
+		[#if user??]
+		<i v-if="type != 3&&type != 5" class="toLogin"><a href="${base}/h5center/index.html#/pages/personal/index/index"><img src="${mobileRes}/images/icon/geren-hei.png"></a></i>
+		[#else]
+		<i v-if="type != 3&&type != 5" class="toLogin"><a href="${base}/h5center/index.html#/pages/login/login"><img src="${mobileRes}/images/icon/geren-hei.png"></a></i>
+		[/#if]
+		[/#if]
+	</div>
+	<div class="Return" v-if="type!=3">
+	<div class="returnHome">
+		<a href="/">
+			<img src="${mobileRes}/images/icon/shouye-b.png" alt="">
+		</a>
+	</div>
+	<div class="returnTop">
+		<img src="${mobileRes}/images/icon/top.png" alt="" class="back-to-top">
+	</div>
+
+</div>
+<div class="Return home" v-if="type==3">
+	<div class="returnTop">
+		<img src="${mobileRes}/images/icon/top.png" alt="" class="back-to-top">
+	</div>
+
+</div>
+</div>
+
+
+
+<!-- <script type="text/javascript" src="https://js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.1.5.1.js"></script>
+<script type="text/javascript">
+	document.addEventListener('UniAppJSBridgeReady', function() {
+		document.querySelector('.toLogin').addEventListener('click', function(evt) {
+			var target = evt.target;
+			var action = target.getAttribute('data-src');
+			uni.navigateTo({
+				url: action
+			});
+		});
+		document.querySelector("#postMessage").addEventListener('click', function() {
+			uni.postMessage({
+				data: {
+					action: 'message'
+				}
+			});
+		})
+	});
+</script> -->
+<script type="text/javascript">
+	console.log('${(channel.id)!}')
+</script>
+
+<script>
+	$(".Return").hide();
+	$(function() {
+		$(window).scroll(function() {
+			if ($(window).scrollTop() > 1100) {
+				$(".Return").fadeIn(500);
+			} else {
+				$(".Return").fadeOut(500);
+			}
+		});
+
+		$(".back-to-top").click(function() {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 600);
+			return false;
+		});
+	});
+	var topbar = new Vue({
+		el: '#topbar',
+		data() {
+			return {
+				name: '${topName!}',
+				type: '${type!}',
+				headerBack: '${headerBack!}',
+				channelTitle: '${channelTitle!}',
+				contentTitle: '${contentTitle!}',
+				backHref: '${backHref!}',
+				divideColor: '${divideColor!}',
+				channelTitleColor: '${channelTitleColor!}',
+				contentTitleColor: '${contentTitleColor!}'
+			}
+		},
+		methods: {
+			back() {
+				window.history.go(-1)
+			},
+		}
+	})
+</script>

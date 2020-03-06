@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>${globalConfig.mallName!}-登录</title>
+  [#include "./includes/common.html"/]
+	<script src="${res}/lib/crypto/rollups/tripledes.js "></script>
+	<script src="${res}/lib/crypto/components/mode-ecb.js"></script>
+  <script src="${res}/js/login.js"></script>
+</head>
+<body>
+  <div class="header ">
+    <div class="container head-wrap">
+      [#assign name='会员登录']
+      [#include "./includes/logo.html"/]
+      <div class="user-welcome">
+          <span class="user-welcome__title">您好，欢迎来到${globalConfig.mallName!}！</span>
+          <a href="${base}/register.htm" class="user-welcome__link">用户注册</a>
+          <a href="${base}/" class="user-welcome__link">返回首页</a>
+      </div>
+    </div>
+  </div>
+  <div class="login-banner">
+    <div class="container">
+        <div class="login-banner__bg">
+          <img class="login-banner__img" src="${res}/images/bg-login.png" >
+        </div>
+        <div class="login-box" id="app">
+          <span class="login-box__title">用户登录</span>
+          <div class="errorMsg">{{errorMsg}}</div>
+          <div class="login-box__enter">
+            <img class="login-box__userImg" src="${res}/images/login_03.png">
+            <input class="login-box__user" @keyup.enter="login" autofocus="autofocus" type="text" placeholder="请输入用户名"  v-model="formData.userName">
+          </div>
+          <div class="login-box__enter">
+            <img class="login-box__userImg" src="${res}/images/login_06.png">
+            <input class="login-box__pwd" @keyup.enter="login" type="password" placeholder="密码"  v-model="formData.password" >
+          </div>
+          <div class="login-btn" @keyup.enter="login" @click="login" >
+            <span v-if="!isLogin">登录</span>
+            <span v-else>登录中…</span>
+          </div>
+          <p class="login-box__with">
+              <a href="${base}/register.htm" class="login-box__link float-right">免费注册</a>
+            <a href="${base}/retrieve.htm" class="login-box__link">忘记密码</a>
+          </p>
+          <div class="login-box__txt" v-if="thirdInfo.QQ||thirdInfo.WECHAT_WEB||thirdInfo.WEIBO">一键登录</div>
+          <div class="login-box__on">
+            <div class="login-box__picture" @click="qqLogin" v-if="thirdInfo.QQ">
+              <img src="${res}/images/login_09.png">
+            </div>
+            <div class="login-box__picture" @click="wxLogin" v-if="thirdInfo.WECHAT_WEB">
+              <img src="${res}/images/login_11.png">
+            </div>
+            <div class="login-box__picture" @click="wbLogin" v-if="thirdInfo.WEIBO">
+              <img src="${res}/images/login_15.png">
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  [#include "./includes/footer.html"]
+</body>
+</html>
+<script>
+  var app=new Vue({
+    el:'#app',
+    data:{
+      formData: {
+        userName: '',
+        password: '',
+        captcha: '',
+        sessionId: ''
+      },
+      captchaImg: '',
+      rember: false,
+      isCaptcha: false,
+      activeName: 'name',
+      errorStatus: false,
+      errorMsg: '',
+      isLogin: false,
+      storeInfo: {},
+      thirdInfo:{QQ:'',WECHAT_WEB:'',WEIBO:'',WECHAT_H5:''},
+      backUrl:[#if backUrl?? ]'${backUrl!}' [#else] '${base}/' [/#if] //获取跳转页面来源
+    },
+    methods: {
+      login(){
+      var self = this
+      if (!self.isLogin) {
+        self.errorStatus = false
+        self.errorMsg = ''
+        if (self.formData.userName === '') {
+          self.errorStatus = true
+          self.errorMsg = '请输入用户名'
+          return false
+        }
+        if (self.formData.password === '') {
+          self.errorStatus = true
+          self.errorMsg = '请输入密码'
+          return false
+        }
+        self.isLogin = true
+       var params = {
+          identity: self.formData.userName,
+          desStr:encrypt(JSON.stringify({ pStr: self.formData.password })),
+          captcha: self.formData.captcha,
+          sessionId: self.formData.sessionId
+        }  
+        $.ajax({
+          url:'${base}/login',
+          headers:{
+            [#if crf??]
+            "${csrfToken.headerName!}":"${csrfToken.token!}"
+            [/#if]
+          },
+         type:'post',
+         data:params,
+         success:function(res){
+          if(res.code==200){ 
+	          localStorage.setItem('token',res.data['JEECMS-Auth-Token'])
+	          location.href=self.backUrl;
+         } else{
+             self.isLogin = false
+           self.errorMsg = res.message;
+         }
+         }
+        })
+      }
+      },
+      getThirdInfo() {
+        var self = this
+        cms.ajax({
+          url: '${base}/third/thirdInfo',
+          type: 'get',
+        }, function (res) {
+          if (res.code === 200) {
+            self.thirdInfo = res.data
+            res.data.forEach(item => {
+              switch (item.code){
+                case 'QQ':
+                self.thirdInfo.QQ=item.isEnable
+                break;
+                case 'WECHAT_WEB':
+                self.thirdInfo.WECHAT_WEB=item.isEnable;
+                break;
+                case 'WEIBO':
+                self.thirdInfo.WEIBO=item.isEnable;
+                break;
+                case 'WECHAT_H5':
+                self.thirdInfo.WECHAT_H5=item.isEnable;
+                break;
+              }
+            })
+           }
+          }
+        )
+      },
+      qqLogin(){//qq登陆
+        location.href = '${base}/thirdParty/qq/pc?backUrl=${base}/index.htm'
+      },
+      wxLogin(){//微信登陆
+        location.href = '${base}/thirdParty/wechat/pc?backUrl=${base}/index.htm'
+      },
+      wbLogin(){//微博登陆
+        location.href = '${base}/thirdParty/sina/pc?backUrl=${base}/index.htm'
+      }
+      
+    },
+    created() {
+      this.getThirdInfo()
+    }
+  })
+</script>

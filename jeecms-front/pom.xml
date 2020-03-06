@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.jeecms</groupId>
+		<artifactId>jeecms-parent</artifactId>
+		<version>x1.2.0</version>
+	</parent>
+	<artifactId>jeecms-front</artifactId>
+	<packaging>war</packaging>
+	<name>jeecms-front</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jeecms.version>x1.2.0</jeecms.version>
+	</properties>
+	<url>http://www.jeecms.com</url>
+	<dependencies>
+		<dependency>
+			<groupId>com.jeecms</groupId>
+			<artifactId>jeecms-common</artifactId>
+			<version>${jeecms.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jeecms</groupId>
+			<artifactId>jeecms-component</artifactId>
+			<version>${jeecms.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jeecms</groupId>
+			<artifactId>jeecms-mq-thread</artifactId>
+			<version>${jeecms.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jeecms</groupId>
+			<artifactId>jeecms-lucene</artifactId>
+			<version>${jeecms.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jeecms</groupId>
+			<artifactId>jeecms-admin</artifactId>
+			<version>${jeecms.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- 快速启动启动应用，类似热部署 -->
+		<!-- xstream 暂不支持  -->
+		<!-- 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+		 -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-juli</artifactId>
+			<version>${tomcat.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- 打包成war需要设置scope为provided -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>ROOT</finalName>
+		<plugins>
+			<!--该插件可以生成querysdl需要的查询对象，执行mvn compile即可-->
+			<!-- spring-boot插件。使用方式：spring-boot:run。该方式只适合在IDEA开发工具下使用，Eclipse使用该方式启动会出现无法停止tomcat服务的情况 -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!-- 指定启动的入口类 -->
+					<mainClass>com.jeecms.front.CmsFrontApplication</mainClass>
+					<!-- 关闭fork。否则使用spring-boot:run启动时，在idea中无法调试程序，在eclipse中无法关闭web服务 -->
+					<fork>false</fork>
+				</configuration>
+				<executions>
+	               <execution>
+	                    <goals>
+	                        <goal>repackage</goal>
+	                    </goals>
+	                    <configuration>
+	                        <skip>true</skip>
+	                    </configuration>
+	                </execution>
+	            </executions>
+			</plugin>
+			
+		</plugins>
+	</build>
+</project>

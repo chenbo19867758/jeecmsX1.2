@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>音频</title>
+	
+</head>
+<body>
+	[#assign type="1" channelTitle="音频"/]
+	[#include "../includes/header.html"]
+	<script src="${mobileRes}/js/loading.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="${mobileRes}/css/musics_hot.css" />
+	<div id="musics">
+		<div class="music-header">
+			<ul>
+				<li class="Medium">[@cms_channel path='zxyp' siteId='1']<a href="${tag_bean.url!}" class="active block">${tag_bean.name!}</a>[/@cms_channel]</li>
+				<li class="Regular">[@cms_channel path='yppx' siteId='1']<a href="${tag_bean.url!}" class="no-active block">${tag_bean.name!}</a>[/@cms_channel]</li>
+			</ul>
+			<div class="music-header-bottom"></div>
+		</div>
+		<div>
+			<ul class="important-list">
+				[@cms_content_list channelPath='zxyp' orderBy='3' siteId='1' count='10']
+				[#list tag_list as a]
+				<li>
+					<div class="important-top-music">
+						<div class="music-play">
+							<div class="big-img" style="background-image: url(${(a.attr.musicimg.resUrl)!});">
+							</div>
+							<img @click="clickPlay($event)" class="play-icon" src="${mobileRes}/images/icon/musics.png">
+							<p class="play-time">
+								<img src="${mobileRes}/images/icon/xiaobofang.png" >
+								<span class="Regular">${(a.attr.musicimg.resDuration)!'00:00:00'}</span>
+							</p>
+						</div>
+						<audio controls loop>
+							<source src="${(a.attr.music.resUrl)!}"/>
+						</audio>
+					</div>
+					<div class="important-top-no">
+						<a href="${a.url!}">
+							<h4 class="Medium">[@text_cut s=a.title len=40 append='...'/]</h4>
+						</a>
+						<p class="Regular"><span>[#if (a.source.sourceName)?? && (a.source.sourceName) !=
+								""]${(a.source.sourceName)}[#else]JEECMS演示站[/#if]</span><span>${a.releaseTimeString!}</span></p>
+					</div>
+					<div class="important-bottom">
+						<a href="${a.url!}">
+							<div>
+								<img src="${mobileRes}/images/icon/liulanliang-l.png">
+								<span class="Regular">${a.views!}</span>
+							</div>
+						</a>
+						
+						<a href="${a.url!}">
+							<div>
+								<img src="${mobileRes}/images/icon/pinglun-i.png">
+								<span class="Regular">${a.comments!}</span>
+							</div>
+						</a>
+						<a href="${a.url!}">
+							<div>
+								<img src="${mobileRes}/images/icon/dianzan-l.png">
+								<span class="Regular">${a.ups!}</span>
+							</div>
+						</a>
+					</div>
+				</li>
+				[/#list]
+				[#assign listLength=tag_list?size/]
+				[/@cms_content_list]
+				<li class="Medium" v-for="(item,i) in searchList">
+					<div class="important-top-music">
+						<div class="music-play">
+							<div class="big-img" :style="'background-image: url('+item.iconUrl+');'"></div>
+							<img class="play-icon" @click="clickPlay($event)" src="${mobileRes}/images/icon/musics.png">
+							<p class="play-time">
+								<img src="${mobileRes}/images/icon/xiaobofang.png" >
+								<span class="Regular" v-if="item.attr&&item.attr.musicimg" v-text="item.attr.musicimg.resDuration"></span>
+								<span class="Regular" v-if="!item.attr&&!item.attr.musicimg">00:00:00</span>
+							</p>
+						</div>
+						<audio  controls loop>
+							<source :src="item.attr.music.resUrl"/>
+							您的浏览器不支持视频播放标签
+						</audio>
+					</div>
+					<div class="important-top-no">
+						<a :href="item.url">
+							<h4 class="Medium" v-text="item.title"></h4>
+						</a>
+						<p class="Regular"><span v-if="item.source.sourceName" class="Regular" v-text="item.source.sourceName"></span><span
+							 v-if="!item.source.sourceName">JEECMS演示站</span><span v-text="item.releaseTimeString"></span></p>
+					</div>
+					<!-- 底部 -->
+					<div class="important-bottom">
+						<a :href="item.url">
+							<div>
+								<img src="${mobileRes}/images/icon/liulanliang-l.png">
+								<span class="Regular" v-text="item.views"></span>
+							</div>
+						</a>
+						
+						<a :href="item.url">
+							<div>
+								<img src="${mobileRes}/images/icon/pinglun-i.png">
+								<span class="Regular" v-text="item.comments"></span>
+							</div>
+						</a>
+						<a :href="item.url">
+							<div>
+								<img src="${mobileRes}/images/icon/dianzan-l.png">
+								<span class="Regular" v-text="item.ups"></span>
+							</div>
+						</a>
+					</div>
+				</li>
+			</ul>
+			<my-loading :load="load" :isload="isload"></my-loading>
+		</div>
+	</div>
+	[#include "../includes/footerTabbar.html"]
+</body>
+<script type="text/javascript">
+	new Vue({
+		el: '#musics',
+		data: {
+			load: '加载更多',
+			isload: false,
+			searchData: {
+				channelPaths: 'zxyp',
+				orderBy: 3,
+				page: 1,
+				size: 10
+			},
+			searchList: [],
+			last: false,
+			uploading: true,
+			scroll: 0,
+			listLength:${listLength}
+		},
+		mounted() {
+			if(this.listLength <10){
+				this.load='没有更多了'
+				this.isload = false
+				this.last = true
+			}
+		},
+		methods: {
+			//点击播放
+			clickPlay(event) {
+				let _audio = document.getElementsByTagName('audio')
+				for (var i = 0; i < _audio.length; i++) {
+					_audio[i].pause();
+					_audio[i].style.display = 'none'
+					_audio[i].previousElementSibling.style.display='block'
+				}
+				event.target.offsetParent.nextElementSibling.style.display = 'block'
+				event.target.offsetParent.nextElementSibling.play()
+				event.target.offsetParent.style.display = 'none'
+			},
+			loading() {
+				if (this.uploading) {
+					this.uploading = false
+					if (!this.last) {
+						this.load = '加载中'
+						this.isload = true
+						this.searchData.page += 1
+						this.getContentPage()
+					} else {
+						this.load = '没有更多了'
+						this.isload = false
+					}
+				}
+			},
+			getContentPage() {
+				let _this = this
+				api.GET('/content/page', _this.searchData, function(res) {
+					_this.last = res.data.last
+					if (_this.last) {
+						_this.load = '已显示全部内容'
+						_this.isload = false
+					} else {
+						_this.load = '加载更多'
+						_this.isload = false
+					}
+					_this.searchList = _this.searchList.concat(res.data.content)
+					_this.uploading = true
+				})
+			}
+		}
+	});
+</script>
+</html>

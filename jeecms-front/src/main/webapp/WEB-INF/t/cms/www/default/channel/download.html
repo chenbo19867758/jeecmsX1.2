@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>${channel.name}-${site.name}</title>
+    <link rel="stylesheet" href="${res}/css/downloadList.css">
+    <link rel="stylesheet" href="${res}/css/jSlider.css">
+    <meta name="title" content="${site.seoTitle!}" />
+    <meta name="keywords" content="${site.seoKeyword!}" />
+    <meta name="description" content="${site.seoDescription!}" />
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+        [#include "../includes/header.html"/]
+        <!--顶部导航 over-->
+    </div>
+    <!-- 轮播部分 -->
+    <div class="lunbo hover">
+        <div id="slider1" class="jSlider" data-loop="true" data-navigation="always" data-indicator="always">
+            [@cms_content_list channelPath='dl' typeId='186' orderBy='29' siteId='1']
+            [#list tag_list as a]
+            <div><a href="${a.url}" target="_blank"><div class="background-img" style="background-image: url('${(a.attr.jdImg.resUrl)!}');"></div></a></div>
+            [/#list]
+            [/@cms_content_list]
+        </div>
+    </div>
+
+    <!-- 中间部分 -->
+    <div class="container overflow">
+        <div class="download-left fl">
+            <div class="left-nav overflow Regular">
+                <ul>
+                    [@cms_channel path='dl' siteId='1']<li><a class="mark-red" href="${tag_bean.url!}">精品推荐</a></li>
+                    [/@cms_channel]
+                    [@cms_channel_list parentId='1751' count='5']
+                    [#list tag_list as a]
+                    <li><a href="${a.url!}">${a.name!}</a></li>
+                    [/#list]
+                    [/@cms_channel_list]
+                </ul>
+            </div>
+            <div class="download-list overflow">
+                [@cms_content_list channelPath='dl' isTop='0' typeId='175' count='15' orderBy='29' siteId='1']
+                [#list tag_list as a]
+                <div class="download-item overflow pointer fl">
+                    <img class="fl block" src="${(a.attr.tubiao.resUrl)!}" alt="">
+                    <div class="message fl Semilight">
+                        <a href="${a.url!}" class="downName" target="_blank">[@text_cut s=a.title len=8 append='...'
+                            /]</a>
+                        <div class="info">
+                            <span>150M</span>
+                            <span class="line">|</span>
+                            <span class="Light">${a.downloads}</span>
+                        </div>
+                    </div>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+            </div>
+        </div>
+        <div class="download-right fl">
+            <div class="hot-sort Regular">热点排行<div></div>
+                <div class="hot-right"></div>
+            </div>
+            <div class="right-list">
+                [@cms_content_list channelPath='dl' count='10' orderBy='29' siteId='1']
+                [#list tag_list as a]
+                <div class="right-item overflow pointer">
+                    [#if a_index<3]<span class="before number block fl Bold">[#else]<span
+                            class="number block fl Bold">[/#if]${a_index+1}</span>
+                        <img class="block fl" src="${(a.attr.tubiao.resUrl)!}" alt="">
+                        <div class="item-message fl">
+                            <a class="message-title Semilight block pointer" href="${a.url!}" target="_blank">[@text_cut
+                                s=a.title len=10 append='...' /]</a>
+                            <div class="info Light">
+                                <span>22.3M</span>
+                                <span class="line">|</span>
+                                <span class="download-num Light">${a.downloads}次下载</span>
+                            </div>
+                        </div>
+                        <a class="down Semilight none hover" href="${a.url!}" target="_blank">下载</a>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- 顶部导航 -->
+    [#include "../includes/footer.html"/]
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <script src="${res}/js/jquery.jSlider.js"></script>
+
+</body>
+
+</html>

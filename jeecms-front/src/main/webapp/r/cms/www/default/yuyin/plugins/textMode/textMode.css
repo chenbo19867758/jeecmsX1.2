@@ -1,0 +1,68 @@
+/**
+* copyright
+* http://www.oddpi.com
+* power oddpi Inc
+**/
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+body {
+	text-align: center;
+	font-size: 14px;
+	line-height: 26px;
+}
+h1 {
+	font-size: 24px;
+	line-height: 26px;
+}
+h2 {
+	font-size: 22px;
+	line-height: 26px;
+}
+h3 {
+	font-size: 20px;
+	line-height: 26px;
+}
+h4 {
+	font-size: 18px;
+	line-height: 26px;
+}
+h5 {
+	font-size: 16px;
+	line-height: 26px;
+}
+h6 {
+	font-size: 14px;
+	line-height: 26px;
+}
+ul {
+	list-style: none;
+}
+div#toolbar {
+	width: 100%;
+	background: #09C;
+	border-bottom: 3px solid #000;
+	text-align: center;
+	padding: 4px 0px 4px 0px;
+}
+div#toolbar input {
+	line-height: 18px;
+	border: 1px solid #000;
+}
+div#container {
+	width: 1000px;
+	margin: 0px auto;
+	text-align: left;
+	border: 1px solid #000;
+	line-height: 26px;
+}
+div#skip {
+	height: 0px;
+	line-height: 0px;
+	font-size: 0px;
+}
+div#container div {
+	border-bottom: 1px solid #000;
+}

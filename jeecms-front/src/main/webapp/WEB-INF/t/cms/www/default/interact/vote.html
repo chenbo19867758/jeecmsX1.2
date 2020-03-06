@@ -1,0 +1,840 @@
+﻿<!DOCTYPE html>
+<html>
+[@cms_questionnaire id=id]
+		[#if tag_bean??]
+	<head>
+		<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>${tag_bean.title!}</title>
+		<link rel="stylesheet" href="${res}/css/voteView.css">
+		<link rel="stylesheet" href="${res}/css/reset.css" />
+		<link rel="stylesheet" href="${res}/icon/iconfont.css" />
+		<link rel="stylesheet" href="${res}/fonts/iconfont.css">
+		<link rel="stylesheet" href="${res}/css/jquery.my-message.1.1.css"/>
+		<script src="${res}/js/jquery-1.12.4.js"></script>
+		<script src="${res}/js/crypto-js.js"></script>
+		<script src="${res}/js/jquery.my-message.1.1.js"></script>
+		<script src="${res}/js/jquery.validate.js"></script>
+		<script src="${res}/js/jquery.page.js"></script>
+		<script src="${res}/js/chinese.js"></script>
+		<script src="${res}/js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="${res}/js/app.js"></script>
+		<script src='https://res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
+	</head>
+	
+	<body>
+		<!-- 顶部导航 --> 
+		
+		<div class="t-vote-wrap t-show" >
+			<div class="container overflow" style="border-radius: 4px;">
+				[#if tag_bean.headConfig??&&tag_bean.headConfig.bgImage??] 
+				<div class="t-vote-head">
+					<img class="t-img" src="${base!}${tag_bean.headConfig.bgImageUrl!}" alt="">
+				</div>
+				[/#if]
+				<div class="t-vote-cont"	>
+					<div class="t-vote-title">${tag_bean.title!}</div>
+					<div class="t-vote-detail">${tag_bean.details!}</div>
+					[#list tag_bean.subjects as a]
+					<div class="t-cont-ques">
+              <div class="t-cont-title">[#if a.isAnswer??&&a.isAnswer]<span class="t-red impro">*</span>[/#if] ${a.title!}</div>
+							[#if a.prompt??&&a.prompt!='']<div class="t-cont-prompt">${a.prompt!}</div>[/#if]
+							[#if a.type == 1]
+							<div class="t-flex">
+									[#list a.option.options as b]
+									<div class="t-cont-radios attr_${b.id!} [#if b.isDefault??&&b.isDefault]active[/#if] [#if b.pic??]active-radio[/#if]
+									 [#if a.option.column >b_index&&a.option.column>1]t-inline pic-box[/#if]"  
+										data-name="${a.id!}" data-id="${b.id!}"  data-type="${a.type!}" data-required="${b.isRequired?string('true','false')}"
+										>
+										[#if b.pic??]
+										<div class="image-radio">
+											<div class="radio-img">
+												<img class="t-img" src="${base}${b.picUrl!}" alt="">
+											</div>
+											<div class="margin-top10">
+												<span class="t-radio t-radius " > 
+													<i class="iconfont iconyuandianxiao single"></i>   
+												</span>
+												<label class=" Semilight">${b.name!}</label>
+											</div>
+										</div>
+										[#else]
+											<span class="t-radio t-radius" > 
+												<i class="iconfont iconyuandianxiao single"></i>
+											</span>
+											<label class=" Semilight">${b.name!}</label>
+										[/#if]
+										
+										[#if b.isEemty??&&b.isEemty]
+											<div class="t-radio-emty t-input relative">
+													[#if b.isRequired??&&b.isRequired]<span class="t-red impro">*</span>[/#if]
+												<input  class="option-input other_${b.id!}" data-name="other_${b.id!}" type="text" maxlength="50" placeholder="请输入">
+											</div>
+										[/#if]
+									</div>
+									[/#list]
+							</div>
+              [/#if]
+              [#if a.type == 2]
+							<div class="t-flex">
+									[#list a.option.options as b]
+									<div class="t-cont-radios attr_${b.id!} [#if b.isDefault??&&b.isDefault]active[/#if]  [#if b.pic??]active-radio[/#if]
+									[#if a.option.column >b_index&&a.option.column>1]t-inline pic-box[/#if]"
+										data-name="${a.id!}" data-id="${b.id!}"  data-type="${a.type!}" data-required="${b.isRequired?string('true','false')}"
+										>
+										[#if b.pic??]
+												<div class="image-radio">
+													<div class="radio-img">
+														<img class="t-img" src="${base}${b.picUrl!}" alt="">
+													</div>
+													<div class="margin-top10">
+														<span class="t-radio margin-top10" >
+															<i class="iconfont iconduigou"></i>
+														</span>
+														<label class=" Semilight">${b.name!}</label>
+													</div>
+												</div>
+												[#else]
+												<span class="t-radio" >
+													<i class="iconfont iconduigou"></i>
+												</span>
+												<label class=" Semilight">${b.name!}</label>
+											[/#if]
+										[#if b.isEemty??&&b.isEemty]
+											<div class="t-radio-emty t-input relative">
+													[#if b.isRequired??&&b.isRequired]<span class="t-red impro">*</span>[/#if]
+												<input  class="option-input other_${b.id!}" data-name="other_${b.id!}" type="text" maxlength="50" placeholder="请输入">
+											</div>
+										[/#if]
+									</div>
+									[/#list]
+							</div>
+							[/#if]
+
+							[#if a.type == 3]
+							<div class="t-input t-w414"
+								style="width:${a.option.inputWidth!}%;height:${a.option.inputHeight!}px;">
+								<input class="anwer-input"
+									maxlength="[#if a.option.inputNumLimit??&&a.option.inputNumLimit]${a.option.inputNum!150}[#else]150[/#if]" 
+									data-rule="[#if a.option.inputLimit??&&a.option.inputLimit]${a.option.inputType!}[/#if]"
+									data-name="${a.id!}"  name="anwer" placeholder="请输入你的回答" >
+							</div>
+							[/#if]
+							[#if a.type == 4]
+							<div class="relative">
+									<i class="iconfont iconxialasanjiaofuhao select-icon"></i>
+									<select	class="t-select t-w414 select-ques"
+										data-name="${a.id!}" placeholder="请选择">
+										<option class="cascade-option" value="">请选择</option>
+											[#list a.option.options as b]
+											<option class="t-option" value="${b.id!}-${b.isRequired?string('true','false')}" [#if b.isDefault??&&b.isDefault]selected[/#if]>${b.name!}</option>
+											[/#list]
+											
+									</select>
+							</div>
+							[#list a.option.options as b]
+									<div class="select-emty relative emty_${b.id}" [#if b.isDefault??&&b.isDefault]style="display: inline-block;"[/#if]>
+											[#if b.isEemty??&&b.isEemty]
+												<div class="t-radio-emty t-input relative">
+														[#if b.isRequired??&&b.isRequired]<span class="t-red impro">*</span>[/#if]
+													<input  class="option-input other_${b.id!}" data-name="other_${b.id!}" type="text" maxlength="50" placeholder="请输入"> 
+												</div>
+											[/#if]
+									</div>
+									[/#list]
+							[/#if]
+							[#if a.type == 5]
+							<div class="cascade-box  cascade_${a.id}">
+									<div class="relative"  >
+                    <i class="iconfont iconxialasanjiaofuhao select-icon"></i>
+                    <select 
+												class="t-select t-w130 cascade-ques" 
+												data-name="${a.id!}" data-level="0" placeholder="请选择">
+													[#list a.option.options as b]
+													<option class="cascade-option" value="${b.name!}" selected>${b.name!}</option>
+													[/#list]
+													<option class="cascade-option" value="" selected>请选择</option>
+											</select>
+									</div>
+							</div>
+							[/#if]
+							[#if a.type == 6]
+							<div class="t-file-upload">
+									<div class="t-color99"><i class="iconfont iconfujianshangchuan02  t-font30"></i></div>
+									<div class="t-color66 t-font12 ">将文件拖拽至此，或<span class="t-red t-cursor upload">点击上传</span></div>
+									<input type="file" multiple data-name="${a.id!}" data-numlimit=[#if a.option.fileNumLimit??&&a.option.fileNumLimit]true[#else]false[/#if]
+									data-unit="${a.option.fileUnit!}" data-sizelimit=[#if a.option.fileSizeLimit??&&a.option.fileSizeLimit]true[#else]false[/#if]
+									data-size="${a.option.fileSize!}" data-num="${a.option.fileNum!}" data-typelimit=[#if a.option.fileTypeLimit??&&a.option.fileTypeLimit]true[#else]false[/#if]
+										data-file="${a.option.fileTypes!}" data-dis="${a.option.fileTypeSet!}" class="up-file" />
+							</div>
+							<div class="file-list"></div>
+							[/#if]
+					</div>
+					[/#list]
+					<div class="sub-btn-wrap">
+						<div class="sub-btn"></div>
+					</div>
+				</div>
+			</div>
+			<div class="mode mode-result">
+				<div class="mode-box">
+						<div class="mode-title"><i class="iconfont iconchenggong"></i>
+							<span class="mode-message">您的答卷已经提交，感谢您的参与！</span></div>
+							<div class="mode-info"></div>
+				</div>
+			</div>
+			<div class="mode mode-success">
+					<div class="mode-box">
+							<div class="mode-title mode-prompt">
+								此次投票已经结束，感谢您的参与！</div>
+								<a class="mode-btn" href="${base}/c/www/tptc.jhtml" >关闭</a>
+					</div>
+				</div>
+				<div class="mode mode-code">
+					<div class="mode-box code-box">
+							<div class="code">
+								<span class="code-label">验证码</span>
+								<input class="code-input" type="text" placeholder="请输入验证码">
+								<div class="letter pointer" id="getCapatchImg"></div>
+							</div>
+							<div class="code-btns">
+								<span class="code-yes btn">确定</span>
+								<span class="code-no btn">取消</span>
+							</div>
+					</div>
+				</div>
+		</div>
+		<div class="t-nothing">您需要到微信上打开才能参与
+			<div class="nothing-img"></div>
+		</div>
+		<script>
+			var formData = new FormData();
+			var subData = null
+			var code;
+			var sessionId = ''
+			var isOnlyWechat = "${tag_bean.isOnlyWechat?string('true','false')}"
+			
+			var myMessage = new MyMessage.message({
+	    /*默认参数，下面为默认项*/
+	    iconFontSize: "26px", //图标大小,默认为20px
+	    messageFontSize: "20px", //信息字体大小,默认为12px
+	    showTime: 2000, //消失时间,默认为3000
+	    align: "center", //显示的位置类型center,right,left
+	    positions: { //放置信息距离周边的距离,默认为10px
+	        top: "10px",
+	        bottom: "10px",
+	        right: "10px",
+	        left: "10px"
+	    },
+	    message: "这是一条消息", //消息内容,默认为"这是一条消息"
+	    type: "normal", //消息的类型，还有success,error,warning等，默认为normal
+	})
+			function statistics(){
+				$.ajax({
+						type: 'get',
+						url: '${base}/questionnaire/statistics?questionnaireId=${id!}',
+						//dataType: 'json',
+						cache: false,
+						processData: false,
+						async: false,
+						contentType:false,
+						headers: {
+								'Content-Type': 'multipart/form-data',
+								'JEECMS-Auth-Token': localStorage.getItem('JEECMS-Auth-Token'),
+						},
+						success: function (result) {
+								if (result.code == 200) {
+								}
+								// result
+						},
+						error: function (xhr, textStatus, errorThrown) {
+							myMessage.add(errorThrown, 'error');
+						}
+				});
+			}
+			
+			function wechatSign() {
+				var url = document.URL;
+				if(url){
+					api.GET('/wechat/sign', {
+						"url": url
+					}, function(data) {
+						if (data.code === 200) {
+							shareJs(data.data)
+						} else {
+							myMessage.add(data.message, 'warning');
+						}
+					})
+				}
+			}
+		
+			function shareJs(jssdk, options) {
+				wx.config({
+						debug: true,//是否开启调试功能，这里关闭！
+						appId: jssdk.appId,//appid
+						timestamp: parseInt(jssdk.timestamp), //时间戳
+						nonceStr: jssdk.nonceStr, //生成签名的随机字符串
+						signature: jssdk.signature,//签名
+						jsApiList: [
+								"onMenuShareTimeline",
+								"onMenuShareAppMessage"
+						]
+				});
+				var defaults = {
+						title: "分享的标题",
+						desc: "分享的描述",
+						link: location.href, //分享页面地址,不能为空，这里可以传递参数！！！！！！！
+						imgUrl: ('${base}'||'http://cm.ngrok2.xiaomiqiu.cn')+'${tag_bean.shareLogoUrl!}', //分享是封面图片，不能为空
+						success: function () { }, //分享成功触发
+						cancel: function () { } //分享取消触发，需要时可以调用
+				}
+				// 合并对象，后面的替代前面的！
+				options = Object.assign({}, defaults, options);
+				console.log(options)
+				wx.ready(function () {
+						var thatopts = options;
+						// 分享到朋友圈
+						wx.onMenuShareTimeline({
+								title: thatopts.title, // 分享标题
+								desc: thatopts.desc, // 分享描述
+								link: thatopts.link, // 分享链接
+								imgUrl: thatopts.imgUrl, // 分享图标
+								success: function () {
+										// alert("成功");
+								},
+								cancel: function () {
+										// alert("失败")
+								}
+						});
+						// 分享给朋友
+						wx.onMenuShareAppMessage({
+								title: thatopts.title, // 分享标题
+								desc: thatopts.desc, // 分享描述
+								link: thatopts.link, // 分享链接
+								imgUrl: thatopts.imgUrl, // 分享图标
+								success: function () {
+										// alert("成功");
+								},
+								cancel: function () {
+										// alert("失败")
+								}
+						});
+				});
+		}
+			
+			//通过文件名，返回文件的后缀名
+			function fileType(name) {
+					var nameArr = name.split(".");
+					return nameArr[nameArr.length - 1].toLowerCase();
+			};
+			// 删除上传文件
+			function delFile(e,name,i){
+				formData['attr_'+name].value.splice(i,1);
+				$(e.target).parent('.file-item').remove();
+			};
+			// 重置必填数据
+			function resetFormDataRequired(name){
+				for(var i in formData) {
+					if(i.indexOf('other_') != -1 && i != name){
+						formData[i].isRequired = false
+					}
+				}
+			}
+			function ruleValue(type,val){
+				// ['','只能输入中文',
+				// '只能输入英文',
+				// '只能输入数字(整数或小数)',
+				// '只能输入英文、数字',
+				// '只能输入整数',
+				// '只能输入中文、英文、数字',
+				// '只能输入邮箱',
+				// '只能输入手机号',
+				// '只能输入座机号',
+				// '只能输入手机或座机号',
+				// '只能输入身份证号',
+				// '只能输入邮政编码']
+				var arr = ['',/^[\u4e00-\u9fa5]{0,}$/,/^[A-Za-z]+$/,/^[+-]?(0|([1-9]\d*))(\.\d+)?$/,/^[A-Za-z0-9]+/,/^[1-9]\d*$/,/^[\u4E00-\u9FA5A-Za-z0-9]+$/,/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,/^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/,/^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$/,/^(1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}||((\d{3,4}-)|\d{3.4}-)?\d{7,8})$/,/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/,/[1-9]\d{5}(?!\d)/];
+				var s = arr[parseInt(type)||0]
+				if(s&&s.test(val)){
+					return true
+				} else {
+					return false
+				}
+			};
+			function subForm(){
+				var data = new FormData();
+					data.append('questionnaireId','${tag_bean.id!}')
+					var canSub = true
+					for(var item in formData){
+						if(formData[item].isRequired&&!formData[item].value){
+							if($('.c-message-notice').length === 0||$('.c-message-notice')[$('.c-message-notice').length -1].style.display === 'none'){
+								myMessage.add('请认真填写所有必填项', 'warning');
+							}
+							canSub = false
+							return
+						} else {
+							if(formData[item].value instanceof Array&&formData[item].value.length){
+								if(formData[item].value[0] instanceof Object){
+									 for(var file in formData[item].value) {
+										//  console.log(file)
+									 	data.append(item,formData[item].value[file])
+									 }
+								} else {
+									data.append(item,formData[item].value.join(','))
+								}
+							} else if(formData[item].value!==null) {
+								data.append(item,formData[item].value||'')
+							}
+						}
+					}
+					console.log(canSub)
+					if(canSub){
+						var verification = "${tag_bean.isVerification?string('true','false')}";
+						if(verification == 'true'){
+							$('.mode-code').css('display','block');
+								genCapatch();
+								subData = data
+						} else {
+							if('${tag_bean.status!}' == 4){
+								$('.mode-success').css('display','block')
+							} else {
+								submitData(data)
+							}
+						}
+					}
+			};
+			function submitData(data){
+				// console.log(data.get('attr_1262'));
+				$.ajax({
+						type: 'post',
+						url: '${base}/questionnaire',
+						dataType: 'json',
+						data: data,
+						cache: false,
+						processData: false,
+						async: false,
+						contentType:false,
+						headers: {
+								'JEECMS-Auth-Token': localStorage.getItem('JEECMS-Auth-Token'),
+						},
+						success: function (result) {
+								if (result.code == 200) {
+									var i = 3
+									if('${tag_bean.processType!}' == 1){//显示文字信息
+										$('.mode-result').css('display','block')
+										$('.mode-message').html('${tag_bean.prompt!}'||'此次投票已经结束，感谢您的参与！')
+										$('.mode-info').html((i--)+'秒后返回投票列表页')
+										var timer = setInterval(function(){
+											$('.mode-info').html((i--)+'秒后返回投票列表页')
+										},1000)
+										setTimeout(() => {
+											clearInterval(timer)
+											location.href = ' [#--[@cms_channel path='tptc' siteId='1'][#if tag_bean??]${base}${tag_bean.url!}[/#if][/@cms_channel]--]'
+										}, 2000);
+									} else if('${tag_bean.processType!}' == 2) {//跳转到指定页面
+											location.href = '${base}${tag_bean.prompt!}'
+									} else {//显示结果
+										$('.mode-result').css('display','block')
+										$('.mode-info').html((i--)+'秒后返回投票结果页')
+										var timer = setInterval(function(){
+											$('.mode-info').html((i--)+'秒后返回投票结果页')
+										},1000)
+										setTimeout(() => {
+											clearInterval(timer)
+											location.href = '${base}/interact-result.htm?id=${id!}'
+											$('.mode-info').html('返回中...')
+										}, 2000);
+									}
+									
+								}else{
+                  myMessage.add(result.message, 'error');
+                }
+								// result
+						},
+						error: function (xhr, textStatus, errorThrown) {
+							myMessage.add(errorThrown, 'error');
+						}
+				});
+			};
+			function genCapatch() {
+					$.ajax({
+							url: "${base}/common/kaptcha",
+							data: {},
+							success: function (result) {
+								$('#getCapatchImg').html('<img class="t-img" id="capatchImg" src="'+"data:image/png;base64," + result.data.img+'" onclick="genCapatch()" />')
+								sessionId=result.data.sessionId
+							}
+					});
+			};
+			function createCode(){
+					code = '';
+					var codeLength = 4;
+					var codeV = $(".letter"); 
+					var arr = new Array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r', 's','t','u','v','w','x','y','z'); 
+					for(var i = 0; i < codeLength; i++){   
+						var index = Math.floor(Math.random()*26);  
+						code += arr[index]; 
+					} 
+					codeV.text(code);
+				};
+			function initContent(){
+				var len = $('.t-cont-ques').length
+					var obj = {}
+					[#list tag_bean.subjects as sub]
+					obj['attr_${sub.id!}'] = {
+						value:null,
+						isRequired:"${sub.isAnswer?string('true','false')}"=='true'?true:false
+					};
+          [#if sub.type == 1||sub.type == 4]
+            [#list sub.option.options as c]
+              var isDefault = '${c.isDefault?string("true","false")}'
+              if(isDefault == 'true'){
+								obj['attr_${sub.id!}'].value = '${c.id!}';
+              }
+            [/#list]
+          [#elseif sub.type == 2]
+          obj['attr_${sub.id!}'].value = []
+          [#list sub.option.options as c]
+              var isDefault = '${c.isDefault?string("true","false")}'
+              if(isDefault == 'true'){
+								obj['attr_${sub.id!}'].value.push('${c.id!}');
+              }
+            [/#list]
+          [/#if]
+					[#if sub.type == 5||sub.type == 1||sub.type == 2||sub.type == 4]
+						[#list  sub.option.options as a]
+						[#if a.isEemty??&&a.isEemty]
+						obj['other_${a.id!}'] = {
+							value:'',
+							isRequired:false
+						};
+						[/#if]
+						[/#list]
+					[/#if]
+					[#if sub.type == 5]
+						var html = ''
+						[#list sub.option.options as a]
+						[#if a.children??&&a.children?size>0]
+							html+='<div class="relative cascade-child child_${a.name!}"><i class="iconfont iconxialasanjiaofuhao select-icon"></i>'+
+							'<select class="t-select t-w130 cascade-ques" data-name="${sub.id!}" data-level="1" placeholder="请选择">	[#list a.children as b]'+
+							'<option class="cascade-option" value="${b.name!}" selected>${b.name!}</option>[/#list]<option class="cascade-option" value="" selected>请选择</option></select></div>'
+							[#list a.children as v]
+							[#if v.children??&&v.children?size>0]
+								html+='<div class="relative cascade-children children_${v.name!}"><i class="iconfont iconxialasanjiaofuhao select-icon"></i>'+
+								'<select class="t-select t-w130 cascade-ques" data-name="${sub.id!}" data-level="2" placeholder="请选择">	[#list v.children as b]'+
+								'<option class="cascade-option" value="${b.name!}" selected>${b.name!}</option>[/#list]<option class="cascade-option" value="" selected>请选择</option></select></div>'
+								[#list v.children as c]
+								[#if c.children??&&c.children?size>0]
+									html+='<div class="relative cascade-childrens childrens_${c.name!}"><i class="iconfont iconxialasanjiaofuhao select-icon"></i>'+
+									'<select class="t-select t-w130 cascade-ques" data-name="${sub.id!}" data-level="3" placeholder="请选择">	[#list c.children as b]'+
+									'<option class="cascade-option" value="${b.name!}" selected>${b.name!}</option>[/#list]<option class="cascade-option" value="" selected>请选择</option></select></div>'
+								[/#if]
+								[/#list]
+							[/#if]
+							[/#list]
+						[/#if]
+						[/#list]
+						$('.cascade_${sub.id!}').append(html)
+					[/#if]
+					[/#list]
+					formData = obj
+				$('.t-vote-wrap').css({
+					backgroundColor:'${tag_bean.bgConfig.bgType!}'==1?'':'${tag_bean.bgConfig.bgColor!}',
+					backgroundImage:'${tag_bean.bgConfig.bgType!}'==1?'url(' + 
+						(('${tag_bean.bgConfig.bgImageUrl!}').indexOf('//')>-1?
+						'${tag_bean.bgConfig.bgImageUrl!}':'${base}${tag_bean.bgConfig.bgImageUrl!}') + ')':'',
+					backgroundPosition:'${tag_bean.bgConfig.alignType!}',
+					backgroundRepeat:'${tag_bean.bgConfig.isRepeat!}'==1? 'repeat' : 'no-repeat',
+					opacity: Number('${tag_bean.bgConfig.opacity!}') / 100
+				});
+				$('.t-vote-cont').css({
+					backgroundColor:'${tag_bean.contConfig.bgColor!"#fff"}',
+					borderColor:'${tag_bean.contConfig.hasBorder!}'==1?'${tag_bean.contConfig.borderColor!"#e8e8e8"}':'#e8e8e8',
+					borderWidth:'${tag_bean.contConfig.hasBorder!}'==1?'${tag_bean.contConfig.borderWidth!"1px"}':'1px',
+					borderRadius: '${tag_bean.contConfig.borderRadius!"0"}' + "px"
+				});
+				$('.t-vote-title').css({
+					color:'${tag_bean.fontConfig.titleStyle.fontColor!"#333"}',
+					fontSize:'${tag_bean.fontConfig.titleStyle.fontSize!24}'+'px',
+					fontWeight:'${tag_bean.fontConfig.titleStyle.fontWigth!600}',
+					textAlign:'${tag_bean.fontConfig.titleStyle.fontAlign!"center"}'
+				})
+				$('.t-vote-detail').css({
+					color:'${tag_bean.fontConfig.descStyle.fontColor!"#333"}',
+					fontSize:'${tag_bean.fontConfig.descStyle.fontSize!14}'+'px',
+					fontWeight:'${tag_bean.fontConfig.descStyle.fontWigth!400}',
+					textAlign:'${tag_bean.fontConfig.descStyle.fontAlign!"left"}'
+				});
+				$('.t-cont-ques .t-cont-title').css({
+					color:'${tag_bean.fontConfig.stemStyle.fontColor!"#333"}',
+					fontSize:'${tag_bean.fontConfig.stemStyle.fontSize!14}'+'px',
+					fontWeight:'${tag_bean.fontConfig.stemStyle.fontWigth!400}'
+				});
+				$('.t-cont-ques .t-cont-radios').css({
+					color:'${tag_bean.fontConfig.optStyle.fontColor!"#333"}',
+					fontSize:'${tag_bean.fontConfig.optStyle.fontSize!14}'+'px',
+					fontWeight:'${tag_bean.fontConfig.optStyle.fontWigth!400}'
+				});
+				$('.sub-btn').html('${tag_bean.subConfig.text!}');
+				$('.sub-btn').css({
+					backgroundColor:'${tag_bean.subConfig.bgColor!}',
+					width:'${tag_bean.subConfig.btnWidth!}px',
+					height:'${tag_bean.subConfig.btnHeight!}px',
+          lineHeight:'${tag_bean.subConfig.btnHeight!}px',
+					borderColor:'${tag_bean.subConfig.borderColor!}',
+					borderRadius:'${tag_bean.subConfig.borderRadius!}',
+					borderWidth:'${tag_bean.subConfig.hasBorder}'==1?'${tag_bean.subConfig.borderWidth!}px':'0px',
+					fontSize:'${tag_bean.subConfig.fontStyle.fontSize!}',
+					fontWeight:'${tag_bean.subConfig.fontStyle.fontWigth!}',
+					color:'${tag_bean.subConfig.fontStyle.fontColor!}'
+				});
+			}
+			$(function(){
+				var ua =navigator.userAgent.toLowerCase();
+				var isWeixin = ua.indexOf('micromessenger') != -1;
+				// 只有微信能打开
+				if(isOnlyWechat == 'true'&&!isWeixin){
+					$('.t-nothing').show()
+					$('.t-vote-wrap').hide()
+					$('.nothing-img').html('<img class="t-img" src="${tag_bean.qrCodeUrl!}" />')
+				} else {
+					$('.t-vote-wrap').show()
+					$('.t-nothing').hide()
+					statistics();
+					if(isWeixin){
+						wechatSign();//请求微信接口-分享
+					}
+					createCode();//验证码初始化
+					initContent();//初始化数据
+				}
+				//验证码
+				$('.letter').on('click',function(){
+						createCode();
+				});
+				$("#getCapatchImg").on("click", function (event) {
+						genCapatch();
+				});
+				$('.code-no').click(function(){
+					$('.mode-code').css('display','none')
+				})
+				$('.code-yes').click(function(){
+					$('.mode-code').css('display','none')
+					var value = $('.code-input').val()
+					if(value){
+						subData.append('sessionId',sessionId)
+						subData.append('captcha',value)
+						submitData(subData)
+					} else {
+						myMessage.add('请输入验证码', 'warning');
+					}
+				})
+				// 输入框
+				$('.anwer-input').on('change',function(){
+					var name = $(this).attr('data-name');
+					var rule = $(this).attr('data-rule');
+					if(rule){
+						console.log(ruleValue(rule,$(this).val()))
+						if(ruleValue(rule,$(this).val())){
+							formData['attr_'+name].value = $(this).val()
+						} else {
+							var arr = ['','只能输入中文','只能输入英文','只能输入数字(整数或小数)','只能输入英文、数字','只能输入整数','只能输入中文、英文、数字','只能输入邮箱','只能输入手机号','只能输入座机号','只能输入手机或座机号','只能输入身份证号','只能输入邮政编码']
+							myMessage.add(arr[parseInt(rule)], 'warning');
+							formData['attr_'+name].value = ''
+							return
+						}
+					} else {
+						formData['attr_'+name].value = $(this).val()
+					}
+				});
+				$('.option-input').on('change',function(){
+					var name = $(this).attr('data-name');
+					if(formData[name]){
+						formData[name].value = $(this).val()
+					} else {
+						formData[name] = {value:$(this).val()}
+					}
+				});
+				
+				// 下拉
+				$('.select-ques').on('change',function(){
+					var name = $(this).attr('data-name');
+					var value = $(this).val().split('-')[0]
+					var isRequired = $(this).val().split('-')[1]
+					$(this).parent().siblings('.select-emty').css('display','none')
+					$(this).parent().siblings('.emty_'+value).css('display','inline-block')
+					formData['attr_'+name].value = value
+					resetFormDataRequired('other_'+ value)
+					// 当选项有必填填空的时候，设置成必填
+					if(formData['other_'+ value]){
+						formData['other_'+ value].isRequired = isRequired =='true'?true:false
+					}
+				});
+				// 级联
+				$(document).on('change','.cascade-ques',function(e){
+          e.preventDefault();//阻止浏览器的默认行为
+          e.stopPropagation();//阻止事件冒泡
+					var name = $(this).attr('data-name');
+					var level = $(this).attr('data-level');
+					if(level == 0){
+						$(this).parent().siblings('.cascade-child').css('display','none')
+						$(this).parent().siblings('.cascade-children').css('display','none')
+						$(this).parent().siblings('.cascade-childrens').css('display','none')
+						$(this).parent().siblings('.child_'+$(this).val()).val('')
+						$(this).parent().siblings('.child_'+$(this).val()).css('display','inline-block')
+						if($(this).val()){
+							formData['attr_'+name].value = [$(this).val()]
+						} else {
+							formData['attr_'+name].value = []
+						}
+					} else if(level == 1) {
+						$(this).parent().siblings('.cascade-children').css('display','none')
+						$(this).parent().siblings('.cascade-childrens').css('display','none')
+						$(this).parent().siblings('.children_'+$(this).val()).css('display','inline-block')
+						if($(this).val()){
+							formData['attr_'+name].value.splice(1,1,$(this).val())
+							formData['attr_'+name].value = formData['attr_'+name].value.slice(0,2)
+						} else {
+							formData['attr_'+name].value = formData['attr_'+name].value.slice(0,1)
+						}
+					} else if(level == 2) {
+						$(this).parent().siblings('.cascade-childrens').css('display','none')
+						$(this).parent().siblings('.childrens_'+$(this).val()).css('display','inline-block')
+						if($(this).val()){
+							formData['attr_'+name].value.splice(2,1,$(this).val())
+							formData['attr_'+name].value = formData['attr_'+name].value.slice(0,3)
+						} else {
+							formData['attr_'+name].value = formData['attr_'+name].value.slice(0,2)
+						}
+					} else if(level == 3){
+						if($(this).val()){
+							formData['attr_'+name].value.splice(3,1,$(this).val())
+						} else {
+							formData['attr_'+name].value = formData['attr_'+name].value.slice(0,3)
+						}
+					}
+				});
+				// 文件选择
+				$('.up-file').on('change',function(e){
+					// $(this).parent().siblings('.file-list').html('')
+					var name = $(this).attr('data-name');
+					// 是否限制类型
+					var typelimit = $(this).attr('data-typelimit') == "true"?true:false ;
+					// 限制类型
+					var fileType = $(this).attr('data-file');
+					console.log(fileType); 
+					// 是否限制大小
+					var sizelimit = $(this).attr('data-sizelimit') == "true"?true:false ;
+					// 限制大小
+					var size = $(this).attr('data-size');
+					var unit = $(this).attr('data-unit');
+					// 是否限制数量
+					var numlimit = $(this).attr('data-numlimit') == "true"?true:false ;
+					// 限制数量
+					var num = $(this).attr('data-num');
+					// 文件限制或允许
+					var isDis = $(this).attr('data-dis') == 1?true:false;
+					var canUpload = true;
+					var arr = [];
+					var html = '';
+					// 判断文件数量是否大于限制数量
+					if(numlimit){
+						if(formData['attr_'+name].value != null &&(formData['attr_'+name].value.length >= num ||$(this)[0].files.length > num )){
+							canUpload = false
+							myMessage.add('文件数量不得大于'+num, 'warning');
+							return
+						}
+					}
+					for(var i = 0;i<$(this)[0].files.length;i++){
+						// 单个文件大小
+							var fileSize = ($(this)[0].files[i].size / 1024).toFixed(0);
+							var fileUnit = $(this)[0].files[i].name.substring($(this)[0].files[i].name.lastIndexOf(".") + 1);
+							if(typelimit && fileType){
+								if(isDis&&fileType.indexOf(fileUnit) > -1){
+									canUpload = false
+									myMessage.add('不支持这种类型的文件', 'warning');
+									return
+								} else if (!isDis&&fileType.indexOf(fileUnit) < 0){
+									canUpload = false
+									myMessage.add('不支持这种类型的文件', 'warning');
+									return 
+								}
+							}
+              console.log(sizelimit+'--'+size+'--'+unit)
+							if(sizelimit&&size){
+								var	sizeNum = unit == 'MB'?size*1024:size
+								if(fileSize>sizeNum){
+									canUpload = false
+									myMessage.add('文件大小不得大于'+size+(unit == 'MB'?'MB':'KB'), 'warning');
+									return
+								}
+							}
+							if(canUpload){
+								arr.push($(this)[0].files[i])
+								html+='<div class="file-item">'+$(this)[0].files[i].name+' <i class="iconfont iconcuowu file-del" onclick="delFile(event,'+name+','+i+')"></i></div>'
+							}
+					}
+					// 判断里面是否有数据
+					if(formData['attr_'+name].value === null) {
+						formData['attr_'+name].value = arr
+					}else{
+						formData['attr_'+name].value = formData['attr_'+name].value.concat(arr)
+					}
+
+					$(this).parent().siblings('.file-list').append(html)
+          console.log(e.target)
+          e.target.value=''//置空
+				});
+				// 上传
+				$('.upload').click(function(){
+					$(this).parent().siblings('.up-file').click()
+				});
+				// 选择题
+				$('.t-cont-radios').click(function(e){
+					// 判断点击的是否是input 如果是input的话，不执行下面方法
+					if (e.target.className.indexOf('t-input') != -1 || e.target.className.indexOf('option-input') != -1) return
+					var type = $(this).attr('data-type')
+					var id = $(this).attr('data-id')
+					var name = $(this).attr('data-name')
+					var required = $(this).attr('data-required')
+					console.log(formData['other_'+id])
+					resetFormDataRequired(name)
+					if(formData['other_'+id]){
+						// 判断当前按钮是否被选中
+						if($(this).hasClass('active')) {
+							formData['other_'+id].isRequired = false
+						}else{
+							formData['other_'+id].isRequired = required=='true'?true:false
+						}
+					}
+					if(type == 1){
+						formData['attr_'+name].value = id
+						$(this).siblings().removeClass('active');
+						$(this).addClass('active');
+					} else {
+						if(formData['attr_'+name].value&&formData['attr_'+name].value.indexOf(id) > -1){
+							$(this).removeClass('active');
+							 formData['attr_'+name].value.splice(formData['attr_'+name].value.indexOf(id),1)
+						} else {
+							formData['attr_'+name].value = formData['attr_'+name].value?formData['attr_'+name].value.concat([id]):[id]
+							$(this).siblings().removeClass('active');
+							for(var i = 0;i<formData['attr_'+name].value.length;i++){
+								$(this).addClass('active');
+								$(this).siblings('.attr_'+formData['attr_'+name].value[i]).addClass('active');
+							}
+						}
+					}
+				});
+				// 提交
+				$('.sub-btn').click(function (e) {
+						subForm();
+				});
+			})
+			
+    </script>
+	
+		<!-- 底部导航 -->
+		
+	</body>
+	[/#if]
+		[/@cms_questionnaire]
+</html>

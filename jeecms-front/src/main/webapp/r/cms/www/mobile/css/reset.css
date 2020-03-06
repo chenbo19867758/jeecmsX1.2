@@ -1,0 +1,294 @@
+/* 样式重置 */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+	box-sizing: border-box;
+}
+
+:focus {
+	outline: 0;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+caption,
+th,
+td {
+	text-align: left;
+	font-weight: normal;
+}
+
+a img,
+iframe {
+	border: none;
+}
+
+a {
+	text-decoration: none;
+	color: #323232;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+input,
+textarea,
+select,
+button {
+	font-size: 100%;
+	font-family: inherit;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+select {
+	margin: inherit;
+}
+
+/* Fixes incorrect placement of numbers in ol’s in IE6/7 */
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+* html .clearfix {
+	height: 1%;
+}
+
+.clearfix {
+	display: block;
+}
+
+.container {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.Bold {
+	font-weight: bold !important;
+	font-family: PingFang SC;
+
+}
+
+.Medium {
+	font-weight: bolder !important;
+	font-family: PingFang SC;
+}
+
+.Light {
+	font-weight: lighter !important;
+	font-family: PingFang SC;
+
+}
+
+.Regular {
+	font-weight: normal !important;
+	font-family: PingFang SC;
+
+}
+
+.Semilight {
+	font-weight: lighter !important;
+	font-family: PingFang SC;
+}
+
+.overflow {
+	overflow: hidden;
+}
+
+.overfow-text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+a:hover {
+	text-decoration: none;
+	transition-duration: 400ms;
+	-moz-transition-duration: 400ms;
+	-webkit-transition-duration: 400ms;
+	-o-transition-duration: 400ms;
+}
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: ".";
+	clear: both;
+	height: 0
+}
+
+.font-hover {
+	color: #E30B20 !important;
+}
+
+.hover {
+	text-decoration: none;
+	transition-duration: 400ms;
+	-moz-transition-duration: 400ms;
+	-webkit-transition-duration: 400ms;
+	-o-transition-duration: 400ms;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.none {
+	display: none;
+}
+
+.block {
+	display: block;
+}
+
+.details-guide {
+	font-size: 12px;
+	margin-top: 26px;
+	color: #999;
+	margin-left: -5px;
+	margin-bottom: 40px;
+}
+
+.details-guide .black {
+	color: #666;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.details-guide .gray {
+	color: #999;
+	margin-left: 5px;
+}
+
+.update i {
+	-webkit-transition: -webkit-transform 0.4s ease-out;
+	-moz-transition: -moz-transform 0.4s ease-out;
+	transition: transform 0.4s ease-out;
+}
+
+.update:hover i {
+	transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+}
+
+.barrierBed {
+	width: 100%;
+	height: 1000%;
+	background: rgba(0, 0, 0, 0.5);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000, endColorstr=#7f000000);
+	z-index: 11;
+	position: absolute;
+}
+
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+	color: #999;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+	color: #999;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+	color: #999;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+	color: #999;
+}

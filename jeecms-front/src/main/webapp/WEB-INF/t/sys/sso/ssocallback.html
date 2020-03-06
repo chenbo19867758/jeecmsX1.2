@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>回调页面</title>
+   <script type="text/javascript"  src="${res}/js/jquery-1.12.4.js"></script>
+</head>
+<body>
+</body>
+  <script>
+	var authToken = "${authToken}"; 
+	var callUrl = "${callUrl}";
+	callUrl = callUrl + "?authToken=" + authToken;
+    $(function(){
+	$.ajax({
+		type : "GET",
+		url : callUrl, 
+		dataType:'json',
+		success : function(data){
+				if(data.userType === 1){
+					console.log(JSON.stringify(data.data['JEECMS-Auth-Token']))
+					window.localStorage.setItem('JEECMS-Auth-Token', data.data['JEECMS-Auth-Token']);
+					window.location.href="http://192.168.0.135:8081/#/workplace/index";
+				 }else {
+					console.log(JSON.stringify(data.data['JEECMS-Auth-Token']))
+					window.localStorage.setItem('JEECMS-Auth-Token', data.data['JEECMS-Auth-Token']);
+					window.location.href="http://cms.jeecms8888.com:8888/";
+				 }
+			  }
+		});
+	})
+      
+  </script>
+</html>

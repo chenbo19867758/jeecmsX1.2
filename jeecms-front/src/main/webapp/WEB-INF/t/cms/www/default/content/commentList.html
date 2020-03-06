@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>评论列表页</title>
+    <link rel="stylesheet" href="${res}/css/commentList.css">
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+    [#include "../includes/header.html"/]
+<script type="text/javascript">
+			$(function () {
+				Cms.viewCount("${base}", "${content.id}");
+				genPermCheck("${content.id}")
+			});
+			function genPermCheck(contentId,channelId) {
+				$.ajax({
+					url: "${base}/permCheck",
+					data: {
+						contentId:contentId,
+						channelId:channelId
+					},
+					success: function (result) {
+						if(result.data!=1){location.href = "${base}/login"}
+					}
+				});
+			}
+		</script>
+    </div>
+    <!--顶部导航 over-->
+	<script type="text/javascript">
+	    $(function () {
+	        getCommentList("${contentId!}")
+	    });
+	</script>
+    <!-- 中间部分 -->
+    <div class="container overflow">
+	[@cms_content id=contentId]
+	 <div class="big-title Bold">${tag_bean.title!}</div>
+        <div class="info Semilight">
+            <span>${tag_bean.releaseTime!}</span>
+            <a href="${(content.source.sourceLink)!}"><span>来源：[#if (tag_bean.source.sourceName)?? && (tag_bean.source.sourceName) != ""]${(tag_bean.source.sourceName)}[#else]JEECMS演示站[/#if]</span></a>
+            <span>作者：[#if tag_bean.author?? && tag_bean.author != ""]${tag_bean.author}[#else]本站编辑[/#if]</span>
+            <span>阅读量：${tag_bean.views!}</span>
+        </div>
+	
+        <!-- 评论模块 -->
+        <div class="comment-area overflow Regular">
+            <div class="big fl">评论</div>
+            <div class="small fr">已有 <span>${tag_bean.comments!}条</span> 评论</div>
+        </div>
+	[/@cms_content]
+        <div class="comment-input">
+            <textarea id="usercomments" maxlength="150"></textarea>
+            <div class="limit Semilight" id="commentsLength">0/150</div>
+            <a onclick="toUsercomment('${contentId!}')" class="Regular">提交</a>
+        </div>
+        <div class="hot-title Regular">全部评论<div class="latest"><span id="onNew">最新</span> / <span id="onHot" class="onspan">最热</span></div></div>
+        <div class="hot-comment overflow">
+            <!-- <div class="user-icon pointer fl">
+                <img src="${res}/images/pagelist/TP_XJD01.png" alt="">
+            </div>
+            <div class="hot-text fl">
+                <div class="user-line overflow Semilight">
+                    <span class="username block fl">阿瑾</span>
+                    <span class="time block fl">20秒前</span>
+                    <div class="warning fr hover pointer"><i class="iconfont iconalarm-warning-fill"></i>举报</div>
+                </div>
+                <div class="user-text Regular">
+                    走在前，作表率"，这六个字是习近平总书记对中央和国家机关党的建设工作所提出的明确要求。对此，中央和国家机关党员干部倍感振奋光荣。“走在前，作表率"，这六个字是习近平总书记对中央和国家机关党的
+                </div>
+                <div class="text-details">
+                    <div class="text-list pointer hover">
+                        <a href="javascript:;"
+                            class="list-title block overfow-text Semilight">暗號.：党的建设质量，在深入学习贯彻党的思想理论上作表率，深入在始终同党中央保持高度一致</a>
+                        <div class="others overflow Semilight">
+                            <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                            <a href="javascript:;" class="sending block fl">·<span
+                                    class="common-red hover">回复</span></a>
+                            <a href="javascript:;" class="back block fl">·<span class="common-red hover">收起</span></a>
+                            <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                            <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                        </div>
+                        <div class="send-input none">
+                            <textarea></textarea>
+                            <a href="javascript:;" class="Semilight block">回复</a>
+                        </div>
+                    </div>
+                    <div class="text-list pointer hover">
+                        <a href="javascript:;" class="list-title block overfow-text Semilight">阿瑾：党中央现在发展的越来越好</a>
+                        <div class="others overflow Semilight">
+                            <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                            <a href="javascript:;" class="block fl">·<span class="common-red hover">回复</span></a>
+                            <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                            <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                        </div>
+                    </div>
+                    <div class="text-list pointer hover">
+                        <a href="javascript:;" class="list-title block overfow-text Semilight">暗號 回复 阿瑾：对，你说的很对！</a>
+                        <div class="others overflow Semilight">
+                            <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                            <a href="javascript:;" class="block fl">·<span class="common-red hover">回复</span></a>
+                            <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                            <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                        </div>
+                    </div>
+                    <div class="more-send pointer Semilight">更多回复<div></div>
+                    </div>
+                    <div class="text-list pointer hover">
+                        <a href="javascript:;" class="list-title block overfow-text Semilight">暗號 回复 阿瑾：对，你说的很对！</a>
+                        <div class="others overflow Semilight">
+                            <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                            <a href="javascript:;" class="block fl">·<span class="common-red hover">回复</span></a>
+                            <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                            <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                        </div>
+                    </div>
+                    <div class="text-list pointer hover">
+                        <a href="javascript:;" class="list-title block overfow-text Semilight">暗號 回复 阿瑾：对，你说的很对！</a>
+                        <div class="others overflow Semilight">
+                            <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                            <a href="javascript:;" class="block fl">·<span class="common-red hover">回复</span></a>
+                            <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                            <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                        </div>
+                    </div>
+                    <div class="text-list pointer hover">
+                        <a href="javascript:;" class="list-title block overfow-text Semilight">暗號 回复 阿瑾：对，你说的很对！</a>
+                        <div class="others overflow Semilight">
+                            <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                            <a href="javascript:;" class="block fl">·<span class="common-red hover">回复</span></a>
+                            <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                            <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                        </div>
+                    </div>
+                    <div class="action Semilight">
+                        <a href="#">收起</a>
+                        <a href="#">查看更多回复</a>
+                    </div>
+                </div>
+                <div class="zan-send overflow Semilight">
+                    <div class="zan fl hover pointer">
+                        <i class="iconfont iconthumb-up-fill"></i>赞1100
+                    </div>
+                    <div class="send fl hover pointer">
+                        <i class="iconfont iconmessage--fill"></i>回复
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <div id="lookingAll" class="lookingAll pointer hover Semilight">
+		    <a>查看更多评论</a>
+		</div>
+    </div>
+
+    <!-- 顶部导航 -->
+    [#include "../includes/footer.html"/]
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <script src="${res}/js/commentList.js"></script>
+</body>
+
+</html>

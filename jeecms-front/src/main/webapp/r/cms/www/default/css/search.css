@@ -1,0 +1,93 @@
+.container{min-height: calc(100vh - 260px)}
+.container .search-left { width: 170px; margin-right: 45px;}
+.container .search-left .menu { width: 100%; margin-top: 360px; display: none;}
+.container .search-left .menu .tree{width: 100%;}
+.container .search-left .menu .menu-title { font-size: 16px; color: #666; margin-bottom: 9px; }
+.container .search-left .menu .menu-list { width: 100%; height: 180px; border: 1px solid #E8E8E8; border-radius: 4px; behavior: url(../src/pie/PIE.htc); }
+.container .search-left .menu .menu-list .news { height: 32px; margin-top: 11px; line-height: 32px; }
+.container .search-left .menu .menu-list .news .arrows { margin-left: 11px; margin-right: 10px; width: 0; height: 0; overflow: hidden; font-size: 0; line-height: 0; border-width: 6px; border-style: solid dashed dashed dashed; border-color: #666 transparent transparent transparent; margin-top: 12px; }
+.container .search-left .menu .menu-list .news .news-theme { font-size: 14px; color: #666; }
+.container .search-left .menu .menu-list .inner-news, .container .search-left .menu .menu-list .outer-news { width: 100%; height: 32px; line-height: 32px; text-align: center; font-size: 14px; color: #666; }
+.container .search-left .menu .menu-list .inner-news:hover, .container .search-left .menu .menu-list .outer-news:hover { color: #E30B20; background-color: #F5F5F5; }
+.container .search-left .menu .menu-list .page { width: 100%; height: 32px; line-height: 32px; }
+.container .search-left .menu .menu-list .page a { display: block; font-size: 14px; color: #666; margin-left: 32px; }
+.container .search-left .menu .menu-list .politics { width: 100%; height: 32px; line-height: 32px; }
+.container .search-left .menu .menu-list .politics a { display: block; font-size: 14px; color: #666; margin-left: 32px; }
+.container .search-right { width: 985px; position: relative; }
+.container .search-right .search-title input::-webkit-input-placeholder { font-weight: 300; color: #999; font-size: 16px; }
+.container .search-right .search-title input::-moz-placeholder { /* Mozilla Firefox 19+ */ font-weight: 300; color: #999; font-size: 16px; }
+.container .search-right .search-title input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ font-weight: 300; color: #999; font-size: 16px; }
+.container .search-right .search-title input:-ms-input-placeholder { /* Internet Explorer 10-11 */ font-weight: 300; color: #999; font-size: 16px; }
+.container .search-right .search-title { margin-top: 60px; margin-bottom: 30px; }
+.container .search-right .search-title input { border: 0; border-bottom: 2px solid #E5E5E5; width: 100%; font-size: 18px; padding-bottom: 5px; }
+.container .search-right .search-title i { color: #999; font-size: 30px; position: absolute; top: 50px; right: 0; }
+.container .search-right .search-title i:hover { color: #E30B20; }
+.container .search-right .search-tag { margin-bottom: 30px; }
+.container .search-right .search-tag ul li {float: left;text-align: center;margin-right: 20px;margin-bottom: 20px;}
+.container .search-right .search-tag ul li a { display: block; height: 40px; line-height: 40px; padding: 0 25px;font-size: 16px; background-color: #F5F5F5; border-radius: 20px; behavior: url(../src/pie/PIE.htc); }
+.container .search-right .search-tag ul li a:hover { background-color: #E30B20; color: #fff; }
+.container .search-right .search-res { font-size: 14px; color: #666; margin-bottom: 16px;}
+.container .search-right .search-res span { color: #E30B20; }
+.container .search-right .search-nav { width: 100%; height: 54px; line-height: 54px; background-color: #F5F5F5; margin-bottom: 10px; border-radius: 4px; behavior: url(../src/pie/PIE.htc); }
+.container .search-right .search-nav .nav-left span { margin-left: 19px; display: block; float: left; font-size: 14px;}
+.container .search-right .search-nav .nav-left a { cursor: pointer; display: block; float: left; width: 68px; height: 34px; line-height: 34px; border-radius: 4px; behavior: url(../src/pie/PIE.htc); text-align: center; margin-top: 10px; margin-left: 10px; font-size: 14px; }
+.container .search-right .search-nav .nav-left a.active-red { background-color: #E30B20; color: #fff; }
+.container .search-right .search-nav .nav-left a:hover{color: #E30B20;}
+.container .search-right .search-nav .nav-left a.active-red:hover{color: #fff;}
+.container .search-right .search-nav .nav-left input::-webkit-input-placeholder { font-weight: 300; color: #999; font-size: 16px; }
+.container .search-right .search-nav .nav-left input::-moz-placeholder { /* Mozilla Firefox 19+ */ font-weight: 300; color: #999; font-size: 16px; }
+.container .search-right .search-nav .nav-left input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ font-weight: 300; color: #999; font-size: 16px; }
+.container .search-right .search-nav .nav-left input:-ms-input-placeholder { /* Internet Explorer 10-11 */ font-weight: 300; color: #999; font-size: 16px; }
+.container .search-right .search-nav .nav-right { font-size: 14px; margin-right: 20px; }
+.container .search-right .search-nav .nav-right span { display: block; float: left; margin-right: 20px; }
+.container .search-right .search-nav .nav-right a { display: block; float: left; height: 54px; line-height: 54px; }
+.container .search-right .search-nav .nav-right span.line { margin-left: 12px; margin-right: 12px; }
+.container .search-right .search-nav .nav-right .active-red { color: #E30B20; }
+.container .search-right .search-nav .nav-right .rank:hover{ color: #E30B20; }
+.container .search-right .search-item { width: 100%; height: 170px; padding: 20px 0; border-bottom: 1px solid #E5E5E5; }
+.container .search-right .search-item:hover { background-color: #F5F5F5; cursor: pointer; }
+.container .search-right .search-item .item-left { margin-right: 20px; }
+.container .search-right .search-item .item-left img { display: block;width: 220px;height: 125px;border-radius: 4px;behavior: url(../pie/PIE.htc);}
+.container .search-right .search-item .item-right { width: 745px; height: 130px; position: relative; }
+.container .search-right .search-item .item-right a { color: #333333; font-size: 20px; }
+.container .search-right .search-item .item-right a:hover { color: #E30B20; }
+.container .search-right .search-item .item-right .bottom { position: absolute; bottom: 5px; width: 745px;}
+.container .search-right .search-item .item-right .bottom ul {float: left;}
+.container .search-right .search-item .item-right .bottom ul .time { margin-left: 20px; color: #a2a2a2; }
+.container .search-right .search-item .item-right .bottom ul:last-child {float: right;margin-right: 20px;}
+.container .search-right .search-item .item-right .bottom ul li { font-size: 12px; display: inline-block; color: #333333; }
+.container .search-right .search-item .item-right .bottom ul li i { color: #999; margin-right: 10px; margin-left: 20px; font-size: 14px;}
+.container .search-right .search-item .item-right .bottom ul li:hover { color: #E30B20; }
+.container .search-right .search-item .item-right .bottom ul li:hover i { color: #E30B20; }
+.container .search-right .search-item .item-right .bottom ul li.no-red:hover{color: #333333;cursor: default;}
+.container .search-right .search-item .item-right .bottom ul li.time:hover{color: #a2a2a2;}
+.container .search-right .search-item .item-right .bottom ul li.no-red:hover i{color: #999999;}
+.container .search-right .search-item .item-right .addone { text-align: center; height: 15px; line-height: 15px; color: #fff; background-color: #E30B20; font-size: 10px; width: 30px; border-radius: 20px; behavior: url(../src/pie/PIE.htc); position: absolute; right: 84px; bottom: 35px; }
+.container .search-right .loading {font-size: 14px; color: #333; width: 100%;height: 50px; line-height: 50px; margin:35px 0; text-align: center; border-radius: 4px; behavior: url(../src/pie/PIE.htc); }
+.container .search-right .loading-yes{ background-color: #F5F5F5;}
+.container .search-right .loading-yes:hover { background-color: #EDEDED; color: #E30B20;}
+.container .search-right .loading-no{ background-color: #FFFFFF; }
+
+input[name='date']{
+  width: 230px;
+  height: 40px;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  padding-left: 30px;
+  font-size: 14px;
+}
+#date::-webkit-input-placeholder{
+	font-size: 14px;
+}
+.nav-left i{margin-right: -31px;margin-left: 20px;position: relative;font-size: 12px;color: #999;}
+.title-color{color: #E30B20;}
+.noSearch{width: 985px;}
+.noSearch img{
+  display: block;
+  margin: 85px auto 120px;
+}
+.ontree{
+	color: #E30B20 !important;
+}
+
+/*# sourceMappingURL=search.css.map */

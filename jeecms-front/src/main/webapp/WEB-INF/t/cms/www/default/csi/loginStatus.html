@@ -1,0 +1,21 @@
+[#if site.globalConfig.memberOpen??&&site.globalConfig.memberOpen]
+[#if user??]
+[#if user.headImgUrl??]
+<span><img src="${user.headImgUrl}">
+	<ul>
+		<li class="pointer"><a href="../member-vipcenter.htm">个人中心</a></li>
+		<li class="pointer" onclick="quitLogin()">退出登录</li>
+	</ul>
+</span>
+[#else]
+<span><i class="personal iconfont icontouxiang pointer"></i>
+	<ul>
+		<li class="pointer"><a href="../member-vipcenter.htm">个人中心</a></li>
+		<li class="pointer" onclick="quitLogin()">退出登录</li>
+	</ul>
+</span>
+[/#if]
+[#else]
+<a href="${base}/login"><i class="personal iconfont iconiconlineuser pointer"></i></a>
+[/#if]
+[/#if]

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>视频</title>
+		
+	</head>
+	<body>
+		[#assign type="1" channelTitle="视频"/]
+		[#include "../includes/header.html"]
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/newsList.css" />
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/video.css" />
+		<script src="${mobileRes}/js/loading.js" type="text/javascript" charset="utf-8"></script>
+		<div id="video">
+			<div class="video-header">
+				<ul>
+					<li class="Medium">[@cms_channel path='zxsp' siteId='1']<a href="${tag_bean.url!}" class="active block">${tag_bean.name!}</a>[/@cms_channel]</li>
+					<li class="Regular">[@cms_channel path='rbpx' siteId='1']<a href="${tag_bean.url!}" class="no-active block">${tag_bean.name!}</a>[/@cms_channel]</li>
+				</ul>
+				<div class="video-header-bottom"></div>
+			</div>
+			<div>
+				<ul class="important-list">
+					[@cms_content_list channelPath='zxsp' orderBy='27' siteId='1' count='10']
+					[#list tag_list as a]
+					<li>
+						<div class="important-top-video">
+							<div class="video-play">
+								[#if (a.attr.shoujidatu.resUrl)??&&(a.attr.shoujidatu.resUrl)!='']
+								<a href="${a.url!}"><img class="big-img" src="${(a.attr.shoujidatu.resUrl)!}"></a>
+								<img @click.stop="clickPlay($event)" class="play-icon" src="${mobileRes}/images/icon/bofan-b.png">
+								<div class="play-time">
+									<div class="you">
+										<img src="${mobileRes}/images/icon/xiaobofang.png" class="bofang">
+										<span class="Regular">${(a.attr.videoSrc.resDuration)!'00:00:00'}</span>
+									</div>
+								</div>
+								[#else]
+								<a href="${a.url!}">
+									<div class="no-img"></div>
+									<img @click.stop="clickPlay($event)" class="play-icon" src="${mobileRes}/images/icon/bofan-b.png">
+									<div class="play-time no-imgtime">
+										<div class="you">
+											<img src="${mobileRes}/images/icon/xiaobofang.png" class="bofang">
+											<span class="Regular">${(a.attr.videoSrc.resDuration)!'00:00:00'}</span>
+										</div>
+									</div>
+								</a>
+								[/#if]
+							</div>
+							<video controls loop>
+								<source src="${(a.attr.videoSrc.resUrl)!}"/>
+							</video>
+						</div>
+						<div class="important-top-no">
+							<a href="${a.url!}">
+								<h4 class="Medium">[@text_cut s=a.title len=40 append='...'/]</h4>
+							</a>
+							<p class="Regular"><span>[#if (a.source.sourceName)?? && (a.source.sourceName) != ""]${(a.source.sourceName)}[#else]JEECMS演示站[/#if]</span><span>${a.releaseTimeString!}</span></p>
+						</div>
+						<div class="important-bottom">
+							<a href="${a.url!}">
+								<div>
+									<img src="${mobileRes}/images/icon/liulanliang-l.png">
+									<span class="Regular">${a.views!}</span>
+								</div>
+							</a>
+							<a href="${a.url!}">
+								<div>
+									<img src="${mobileRes}/images/icon/pinglun-i.png">
+									<span class="Regular">${a.comments!}</span>
+								</div>
+							</a>
+							<a href="${a.url!}">
+								<div>
+									<img src="${mobileRes}/images/icon/dianzan-l.png">
+									<span class="Regular">${a.ups!}</span>
+								</div>
+							</a>
+						</div>
+					</li>
+					[/#list]
+					[#assign listLength=tag_list?size/]
+					[/@cms_content_list]
+					<li class="Medium" v-for="(item,i) in searchList">
+						<div class="important-top-video">
+							<div class="video-play">
+								<a v-if="item.attr && item.attr.shoujidatu && item.attr.shoujidatu.resUrl" :href="item.url">
+									<img class="big-img" :src="(item.attr.shoujidatu.resUrl)">
+									<img @click.stop="clickPlay($event)" v-if="item.attr && item.attr.shoujidatu && item.attr.shoujidatu.resUrl" class="play-icon" src="${mobileRes}/images/icon/bofan-b.png">
+									<div v-if="item.attr && item.attr.shoujidatu && item.attr.shoujidatu.resUrl" class="play-time">
+										<div class="you">
+											<img src="${mobileRes}/images/icon/xiaobofang.png" class="bofang">
+											<span class="Regular" v-if="(item.attr.videoSrc.resDuration)" v-text="(item.attr.videoSrc.resDuration)"></span>
+											<span class="Regular" v-if="!(item.attr.videoSrc.resDuration)">00:00:00</span>
+										</div>
+									</div>
+								</a>
+								<a v-if="!item.attr || !item.attr.shoujidatu || !item.attr.shoujidatu.resUrl" href="item.url">
+									<div class="no-img"></div>
+									<img @click.stop="clickPlay($event)" v-if="!item.attr || !item.attr.shoujidatu || !item.attr.shoujidatu.resUrl" class="play-icon" src="${mobileRes}/images/icon/bofan-b.png">
+									<div v-if="!item.attr || !item.attr.shoujidatu || !item.attr.shoujidatu.resUrl" class="play-time no-imgtime">
+										<div class="you">
+											<img src="${mobileRes}/images/icon/xiaobofang.png" class="bofang">
+											<span class="Regular" v-if="(item.attr.videoSrc.resDuration)" v-text="(item.attr.videoSrc.resDuration)"></span>
+											<span class="Regular" v-if="!(item.attr.videoSrc.resDuration)">00:00:00</span>
+										</div>
+									</div>
+								</a>
+							</div>
+							<video  controls loop>
+								<source :src="item.attr.videoSrc.resUrl"/>
+								您的浏览器不支持视频播放标签
+							</video>
+						</div>
+						<div class="important-top-no">
+							<a :href="item.url">
+								<h4 class="Medium" v-if="item.title.length <= 40" v-text="item.title"></h4>
+								<h4 class="Medium" v-else v-text="item.title.slice(0,40)+'...'"></h4>
+							</a>
+							<p class="Regular"><span v-if="item.source && item.source.sourceName" class="Regular" v-text="item.source.sourceName"></span><span v-if="!item.source||!item.source.sourceName">JEECMS演示站</span><span v-text="item.releaseTimeString"></span></p>
+						</div>
+						<!-- 底部 -->
+						<div class="important-bottom">
+							<a :href="item.url">
+								<div>
+									<img src="${mobileRes}/images/icon/liulanliang-l.png">
+									<span class="Regular" v-text="item.views"></span>
+								</div>
+							</a>
+							
+							<a :href="item.url">
+								<div>
+									<img src="${mobileRes}/images/icon/pinglun-i.png">
+									<span class="Regular" v-text="item.comments"></span>
+								</div>
+							</a>
+							<a :href="item.url">
+								<div>
+									<img src="${mobileRes}/images/icon/dianzan-l.png">
+									<span class="Regular" v-text="item.ups"></span>
+								</div>
+							</a>
+						</div>
+					</li>
+				</ul>
+				<my-loading :load="load" :isload="isload"></my-loading>
+			</div>
+		</div>
+		[#include "../includes/footerTabbar.html"]
+	</body>
+	<script type="text/javascript">
+		//获取要定位元素距离浏览器顶部的距离
+		var navH = $(".video-header").offset().top;
+		// console.log(navH);
+		//滚动条事件
+		$(window).scroll(function() {
+			//获取滚动条的滑动距离
+			var scroH = $(this).scrollTop();
+			// console.log(scroH);
+			//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+			if (scroH >= navH) {
+				$(".video-header").css({
+					"position": "sticky",
+					"top": '0.96rem',
+					"z-index": 10,
+				"width":'100vw',
+				"background":'#ffffff'
+				});
+				
+			}else if (scroH < navH) {
+				$(".video-header").css({
+					"position": "static"
+				});
+			}
+		})
+		new Vue({
+			el: '#video',
+			data: {
+				load: '加载更多',
+				isload: false,
+				searchData: {
+					channelPaths: 'zxsp',
+					orderBy: 27,
+					page: 1,
+					size: 10
+				},
+				searchList: [],
+				last: false,
+				uploading: true,
+				scroll: 0,
+				listLength:${listLength}
+			},
+			mounted() {
+				if(this.listLength <10){
+					this.load='没有更多了'
+					this.isload = false
+					this.last = true
+				}
+			},
+			methods: {
+				//点击播放
+				clickPlay(event) {
+					let _video = document.getElementsByTagName('video')
+					for (var i = 0; i < _video.length; i++) {
+						_video[i].pause();
+						_video[i].style.display = 'none'
+						_video[i].previousElementSibling.style.display='block'
+					}
+					event.target.offsetParent.nextElementSibling.style.display = 'block'
+					event.target.offsetParent.nextElementSibling.play()
+					event.target.offsetParent.style.display = 'none'
+				},
+				loading() {
+					if (this.uploading) {
+						this.uploading = false
+						if (!this.last) {
+							this.load = '加载中'
+							this.isload = true
+							this.searchData.page += 1
+							this.getContentPage()
+						} else {
+							this.load = '没有更多了'
+							this.isload = false
+						}
+					}
+				},
+				getContentPage() {
+					let _this = this
+					api.GET('/content/page', _this.searchData, function(res) {
+						_this.last = res.data.last
+						if (_this.last) {
+							_this.load = '已显示全部内容'
+							_this.isload = false
+						} else {
+							_this.load = '加载更多'
+							_this.isload = false
+						}
+						_this.searchList = _this.searchList.concat(res.data.content)
+						_this.uploading = true
+					})
+				}
+			}
+		});
+	</script>
+</html>

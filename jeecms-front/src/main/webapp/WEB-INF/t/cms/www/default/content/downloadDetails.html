@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>${content.title!}-${site.name}</title>
+    <link rel="stylesheet" href="${res}/css/downloadDetails.css">
+    <link rel="stylesheet" href="${res}/css/jSlider.css">
+    <script src="${res}/js/front.js" type="text/javascript" charset="utf-8"></script>
+	<meta name="title" content="${site.seoTitle!}" />
+    <meta name="keywords" content="${site.seoKeyword!}" />
+	<meta name="description" content="${site.seoDescription!}" />
+    
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+    [#include "../includes/header.html"/]
+    </div>
+	<script type="text/javascript">
+			$(function () {
+				Cms.viewCount("${base}", "${content.id}");
+				getContentUp("${content.id}");
+				getUsercomment("${content.id}");
+				genPermCheck("${content.id}")
+			});
+			function genPermCheck(contentId,channelId) {
+				$.ajax({
+					url: "${base}/permCheck",
+					data: {
+						contentId:contentId,
+						channelId:channelId
+					},
+					success: function (result) {
+						if(result.data!=1){location.href = "${base}/login"}
+					}
+				});
+			}
+		</script>
+	<script src="${res}/js/newsDetails.js" type="text/javascript" charset="utf-8"></script>
+    <!--顶部导航 over-->
+
+    <!-- 中间部分 -->
+    <div class="container overflow">
+        <div class="content overflow">
+            <div class="details-left fl">
+                <div class="details-guide overflow">
+                    <div class="black fl Semilight">
+                    <a href="${base}/" class="black Semilight">首页</a> > [#list content.channel.nodeList as n]<a target="_blank" href="${n.url}" class="black Semilight" >${n.name}</a>[#if n_has_next] > [/#if][/#list] > <span class="gray Semilight">${content.title!}</span>
+                    </div>
+                </div>
+                <div class="downTitle overflow">
+                    <img class="block fl" src="${(content.attr.tubiao.resUrl)!}" alt="">
+                    <span class="block fl Regular">${content.title!}</span>
+                    <!--<img class="small block fl" src="${res}/images/download/XZ_TU02.png" alt="">-->
+                </div>
+                <div class="downInfo overflow">
+                    <img class="block fl" src="${(content.attr.xiazaixiangqingtu.resUrl)!}" alt="">
+                    <div class="information fl overflow Semilight">
+                        <div class="info-left fl">
+                            <div>软件大小：<span>${(content.attr.proImg.sizeUnit)!0}</span></div>
+                            <div>下载次数：<span>${content.downloads!}次</span></div>
+                            <div>软件语言：<span>${(content.attr.rjyy.value)!}</span></div>
+                            <div>软件评级：<span>${(content.attr.rjpj.value)!}</span></div>
+                            <div>更新时间：<span>${content.releaseTime?string("yyyy-MM-dd")}</span></div>
+                        </div>
+                        <div class="info-right fl">
+                            <div>软件厂商：<span>${(content.attr.rjcs.value)!}</span></div>
+                            <div>软件授权：<span>${(content.attr.rjsq.value)!}</span></div>
+                            <div class="platform">应用平台：<span>${(content.attr.yypt.value)!}</span></div>
+                        </div>
+                        <a class="block Regular" href="${base}/download/byField?contentId=${content.id}&field=dlcon">
+                            <i class="iconfont icondownload--line"></i>
+                            <span>立即下载</span>   
+                        </a>
+                    </div>
+                </div>
+                <div class="intro Regular">软件介绍</div>
+                <div class="text-area Semilight">
+                     ${txt!}
+                </div>
+				<div class="comment-area overflow Regular">
+				    <div class="big fl">评论</div>
+				    <div class="small fr">已有<span id="totalElements">${content.comments!}条</span>评论</div>
+					<div class="comment-input">
+					    <textarea id="usercomments" maxlength="150"></textarea>
+					    <div class="limit Semilight" id="commentsLength">0/150</div>
+					    <a onclick="toUsercomment('${content.id}')" class="Regular pointer">提交</a>
+					</div>
+				</div>
+				<div class="hot-title Regular">热门评论</div>
+				<div class="hot-comment overflow">
+				    <!-- <div class="user-icon pointer fl">
+				        <img src="${res}/images/pagelist/TP_XJD01.png" alt="">
+				    </div>
+				    <div class="hot-text fl">
+				        <div class="user-line overflow Semilight">
+				            <span class="username block fl">阿瑾</span>
+				            <span class="time block fl">20秒前</span>
+				            <div class="warning fr hover pointer"><i class="iconfont iconalarm-warning-fill"></i>举报</div>
+				        </div>
+				        <div class="user-text Regular">
+				            走在前，作表率”，这六个字是习近平总书记对中央和国家机关党的建设工作所提出的明确要求。对此，中央和国家机关党员干部倍感振奋光荣。“走在前，作表率”，这六个字是习近平总书记对中央和国家机关党的
+				        </div>
+				        <div class="text-details">
+				            <div class="text-list pointer hover">
+				                <a href="javascript:;"
+				                    class="list-title block overfow-text Semilight">暗號.：党的建设质量，在深入学习贯彻党的思想理论上作表率，深入在始终同党中央保持高度一致</a>
+				                <div class="others overflow Semilight">
+				                    <a href="javascript:;" class="block fl common-red hover">赞4</a>
+				                    <a href="javascript:;" class="sending block fl">·<span
+				                            class="common-red hover">回复</span></a>
+				                    <a href="javascript:;" class="back block fl">·<span class="common-red hover">收起</span></a>
+				                    <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+				                    <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+				                </div>
+				                <div class="send-input none">
+				                    <textarea></textarea>
+				                    <a href="javascript:;" class="Semilight block">回复</a>
+				                </div>
+				            </div>
+				            <div class="text-list pointer hover">
+				                <a href="javascript:;" class="list-title block overfow-text Semilight">阿瑾：党中央现在发展的越来越好</a>
+				                <div class="others overflow Semilight">
+				                    <a href="javascript:;" class="block fl common-red hover">赞4</a>
+				                    <a href="javascript:;" class="block fl">·<span class="common-red hover">回复</span></a>
+				                    <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+				                    <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+				                </div>
+				            </div>
+				            <div class="text-list pointer hover">
+				                <a href="javascript:;" class="list-title block overfow-text Semilight">暗號 回复 阿瑾：对，你说的很对！</a>
+				                <div class="others overflow Semilight">
+				                    <a href="javascript:;" class="block fl common-red hover">赞4</a>
+				                    <a href="javascript:;" class="block fl">·<span class="common-red hover">回复</span></a>
+				                    <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+				                    <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+				                </div>
+				            </div>
+				            <div class="send-number pointer Semilight">
+				                查看全部<span class="font-hover">34</span>条回复 >
+				            </div>
+				        </div>
+				        <div class="zan-send overflow Semilight">
+				            <div class="zan fl hover pointer">
+				                <i class="iconfont iconthumb-up-fill"></i>赞1100
+				            </div>
+				            <div class="send fl hover pointer">
+				                <i class="iconfont iconmessage--fill"></i>回复
+				            </div>
+				        </div>
+				        <div class="lookingAll pointer hover Semilight">
+				            <a href="javascript:;">查看全部评论</a>
+				        </div>
+				    </div> -->
+				</div>
+				<div onclick="uplookingAll('${content.id}')" class="lookingAll pointer hover Semilight">
+				    <a>查看更多评论</a>
+				</div>
+            </div>
+            <div class="details-right fl">
+                <div class="hot-sort Regular">热点排行<div></div><div class="hot-right"></div>
+                </div>
+                <div class="right-list">
+                     [@cms_content_list channelPath='dl' count='10' orderBy='29' siteId='1']
+				[#list tag_list as a]
+                <div class="right-item overflow pointer">
+                    [#if a_index<3]<span class="before number block fl Bold">[#else]<span class="number block fl Bold">[/#if]${a_index+1}</span>
+                    <img class="block fl" src="${(a.attr.tubiao.resUrl)!}" alt="">
+                    <div class="item-message fl">
+                        <span class="message-title Semilight block pointer">[@text_cut s=a.title len=10 append='...' /]</span>
+                        <div class="info Light">
+                            <span>22.3M</span>
+                            <span class="line">|</span>
+                            <span class="download-num Light">${a.downloads}次下载</span>
+                        </div>
+                    </div>
+                    <a class="none Semilight hover" href="${a.url!}" target="_blank">下载</a>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+                    
+                  
+                </div>
+            </div>
+        </div>
+        
+	</div>
+
+
+
+    <!-- 顶部导航 -->
+    [#include "../includes/footer.html"/]
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <script src="${res}/js/downloadDetails.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.comment-input textarea').bind('focus keyup input paste',function(){
+                $('.comment-input .limit span').text($(this).val().length);
+            })
+            
+        });
+		// 打开全部评论
+		function uplookingAll(){
+			 window.open('${base}/content-commentList.htm?contentId='+'${content.id}');  
+		}
+    </script>
+</body>
+
+</html>

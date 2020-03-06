@@ -1,0 +1,646 @@
+.main {
+	width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+
+.main .lunbo {
+	margin-top: 60px;
+	float: left;
+	position: relative;
+	width: 785px;
+	border-radius: 4px;
+	behavior: url(../src/pie/PIE.htc);
+	min-height: 400px
+}
+
+.main .lunbo #b04 {
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+}
+
+.main .lunbo #b04 .dots {
+	position: absolute;
+	right: 10px;
+	bottom: 18px;
+	z-index: 10;
+}
+
+.main .lunbo #b04 .dots li {
+	width: 12px;
+	display: inline-block;
+	height: 12px;
+	background-color: #fff;
+	opacity: 0.5;
+	border-radius: 50%;
+	behavior: url(../pie/PIE.htc);
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+.main .lunbo #b04 .dots li.active {
+	width: 20px;
+	opacity: 1;
+	border-radius: 6px;
+	behavior: url(../pie/PIE.htc);
+}
+
+.main .lunbo #b04 .arrow {
+	position: absolute;
+	top: 200px;
+}
+
+.main .lunbo #b04 #al {
+	left: 20px;
+	top: 204px;
+	color: #fff;
+	font-size: 46px;
+	opacity: 0.5;
+}
+
+.main .lunbo #b04 #al:hover {
+	color: #E30B20;
+	opacity: 1;
+}
+
+.main .lunbo #b04 #ar {
+	right: 20px;
+	top: 204px;
+	color: #fff;
+	font-size: 46px;
+	opacity: 0.5;
+}
+
+.main .lunbo #b04 #ar:hover {
+	color: #E30B20;
+	opacity: 1;
+}
+
+.main .lunbo #b04 ul li {
+	float: left;
+	width: 785px;
+	height: 435px;
+}
+
+.main .lunbo #b04 ul li a {
+	width: 785px;
+	height: 435px;
+	display: block;
+}
+
+.main .lunbo #b04 ul li a img {
+	width: 785px;
+	height: 435px;
+	display: block;
+}
+
+.main .lunbo .text {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 9;
+	line-height: 60px;
+	text-indent: 20px;
+	color: #fff;
+	font-size: 20px;
+}
+
+.main .lunbo .text a {
+	margin-left: 20px;
+	color: #fff;
+	font-size: 20px;
+}
+
+.main .lunbo .jSlider .navigator .prev {
+	display: none;
+	margin-left: -30px;
+}
+
+.main .lunbo .jSlider .navigator .next {
+	display: none;
+	margin-right: -30px;
+}
+
+.main .lunbo .jSlider:hover .navigator .prev {
+	display: block;
+}
+
+.main .lunbo .jSlider:hover .navigator .next {
+	display: block;
+}
+
+.main .lunbo .jSlider .controller .indicator {
+	text-align: right;
+	margin-right: 30px;
+	z-index: 10;
+}
+
+.main .lunbo .jSlider .controller .indicator span {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000, endColorstr=#66000000);
+}
+
+.main .lunbo .jSlider .controller .indicator .selected {
+	background-color: #E30B20;
+	width: 20px;
+}
+
+.main .lunbo-right {
+	float: left;
+	margin-top: 90px;
+	margin-left: 45px;
+	width: 370px;
+}
+
+.main .lunbo-right h4 {
+	font-size: 24px;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.main .lunbo-right h4:hover a {
+	color: #E30B20;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.main .lunbo-right div {
+	margin-top: 20px;
+	font-size: 18px;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.main .lunbo-right div:hover a {
+	color: #E30B20;
+}
+
+.main .lunbo-bottom {
+	float: left;
+	margin-top: 41px;
+	margin-left: 45px;
+	width: 370px;
+}
+
+.main .lunbo-bottom h4 {
+	font-size: 24px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+}
+
+.main .lunbo-bottom h4:hover a {
+	color: #E30B20;
+}
+
+.main .lunbo-bottom div {
+	margin-top: 20px;
+	font-size: 18px;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.main .lunbo-bottom div:hover a {
+	color: #E30B20;
+}
+
+.main .news-left {
+	width: 785px;
+	float: left;
+	margin-top: 60px;
+}
+
+.main .news-left .news-header {
+	width: 100%;
+	background-color: #F5F5F5;
+	height: 50px;
+	line-height: 50px;
+	margin-bottom: 10px;
+}
+
+.main .news-left .news-header ul li {
+	font-size: 16px;
+	float: left;
+	width: 92px;
+	text-align: center;
+}
+
+.main .news-left .news-header ul li a {
+	color: #333;
+}
+
+.main .news-left .news-header ul li a:hover {
+	color: #E30B20;
+}
+
+.main .news-left .news-header ul li.active {
+	background-color: #E30B20;
+}
+
+.main .news-left .news-header ul li.active a {
+	color: #fff;
+}
+
+.main .news-left .item {
+	width: 100%;
+	height: 170px;
+	border-bottom: 1px solid #E5E5E5;
+}
+
+.main .news-left .item:hover {
+	background-color: #F5F5F5;
+}
+
+.main .news-left .item .item-left {
+	float: left;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: 20px;
+	height: 130px;
+	width: 220px;
+}
+
+.main .news-left .item .item-left img {
+	display: block;
+	height: 125px;
+	width: 220px;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+}
+
+.main .news-left .item .item-right {
+	float: left;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 545px;
+	height: 130px;
+	position: relative;
+}
+
+.main .news-left .item .item-right a {
+	color: #333333;
+	font-size: 20px;
+}
+
+.main .news-left .item .item-right a:hover {
+	color: #E30B20;
+}
+
+.main .news-left .item .item-right .bottom {
+	position: absolute;
+	bottom: 5px;
+	width: 100%;
+}
+
+.main .news-left .item .item-right .bottom ul .time {
+	margin-right: 160px;
+	margin-left: 20px;
+	color: #a2a2a2;
+}
+
+.main .news-left .item .item-right .bottom ul li {
+	font-size: 12px;
+	display: inline-block;
+	color: #333333;
+}
+
+.main .news-left .item .item-right .bottom ul a {
+	font-size: 12px;
+	color: #333333;
+}
+
+.main .news-left .item .item-right .bottom ul li.box {
+	float: right;
+	margin-left: -20px;
+	margin-right: 15px;
+}
+
+.main .news-left .item .item-right .bottom ul li.box a {
+	display: block;
+	float: left;
+	margin-left: 20px;
+}
+
+.main .news-left .item .item-right .bottom ul li.box a.hover:hover i {
+	color: #E30B20;
+}
+
+.main .news-left .item .item-right .bottom ul li.box a.hover:hover {
+	color: #E30B20;
+}
+
+.main .news-left .item .item-right .bottom ul li i {
+	font-size: 14px;
+	margin-right: 10px;
+	color: #999;
+}
+
+.main .news-left .item .item-right .bottom ul .uicon.hover:hover i {
+	color: #E30B20;
+}
+
+.main .news-left .item .item-right .bottom ul .uicon.hover:hover span {
+	color: #E30B20;
+}
+
+.banner ul,
+.banner li {
+	height: 435px;
+}
+
+.main .news-left .item .item-right .addone {
+	text-align: center;
+	height: 15px;
+	line-height: 15px;
+	color: #fff;
+	background-color: #E30B20;
+	font-size: 10px;
+	width: 30px;
+	border-radius: 20px;
+	behavior: url(../src/pie/PIE.htc);
+	position: absolute;
+	right: 84px;
+	bottom: 35px;
+}
+
+.main .news-left .loading {
+	width: 100%;
+	margin: 35px 0;
+	height: 50px;
+	line-height: 50px;
+	background-color: #F5F5F5;
+	text-align: center;
+	border-radius: 4px;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.main .news-left .loading {
+	font-size: 14px;
+	color: #333;
+}
+
+.main .news-left .loading:hover {
+	background-color: #EDEDED;
+	cursor: pointer;
+	color: #E30B20;
+}
+
+.main .news-left .none-loading {
+	font-size: 14px;
+	color: #333;
+	width: 100%;
+	margin: 35px 0 !important;
+	height: 50px;
+	line-height: 50px;
+	background-color: #F5F5F5;
+	text-align: center;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+}
+
+.main .news-right {
+	float: left;
+	width: 370px;
+	margin-top: 60px;
+	margin-left: 45px;
+}
+
+.main .news-right .hot-search {
+	width: 100%;
+	position: relative;
+	padding-left: 13px;
+	font-size: 16px;
+}
+
+.main .news-right .hot-search div {
+	border-bottom: 1px solid #e5e5e5;
+	width: 267px;
+	position: absolute;
+	top: 11px;
+	left: 100px;
+}
+
+.main .news-right .hot-search .hot-right {
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 4px;
+	border-radius: 0 4px 4px 0;
+	background-color: #E30B20;
+}
+
+.main .news-right .right-tag {
+	margin-top: 30px;
+	width: 384px;
+	margin-right: -14px;
+}
+
+.main .news-right .right-tag ul li {
+	float: left;
+	text-align: center;
+}
+
+.main .news-right .right-tag ul li a {
+	display: block;
+	font-size: 16px;
+	color: #333;
+	line-height: 40px;
+	border-radius: 20px;
+	behavior: url(../src/pie/PIE.htc);
+	margin-right: 14px;
+	margin-bottom: 20px;
+	padding: 0 25px;
+	height: 40px;
+	background-color: #F5F5F5;
+}
+
+.main .news-right .right-tag ul li a:hover {
+	background-color: #E30B20;
+	color: #fff;
+}
+
+.main .news-right .today-news {
+	width: 100%;
+	position: relative;
+	padding-left: 13px;
+	margin-top: 40px;
+	font-size: 16px;
+	color: #333;
+}
+
+.main .news-right .today-news div.cut {
+	border-bottom: 1px solid #e5e5e5;
+	width: 200px;
+	position: absolute;
+	top: 10px;
+	left: 83px;
+}
+
+.main .news-right .today-news div.update {
+	border-bottom: 0;
+	font-size: 14px;
+	position: absolute;
+	left: 293px;
+	top: 0;
+	color: #999999;
+}
+
+.main .news-right .today-news div.update i {
+	margin-right: 10px;
+}
+
+.main .news-right .today-news div.update i {
+	display: block;
+	float: left;
+}
+
+.main .news-right .today-news div.update:hover i {
+	transform: rotate(180deg);
+	transform-origin: center center;
+}
+
+.main .news-right .today-news div.update i:hover {}
+
+.main .news-right .today-news div.update:hover {
+	color: #e30b20;
+	cursor: pointer;
+}
+
+.main .news-right .today-news div.hot-right {
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 4px;
+	border-radius: 0 4px 4px 0;
+	background-color: #E30B20;
+}
+
+.main .news-right .right-main-news {
+	width: 100%;
+}
+
+.main .news-right .right-main-news .main-news {
+	width: 100%;
+	margin-top: 30px;
+}
+
+.main .news-right .right-main-news .main-news .left-img {
+	float: left;
+	margin-right: 20px;
+	height: 90px;
+	width: 160px;
+}
+
+.main .news-right .right-main-news .main-news .left-img img {
+	height: 90px;
+	width: 160px;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+}
+
+.main .news-right .right-main-news .main-news .right-text {
+	width: 188px;
+	height: 89px;
+	float: left;
+	position: relative;
+}
+
+.main .news-right .right-main-news .main-news .right-text a {
+	color: #333;
+	font-size: 16px;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.main .news-right .right-main-news .main-news .right-text div {
+	position: absolute;
+	bottom: 0;
+	font-size: 12px;
+	color: #333;
+}
+
+.main .news-right .right-main-news .main-news .right-text div i {
+	font-size: 12px;
+	margin-right: 10px;
+}
+
+.main .news-right .right-main-news .main-news:hover .right-text a {
+	color: #e30b20;
+}
+
+.main .news-right .hot-sort {
+	margin-top: 60px;
+	width: 100%;
+	position: relative;
+	padding-left: 13px;
+	color: #333;
+	font-size: 16px;
+	margin-bottom: 28px;
+}
+
+.main .news-right .hot-sort div {
+	border-bottom: 1px solid #e5e5e5;
+	width: 283px;
+	position: absolute;
+	top: 10px;
+	left: 83px;
+}
+
+.main .news-right .hot-sort .hot-right {
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 4px;
+	border-radius: 0 4px 4px 0;
+	background-color: #E30B20;
+}
+
+.main .news-right .sorting .item {
+	margin-bottom: 20px;
+	font-size: 14px;
+}
+
+.main .news-right .sorting .item .number {
+	width: 38px;
+	font-size: 20px;
+	color: #999999;
+	font-style: italic;
+}
+
+.main .news-right .sorting .item .text {
+	color: #333;
+	font-size: 16px;
+}
+
+.main .news-right .sorting .item .text a:hover {
+	color: #E30B20;
+}
+
+.main .news-right .sorting .item .before-three {
+	color: #E30B20;
+}
+
+/*# sourceMappingURL=newslist.css.map */

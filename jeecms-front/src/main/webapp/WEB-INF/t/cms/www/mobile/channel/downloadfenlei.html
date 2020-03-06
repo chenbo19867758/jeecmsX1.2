@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
+	<title></title>
+</head>
+<body>
+	<!-- 头部导航 -->
+	[#assign type="1" channelTitle="下载"/]
+	[#include "../includes/header.html"]
+	<!-- 头部导航 -->
+	<link rel="stylesheet" href="${mobileRes}/css/wtt-common.css" />
+	<link rel="stylesheet" href="${mobileRes}/css/bignav.css" />
+	<link rel="stylesheet" href="${mobileRes}/css/downloadfenlei.css" />
+	<div class="download-fenlei">
+		<div class="channel">
+			<ul>
+				[@cms_channel path='dl' siteId='1']<li>
+					<a href="${tag_bean.url!}" class="Regular">
+						推荐
+					</a>
+				</li>
+				[/@cms_channel]
+				[@cms_channel path='xzpx1' siteId='1']<li>
+					<a href="${tag_bean.url!}" class="Regular">
+						排行
+					</a>
+				</li>
+				[/@cms_channel]
+				[@cms_channel path='xzfl1' siteId='1']<li>
+					<a href="${tag_bean.url!}" class="mark-red Medium">
+						分类
+					</a>
+				</li>
+				[/@cms_channel]
+			</ul>
+		</div>
+		<div class="inner" >
+			[@cms_channel_list parentId='dl' parentId='1751' count='5']
+			[#list tag_list as a]
+			<div class="box" >
+				<div class="left">
+					<a href="${a.url!}">
+						[#if a.path=='xtrj']<div class="image" style="background-image: url('${mobileRes}/images/download/gongju.png');"></div>[#elseif a.path=='ltrj']<div class="image" style="background-image: url('${mobileRes}/images/download/liaotian.png');"></div>[#else]<div class="image" style="background-image: url('${mobileRes}/images/download/yingyin.png');"></div>[/#if]
+						[#if a.path=='xtrj']<span class="Regular" style="color:rgba(3,98,236,1);">${a.name!}</span>[#elseif a.path=='ltrj']<span class="Regular" style="color:rgba(245,72,35,1);">${a.name!}</span>[#else]<span class="Regular" style="color:rgba(251,52,89,1);">${a.name!}</span>[/#if]
+					</a>
+				</div>
+				<div class="right">
+					<ul>
+						[@cms_channel_list parentId=a.id count='1']
+						[#list tag_list as c]
+						[#if c_index==0]
+						<li>
+							<a href="${c.url!}">${c.name!}</a>
+						</li>
+						[/#if]
+						[/#list]
+						[/@cms_channel_list]
+						<li><span class="line"></span></li>
+						[@cms_channel_list parentId=a.id count='2']
+						[#list tag_list as c]
+						[#if c_index==1]
+						<li >
+							<a href="${c.url!}">${c.name!}</a>
+						</li>
+						[/#if]
+						[/#list]
+						[/@cms_channel_list]
+						
+					</ul>
+				</div>
+			</div>
+			[/#list]
+			[/@cms_channel_list]
+		</div>
+	
+	</div>
+	[#include "../includes/footerTabbar.html"]
+	<script type="text/javascript">
+		//获取要定位元素距离浏览器顶部的距离
+		var navH = $(".channel").offset().top;
+		// console.log(navH);
+		//滚动条事件
+		$(window).scroll(function() {
+			//获取滚动条的滑动距离
+			var scroH = $(this).scrollTop();
+			// console.log(scroH);
+			//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+			if (scroH >= navH) {
+				$(".channel").css({
+					"position": "sticky",
+					"top": '0.96rem',
+					"z-index": 10
+				});
+				
+			}else if (scroH < navH) {
+				$(".channel").css({
+					"position": "static"
+				});
+			}
+		})
+	</script>
+</body>
+	
+</html>

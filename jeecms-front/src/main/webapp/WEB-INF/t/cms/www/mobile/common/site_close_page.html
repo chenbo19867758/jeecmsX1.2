@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>站点关闭页面</title>
+    <style>
+		*{
+			box-sizing:border-box;
+			margin:0;
+			padding:0;
+		}
+		body{
+			width:100%;
+		}
+		.error{
+			display:flex;
+			justify-content:flex-end;
+		}
+        .error img{
+			
+			margin-top:3.02rem;
+			width:7.08rem;
+            /* margin:216px 0px 0px 80px; */
+			
+        }
+		.text{		
+			margin-top:0.33rem;
+		}
+		.text p{
+			text-align: center;
+		    font-size:0.3rem;
+			font-family:PingFang SC;
+			font-weight:400;
+			color:rgba(153,153,153,1);
+			line-height:0.48rem;
+			margin:0;
+			padding:0;
+
+		}
+		
+    </style>
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header header-children"></div>
+    <!--顶部导航 over-->
+
+    <div class="error">
+        <img src="${mobileRes}/resource/images/error/zhandianguanbi.png" alt="">
+    </div>
+	<div class="text">
+		<p>您访问的页面已离开地球</p>
+		<p>系统君正在全面升级</p>
+		<p style='text-align:center'>请稍后再次尝试</p>
+	</div>
+	
+	
+
+    <!-- 顶部导航 -->
+    <div class="footer"></div>
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <!-- <script src="../../src/js/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".header").load("../include/header.html")
+            $(".footer").load("../include/footer.html")
+        });
+    </script> -->
+	<script>
+      document.documentElement.style.fontSize =
+        document.documentElement.clientWidth / 7.5 + "px";
+    </script>
+</body>
+
+</html>

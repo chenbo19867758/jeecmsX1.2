@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>新闻列表</title>
+    <link rel="stylesheet" href="${res}/css/jSlider.css">
+    <link rel="stylesheet" href="${res}/css/newslist.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+    [#include "../includes/header.html"/]
+<script type="text/javascript">
+			$(function () {
+				Cms.viewCount("${base}", "${content.id}");
+				getContentUp("${content.id}");
+				getUsercomment("${content.id}");
+				genPermCheck("${content.id}")
+			});
+			function genPermCheck(contentId,channelId) {
+				$.ajax({
+					url: "${base}/permCheck",
+					data: {
+						contentId:contentId,
+						channelId:channelId
+					},
+					success: function (result) {
+						if(result.data!=1){location.href = "${base}/login"}
+					}
+				});
+			}
+		</script>
+    </div>
+	<!--顶部导航 over-->
+	 
+    <!-- 中间部分 -->
+    <div class="main">
+        <!-- 轮播图模块 -->
+        <div class="lunbo hover">
+            <div id="slider1" class="jSlider" data-loop="true" data-navigation="always" data-indicator="always">
+                <div><a href="javascript:;"><img src="${res}/images/newslist/XW_JD01.png" alt="" /></a></div>
+                <div><a href="javascript:;"><img src="${res}/images/newslist/XW_JD02.png" alt="" /></a></div>
+                <div><a href="javascript:;"><img src="${res}/images/newslist/XW_JD03.png" alt="" /></a></div>
+                <div><a href="javascript:;"><img src="${res}/images/newslist/XW_JD04.png" alt="" /></a></div>
+                <div><a href="javascript:;"><img src="${res}/images/newslist/XW_JD05.png" alt="" /></a></div>
+            </div>
+            <div class="text Light">
+                <a href="javascript:;">并非首次！法国多架空客A380机翼出现裂缝</a>
+            </div>
+        </div> 
+        <!-- 轮播图右侧 -->     
+        <div class="lunbo-right">
+            <h4 class="Bold">中国沉着应对走好长征路不惧风险</h4>
+            <div class="Semilight">全国村庄清洁行动春季战役取得明显成效</div>
+            <div class="Semilight">生态环境部公布4月环保举报情况九成涉大</div>
+            <div class="Semilight">中成药为何不受家长待见用药靠掰剂量完</div>
+        </div>
+        <div class="lunbo-bottom">
+            <h4 class="Bold">中国沉着应对走好长征路不惧风险</h4>
+            <div class="Semilight">全国村庄清洁行动春季战役取得明显成效</div>
+            <div class="Semilight">生态环境部公布4月环保举报情况九成涉大</div>
+            <div class="Semilight">中成药为何不受家长待见用药靠掰剂量完</div>
+        </div>
+        <!-- 新闻列表左侧 -->
+        <div class="news-left">
+            <div class="news-header Regular"> 
+                <ul>
+                    <li class="active"><a href="javasraipt:;">全部</a></li>
+                    <li><a href="javasraipt:;">要闻</a></li>
+                    <li><a href="javasraipt:;">国内</a></li>
+                    <li><a href="javasraipt:;">国际</a></li>
+                    <li><a href="javasraipt:;">财经</a></li>
+                    <li><a href="javasraipt:;">体育</a></li>
+                </ul>
+            </div>
+            <div class="item">
+                <div class="item-left">
+                    <img src="${res}/images/newslist/SSJG_01.png" alt="">
+                </div>
+                <div class="item-right">
+                    <a href="javasraipt:;" class="Regular">习近平在观察陆军步兵学院时强调 全面提高办学育人水平为强军事业提供有力人才支持</a>
+                    <div class="bottom Semilight">
+                        <ul>
+                            <li>新闻网</li>
+                            <li class="time">1小时前</li>
+                            <li><i class="iconfont iconshare-line"></i>500</li>
+                            <li><i class="iconfont iconliulang"></i>931</li>
+                            <li><i class="iconfont iconthumb-up-line"></i>80</li>
+                            <li><i class="iconfont iconmessage--line1"></i>500</li>
+                        </ul>
+                    </div>
+                    <div class="addone none">+1</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-left">
+                    <img src="${res}/images/newslist/SSJG_02.png" alt="">
+                </div>
+                <div class="item-right">
+                    <a href="javasraipt:;" class="Regular">习近平在观察陆军步兵学院时强调 全面提高办学育人水平为强军事业提供有力人才支持</a>
+                    <div class="bottom Semilight">
+                        <ul>
+                            <li>新闻网</li>
+                            <li class="time">1小时前</li>
+                            <li><i class="iconfont iconshare-line"></i>500</li>
+                            <li><i class="iconfont iconliulang"></i>931</li>
+                            <li><i class="iconfont iconthumb-up-line"></i>80</li>
+                            <li><i class="iconfont iconmessage--line1"></i>500</li>
+                        </ul>
+                    </div>
+                    <div class="addone none">+1</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-left">
+                    <img src="${res}/images/newslist/SSJG_03.png" alt="">
+                </div>
+                <div class="item-right">
+                    <a href="javasraipt:;" class="Regular">习近平在观察陆军步兵学院时强调 全面提高办学育人水平为强军事业提供有力人才支持</a>
+                    <div class="bottom Semilight">
+                        <ul>
+                            <li>新闻网</li>
+                            <li class="time">1小时前</li>
+                            <li><i class="iconfont iconshare-line"></i>500</li>
+                            <li><i class="iconfont iconliulang"></i>931</li>
+                            <li><i class="iconfont iconthumb-up-line"></i>80</li>
+                            <li><i class="iconfont iconmessage--line1"></i>500</li>
+                        </ul>
+                    </div>
+                    <div class="addone none">+1</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-left">
+                    <img src="${res}/images/newslist/SSJG_04.png" alt="">
+                </div>
+                <div class="item-right">
+                    <a href="javasraipt:;" class="Regular">习近平在观察陆军步兵学院时强调 全面提高办学育人水平为强军事业提供有力人才支持</a>
+                    <div class="bottom Semilight">
+                        <ul>
+                            <li>新闻网</li>
+                            <li class="time">1小时前</li>
+                            <li><i class="iconfont iconshare-line"></i>500</li>
+                            <li><i class="iconfont iconliulang"></i>931</li>
+                            <li><i class="iconfont iconthumb-up-line"></i>80</li>
+                            <li><i class="iconfont iconmessage--line1"></i>500</li>
+                        </ul>
+                    </div>
+                    <div class="addone none">+1</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-left">
+                    <img src="${res}/images/newslist/SSJG_05.png" alt="">
+                </div>
+                <div class="item-right">
+                    <a href="javasraipt:;" class="Regular">习近平在观察陆军步兵学院时强调 全面提高办学育人水平为强军事业提供有力人才支持</a>
+                    <div class="bottom Semilight">
+                        <ul>
+                            <li>新闻网</li>
+                            <li class="time">1小时前</li>
+                            <li><i class="iconfont iconshare-line"></i>500</li>
+                            <li><i class="iconfont iconliulang"></i>931</li>
+                            <li><i class="iconfont iconthumb-up-line"></i>80</li>
+                            <li><i class="iconfont iconmessage--line1"></i>500</li>
+                        </ul>
+                    </div>
+                    <div class="addone none">+1</div>
+                </div>
+            </div>
+            <div class="loading Semilight hover"><a href="javascript:;">加载更多</a></div>
+        </div>
+        <!-- 新闻列表右侧 -->
+        <div class="news-right">
+            <div class="hot-search Regular">热搜关键词<div></div></div>
+            <div class="right-tag Semilight">
+                <ul>
+                    <li><a href="javascript:;">华为</a></li>
+                    <li><a href="javascript:;">谷歌</a></li>
+                    <li><a href="javascript:;">小米</a></li>
+                    <li><a href="javascript:;">动漫</a></li>
+                    <li><a href="javascript:;">影视剧</a></li>
+                    <li><a href="javascript:;">消费</a></li>
+                    <li><a href="javascript:;">出国留学</a></li>
+                    <li><a href="javascript:;">相亲</a></li>
+                    <li><a href="javascript:;">电影</a></li>
+                    <li><a href="javascript:;">社保</a></li>
+                    <li><a href="javascript:;">教育</a></li>
+					<div class="clearfix"></div>
+                </ul>
+            </div>
+            <div class="today-news Regular">今日要闻<div class="cut"></div>
+                <div class="update Semilight"><i class="iconfont iconhuanyipi"></i>换一批</div>
+            </div>
+            <div class="right-main-news overflow">
+                <div class="main-news pointer overflow">
+                    <div class="left-img"><img src="${res}/images/newslist/XWXQ_YW01.png" alt=""></div>
+                    <div class="right-text Semilight">
+                        <a href="javasraipt:;">重磅！不一样的长三角主要领导座谈会</a>
+                        <div><i class="iconfont iconliulang"></i>951</div>
+                    </div>
+                </div>
+                <div class="main-news pointer">
+                    <div class="left-img"><img src="${res}/images/newslist/XWXQ_YW02.png" alt=""></div>
+                    <div class="right-text Semilight">
+                        <a href="javasraipt:;">重磅！不一样的长三角主要领导座谈会</a>
+                        <div><i class="iconfont iconliulang"></i>951</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hot-sort Regular">热点排行<div></div></div>
+            <div class="sorting overflow">
+                <div class="item overflow">
+                    <div class="number fl before-three Bold">1</div>
+                    <div class="text fl Semilight"><a href="javascript:;">习近平：奋力开创中部地区崛起局面</a></div>
+                </div>
+                <div class="item overflow">
+                    <div class="number fl before-three Bold">2</div>
+                    <div class="text fl Semilight"><a href="javascript:;">习近平：奋力开创中部地区崛起局面</a></div>
+                </div>
+                <div class="item overflow">
+                    <div class="number fl before-three Bold">3</div>
+                    <div class="text fl Semilight"><a href="javascript:;">习近平：奋力开创中部地区崛起局面</a></div>
+                </div>
+                <div class="item overflow">
+                    <div class="number fl Bold">4</div>
+                    <div class="text fl Semilight"><a href="javascript:;">习近平：奋力开创中部地区崛起局面</a></div>
+                </div>
+                <div class="item overflow">
+                    <div class="number fl Bold">5</div>
+                    <div class="text fl Semilight"><a href="javascript:;">习近平：奋力开创中部地区崛起局面</a></div>
+                </div>
+                <div class="item overflow">
+                    <div class="number fl Bold">6</div>
+                    <div class="text fl Semilight"><a href="javascript:;">习近平：奋力开创中部地区崛起局面</a></div>
+                </div>
+            </div>
+            
+        </div>
+
+
+    </div>
+
+    <!-- 顶部导航 -->
+	[#include "../includes/footer.html"/]
+	<!--顶部导航 over-->
+	<!-- 底部模块 -->
+    <script src="${res}/js/jquery.jSlider.js"></script>
+    <script src="${res}/js/newslist.js"></script>
+</body>
+</html>

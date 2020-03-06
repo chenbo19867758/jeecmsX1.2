@@ -1,0 +1,43 @@
+.container{padding-bottom: 60px;}
+.lunbo { width: 100%; height: 518px; border-radius: 4px; behavior: url(../src/pie/PIE.htc); }
+.lunbo .jSlider img { width: 100%; }
+.lunbo .jSlider .navigator .prev { display: none; }
+.lunbo .jSlider .navigator .next { display: none; }
+.lunbo .jSlider .controller .indicator span { filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000, endColorstr=#66000000); }
+.lunbo .jSlider .controller .indicator .selected { background-color: #fff; width: 28px; height: 12px; }
+.lunbo .jSlider .background-img{background-size: cover;background-repeat: no-repeat;width: 100%;height: 100%;background-position: center center;}
+.lunbo .jSlider .background-img a{width: 100%;height: 100%;}
+.container .download-left { margin-right: 35px; width: 795px; }
+.container .download-left .left-nav { margin-top: 43px; margin-bottom: 10px; }
+.container .download-left .left-nav ul li a { float: left; display: block; height: 28px; line-height: 28px; margin-right: 61px; color: #333; font-size: 16px; }
+.container .download-left .left-nav ul li a:hover{color: #E30B20;border-bottom: 2px solid #E30B20;}
+.container .download-left .left-nav ul li .mark-red { color: #E30B20; border-bottom: 2px solid #E30B20; }
+.container .download-left .download-list .download-item {border:1px solid transparent;border-radius: 4px; behavior: url(../src/pie/PIE.htc); padding: 21px 0 21px 22px; width: 255px; height: 100px; margin-top: 20px; margin-right: 10px;}
+.container .download-left .download-list .download-item:hover{border: 1px solid #E5E5E5;}
+.container .download-left .download-list .download-item img {width:60px; height:60px; border-radius: 6px; behavior: url(../src/pie/PIE.htc);}
+.container .download-left .download-list .download-item .message { padding: 6px 0 0 18px; }
+.container .download-left .download-list .download-item .message .downName { font-size: 16px; color: #333333; }
+.container .download-left .download-list .download-item .message .downName:hover{
+	color: #E30B20;
+}
+.container .download-left .download-list .download-item .message .info { margin-top: 15px; font-size: 12px; color: #999; }
+.container .download-left .download-list .download-item .message .info .line { color: #E6E6E6; margin: 0 4px; }
+.container .download-right { width: 370px; }
+.container .download-right .hot-sort { margin-top: 50px; width: 100%; position: relative; padding-left: 14px; color: #333; font-size: 16px;}
+.container .download-right .hot-sort div { border-bottom: 1px solid #E5E5E5; width: 283px; position: absolute; top: 10px; left: 85px; }
+.container .download-right .hot-sort .hot-right{behavior: url(../pie/PIE.htc);position: absolute;top: 0;left: 0; height: 20px;width: 4px;border-radius: 0 4px 4px 0;background-color: #E30B20;}
+.container .download-right .right-list { width: 100%; }
+.container .download-right .right-list .right-item { height: 45px; width: 100%; margin-top: 20px; position: relative; }
+.container .download-right .right-list .right-item:hover a { display: block;}
+.container .download-right .right-list .right-item .number { color: #999; font-size: 20px; margin-right: 19px; height: 45px; line-height: 45px; width: 38px;font-style: italic;}
+.container .download-right .right-list .right-item .before { color: #E30B20; }
+.container .download-right .right-list .right-item img { width: 45px; height: 45px; margin-right: 20px; }
+.container .download-right .right-list .right-item .item-message{width: 214px;}
+.container .download-right .right-list .right-item .item-message .message-title { font-size: 14px; color: #333; }
+.container .download-right .right-list .right-item .item-message .message-title:hover { color: #E30B20; }
+.container .download-right .right-list .right-item .item-message .info { margin-top: 8px; font-size: 12px; color: #B3B3B3; }
+.container .download-right .right-list .right-item .item-message .info .download-num { color: #999999; }
+.container .download-right .right-list .right-item .item-message .info .line { color: #E6E6E6; margin: 0 9px; }
+.container .download-right .right-list .right-item .down {  width: 64px; height: 26px; line-height: 26px; text-align: center; border: 1px solid #E30B20; border-radius: 13px; behavior: url(../src/pie/PIE.htc); font-size: 12px; color: #E30B20; position: absolute; bottom: 0; right: 0; }
+.container .download-right .right-list .right-item .down:hover { color: #fff; background-color: #E30B20;}
+/*# sourceMappingURL=downloadList.css.map */

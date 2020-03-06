@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="jeecms-component">
+	<class>com.jeecms.resource.domain.ResourcesSpace</class>
+		<class>com.jeecms.resource.domain.ResourcesSpaceData</class>
+		<class>com.jeecms.member.domain.MemberLevel</class>
+		<class>com.jeecms.member.domain.MemberMessage</class>
+		<class>com.jeecms.auth.domain.CoreApi</class>
+		<class>com.jeecms.auth.domain.CoreMenu</class>
+		<class>com.jeecms.auth.domain.CoreRole</class>
+		<class>com.jeecms.auth.domain.CoreUser</class>
+		<class>com.jeecms.resource.domain.UploadFtp</class>
+		<class>com.jeecms.resource.domain.UploadOss</class>
+		<class>com.jeecms.system.domain.DictData</class>
+		<class>com.jeecms.system.domain.DictType</class>
+		<class>com.jeecms.system.domain.Email</class>
+		<class>com.jeecms.system.domain.GlobalConfig</class>
+		<class>com.jeecms.system.domain.MessageTpl</class>
+		<class>com.jeecms.system.domain.MessageTplDetails</class>
+		<class>com.jeecms.system.domain.SysMessage</class>
+		<class>com.jeecms.system.domain.Area</class>
+		<class>com.jeecms.system.domain.Link</class>
+		<class>com.jeecms.system.domain.SysLinkType</class>
+		<class>com.jeecms.system.domain.SysThird</class>
+		<class>com.jeecms.system.domain.SysJob</class>
+		<class>com.jeecms.system.domain.SysSearchWord</class>
+		<class>com.jeecms.system.domain.Sms</class>
+		<class>com.jeecms.auth.domain.LoginToken</class>
+		<class>com.jeecms.system.domain.CmsSite</class>
+		<class>com.jeecms.system.domain.CmsDataPerm</class>
+		<class>com.jeecms.system.domain.CmsOrg</class>
+		<class>com.jeecms.content.domain.CmsModel</class>
+		<class>com.jeecms.content.domain.CmsModelItem</class>
+		<class>com.jeecms.content.domain.CmsModelTpl</class>
+		<class>com.jeecms.channel.domain.Channel</class>
+		<class>com.jeecms.channel.domain.ChannelContentTpl</class>
+		<class>com.jeecms.channel.domain.ChannelExt</class>
+		<class>com.jeecms.system.domain.CmsDataPermCfg</class>
+	</persistence-unit>
+</persistence>

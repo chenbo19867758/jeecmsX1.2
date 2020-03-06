@@ -1,0 +1,143 @@
+.index-title {
+	display: flex;
+	padding: 0.25rem 0.4rem;
+	font-size: 0.32rem;
+	justify-content: space-between;
+	border-bottom: 1px solid rgba(240, 240, 240, 1);
+	background: #FFFFFF;
+	position: sticky;
+	top: 0.96rem;
+	z-index: 10;
+}
+.header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+
+.index-title .title-red {
+	color: #E30B20;
+}
+
+.hot-title {
+	padding: 0.35rem 0.4rem;
+	font-size: 0.32rem;
+	line-height: 0.55rem;
+	color: #333;
+	margin-top: 1rem;
+	padding-bottom: 0;
+}
+.hot-title .title-top{
+	line-height: 1;
+}
+.hot-title .title-top a{
+	line-height: 1;
+}
+.hot-title .headline {
+	display: inline-block;
+	padding: 0.05rem 0.1rem;
+	background: rgba(227, 11, 32, 1);
+	border-radius: 2px;
+	line-height: 0.28rem;
+	color: #FFFFFF;
+	font-size: 0.2rem;
+	margin-right: 0.1rem;
+	position: relative;
+	top: -0.05rem;
+}
+.hot-title .headline a{
+	color: #333;
+}
+
+.index-player{
+	width: 6.75rem;
+	margin: 0 auto;
+	border-radius: 0.04rem;
+	overflow: hidden;
+}
+.index-player a{
+	display: inline-block;
+}
+.index-player img{
+	width: 6.76rem;
+	height: 3.8rem;
+}
+.index-player .index-player-title{
+	text-align: center;
+	color: #fff;
+	font-size: 0.32rem;
+	position: relative;
+	bottom: 0.6rem;
+}
+.index-player .wh_indicator{
+	bottom: -0.15rem;
+	z-index: 100;
+}
+.separate{
+	width: 100%;
+	height: 0.2rem;
+	background-color: #F5F5FA;
+}
+	
+.lunbo {
+	margin: 0.4rem 0;
+	width: 6.7rem;
+	margin-left: 0.4rem;
+}
+.swiper-container {
+	width: 6.7rem;
+	border-radius: 0.10rem;
+	overflow: hidden;
+	height: 3.8rem;
+}
+.swiper-container a {
+	width: 100%;
+	display: block;
+}
+.swiper-slide{
+	position: relative;
+}
+.swiper-slide .text h4{
+	font-size:0.32rem;
+	font-family:PingFang SC;
+	color:rgba(255,255,255,1);
+}
+.swiper-slide .text {
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	left: 0;
+	bottom: 0.56rem;
+}
+.swiper-container a .image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 3.8rem;
+	background-size: 100% 100%;
+	border-radius: 0.1rem;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets {
+	align-items: center;
+	bottom: 0.21rem;
+	height: 0.18rem;
+	line-height: 0;
+	margin: 0 auto;
+	margin-top: -0.4rem;
+	position: relative;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+	width: 0.16rem;
+	height: 0.16rem;
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	border-radius: 50%;
+	background: transparent;
+	opacity: 1;
+	margin: 0 0.2rem;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet.swiper-pagination-bullet-active {
+	background: rgba(255, 255, 255, 0.8);
+	border: none;
+}

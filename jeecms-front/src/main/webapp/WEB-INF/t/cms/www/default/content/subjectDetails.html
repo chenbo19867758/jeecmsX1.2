@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>专题详情页</title>
+    <link rel="stylesheet" href="${res}/css/subjectDetails.css">
+    <link rel="stylesheet" href="${res}/css/jSlider.css">
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+        [#include "../includes/header.html"/]
+<script type="text/javascript">
+			$(function () {
+				Cms.viewCount("${base}", "${content.id}");
+				getContentUp("${content.id}");
+				getUsercomment("${content.id}");
+				genPermCheck("${content.id}")
+			});
+			function genPermCheck(contentId,channelId) {
+				$.ajax({
+					url: "${base}/permCheck",
+					data: {
+						contentId:contentId,
+						channelId:channelId
+					},
+					success: function (result) {
+						if(result.data!=1){location.href = "${base}/login"}
+					}
+				});
+			}
+		</script>
+    </div>
+    <!--顶部导航 over-->
+
+    <!-- 中间部分 -->
+    <div class="big-img">
+        <img src="${res}/images/subject/ZT_JD01.png" alt="">
+    </div>
+    <div class="container">
+        <!-- 轮播部分 -->
+        <div class="lunbo-part overflow">
+            <div class="part-left fl">
+                <div class="lunbo hover overflow">
+                    <!-- <div id="slider1" class="jSlider" data-loop="true" data-navigation="always" data-indicator="always">
+                        <div><a href="javascript:;"><img src="${res}/images/subject/ZT_LB01.png" alt="" /></a></div>
+                        <div><a href="javascript:;"><img src="${res}/images/subject/ZT_LB02.png" alt="" /></a></div>
+                        <div><a href="javascript:;"><img src="${res}/images/subject/ZT_LB03.png" alt="" /></a></div>
+                    </div>
+                    <div class="text Light">
+                        <a href="javascript:;">【新时代·美丽幸福新边疆】移动的界碑———边境线的守望者</a>
+                    </div> -->
+                    <div class="banner" id="b04">
+                        <ul>
+                            <li>
+                                <a href="javascript:;"><img src="${res}/images/subject/ZT_LB01.png" alt="" /></a>
+                                <div class="text Light">
+                                    <a href="javascript:;">【新时代·美丽幸福新边疆】移动的界碑———边境线的守望者</a>
+                                </div>
+                            </li>
+                            <li><a href="javascript:;"><img src="${res}/images/subject/ZT_LB02.png" alt="" /></a>
+                                <div class="text Light">
+                                    <a href="javascript:;">【新时代·美丽幸福新边疆】移动的界碑———边境线的守望者</a>
+                                </div>
+                            </li>
+                            <li><a href="javascript:;"><img src="${res}/images/subject/ZT_LB03.png" alt="" /></a>
+                                <div class="text Light">
+                                    <a href="javascript:;">【新时代·美丽幸福新边疆】移动的界碑———边境线的守望者</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="javascript:void(0);" class="unslider-arrow04 prev hover">
+                            <i class="iconfont iconjiaodiantujiantouzuo arrow" id="al"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="unslider-arrow04 next hover">
+                            <i class="iconfont iconjiaodiantujiantou arrow" id="ar"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="part-right fl">
+                <span class="Bold">网络主题采访活动内蒙古站启动</span>
+                <p class="Semilight">
+                    7月15日,“新时代·幸福美丽新边疆”网络主题采访活动内蒙古站拉开帷幕。主题采访活动由中央网信办网络新闻信息传播局，组织中央和地方新闻网站采访团队深入新疆、内蒙古、西藏三个自治区和新疆生...<a
+                        href="#">查看详情></a></p>
+                <span class="two Bold">多彩南疆 新疆是个好地方</span>
+                <p class="Semilight">
+                    遥远、古老、神秘、风情……从巍巍雪山到漫漫边境，从无垠戈壁到热情巴扎，这里，闻乐起舞，这里，瓜果甜心。人们，在起伏的山脉间触碰天空，在古老的河流里聆听灵魂。记忆悠长，丝路的驼铃回响在...<a
+                        href="#">查看详情></a></p>
+                <div class="word Semilight">幸福来敲门！破译克拉玛依老年社区的“夕阳密码”</div>
+                <div class="word Semilight">这群可爱的小伙子，守护中哈边境最后六公里铁路线</div>
+            </div>
+        </div>
+        <div class="hot-page Regular pointer">专题图集<div></div>
+        </div>
+        <div class="img-list overflow">
+            <div class="first">
+                <img src="${res}/images/subject/ZT_TJ01.png" alt="">
+                <div class="text Regular">《从太空看地球》诡异沙漠一夜变“泳池”</div>
+            </div>
+            <div>
+                <img src="${res}/images/subject/ZT_TJ02.png" alt="">
+                <div class="text Regular">《从太空看地球》诡异沙漠一夜变“泳池”</div>
+            </div>
+            <div>
+                <img src="${res}/images/subject/ZT_TJ03.png" alt="">
+                <div class="text Regular">《从太空看地球》诡异沙漠一夜变“泳池”</div>
+            </div>
+            <div>
+                <img src="${res}/images/subject/ZT_TJ04.png" alt="">
+                <div class="text Regular">《从太空看地球》诡异沙漠一夜变“泳池”</div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- 顶部导航 -->
+    [#include "../includes/footer.html"/]
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <script src="${res}/js/jquery.jSlider.js"></script>
+    <script src="${res}/js/unslider.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            var unslider04 = $('#b04').unslider({
+                    dots: true,
+                    speed: 500
+                }),
+                data04 = unslider04.data('unslider');
+
+            $('.unslider-arrow04').click(function () {
+                var fn = this.className.split(' ')[1];
+                data04[fn]();
+            });
+        });
+    </script>
+</body>
+
+</html>

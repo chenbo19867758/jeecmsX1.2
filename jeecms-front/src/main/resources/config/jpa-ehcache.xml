@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache updateCheck="false" name="jpaCache">
+	<diskStore path="java.io.tmpdir/jeecms/ehcache/jpa" />
+
+	<!-- maxEntriesLocalHeap: 内存中最大对象数量。0不限制。 maxEntriesLocalDisk：硬盘中最大对象数量。0不限制。默认为0。 
+		eternal：对象是否永不过期。true或false。 timeToIdleSeconds：闲置时间。超过这个时间没有被使用，将失效。0不限制。默认为0。 
+		timeToLiveSeconds：生存时间。从创建到过期的时间。0不限制。默认为0。 -->
+	<defaultCache maxEntriesLocalHeap="10000000" maxEntriesLocalDisk="10000000"
+		eternal="false" timeToIdleSeconds="1200" timeToLiveSeconds="3600"
+		overflowToDisk="true" />
+	<!-- 查询结果缓存 -->
+	<cache name="org.hibernate.cache.internal.StandardQueryCache"
+		maxEntriesLocalHeap="200000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<!-- 表更新时间缓存 -->
+	<cache name="org.hibernate.cache.spi.UpdateTimestampsCache"
+		maxEntriesLocalHeap="200000" eternal="false" overflowToDisk="true" />
+
+	<cache name="LoginTokenCache-" maxEntriesLocalHeap="10000"
+		eternal="false" overflowToDisk="true" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" />
+
+	<cache name="BaseService-" maxEntriesLocalHeap="1000000"
+		eternal="false" overflowToDisk="true" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" />
+
+
+	<cache name="com.jeecms.resource.domain.UploadFtp"
+		maxEntriesLocalHeap="10" eternal="false" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.resource.domain.UploadOss"
+		maxEntriesLocalHeap="10" eternal="false" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.resource.domain.ResourcesSpace"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.resource.domain.ResourcesSpaceData"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="600"
+		timeToLiveSeconds="600" overflowToDisk="true" />
+
+	<cache name="com.jeecms.auth.domain.CoreUser"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreUserExt"
+		   maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreUser.roles"
+		maxEntriesLocalHeap="100" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreUser.menus"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreUser.sites"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreUser.permCfgs"
+		   maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreUser.dataPerms"
+		   maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreUser.wechatInfos"
+		   maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreUser.weiboInfos"
+		   maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+
+
+	<cache name="com.jeecms.auth.domain.CoreUserMessage"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.LoginToken"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+
+    <cache name="com.jeecms.auth.domain.CoreRole"
+		maxEntriesLocalHeap="100" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreRole.menus"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreRole.sites"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreMenu"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreMenu.apis"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreMenu.roles"
+		maxEntriesLocalHeap="100" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreMenu.childs"
+		maxEntriesLocalHeap="100" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.auth.domain.CoreApi"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+
+	<cache name="com.jeecms.backup.domain.DatabaseBackupRecord"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+
+	<cache name="com.jeecms.channel.domain.Channel"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+
+	<cache name="com.jeecms.channel.domain.ChannelAttr"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.channel.domain.ChannelAttrRes"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.channel.domain.ChannelContentTpl"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.channel.domain.ChannelExt"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.ChannelTxt"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.channel.domain.Channel.childs"
+		   maxEntriesLocalHeap="1000000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.channel.domain.Channel.contentTpls"
+		   maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.channel.domain.Channel.txts"
+		   maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+
+	<cache name="com.jeecms.content.domain.CmsModel"
+		maxEntriesLocalHeap="100" eternal="false" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.CmsModel.items"
+		   maxEntriesLocalHeap="2000" eternal="false" timeToIdleSeconds="3600"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.CmsModel.tpls"
+		   maxEntriesLocalHeap="2000" eternal="false" timeToIdleSeconds="3600"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.CmsModelItem"
+		maxEntriesLocalHeap="2000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.CmsModelTpl"
+		maxEntriesLocalHeap="2000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.Content"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.Content.contentTxts"
+		   maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.Content.contentAttrs"
+		   maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.Content.contentChannels"
+		   maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.Content.contentCopys"
+		   maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+
+	<cache name="com.jeecms.content.domain.ContentAnnotation"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.ContentAttr"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.ContentAttrRes"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.ContentChannel"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.ContentCountDay"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.ContentCountMonth"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.ContentCountWeek"
+		   maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.ContentExt"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.ContentLuceneError"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.ContentRecord"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.ContentRelation"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.ContentTxt"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.content.domain.ContentVersion"
+		maxEntriesLocalHeap="100000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+
+	<cache name="com.jeecms.interact.domain.UserComment"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.interact.domain.UserCommentReport"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.interact.domain.UserInteractionRecord"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<!-- 会员 -->
+	<cache name="com.jeecms.member.domain.MemberAttr"
+		maxEntriesLocalHeap="50000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.member.domain.MemberGroup"
+		maxEntriesLocalHeap="50000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.member.domain.MemberLevel"
+		maxEntriesLocalHeap="50000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.member.domain.MemberMessage"
+		maxEntriesLocalHeap="50000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.member.domain.SysUserThird"
+		maxEntriesLocalHeap="50000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.member.domain.UserCollection"
+		maxEntriesLocalHeap="50000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+
+	<cache name="com.jeecms.statistics.domain.StatisticsAccess"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.statistics.domain.StatisticsAccessPage"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.statistics.domain.StatisticsFlow"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.statistics.domain.StatisticsSource"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+
+
+	<cache name="com.jeecms.system.domain.Area"
+		maxEntriesLocalHeap="50000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.CmsDataPerm"
+		maxEntriesLocalHeap="50000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.CmsDataPermCfg"
+		maxEntriesLocalHeap="50000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.CmsOrg"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.CmsOrg.menus"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.CmsOrg.child"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.CmsOrg.sites"
+		maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.CmsSite"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.CmsSite.cfg"
+		   maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.CmsSiteExt"
+		   maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.CmsSite.modelTpls"
+		   maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.CmsSite.childs"
+		   maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="1200"
+		   timeToLiveSeconds="3600" overflowToDisk="true" />
+
+	<cache name="com.jeecms.system.domain.CmsSite.channels"
+		maxEntriesLocalHeap="50000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<!--
+	<cache name="com.jeecms.system.domain.CmsSite.modelTpls"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	-->
+	<cache name="com.jeecms.system.domain.ContentMark"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.ContentSource"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.ContentTag"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.ContentType"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.DictData"
+		maxEntriesLocalHeap="50000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.DictType"
+		maxEntriesLocalHeap="50000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.DictType.datas"
+		maxEntriesLocalHeap="50000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.Email"
+		maxEntriesLocalHeap="100" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.Sms"
+		maxEntriesLocalHeap="100" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.GlobalConfig"
+		maxEntriesLocalHeap="1" eternal="false" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.GlobalConfig.attrs"
+		maxEntriesLocalHeap="200" eternal="false" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.Link"
+		maxEntriesLocalHeap="500" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.MessageTpl"
+		maxEntriesLocalHeap="100" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.MessageTplDetails"
+		maxEntriesLocalHeap="100" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SiteModelTpl"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.StatisticsLogClick"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.StatisticsLogOperate"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.StatisticsLogResult"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.StatisticsLogUser"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysAccessRecord"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysBlackList"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysHotWord"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysHotWordCategory"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysIptables"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysJob"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysLinkType"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysLog"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysLogBackup"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysLogConfig"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysMessage"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysOss"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysSearchWord"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysSecret"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysSensitiveWord"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SystemMessagePush"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysThird"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+	<cache name="com.jeecms.system.domain.SysUserSecret"
+		maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="1200"
+		timeToLiveSeconds="3600" overflowToDisk="true" />
+
+	<cache name="memberCache" maxEntriesLocalHeap="50000"
+		eternal="false" timeToIdleSeconds="1200" timeToLiveSeconds="1200"
+		overflowToDisk="true" />
+	<cache name="searchWordCache" maxEntriesLocalHeap="50000"
+		eternal="false" timeToIdleSeconds="1200" timeToLiveSeconds="1200"
+		overflowToDisk="true" />
+	<cache name="captchaCache" maxEntriesLocalHeap="50000"
+		eternal="false" timeToIdleSeconds="1200" timeToLiveSeconds="1200"
+		overflowToDisk="true" />
+	<!-- 访问记录缓存 -->
+	<cache name="accessRecordCache" maxEntriesLocalHeap="10000"
+		eternal="false" overflowToDisk="true" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" />
+	<!-- 每个用户访问记录最新缓存 -->
+	<cache name="uvAccessRecordCache" maxEntriesLocalHeap="10000"
+		eternal="false" overflowToDisk="true" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" />
+	<!-- 每个ip访问记录最新缓存 -->
+	<cache name="ipAccessRecordCache" maxEntriesLocalHeap="10000"
+		eternal="false" overflowToDisk="true" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" />
+	<!-- 最新访问记录缓存 -->
+	<cache name="lastAccessRecordCache" maxEntriesLocalHeap="10000"
+		eternal="false" overflowToDisk="true" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" />
+	<!-- 前台统计缓存 -->
+	<cache name="siteFlowCache" maxEntriesLocalHeap="10000"
+		eternal="false" overflowToDisk="true" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" />
+	<!-- 内容数值记录 -->
+	<cache name="contentNumCache" maxEntriesLocalHeap="10000"
+		eternal="false" overflowToDisk="true" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" />
+
+	<!-- 微博相关缓存，目前只添加微博粉丝以及微博账户信息缓存，如果扩展，需要另外添加 -->
+	<cache name="com.jeecms.weibo.domain.WeiboFans" maxEntriesLocalHeap="10000"
+		eternal="false" overflowToDisk="true" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" />
+	<cache name="com.jeecms.weibo.domain.WeiboInfo" maxEntriesLocalHeap="10000"
+               eternal="false" overflowToDisk="true" timeToIdleSeconds="3600"
+               timeToLiveSeconds="3600" />
+   <!-- 百度语音Token -->
+	<cache name="baiduVoiceTokenCache" maxEntriesLocalHeap="10000"
+			eternal="false" overflowToDisk="true" timeToIdleSeconds="3600"
+			timeToLiveSeconds="2592000" />
+
+
+</ehcache>

@@ -1,0 +1,113 @@
+#musics{
+	padding: 0 0.4rem;
+	border-top: 1px solid #F5F5F5;
+}
+.music-header{
+	width: 100%;
+}
+.music-header ul{
+	width: 100%;
+	display: flex;
+	font-size: 0.32rem;
+}
+.music-header ul li{
+	margin-right: 0.59rem;
+	padding: 0.24rem 0;
+}
+.music-header ul li{
+	font-size: 0.28rem;
+	color: #333333;
+}
+.music-header ul li:last-child{
+	font-size: 0.32rem;
+	border-bottom: 0.04rem solid #E30B20;
+}
+.music-header .music-header-bottom{
+	width: 100%;
+	height: 1px;
+	background-color: #F5F5F5;
+	margin-top: -1px;
+}
+.important-top-no h4{
+	color: #333333;
+	font-size: 0.32rem;
+}
+.important-top-no p{
+	display: flex;
+	margin-top: 0.2rem;
+}
+.important-top-no p span:first-child{
+	color: #333333;
+	font-size: 0.2rem;
+	margin-right: 0.45rem;
+}
+.important-top-no p span:last-child{
+	color: #999999;
+	font-size: 0.2rem;
+}
+.important-bottom{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 0.56rem;
+}
+.important-bottom a div{
+	display: flex;
+	color: #666666;
+	font-size: 0.22rem;
+	line-height: 0.22rem;
+}
+.important-bottom a div img{
+	margin-right: 0.07rem;
+	width: 0.26rem;
+	height: 0.22rem;
+}
+.important-bottom a div span{
+	color: #666666;
+	font-size: 0.22rem;
+}
+.important-top-music{
+	padding: 0.8rem 0;
+}
+.important-top-music audio{
+	margin: 0.5rem auto;
+}
+.important-top-music .music-play{
+	position: relative;
+}
+.important-top-music .music-play .big-img{
+	width: 100%;
+	border-radius: 0.05rem;
+	height: 2rem;
+	background-size: cover;
+	background-position:center center;
+	background-repeat: no-repeat;
+}
+.important-top-music .music-play .play-icon{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 1rem;
+	height: 1rem;
+	margin-left: -0.5rem;
+	margin-top: -0.5rem;
+}
+.important-top-music .music-play .play-time{
+	position: absolute;
+	bottom: 0.21rem;
+	right: 0.19rem;
+	display: flex;
+	line-height: 0.22rem;
+}
+.important-top-music .music-play .play-time img{
+	width: 0.14rem;
+	height: 0.18rem;
+	margin-right: 0.13rem;
+}
+.important-top-music .music-play .play-time span{
+	font-size: 0.22rem;
+	color: #FFFFFF;
+}
+.important-top-music audio{
+	display: none;
+	width: 100%;
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+	</head>
+	<body>
+		<!-- 头部导航 -->
+		[#assign type="1" channelTitle="文库"/]
+		[#include "../includes/header.html"]
+		<!-- 头部导航 -->
+		<link rel="stylesheet" href="${mobileRes}/css/wtt-common.css" />
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/bignav.css" />
+		<link rel="stylesheet" href="${mobileRes}/css/doc.css">
+		<script src="${mobileRes}/js/loading.js" type="text/javascript" charset="utf-8"></script>
+		<div class="doc" id="doc">
+			<div class="channel" v-if="navlist.length">
+				<ul >
+					[@cms_channel_list count='5' parentId='1750']
+					[#list tag_list as a]
+						[#if a.id==channel.id]<li>
+						<a href="${a.url!}" class="mark-red Medium">${a.name!}
+						</a>
+					</li>
+					[#else]<li>
+						<a href="${a.url!}" class="Regular">${a.name!}
+						</a>
+					</li>
+					[/#if]
+					[/#list]
+					[/@cms_channel_list]
+				</ul>
+			</div>
+			<div class="inner">
+				<div class="doc-list"  v-if="list.length">
+					<div class="box" v-for="(a,index) in list" :key="index" v-if="a">
+						<a :href="a.url">
+							<div :class="!a.docResource?'pdf image':a.docResource.suffix=='.txt'?'txt image':a.docResource.suffix=='.xls'||a.docResource.suffix=='.xlsx'?'excel image':a.docResource.suffix=='.doc'||a.docResource.suffix=='.docx'?'word image':a.docResource.suffix=='.pptx'?'ppt image':'pdf image'" ></div>
+							<article>
+								<h4 class="Medium" v-if="a.title.length <= 22" v-text="a.title"></h4>
+								<h4 class="Medium" v-else v-text="a.title.slice(0,22)+'...'"></h4>
+								<div class="bottom">
+									<div>
+										<span class="Regular" v-text="a.releaseTimeString.slice(0,10)"></span>
+									</div>
+									<div>
+										<img src="${mobileRes}/images/icon/yueduliang-m.png" alt="">
+										<span class="Regular" v-text="a.views"></span>
+									</div>
+									<div>
+										<img src="${mobileRes}/images/icon/xiazai.png" alt="">
+										<span class="Regular" v-text="a.downloads"></span>
+									</div>
+								</div>
+							</article>
+						</a>
+					</div>
+					<my-loading :isload="isload" :load="load"></my-loading>
+				</div>
+			</div>
+
+		</div>
+		[#include "../includes/footerTabbar.html"]
+	</body>
+	<script type="text/javascript">
+		//获取要定位元素距离浏览器顶部的距离
+		var navH = $(".channel").offset().top;
+		// console.log(navH);
+		//滚动条事件
+		$(window).scroll(function() {
+			//获取滚动条的滑动距离
+			var scroH = $(this).scrollTop();
+			// console.log(scroH);
+			//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+			if (scroH >= navH) {
+				$(".channel").css({
+					"position": "sticky",
+					"top": '0.96rem',
+					"z-index": 10
+				});
+				
+			}else if (scroH < navH) {
+				$(".channel").css({
+					"position": "static"
+				});
+			}
+		})
+		var doc = new Vue({
+			el: '#doc',
+			data: {
+				path:'${channel.path}',
+				getData: {
+					channelPaths: '${channel.path}',
+					size: 10,
+					page: 1,
+					orderBy: 1
+				},
+				list: [],
+				uploading: true,
+				isload: false,
+				load: '加载更多',
+				last: false,
+				navlist:[]
+			},
+			mounted() {
+				if(this.list.length<10){
+					this.load='没有更多了'
+					this.isload=false
+					this.last=true
+				}
+			},
+			created() {
+				var that = this
+				// 获取栏目列表
+				api.GET('/channel/list',{
+					parentId:'1750'
+				},function(res){
+					if(res.code==200){
+						
+						that.navlist=res.data
+					}
+					
+				})
+				// 获取栏目内容信息
+				
+				api.GET('/content/page', this.getData, function(res) {
+					if (res.code == 200) {
+						that.list = res.data.content
+					}
+				})
+				
+			},
+			methods: {
+				loading() {
+					if (this.uploading) {
+						this.uploading = false
+						if (!this.last) {
+							this.isload = true
+							this.load = '加载中'
+							this.getData.page += 1
+							this.getContentPage()
+						} else {
+							this.isload = false
+							this.load = '没有更多了'
+						}
+					}
+				},
+				getContentPage() {
+					var that = this
+					api.GET('/content/page', this.getData, function(res) {
+						console.log(res)
+						if (res.code == 200) {
+							that.uploading = true
+							that.list = that.list.concat(res.data.content)
+							that.last=res.data.last
+							if (!that.last) {
+								that.isload = true
+								that.load = '加载更多'
+							} else {
+								that.isload = false
+								that.load = '没有更多了'
+							}
+						}
+					})
+				},
+			},
+
+			filters: {
+				ellipsis(value) {
+					if (!value) return ''
+					if (value.length > 18) {
+						return value.slice(0, 18) + '...'
+					}
+					return value
+				}
+			}
+			
+		})
+	</script>
+</html>

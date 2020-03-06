@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>${channel.name}-${site.name}</title>
+    <link rel="stylesheet" href="${res}/css/pageList-hot.css">
+    <link rel="stylesheet" href="${res}/css/jSlider.css">
+    <meta name="title" content="${site.seoTitle!}" />
+    <meta name="keywords" content="${site.seoKeyword!}" />
+	<meta name="description" content="${site.seoDescription!}" />
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+    [#include "../includes/header.html"/]
+    </div>
+    <!--顶部导航 over-->
+
+    <!-- 中间部分 -->
+    <div class="container overflow">
+        <div class="left fl Regular">
+            [@cms_channel path='photo' siteId='1']<a href="${tag_bean.url!}" class="no-active block">时事速递</a>[/@cms_channel]
+            [@cms_channel path='rtpx' siteId='1']<a href="${tag_bean.url!}" class="active block">${tag_bean.name!}</a>[/@cms_channel]
+        </div>
+        <div class="right fl">
+            <!-- 新闻列表 -->
+            [@cms_content_list channelPath='sssd' isTop='0' count='10' orderBy='3' siteId='1']
+							[#list tag_list as a]
+            <div class="newslist-item overflow">
+                <div class="item-left fl">
+                    <a href="${a.url}" target="_blank"><img src="${(a.attr.listImg.resUrl)!}" alt=""></a>
+                </div>
+                <div class="item-right fl">
+                    <div class="big-title Bold"><a href="${a.url}" target="_blank" class="hover">[@text_cut s=a.title len=30 append='...' /]</a></div>
+                    <div class="time Semilight"><span class="timeTitle">${a.channelName!}</span><span class="timeData">${a.releaseTime!}</span></div>
+                    <div class="tag Semilight hover clearfix">
+                        <!--<div class="fl hover pointer"><i class="iconfont iconshare-line"></i>500</div>-->
+                        <a class="uicon fl "><i class="iconfont iconliulang"></i><span>${a.views!}</span></a>
+                        
+                        <a class="uicon fl hover ups"><i class="iconfont iconthumb-up-line"></i><span>${a.ups!}</span></a>
+                        <a class="uicon fl hover comments" href="${a.url}?comments=1" target="_blank"><i class="iconfont iconmessage--line1"></i><span>${a.comments!}</span>
+                        </a>
+                    </div>
+                    <p class="Semilight">
+                        [@text_cut s=a.description! len=85 append='...' /]</p>
+                </div>
+            </div>
+            [/#list]
+            [/@cms_content_list]
+            <div class="loading Semilight hover" id="upLoading" onclick="loading(${channel.id})">加载更多</div>
+        </div>
+    </div>
+
+    <!-- 顶部导航 -->
+    [#include "../includes/footer.html"/]
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <script src="${res}/js/jquery.jSlider.js"></script>
+	<script src="${res}/js/photo.js"></script>
+	<script type="text/javascript">
+	    $(document).ready(function (e) {
+	        var unslider04 = $('#b04').unslider({
+	                dots: true,
+	                speed: 1000, //  The speed to animate each slide (in milliseconds)
+	                delay: 4000
+	            }),
+	            data04 = unslider04.data('unslider');
+	        $('.unslider-arrow04').click(function () {
+	            var fn = this.className.split(' ')[1];
+	            data04[fn]();
+	        });
+	    });
+		$('.uicon.comments').hover(function() {
+			$(this).children('i').removeClass("iconmessage--line1").addClass('iconmessage--fill')
+		}, function() {
+			$(this).children('i').addClass("iconmessage--line1").removeClass('iconmessage--fill')
+		});
+	</script>
+</body>
+
+</html>

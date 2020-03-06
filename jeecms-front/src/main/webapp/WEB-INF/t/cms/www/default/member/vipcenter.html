@@ -1,0 +1,2223 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>会员中心-个人资料</title>
+    <link rel="stylesheet" href="${res}/css/vip-center.css" />
+    <link rel="stylesheet" href="${res}/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${res}/css/daterangepicker.css" />
+    <link rel="stylesheet" href="${res}/ueditor/themes/default/css/ueditor.min.css" />
+    <link rel="stylesheet" href="${res}/css/jquery.my-message.1.1.css">
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+        [#include "../includes/header.html"/]
+    </div>
+    <!--顶部导航 over-->
+    <!-- 中间部分 -->
+    <div class="main">
+        <div class="vip-title Regular">
+            <span>会员中心</span>
+        </div>
+        <div class="data overflow">
+            <div class="data-left fl Regular">
+                <a class="persondata active-red block" href="#">个人资料</a>
+                <a class="inter block" href="#">我的互动</a>
+                <a class="coll block" href="#">我的收藏</a>
+                <a class="support block" href="#">我的点赞</a>
+                <a class="introc block" href="#">我的投稿</a>
+            </div>
+            <div class="data-right fl">
+                <div class="one">
+                    <div class="person">
+                        <div class="user-data overflow">
+                            <div class="upload fl">
+                                <!-- <i class="iconfont iconxiangji camera none pointer"></i>
+                                <img id="pic" class="u-icon fl pointer hover" src="${res}/images/VIP/GRZX_TX01.png"
+                                    alt="" />
+                                <input id="upload" name="file" accept="image/*" type="file" style="display: none" />
+                                <div class="upload-black none"></div> -->
+                            </div>
+                            <div class="user-details fl">
+                                <div class="first overflow">
+                                    <div class="username Regular fl overflow">
+                                        <span class="user1 block fl"></span>
+                                        <span class="userLevel fl block"></span>
+                                    </div>
+                                    <div class="others integral fl Regular">积分：<span></span></div>
+                                    <div class="others emails fl Regular">邮箱：<span></span></div>
+                                </div>
+                                <div class="second overflow">
+                                    <div class="repair Regular fl hover"><i class="iconfont iconiconlineedit-"></i><a
+                                            href="#" class="mima">修改密码</a>
+                                    </div>
+                                    <div class="repair repairs Regular fl hover"><i
+                                            class="iconfont iconiconlineedit-"></i><a href="#" class="youx">修改注册邮箱</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="personinfo">
+                            <div class="info-title Bold">个人信息</div>
+                            <form action="" id="datas">
+                                <div class="append"></div>
+                                <!-- <div class="inputinfo">
+                                    <label class="Light" for="">真实姓名：</label>
+                                    <input type="text" name="realName" id="realName" autocomplete="off" />
+                                    <div class="errors"></div>
+                                </div>
+                                <div class="inputinfo">
+                                    <label class="Light" for="">手机号：</label>
+                                    <input type="text" name="tel" id="tel" autocomplete="off" />
+                                    <div class="errors err"></div>
+                                </div>
+                                <div class="radio">
+                                    <label class="Light" for="">性别：</label>
+                                    <input type="radio" name="man" id="man" value="1" />
+                                    <label class="sex Semilight" for="">男</label>
+                                    <input type="radio" name="woman" id="woman" value="2" />
+                                    <label class="sex Semilight" for="">女</label>
+                                </div>
+                                <div class="singer">
+                                    <label class="Light" for="">个性签名：</label>
+                                    <textarea maxlength="150" name="bigtext" id="bigtext"></textarea>
+                                    <div class="errors"></div>
+                                </div> -->
+                                <input class="Regular pointer" type="submit" value="提交" />
+                            </form>
+                        </div>
+                    </div>
+                    <div class="repairpassword none">
+                        <a class="block Regular" href="#"><span><i class="iconfont iconjiaodiantujiantouzuo"></i></span>返回</a>
+                        <span class="repairs Bold">修改密码</span>
+                        <form action="" id="rpform">
+                            <div class="before">
+                                <label class="Light" for=""><span>*</span>原密码：</label>
+                                <input type="password" name="oldPStr" id="oldPStr" placeholder="请输入原密码" />
+                                <div class="errors"></div>
+                                <i class="close iconfont iconshangchu pointer hover none"></i>
+                                <div class="ifHide">
+                                    <i class="hid iconfont iconeye-close-line pointer none"></i>
+                                    <i class="look iconfont iconliulang pointer none"></i>
+                                </div>
+                            </div>
+                            <div class="now">
+                                <label class="Light" for=""><span>*</span>新密码：</label>
+                                <input type="password" name="newPStr" id="newPStr" placeholder="请输入新密码" />
+                                <div class="errors"></div>
+                            </div>
+                            <div class="sure">
+                                <label class="Light" for=""><span>*</span>确认新密码：</label>
+                                <input type="password" name="againPStr" id="againPStr" placeholder="请输入新密码" />
+                                <div class="errors"></div>
+                            </div>
+                            <input class="Regular pointer" type="submit" value="确认修改" />
+                        </form>
+                    </div>
+                    <div class="repairEmail none">
+                        <div class="before">
+                            <a class="block Regular" href="#"><span><i class="iconfont iconjiaodiantujiantouzuo"></i></span>返回</a>
+                            <span class="repair Bold">修改注册邮箱</span>
+                            <div class="forms">
+                                <div>
+                                    <label class="Light" for=""><span>*</span>邮箱验证码：</label>
+                                    <input type="text" name="code" id="code" />
+                                    <button class="getnum Light pointer hover" onclick="setTime()">获取邮箱验证码</button>
+                                    <p class="Semilight none">请输入邮箱验证码</p>
+                                </div>
+                                <input class="nextTo Regular pointer" type="button" value="下一步" onclick="nextEmail()" />
+                            </div>
+                        </div>
+                        <div class="next none">
+                            <a class="block Regular" href="#"><span><i class="iconfont iconjiaodiantujiantouzuo"></i></span>返回</a>
+                            <span class="repair Bold">修改注册邮箱</span>
+                            <form action="" id="reEmail">
+                                <div>
+                                    <label class="Light" for=""><span>*</span>新邮箱：</label>
+                                    <input type="text" name="newEmail" id="newEmail" />
+                                    <div class="errors"></div>
+                                </div>
+                                <div>
+                                    <label class="Light" for=""><span>*</span>邮箱验证码：</label>
+                                    <input type="text" name="newEmailCode" id="newEmailCode" />
+                                    <div class="getnum Light pointer hover" onclick="newsetTime()">获取邮箱验证码</div>
+                                    <div class="errors"></div>
+                                </div>
+                                <input class="Regular pointer" type="submit" value="提交" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="two none">
+                    <span class="interact Bold">我的互动</span>
+                    <div class="date">
+                        <span class="Semilight">评论时间：</span>
+                        <input type="text" name="date1" id="date1" class="form-control" placeholder="请输入日期"/>
+                        <input type="hidden" id="startTime" name="startTime" class="form-control" />
+                        <input type="hidden" id="endTime" name="endTime" class="form-control" />
+                        <a class="Regular block" href="#">查询</a>
+                        <i class="iconfont iconshijian"></i>
+                    </div>
+                    <div class="intersearch Semilight">
+                        <table>
+                            <tr>
+                                <th class="first">序号</th>
+                                <th class="second">内容</th>
+                                <th class="third">点赞数</th>
+                                <th class="forth">时间</th>
+                                <th>操作</th>
+                            </tr>
+                            <!-- <tr class="content">
+                                <td class="num"><span>1</span></td>
+                                <td class="content-text">
+                                    <div class="top overflow">
+                                        <span class="block fl">评论：</span>
+                                        <div class="block fl">
+                                            党的建设质量，在深入学习贯彻党的思想理论上作表率，在始终同党中央保持高度一致，英国交通部拟出台分级驾照制度，限制新手司机夜间驾车，按照这套制度，拿到驾照不久的司机要被实行宵禁，或者要求其夜间驾车得有人陪护，推出分级驾照目的是减少夜间交通事故英国交通部拟出台分级驾照制度。
+                                        </div>
+                                    </div>
+                                    <div class="bottom">
+                                        <span>文章：</span>
+                                        <a href="#">李克强联合国承诺援助难民：这是责任和道义的担当</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="zan hover pointer">
+                                        <i class="iconfont iconthumb-up-line"></i>
+                                        <span>50</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="time">
+                                        <span>2019-02-03 13:39:26</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="operate">
+                                        <div class="item left fl pointer hover">
+                                            <i class="iconfont iconmessage--line1"></i>
+                                            <span class="applys">回复</span>
+                                        </div>
+                                        <div class="item right fl pointer hover">
+                                            <i class="iconfont icondelete-bin-line"></i>
+                                            <span class="del">删除</span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="content">
+                                <td class="num"><span>2</span></td>
+                                <td class="content-text">
+                                    <div class="top overflow">
+                                        <span class="block fl">回复</span>
+                                        <div class="block fl">阿瑾：对，你说的很对！</div>
+                                    </div>
+                                    <div class="bottom">
+                                        <span>文章：</span>
+                                        <a href="#">李克强联合国承诺援助难民：这是责任和道义的担当</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="zan hover pointer">
+                                        <i class="iconfont iconthumb-up-line"></i>
+                                        <span>50</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="time">
+                                        <span>2019-02-03 13:39:26</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="operate">
+                                        <div class="item left fl pointer hover">
+                                            <i class="iconfont iconmessage--line1"></i>
+                                            <span class="applys">回复</span>
+                                        </div>
+                                        <div class="item right fl pointer hover">
+                                            <i class="iconfont icondelete-bin-line"></i>
+                                            <span class="del">删除</span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="content">
+                                <td class="num"><span>3</span></td>
+                                <td class="content-text">
+                                    <div class="top overflow">
+                                        <span class="block fl">回复</span>
+                                        <div class="block fl">阿瑾：对，你说的很对！</div>
+                                    </div>
+                                    <div class="bottom">
+                                        <span>文章：</span>
+                                        <a href="#">李克强联合国承诺援助难民：这是责任和道义的担当</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="zan hover pointer">
+                                        <i class="iconfont iconthumb-up-line"></i>
+                                        <span>50</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="time">
+                                        <span>2019-02-03 13:39:26</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="operate">
+                                        <div class="item left fl pointer hover">
+                                            <i class="iconfont iconmessage--line1"></i>
+                                            <span class="applys">回复</span>
+                                        </div>
+                                        <div class="item right fl pointer hover">
+                                            <i class="iconfont icondelete-bin-line"></i>
+                                            <span class="del">删除</span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </td>
+                            </tr> -->
+                        </table>
+                        <img src="${res}/images/VIP/HD_01.png" class="none" alt="" />
+                    </div>
+                    <div class="pageDiv"></div>
+                </div>
+                <div class="three none">
+                    <span class="interact Bold">我的收藏</span>
+                    <div class="collect overflow">
+                        <div class="collect-title fl Semilight">
+                            <span>标题：</span>
+                            <input type="text" name="collectTitle" id="collectTitle" />
+                        </div>
+                        <div class="date fl">
+                            <span class="Semilight">评论时间：</span>
+                            <input type="text" name="date2" id="date2" class="form-control" placeholder="请输入日期"/>
+                            <input type="hidden" id="startTime1" name="startTime1" class="form-control" />
+                            <input type="hidden" id="endTime1" name="endTime1" class="form-control" />
+                            <a class="Regular block" href="#">查询</a>
+                            <i class="iconfont iconshijian"></i>
+                        </div>
+                    </div>
+                    <div class="inter-search">
+                        <table>
+                            <tr class="Regular">
+                                <th class="first">序号</th>
+                                <th class="second">文章</th>
+                                <th class="third">收藏时间</th>
+                                <th>操作</th>
+                            </tr>
+
+                            <!-- <tr class="content">
+                                <td class="num"><span>1</span></td>
+                                <td>
+                                    <div class="article overflow">
+                                        <img class="block fl" src="${res}/images/VIP/SY_PH02.png" alt="">
+                                        <div class="text fl">
+                                            <span class="Regular">习近平在视察陆军步兵学院时强调全面提高办学育人水平为强军事业提供有力人才支持</span>
+                                            <div class="small Semilight">
+                                                <span class="left">新闻网</span>
+                                                <span class="right">1小时前</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="time Semilight">
+                                    <span>2019-03-27</span>
+                                </td>
+                                <td class="iscollect Semilight">
+                                    <div class="heart hover pointer">
+                                        <i class="iconfont iconheart-fill"></i>
+                                        <span>取消收藏</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="content">
+                                <td class="num"><span>1</span></td>
+                                <td>
+                                    <div class="article overflow">
+                                        <img class="block fl" src="${res}/images/VIP/SY_PH02.png" alt="">
+                                        <div class="text fl">
+                                            <span class="Regular">习近平在视察陆军步兵学院时强调全面提高办学育人水平为强军事业提供有力人才支持</span>
+                                            <div class="small Semilight">
+                                                <span class="left">新闻网</span>
+                                                <span class="right">1小时前</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="time Semilight">
+                                    <span>2019-03-27</span>
+                                </td>
+                                <td class="iscollect Semilight">
+                                    <div class="heart hover pointer">
+                                        <i class="iconfont iconheart-fill"></i>
+                                        <span>取消收藏</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="content">
+                                <td class="num"><span>1</span></td>
+                                <td>
+                                    <div class="article overflow">
+                                        <img class="block fl" src="${res}/images/VIP/SY_PH02.png" alt="">
+                                        <div class="text fl">
+                                            <span class="Regular">习近平在视察陆军步兵学院时强调全面提高办学育人水平为强军事业提供有力人才支持</span>
+                                            <div class="small Semilight">
+                                                <span class="left">新闻网</span>
+                                                <span class="right">1小时前</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="time Semilight">
+                                    <span>2019-03-27</span>
+                                </td>
+                                <td class="iscollect Semilight">
+                                    <div class="heart hover pointer">
+                                        <i class="iconfont iconheart-fill"></i>
+                                        <span>取消收藏</span>
+                                    </div>
+                                </td>
+                            </tr> -->
+                        </table>
+                        <img src="${res}/images/VIP/SC_01.png" class="inter-img none" alt="" />
+                    </div>
+                    <div class="pageDiv"></div>
+                </div>
+                <div class="four none">
+                    <span class="interact Bold">我的点赞</span>
+                    <div class="inter-search">
+                        <table>
+                            <tr class="Regular">
+                                <th class="first">序号</th>
+                                <th class="second">内容</th>
+                                <th class="third">操作</th>
+                            </tr>
+                            <!-- <tr class="content">
+                                <td class="num"><span>1</span></td>
+                                <td>
+                                    <div class="top overflow">
+                                        <span class="block fl">评论：</span>
+                                        <div class="block fl">
+                                            党的建设质量，在深入学习贯彻党的思想理论上作表率，在始终同党中央保持高度一致，英国交通部拟出台分级驾照制度，限制新手司机夜间驾车，按照这套制度，拿到驾照不久的司机要被实行宵禁，或者要求其夜间驾车得有人陪护，推出分级驾照目的是减少夜间交通事故英国交通部拟出台分级驾照制度。
+                                        </div>
+                                    </div>
+                                    <div class="bottom">
+                                        <span>文章：</span>
+                                        <a href="#">李克强联合国承诺援助难民：这是责任和道义的担当</a>
+                                    </div>
+                                </td>
+                                <td class="iscollect Semilight">
+                                    <div class="heart hover pointer">
+                                        <i class="iconfont iconthumb-up-fill"></i>
+                                        <span class="cancel">取消点赞</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="content">
+                                <td class="num"><span>2</span></td>
+                                <td>
+                                    <div class="bottom">
+                                        <span>文章：</span>
+                                        <a href="#">李克强联合国承诺援助难民：这是责任和道义的担当</a>
+                                    </div>
+                                </td>
+                                <td class="iscollect Semilight">
+                                    <div class="heart hover pointer">
+                                        <i class="iconfont iconthumb-up-fill"></i>
+                                        <span class="cancel">取消点赞</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="content">
+                                <td class="num"><span>3</span></td>
+                                <td>
+                                    <div class="top overflow">
+                                        <span class="block fl">回复</span>
+                                        <div class="block fl">阿瑾：对，你说的很对！</div>
+                                    </div>
+                                    <div class="bottom">
+                                        <span>文章：</span>
+                                        <a href="#">李克强联合国承诺援助难民：这是责任和道义的担当</a>
+                                    </div>
+                                </td>
+                                <td class="iscollect Semilight">
+                                    <div class="heart hover pointer">
+                                        <i class="iconfont iconthumb-up-fill"></i>
+                                        <span class="cancel">取消点赞</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="content">
+                                <td class="num"><span>4</span></td>
+                                <td>
+                                    <div class="top overflow">
+                                        <span class="block fl">评论：</span>
+                                        <div class="block fl">
+                                            党的建设质量，在深入学习贯彻党的思想理论上作表率，在始终同党中央保。
+                                        </div>
+                                    </div>
+                                    <div class="bottom">
+                                        <span>文章：</span>
+                                        <a href="#">李克强联合国承诺援助难民：这是责任和道义的担当</a>
+                                    </div>
+                                </td>
+                                <td class="iscollect Semilight">
+                                    <div class="heart hover pointer">
+                                        <i class="iconfont iconthumb-up-fill"></i>
+                                        <span class="cancel">取消点赞</span>
+                                    </div>
+                                </td>
+                            </tr> -->
+
+                        </table>
+                        <img src="${res}/images/VIP/DZ_01.png" class="none" alt="" />
+                    </div>
+                    <div class="pageDiv"></div>
+                </div>
+                <div class="five none">
+                    <div class="contri">
+                        <span class="interact Bold block">我的投稿</span>
+                        <a class="contribute block Regular" href="#">我要投稿</a>
+                        <div class="collect overflow">
+                            <div class="state Semilight fl">
+                                <span>稿件状态：</span>
+                                <select name="mine-contri" id="mine-contri">
+                                    <option value="">所有</option>
+                                    <option value="2">暂存</option>
+                                    <option value="1">待审核</option>
+                                    <option value="3">已发布</option>
+                                </select>
+                            </div>
+                            <div class="collect-title fl Semilight">
+                                <span>标题：</span>
+                                <input type="text" name="contriTitle" id="contriTitle" />
+                            </div>
+                            <div class="date fl">
+                                <span class="Semilight">投稿时间：</span>
+                                <input type="text" name="date3" id="date3" class="form-control" placeholder="请输入日期"/>
+                                <input type="hidden" id="startTime2" name="startTime2" class="form-control" />
+                                <input type="hidden" id="endTime2" name="endTime2" class="form-control" />
+                                <a class="Regular block" href="#">查询</a>
+                                <i class="iconfont iconshijian"></i>
+                            </div>
+                        </div>
+                        <div class="inter-search">
+                            <table class="inter-table">
+                                <tr class="Regular">
+                                    <th class="first">序号</th>
+                                    <th class="second">投稿栏目</th>
+                                    <th class="third">标题</th>
+                                    <th class="forth">投稿时间</th>
+                                    <th class="fifth">稿件状态</th>
+                                    <th>操作</th>
+                                </tr>
+                            </table>
+                            <img src="${res}/images/VIP/TG_01.png" class="none" alt="" />
+                        </div>
+                        <div class="pageDiv"></div>
+                    </div>
+                    <div class="gocontribute none">
+                        <a class="callback block Regular" href="#"><span><i class="iconfont iconjiaodiantujiantouzuo"></i></span>返回</a>
+                        <form action="" id="newContri">
+                            <div class="type">
+                                <label class="Regular" for=""><span>*</span>投稿栏目：</label>
+								<i class="iconfont iconarrow_down" style="position: absolute;font-size: 32px; left: 365px; color: #999999;"></i>
+								<i class="iconfont iconsanjiaofuhao-shang none" style="position: absolute;font-size: 32px; left: 365px; color: #999999;"></i>
+                                <span name="select1" id="channnelId" class="Semilight">
+									
+								</span>
+                                <label class="author Regular" for="">作者：</label>
+                                <input type="text" name="author" id="author" value="本站编辑" maxlength="50" />
+                                <span class="Semilight">不填则默认为本站编辑</span>
+                            </div>
+                            <div id="cascadePut"></div>
+                            <div class="send-title">
+                                <label class="Regular" for=""><span>*</span>标题：</label>
+                                <input type="text" name="title" id="title" maxlength="50" placeholder="请输入文章标题" />
+                                <div class="errors"></div>
+                            </div>
+                            <div class="text-area">
+                                <label class="Regular" for="">摘要：</label>
+                                <textarea name="description" id="description" maxlength="150"></textarea>
+                            </div>
+                            <div class="big-text">
+                                <label class="block Regular fl" for="">正文：</label>
+                                <!-- <script id="editor" type="text/plain" name="gdesc" style="width:838px;height:838px;">
+                                </script> -->
+								<textarea id="richText" style="width:838px;height:838px;margin-left: 91px;" name="richText"></textarea>
+                            </div>
+                            <input class="save0 Regular pointer" type="submit" value="提交" />
+                            <a class="save Regular block pointer" href="#" onclick="newcontri(false)">暂存</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 顶部导航 -->
+    [#include "../includes/footer.html"/]
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+	
+    <script type="text/javascript">
+        function detectionUser() {
+            location.href = '${base}/login'
+        }
+    </script>
+    
+    <script src="${res}/js/vip-center.js"></script>
+    <script src="${res}/js/moment.min.js"></script>
+    <script src="${res}/js/daterangepicker.js"></script>
+    <script src="${res}/ueditor/ueditor.config.js" charset="utf-8"></script>
+    <script src="${res}/ueditor/ueditor.all.min.js" charset="utf-8"></script>
+    <script src="${res}/ueditor/lang/zh-cn/zh-cn.js" charset="utf-8"></script>
+    <script src="${res}/js/rules.js"></script>
+	
+	<script type="text/javascript">
+	$(function(){
+	   
+	   var MARK= true
+	   UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+	   UE.Editor.prototype.getActionUrl = function(action) {
+		   console.log(action)
+			if (action == 'uploadimage') {
+				return "${base}/ueditor/upload?Type=Image&mark="+MARK;
+			} else if (action == 'uploadvideo') {
+				return "${base}/ueditor/upload?Type=Media";
+			}else if (action == 'uploadfile') {
+				return "${base}/ueditor/upload?Type=File";
+			}else if (action == 'catchimage') {
+				return "${base}/ueditor/getRemoteImage";
+			}else if (action == 'uploadscrawl') {
+				return "${base}/ueditor/scrawlImage?Type=Image";
+			}else if (action == 'listimage'||action == 'listfile') {
+				return "${base}/ueditor/imageManager?picNum=50&insite=false";
+			}else {
+				return this._bkGetActionUrl.call(this, action);
+			}
+	   }
+	});
+	</script>
+	<script type="text/javascript">
+	  $(document).ready(function(){
+	   var editor= UE.getEditor('richText');
+	   //截图快捷键ctrl+shift+A
+	   editor.addshortcutkey({
+			"snapscreen" : "ctrl+shift+65"
+	   });
+	  });
+	</script>
+    <script type="text/javascript">
+       
+        //获取邮箱验证码 
+        function setTime() {
+            var countdown = 60;
+            var obj = $('.repairEmail .before .getnum');
+            var eBox = $('.one .emails span').text();
+            if (countdown == 60) {
+                var data = {
+                    'type': 3,
+                    'targetNumber': eBox
+                }
+                api.POST('/register/sendEmailMsg', data, function (result) {
+                    if (result.code == 200) {
+                        myMessage.add(result.message, 'success');
+                        clearInterval(countEmail)
+                        var countEmail = setInterval(function () {
+                            if (countdown == 0) {
+                                obj.prop('disabled', false);
+                                obj.text("重新获取");
+                                obj.css('color', '#333');
+                                countdown = 60;
+                                clearInterval(countEmail);
+                            } else {
+                                obj.prop('disabled', true);
+                                obj.text("重新获取(" + countdown + "秒)");
+                                obj.css('color', '#999999');
+                                countdown--;
+                            }
+                        }, 1000);
+                    } else {
+                        myMessage.add(result.message, 'warning');
+                    }
+                });
+            }
+        }
+        //修改注册邮箱下一步
+        function nextEmail() {
+            if ($('#code').val() !== '') {
+                var eBox = $('.one .emails span').text();
+                var code = $('#code').val();
+                let data = {
+                    'type': 3,
+                    'code': code,
+                    'email': eBox
+                }
+                api.GET('/register/mail/authcode', data, function (result) {
+                    if (result.code == 200) {
+                        $('.repairEmail .before').addClass('none');
+                        $('.repairEmail .next').removeClass('none');
+                    } else {
+                        // $('.person').addClass('none');
+                        // $('.repairEmail .before form div p').removeClass('none');
+                        myMessage.add(result.message, 'warning');
+                    }
+                });
+            } else {
+                $('.repairEmail .before').removeClass('none');
+                myMessage.add('请输入邮箱验证码', 'warning');
+            }
+        }
+        //新邮箱获取验证码
+        function newsetTime() {
+            var countdown = 60;
+            var obj = $('.repairEmail .next .getnum');
+            var newEmail = $('#newEmail').val();
+            var reg = new RegExp(/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/)
+            if (reg.test(newEmail)) {
+                if (countdown == 60) {
+                    let data = {
+                        'type': 4,
+                        'targetNumber': newEmail
+                    }
+
+                    if (newEmail != $('.one .first .emails span').text()) {
+                        api.POST('/register/sendEmailMsg', data, function (result) {
+                            if (result.code == 200) {
+                                clearInterval(countEmail);
+                                var countEmail = setInterval(function () {
+                                    if (countdown == 0) {
+                                        obj.prop('disabled', false);
+                                        obj.text("重新获取");
+                                        obj.css('color', '#333');
+                                        countdown = 60;
+                                        clearInterval(countEmail);
+                                        return;
+                                    } else {
+                                        obj.prop('disabled', true);
+                                        obj.text("重新获取(" + countdown + "秒)");
+                                        obj.css('color', '#999999');
+                                        countdown--;
+                                    }
+                                }, 1000);
+                            } else {
+                                myMessage.add(result.message, 'warning');
+                            }
+                        });
+                    }
+                }
+            }else{
+                myMessage.add('请输入正确邮箱', 'warning');
+            }
+        }
+        //用户信息
+        var infoArr=[]
+        // 头像字段名称
+        var avatar = ''
+        function perinfo() {
+            api.GET('/member/memberinfo', {}, function (result) {
+                if (result.code == 200) {
+                    $('.one .first .integral span').text(result.data.dataField.integral);
+                    $('.one .first .emails').hide();
+                    $('.one .second .repairs').hide();
+                    $('.one .first .username .user1').text(result.data.dataField.username);
+                    // var headImage='${base}'+result.data.headImage;
+                    $('#pic').attr('src',headImage);
+                    if (result.data.levelIcon) {
+                        var icon = '${base}' + result.data.levelIcon
+                        $('.one .first .username .userLevel').html('<img src="' + icon + '" alt="">');
+                    }
+                    var form = $('#datas .append');
+                    var datas = result.data.renderingField.formListBase;
+                    var types=[]
+                    infoArr=[]
+                    var upload=$('.upload');
+                    var htm='<img id="pic" class="u-icon fl pointer hover" src="${res}/images/VIP/GRZX_TX01.png" alt="" />'
+                    upload.html(htm);
+                    for (var i = 0; i < datas.length; i++) {
+                        types.push(datas[i].type);
+                        if (datas[i].value.name == 'realname') {
+                            var text = '<div class="inputinfo ' + datas[i].type +
+                                '"><label class="Light" for=""><span class="must none">*</span>' + datas[i]
+                                .value.label + '：</label><input type="text" name="' + datas[i].value.name + '" id="' +
+                                datas[i].value.name + '" placeholder="' + datas[i].value.tip +
+                                '" autocomplete="off" /><div class="errors"></div></div>'
+                            form.append(text);
+                            $('#' + datas[i].value.name).val(result.data.dataField[datas[i].value.name]);
+                            if (datas[i].value.isLengthLimit && datas[i].value.max >= 0) {
+                                $('#' + datas[i].value.name).attr('maxlength', datas[i].value.max);
+                            }
+                        } else if (datas[i].value.name == 'telephone') {
+                            var text = '<div class="inputinfo ' + datas[i].value.name +
+                                '"><label class="Light" for=""><span class="must none">*</span>' + datas[i]
+                                .value
+                                .label + '：</label><input type="text" name="' + datas[i].value.name + '" id="' +
+                                datas[i].value.name + '" autocomplete="off" placeholder="' + datas[i].value
+                                .tip + '" /><div class="errors"></div></div>'
+                            form.append(text);
+                            $('#' + datas[i].value.name).val(result.data.dataField[datas[i].value.name]);
+                            if (datas[i].value.isLengthLimit && datas[i].value.max >= 0) {
+                                $('#' + datas[i].value.name).attr('maxlength', datas[i].value.max);
+                            }
+                        } else if (datas[i].value.name == 'email') {
+                            $('.one .first .emails span').text(result.data.dataField.email);
+                            $('.one .first .emails').show();
+                            $('.one .second .repairs').show();
+                            // var text = '<div class="inputinfo"><label class="Light" for="">' + data[i].value
+                            //     .label + '：</label><input type="text" name="' + data[i].value.name + '" id="' +
+                            //     data[i].value.name + '" autocomplete="off" placeholder="' + data[i].value
+                            //     .placeholder + '" /><div class="errors err"></div></div>'
+                            // form.append(text);
+                            // if (data[i].value.isLengthLimit && data[i].value.max >= 0) {
+                            //     $('#datas .inputinfo input').attr('maxlength', data[i].value.max);
+                            // }
+                        } else if (datas[i].type == 'textarea') {
+                            var text = '<div class="singer ' + datas[i].value.name +
+                                '"><label class="Light" for=""><span class="must none">*</span>' + datas[i]
+                                .value.label + '：</label><textarea placeholder="'+datas[i].value.tip+'" name="' +datas[i].value.name + '" id="' + datas[i].value.name +
+                                '"></textarea><div class="errors"></div></div>'
+                            form.append(text);
+                            var obj={}
+                            obj.name=datas[i].value.name
+                            obj.type=datas[i].type
+                            infoArr.push(obj)
+                            $('#' + datas[i].value.name).val(result.data.dataField[datas[i].value.name]);
+                            if (datas[i].value.isLengthLimit && datas[i].value.max >= 0) {
+                                $('#' + datas[i].value.name).attr('maxlength', datas[i].value.max);
+                            }
+                        } else if (datas[i].type == 'input') {
+                            var text = '<div class="inputinfo ' + datas[i].value.name +
+                                '"><label class="Light" for=""><span class="must none">*</span>' + datas[i]
+                                .value
+                                .label + '：</label><input type="text" name="' + datas[i].value.name + '" id="' +
+                                datas[i].value.name + '" autocomplete="off" placeholder="' + datas[i].value
+                                .tip + '" /><div class="errors"></div></div>'
+                            form.append(text);
+                            var obj={}
+                            obj.name=datas[i].value.name
+                            obj.type=datas[i].type
+                            infoArr.push(obj)
+                            $('#' + datas[i].value.name).val(result.data.dataField[datas[i].value.name]);
+                            if (datas[i].value.isLengthLimit && datas[i].value.max >= 0) {
+                                $('#' + datas[i].value.name).attr('maxlength', datas[i].value.max);
+                            }
+                        } else if (datas[i].type== 'select') {
+                            var text = '<div class="inputinfo ' + datas[i].value.name +
+                                '"><label class="Light" for=""><span class="must none">*</span>' + datas[i].value.label + '：</label><select class="selects" name="' + datas[i].value.name + '" id="' +
+                                datas[i].value.name + '" /><div class="errors"></div></div>'
+                            form.append(text);
+                            // $('#'+datas[i].value.name).find("option:contains("+result.data.dataField.select_ewSTob.value+")").attr("selected",true)
+                            // $('#'+datas[i].value.name).val(result.data.dataField.select_ewSTob.value)
+                            // console.log($('#'+datas[i].value.name).find("option[value="+result.data.dataField.select_ewSTob.value+"]"))
+                            
+                            var name = datas[i].value.name;
+                            var opt = datas[i].value.options;
+                            var opt_others=datas[i].value.otherOption;
+                            if (opt.length != 0) {
+                                for (var j = 0; j < opt.length; j++) {
+                                    var html = '<option value="' + opt[j].value + '">' + opt[j].label +
+                                        '</option>';
+                                    $('#' + name).append(html);
+                                }
+                            }
+                            if (opt_others) {
+                                var htm = '<option value="' + opt_others.value + '">' + opt_others.label +'</option>';
+                                $('#' + name).append(htm);
+                            }
+							if(result.data.dataField[datas[i].value.name].value){
+								$('#'+datas[i].value.name).find("option[value="+result.data.dataField[datas[i].value.name].value+"]").attr('selected',true)
+							}
+                            var obj={}
+                            obj.name=datas[i].value.name
+                            obj.type=datas[i].type
+							infoArr.push(obj)
+                        }else if (datas[i].type == 'radio') {
+                            var text = '<div class="radio '+datas[i].value.name+'"><label class="Light" for=""><span class="must none">*</span>'+datas[i].value.label+'：</label>'
+                            
+                            var name = datas[i].value.name;
+                            var opt = datas[i].value.options;
+                            if (opt.length != 0) {
+                                for (var j = 0; j < opt.length; j++) {
+                                    text += '<input type="'+datas[i].type+'" name="'+datas[i].value.name+'" id="'+datas[i].value.name+'" value="'+opt[j].value+'" /><label class="sex Semilight" for="">'+opt[j].label+'</label>'
+                                }
+                            }
+                            text += '<div class="errors" id="err"></div></div>'
+                            form.append(text);
+                            var obj={}
+                            obj.name=datas[i].value.name
+                            obj.type=datas[i].type
+                            infoArr.push(obj)
+							if(result.data.dataField[datas[i].value.name].value){
+								$('#'+datas[i].value.name+'[value="'+result.data.dataField[datas[i].value.name].value+'"]').attr('checked',true)
+							}
+                        } else if (datas[i].type === 'imageUpload') {
+                            // 头像上传
+                            if (!avatar) {
+                                var headImage = '${base}'+(result.data.dataField[datas[i].value.name] ? result.data.dataField[datas[i].value.name].url : '');
+                                htm='<i class="iconfont iconxiangji camera none pointer"></i><img id="pic" class="u-icon fl pointer hover" src="'+headImage+'" alt="" /><input id="upload" name="file" accept="image/*" type="file" style="display: none" /><div class="upload-black none"></div>'
+                                upload.html(htm);
+                                avatar = datas[i].value.name
+                            }
+                        }
+                    }
+                    var rules = getRules(datas);
+                    var messages = getMessages(datas);
+                    openVerify(rules, messages);
+                    // if(!result.data.hasOwnProperty('headImage')){
+                    //     var htm='<img id="pic" class="u-icon fl pointer hover" src="" alt="" />'
+                    //     upload.html(htm);
+                    // }else{
+                    //     var htm='<i class="iconfont iconxiangji camera none pointer"></i><img id="pic" class="u-icon fl pointer hover" src="'+headImage+'" alt="" /><input id="upload" name="file" accept="image/*" type="file" style="display: none" /><div class="upload-black none"></div>'
+                    //     upload.html(htm);
+                    // }
+                }
+            });
+        }
+
+        function getRules(data) {
+            var rules = {}
+            for (var j = 0; j < data.length; j++) {
+                if (data[j].isCustom) {
+                    var name = data[j].value.name
+                    name = {}
+                    if (data[j].value.isRequired) {
+                        name.required = data[j].value.isRequired;
+                        $('.' + data[j].value.name + ' .must').removeClass('none');
+                    } 
+                    if (data[j].value.isInputLimit) {
+                        name[data[j].value.inputLimit] = data[j].value.isInputLimit;
+                    }
+                    rules[data[j].value.name] = name
+                } else {
+                    var name = data[j].value.name
+                    name = {}
+                    if (data[j].value.isRequired) {
+                        name.required = data[j].value.isRequired;
+                        $('.' + data[j].value.name + ' .must').removeClass('none');
+                    }
+                    if (data[j].value.isInputLimit) {
+                        name[data[j].value.inputLimit] = data[j].value.isInputLimit;
+                    }
+                    if (data[j].value.name == 'email') {
+                        name.regEmail = true
+                    } else if (data[j].value.name == 'telephone') {
+                        name.regTelephone = true
+                    }
+                    rules[data[j].value.name] = name
+                }
+            }
+            return rules
+        }
+
+        function getMessages(data) {
+            var messages = {}
+            for (var j = 0; j < data.length; j++) {
+                if (data[j].value.name == 'email') {
+                    var obj = {}
+                    obj.required = '请输入邮箱'
+                    messages['email'] = obj
+                } else if (data[j].value.name == 'telephone') {
+                    var obj = {}
+                    obj.required = '请输入手机号码'
+                    messages['telephone'] = obj
+                }
+                var name = data[j].value.name
+                var obj = {}
+                obj.required = data[j].value.label + '必填'
+                messages[name] = obj
+            }
+            return messages
+        }
+        //修改个人资料
+        function openVerify(rules, messages) {
+            $('#datas').validate({
+                rules: rules,
+                messages: messages,
+                //错误提示标签
+                errorElement: 'p',
+                //获得焦点时，错误提示消失
+                focusCleanup: true,
+                focusInvalid: false,
+                //失去焦点时，进行验证
+                onfocusout: function (element) {
+                    $(element).valid();
+                },
+                //错误提示的位置
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent('div').find('.errors'));
+                },
+                submitHandler: function () {
+                    var data = {}
+                    var json = {}
+                    if ($('#realname').val()) {
+                        data.realname = $('#realname').val();
+                    }
+                    if ($('#telephone').val()) {
+                        data.telephone = $('#telephone').val();
+                    }
+                    // if ($('#textarea_IwEiFw').val()) {
+                    //     json.textarea_IwEiFw = $('#textarea_IwEiFw').val();
+                    //     data.json = json;
+                    // }
+                    // if ($('#input_xQMHLK').val()) {
+                    //     json.input_xQMHLK = $('#input_xQMHLK').val();
+                    //     data.json = json;
+                    // }
+                    // if ($('#select_ewSTob').val()) {
+                    //     var select_ewSTob={
+                    //         value: '',
+                    //         otherValue: ''
+                    //     }
+                    //     select_ewSTob.value=$('#select_ewSTob').val();
+                    //     json.select_ewSTob = select_ewSTob;
+                    //     data.json = json;
+                    // }
+                    // if($('#radio:checked').val()){
+                    //     var radio={
+                    //         value: '',
+                    //         otherValue: ''
+                    //     }
+                    //     radio.value=$('#radio:checked').val();
+                    //     json.radio = radio
+                    //     data.json = json;
+                    // }
+                    for(var i=0;i<infoArr.length;i++){
+                        if(infoArr[i].type=='select'){
+                            if ($('#'+infoArr[i].name).val()) {
+                                json[infoArr[i].name] ={
+                                    value: Number($('#'+infoArr[i].name).val()),
+                                    otherValue: ''
+                                }
+                                data.json = json;
+                            }
+                        }else if(infoArr[i].type=='textarea'){
+                            if ($('#'+infoArr[i].name).val()) {
+                                json[infoArr[i].name] = $('#'+infoArr[i].name).val();
+                                data.json = json;
+                            }
+                        }else if(infoArr[i].type=='input'){
+                            if ($('#'+infoArr[i].name).val()) {
+                                json[infoArr[i].name] = $('#'+infoArr[i].name).val();
+                                data.json = json;
+                            }
+                        }else if(infoArr[i].type=='radio'){
+                            if ($('#'+infoArr[i].name).val()) {
+                                json[infoArr[i].name] ={
+                                    value: Number($('#'+infoArr[i].name+':checked').val()),
+                                    otherValue: ''
+                                }
+                                data.json = json;
+                            }
+                        }
+                        
+                    }
+                    api.PUT('/member/memberinfo', data, function (result) {
+                        if (result.code == 200) {
+                            myMessage.add('修改成功', 'success');
+                        } else if (result.code == 14002) {
+                            myMessage.add(result.message, 'warning');
+                        } else {
+                            myMessage.add(result.message, 'error');
+                        }
+                    });
+                }
+            });
+        }
+        //退出登录
+        function quitLogin() {
+            api.POST('/logout', {}, function (result) {
+                if (result.code === 200) {
+                    myMessage.add(result.message, 'success');
+                    localStorage.setItem('JEECMS-Auth-Token', '');
+                    userLoad()
+                    if (window.location.href.indexOf("member-vipcenter") != -1) {
+                        location.href = '${base}/login'
+                    }
+                } else {
+                    myMessage.add(result.message, 'error');
+                }
+            })
+        }
+        //修改密码
+        $('#rpform').validate({
+            rules: {
+                oldPStr: {
+                    required: true,
+                    secret: true
+                },
+                newPStr: {
+                    required: true,
+                    secret: true
+                },
+                againPStr: {
+                    required: true,
+                    equalTo: '#newPStr'
+                }
+            },
+            messages: {
+                oldPStr: {
+                    required: '请输入原密码'
+                },
+                newPStr: {
+                    required: '请输入新密码'
+                },
+                againPStr: {
+                    required: '请再次输入新密码',
+                    equalTo: '两次输入不一致'
+                }
+            },
+            //错误提示标签
+            errorElement: 'p',
+            //获得焦点时，错误提示消失
+            focusCleanup: true,
+            focusInvalid: false,
+            //失去焦点时，进行验证
+            onfocusout: function (element) {
+                $(element).valid();
+            },
+            //错误提示的位置
+            errorPlacement: function (error, element) {
+                error.appendTo(element.parent('div').find('.errors'));
+            },
+            submitHandler: function () {
+                var old = desEncrypt($('#oldPStr').val());
+                var news = desEncrypt($('#newPStr').val());
+                var again = desEncrypt($('#againPStr').val());
+                let data = {
+                    'oldPStr': old,
+                    'newPStr': news,
+                    'againPStr': again
+                }
+                if (old != news) {
+                    api.POST('/member/memberinfo/pstr', data, function (result) {
+                        if (result.code == 200) {
+                            $('.one .repairpassword form input').val('');
+                            myMessage.add('修改成功', 'success');
+                            quitLogin();
+                        } else {
+                            myMessage.add(result.message, 'error');
+                        }
+                    });
+                } else {
+                    myMessage.add('新密码与原密码一致', 'error');
+                }
+            }
+        });
+        $.validator.addMethod('regTelephone', function (value, element) {
+            var identReg =
+                /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(16[2|6|7])|(18[0-9])|(17([0-1]|[3]|[5-8]))|(19[1|8|9]))\d{8}$/;
+            return this.optional(element) || (identReg.test(value));
+        }, '请输入正确的手机格式');
+        $.validator.addMethod('secret', function (value, element) {
+            var identReg = /^[^\u4e00-\u9fa5]{6,18}$/;
+            return this.optional(element) || (identReg.test(value));
+        }, '请输入正确的密码格式');
+        $.validator.addMethod('regEmail', function (value, element) {
+            var identReg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+            return this.optional(element) || (identReg.test(value));
+        }, '请输入正确的邮箱格式');
+        $.validator.addMethod('inspectEmail', function (value, element) {
+            var result = false
+            $.ajax({
+                url: '/register/mail/unique',
+                type: 'GET',
+                data: {
+                    'mail': value
+                },
+                async: false //更改为同步 
+            }).done(function (date) {
+                if (date.code === 200) {
+                    result = date.data
+                } else {
+                    result = false
+                }
+            })
+            return this.optional(element) || result
+        }, '邮箱重复');
+        $.validator.addMethod('inspectTelephone', function (value, element) {
+            var result = false
+            if (value.length >= 11) {
+                $.ajax({
+                    url: '/register/phone/unique',
+                    type: 'GET',
+                    data: {
+                        'phone': value
+                    },
+                    async: false //更改为同步 
+                }).done(function (date) {
+                    if (date.code === 200) {
+                        result = date.data
+                    } else {
+                        newTel = false
+                    }
+                })
+            }
+            return this.optional(element) || result
+        }, '手机号重复');
+        $.validator.addMethod('blurEmail', function (value, element) {
+            var result = false
+            $.ajax({
+                url: '/register/mail/unique',
+                type: 'GET',
+                data: {
+                    'mail': value
+                },
+                async: false //更改为同步 
+            }).done(function (date) {
+                if (date.code === 200) {
+                    result = date.data
+                } else {
+                    result = false
+                }
+            })
+            return this.optional(element) || result
+        }, '邮箱重复');
+        //修改注册邮箱
+        $('#reEmail').validate({
+            rules: {
+                newEmail: {
+                    required: true,
+                    regEmail: true,
+                    blurEmail: true
+                },
+                newEmailCode: {
+                    required: true
+                }
+            },
+            messages: {
+                newEmail: {
+                    required: "请输入新邮箱"
+                },
+                newEmailCode: {
+                    required: "请输入邮箱验证码"
+                }
+            },
+            //错误提示标签
+            errorElement: 'p',
+            //获得焦点时，错误提示消失
+            focusCleanup: true,
+            focusInvalid: false,
+            //失去焦点时，进行验证
+            onfocusout: function (element) {
+                $(element).valid();
+            },
+            //错误提示的位置
+            errorPlacement: function (error, element) {
+                error.appendTo(element.parent('div').find('.errors'));
+            },
+            submitHandler: function () {
+                var code1 = $('#code').val();
+                var newEmail = $('#newEmail').val();
+                var code2 = $('#newEmailCode').val();
+                let data = {
+                    'code': code1,
+                    'newEmail': newEmail,
+                    'newEmailCode': code2
+                }
+                api.POST('/member/memberinfo/email', data, function (result) {
+                    if (result.code == 200) {
+                        myMessage.add(result.message, 'success');
+                        $('.repairEmail').addClass('none');
+                    } else {
+                        myMessage.add(result.message, 'error');
+                    }
+                });
+            }
+        });
+        //修改密码判断是否为管理员
+        $('.second .repair .mima').on('click', function () {
+            api.GET('/member/memberinfo', {}, function (result) {
+                if (result.code = 200) {
+                    if (result.data.admin == true) {
+                        myMessage.add('请在后台管理系统中修改密码', 'error');
+                    } else {
+                        $('.person').addClass('none');
+                        $('.repairpassword').removeClass('none');
+                    }
+                }
+            });
+        });
+        //上传头像
+        // $(".camera").click(function () {
+        //     $("#upload").click(); //隐藏了input:file样式后，点击头像就可以本地上传
+        //     $("#upload").on("change", function () {
+        //         var objUrl = getObjectURL(this.files[0]); //获取图片的路径，该路径不是图片在本地的路径
+        //         if (objUrl) {
+        //             $("#pic").attr("src", objUrl); //将图片路径存入src中，显示出图片
+        //             upimg();
+        //         }
+        //     });
+        // });
+        $(document).on('click', '.camera', function() {
+            $("#upload").click(); //隐藏了input:file样式后，点击头像就可以本地上传
+            
+            $("#upload").off('change').on("change", function () {
+                var objUrl = getObjectURL(this.files[0]); //获取图片的路径，该路径不是图片在本地的路径
+                if (objUrl) {
+                    
+                    $("#pic").attr("src", objUrl); //将图片路径存入src中，显示出图片
+                    upimg();
+                }
+            });
+	    })
+        //建立一?可存取到?file的url
+        function getObjectURL(file) {
+            var url = null;
+            if (window.createObjectURL != undefined) { // basic
+                url = window.createObjectURL(file);
+            } else if (window.URL != undefined) { // mozilla(firefox)
+                url = window.URL.createObjectURL(file);
+            } else if (window.webkitURL != undefined) { // webkit or chrome
+                url = window.webkitURL.createObjectURL(file);
+            }
+            return url;
+        }
+        //上传头像到服务器
+        function upimg() {
+            var pic = $('#upload')[0].files[0];
+            var file = new FormData();
+            file.append('uploadFile', pic, pic.name);
+            file.append('addToRes', true);
+            // file.append('typeStr', '');
+            $.ajax({
+                type: 'post',
+                url: '/member/upload/o_upload',
+                dataType: 'json',
+                data: file,
+                cache: false,
+                contentType: false,
+                processData: false,
+                async: false,
+                headers: {
+                    'JEECMS-Auth-Token': localStorage.getItem('JEECMS-Auth-Token')
+                    // 'Redirect-Header': false,
+                    // 'Content-Type': 'application/json;charset=UTF-8'
+                },
+                // beforeSend: function (xhr) {
+                //     xhr.setRequestHeader('X-Requested-With', {
+                //         toString: function () {
+                //             return '';
+                //         }
+                //     });
+                // },
+                success: function (result) {
+                    if (result.code == 200) {
+                        // myMessage.add(result.message,'success')
+                        var headImage='${base}'+result.data.fileUrl;
+                        $("#pic").attr("src", headImage);
+                        var data={
+                            'json': {
+                                [avatar]: result.data.resourceId,
+                            },
+                            'telephone':$('#telephone').val(),
+                            'realname':$('#realname').val()
+                        }
+                        api.PUT('/member/memberinfo', data, function (result) {
+                            if (result.code == 200) {
+                                myMessage.add('修改成功', 'success');
+                            } else if (result.code == 14002) {
+                                myMessage.add(result.message, 'warning');
+                            } else {
+                                myMessage.add(result.message, 'error');
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        var interactPage = 1
+        var interactTotalPages = Number
+        //我的互动
+        function interaction(p) {
+            var start = $('#startTime').val();
+            var end = $('#endTime').val();
+            var page = ''
+            if (p) {
+                page = p
+                interactPage = p
+            } else {
+                page = interactPage
+            }
+
+            api.GET('/member/interaction/page', {
+                'startTime': start,
+                'endTime': end,
+                'page': page,
+                'size': 5
+            }, function (result) {
+                if (result.code == 200) {
+                    $('.two table .content').remove()
+                    var cont = result.data.content;
+                    if (result.data.totalElements <= 0) {
+                        $('.two .intersearch img').css('display', 'block');
+                        $('.two .pageDiv').css('display', 'none');
+                    } else {
+                        $('.two .intersearch img').css('display', 'none');
+                        $('.two .pageDiv').css('display', 'block');
+                        for (var i = 0; i < cont.length; i++) {
+                            var html = ""
+                            html += '<tr class="content"><td class="num"><span>' + ((page - 1) * 5 + (i + 1)) +
+                                '</span></td><td class="content-text"><div class="top overflow">'
+                            if (cont[i].type == 1) {
+                                html += '<span>评论：</span><div class="block">' + cont[i].text
+                            } else if (cont[i].type == 2) {
+                                html += '<span class="rightReply">回复</span><div class="block">' + cont[i]
+                                    .username + '：' + cont[i].text
+                            } else if (cont[i].type == 3) {
+                                html += cont[i].username +
+                                    '<span class="leftReply">回复我：</span><div class="block">' + cont[i].text
+                            }
+                            html +=
+                                '</div></div><div class="bottom"><span>文章：</span><a target="_blank" href="' +
+                                cont[i].contentUrl + '">' + cont[i].title + '</a></div>'
+                            html +=
+                                '<div class="send-input none"><textarea maxlength="150" name="sendArea" id="sendArea"></textarea><a class="Semilight pointer block interactReply" contentId="' +
+                                cont[i].contentId + '" parentId="' + cont[i].parentId + '"  userCommentId="' +
+                                cont[i].id + '">回复</a></div>'
+
+                            html +=
+                                '</td><td><div class="zan hover"><i class="iconfont iconthumb-up-line"></i><span>' +
+                                cont[i].upCount + '</span></div></td><td><div class="time"><span>' + cont[i]
+                                .commentTime + '</span></div></td><td><div class="operate">'
+
+                            html +=
+                                '<div class="item left fl pointer hover applys"><i class="iconfont iconmessage--line1"></i><span>回复</span></div>'
+
+
+                            if (cont[i].type == 1 || cont[i].type == 2) {
+                                html +=
+                                    '<div class="item right fl pointer hover"><i class="iconfont icondelete-bin-line"></i><span onclick="noneInter(' +
+                                    cont[i].id + ')">删除</span></div>'
+                            }
+
+                            html += '<div class="clearfix"></div></div></td></tr>'
+
+                            $('.two table').append(html);
+                        }
+                        if (interactTotalPages != result.data.totalPages) {
+                            interactTotalPages = result.data.totalPages
+                            $(".two .pageDiv").createPage({
+                                pageCount: interactTotalPages, //总页数
+                                current: page, //当前页
+                                turndown: 'true', //是否显示跳转框，显示为true，不显示为false,一定记得加上引号...
+                                backFn: function (p) {
+                                    interaction(p)
+                                }
+                            });
+                        }
+
+                        //我的互动-弹起s收回回复
+                        $('.applys').click(function () {
+                            var thisClass = $(this).parent().parent().prev().prev().prev().children(
+                                '.send-input').attr('class')
+                            if (thisClass.indexOf("none") >= 0) {
+                                $(this).parent().parent().prev().prev().prev().children('.send-input')
+                                    .removeClass('none')
+									$(this).children('span').text('收起')
+                            } else {
+                                $(this).parent().parent().prev().prev().prev().children('.send-input')
+                                    .addClass('none')
+									$(this).children('span').text('回复')
+                            }
+                        })
+                    }
+                }
+            });
+        }
+
+
+
+        //我的互动-点赞
+        // function zan(id, ev) {
+        //     var e = ev || window.event;
+        //     var num = e.path[1].children[1].innerHTML;
+        //     var data = {
+        //         'commentId': id
+        //     }
+        //     api.POST('/usercomment/up', data, function (result) {
+        //         if (result.code == 200) {
+        //             num += 1;
+        //         }
+        //     });
+        // }
+        //我的互动-回复
+        $(document).on('click', '.interactReply', function () {
+            if (this.previousSibling.value) {
+                var parentId = ''
+                console.log(this.getAttribute("parentId"))
+                if (this.getAttribute("parentId") == 'null') {
+                    parentId = this.getAttribute("userCommentId")
+                } else {
+                    parentId = this.getAttribute("parentId")
+                }
+                api.POST('/usercomment', {
+                    contentId: this.getAttribute("contentId"),
+                    commentText: this.previousSibling.value,
+                    parentId: parentId,
+                    userCommentId: this.getAttribute("userCommentId")
+                }, function (data) {
+                    if (data.code == 200) {
+                        myMessage.add('评论成功', 'success');
+                        interaction()
+                    } else {
+                        myMessage.add(data.message, 'error');
+                    }
+                })
+            } else {
+                myMessage.add('请输入评论', 'error');
+            }
+        })
+
+        //我的互动-删除
+        function noneInter(id, ev) {
+            var e = ev || window.event;
+            e.path[4].remove();
+            api.GET(('/member/interaction/' + id), {}, function (result) {
+                if (result.code == 200) {
+                    $('.two .content').remove();
+                    interaction();
+                }
+            });
+        }
+
+        var collectPage = 1
+        var collectTotalPages = Number
+        //我的收藏
+        function collection(p) {
+            var start = $('#startTime1').val();
+            var end = $('#endTime1').val();
+            var $title = $('#collectTitle').val();
+            var page = ''
+            if (p) {
+                page = p
+                collectPage = p
+            } else {
+                page = collectPage
+            }
+            api.GET('/member/usercollections/page', {
+                'title': $title,
+                'startTime': start,
+                'endTime': end,
+                'page': page,
+                'size': 5
+            }, function (result) {
+                if (result.code == 200) {
+                    $('.three table .content').remove()
+                    var cont = result.data.content;
+                    if (result.data.totalElements <= 0) {
+                        $('.three .inter-search .inter-img').css('display', 'block');
+                        $('.three .pageDiv').css('display', 'none');
+                    } else {
+                        $('.three .inter-search .inter-img').css('display', 'none');
+                        $('.three .pageDiv').css('display', 'block');
+                        for (var i = 0; i < cont.length; i++) {
+                            var $text =
+                                '<tr class="content"><td class="num"><span>' + ((page - 1) * 5 + (i + 1)) +
+                                '</span></td><td><div class="article overflow">'
+								if(cont[i].contentMobileVo.modelId==912 && cont[i].contentMobileVo.imageJson.xinwenliebiaotu){//新闻
+									$text+='<img class="block fl" src="' +cont[i].contentMobileVo.imageJson.xinwenliebiaotu.url +'" alt="">'
+								}else if(cont[i].contentMobileVo.modelId==913 && cont[i].contentMobileVo.imageJson.listImg){//图片
+									$text+='<img class="block fl" src="' +cont[i].contentMobileVo.imageJson.listImg.url +'" alt="">'
+								}else if(cont[i].contentMobileVo.modelId==961 && cont[i].contentMobileVo.imageJson.wenkuliebiaotu){//文库
+									$text+='<img class="block fl" src="' +cont[i].contentMobileVo.imageJson.wenkuliebiaotu.url +'" alt="">'
+								}else if(cont[i].contentMobileVo.modelId==963 && cont[i].contentMobileVo.imageJson.shipingliebiaotu){//视频
+									$text+='<img class="block fl" src="' +cont[i].contentMobileVo.imageJson.shipingliebiaotu.url +'" alt="">'
+								}else if(cont[i].contentMobileVo.modelId==962 && cont[i].contentMobileVo.imageJson.xiazailiebiaotu){//下载
+									$text+='<img class="block fl" src="' +cont[i].contentMobileVo.imageJson.xiazailiebiaotu.url +'" alt="">'
+								}
+								$text+= '<div class="text fl"><a class="Regular" target="_blank" href="' +
+                                cont[i].url + '">' + cont[i].title +
+                                '</a><div class="small Semilight"><span class="left">' + cont[i].source +
+                                '</span><span class="right">1小时前</span></div></div></div></td><td class="time Semilight"><span>' +
+                                cont[i].createDate +
+                                '</span></td><td class="iscollect Semilight"><div class="heart hover pointer"><i class="iconfont iconheart-fill"></i><span onclick="noneCollect(' +
+                                cont[i].id + ')">取消收藏</span></div></td></tr>'
+                            $('.three table').append($text);
+                        }
+                        if (collectTotalPages != result.data.totalPages) {
+                            collectTotalPages = result.data.totalPages
+                            $(".three .pageDiv").createPage({
+                                pageCount: collectTotalPages, //总页数
+                                current: page, //当前页
+                                turndown: 'true', //是否显示跳转框，显示为true，不显示为false,一定记得加上引号...
+                                backFn: function (p) {
+                                    collection(p)
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+        //我的收藏-取消收藏
+        function noneCollect(id, ev) {
+            var e = ev || window.event;
+            e.path[3].remove();
+            let data = {
+                'id': id
+            }
+            api.GET('/member/usercollections/cancel', data, function (result) {
+                if (result.code == 200) {
+                    collection();
+                }
+            });
+
+        }
+
+        var likePage = 1
+        var likeTotalPages = Number
+        //我的点赞
+        function supports(p) {
+            var page = ''
+            if (p) {
+                page = p
+                likePage = p
+            } else {
+                page = likePage
+            }
+
+            api.GET('/member/memberinfo/like', {
+                'page': page,
+                'size': 5
+            }, function (result) {
+                if (result.code == 200) {
+                    $('.four table .content').remove()
+                    var cont = result.data.content;
+                    if (result.data.totalElements <= 0) {
+                        $('.four .inter-search img').css('display', 'block');
+                        $('.four .pageDiv').css('display', 'none');
+                    } else {
+                        for (var i = 0; i < cont.length; i++) {
+                            var $content = $('.four .content');
+                            var id = cont[i].commentId == null ? cont[i].contentId : cont[i].commentId;
+                            var $type = cont[i].type;
+                            var $text = '<tr class="content"><td class="num"><span>' + ((page - 1) * 5 + (i +
+                                    1)) +
+                                '</span></td><td><div class="bottom"><span>文章：</span><a target="_blank" href="' +
+                                cont[i].contentUrl + '">' + cont[i]
+                                .title +
+                                '</a></div></td><td class="iscollect Semilight"><div class="heart hover pointer"><i class="iconfont iconthumb-up-fill"></i><span class="cancel" onclick="noneSupport(' +
+                                id + ',' + $type + ')">取消点赞</span></div></td></tr>'
+                            $('.four table').append($text);
+                        }
+                        if (likeTotalPages != result.data.totalPages) {
+                            likeTotalPages = result.data.totalPages
+                            $(".four .pageDiv").createPage({
+                                pageCount: likeTotalPages, //总页数
+                                current: page, //当前页
+                                turndown: 'true', //是否显示跳转框，显示为true，不显示为false,一定记得加上引号...
+                                backFn: function (p) {
+                                    supports(p)
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+        //取消点赞
+        function noneSupport(id, type, ev) {
+            var e = ev || window.event;
+            e.path[3].remove();
+            let data = {
+                'id': id,
+                'type': type
+            }
+            api.GET('/member/memberinfo/quitlike', data, function (result) {
+                if (result.code == 200) {
+                    supports();
+                }
+            });
+
+        }
+
+
+
+        // 投稿权限
+        var draftcontrol = false
+
+        function jurisdiction() {
+            api.GET('/member/memberinfo/isContribute', {}, function (res) {
+                if (res.code == 200) {
+                    draftcontrol = res.data
+                    if (!draftcontrol) {
+                        $('.contribute').css('background-color', '#999')
+                    }
+                }
+            })
+        }
+        jurisdiction()
+
+
+
+        var draftPage = 1
+        var draftTotalPages = Number
+        //我的投稿
+        function contribution(p) {
+            var page = ''
+            if (p) {
+                page = p
+                draftPage = p
+            } else {
+                page = draftPage
+            }
+            api.GET('/member/memberinfo/contribute/page', {
+                'status': $('#mine-contri').val(),
+                'title': $('#contriTitle').val(),
+                'startDate': $('#startTime2').val(),
+                'endDate': $('#endTime2').val(),
+                'page': page,
+                'size': 5
+            }, function (result) {
+                if (result.code == 200) {
+                    $('.five table .content').remove()
+                    var cont = result.data.content;
+                    if (result.data.totalElements <= 0) {
+                        $('.five .contri .inter-search img').css('display', 'block');
+                        $('.five .pageDiv').css('display', 'none');
+                    } else {
+                        $('.five .contri .inter-search img').css('display', 'none');
+                        $('.five .pageDiv').css('display', 'block');
+                        for (var i = 0; i < cont.length; i++) {
+                            if (cont[i].status == 5) {
+                                var $text = '<tr class="content Semilight"><td class="num"><span>' + ((page -
+                                        1) * 5 + (i + 1)) +
+                                    '</span></td><td class="type"><span>' + cont[i].channel.name +
+                                    '</span></td><td class="content-title"><a href="' + cont[i].url +
+                                    '" class="publish block Regular">' +
+                                    cont[i].title +
+                                    '</a><div class="others overflow"><div class="left fl hover pointer"><i class="iconfont iconliulang"></i><span>931</span></div><div class="middle fl hover pointer"><i class="iconfont iconthumb-up-line"></i><span>80</span></div><div class="right fl hover pointer"><i class="iconfont iconmessage--line1"></i><span>500</span></div></div></td><td class="timer"><span>' +
+                                    cont[i].createTime +
+                                    '</span></td><td class="content-state"><span>已发布</span></td><td class="operate overflow"><div class="left fl hover pointer"><i class="iconfont iconliulang"></i><span onclick="examine(' +
+                                    cont[i].id +
+                                    ')">查看</span></div></td></tr>';
+                            } else if (cont[i].status == 9) {
+                                var $text = '<tr class="content Semilight"><td class="num"><span>' + ((page -
+                                        1) * 5 + (i + 1)) + '</span></td><td class="type"><span>' + cont[i]
+                                    .channel.name +
+                                    '</span></td><td class="content-title"><span class="block Regular">' + cont[
+                                        i].title + '</span></td><td class="timer"><span>' + cont[i].createTime +
+                                    '</span></td><td class="content-state"><span>暂存</span></td><td class="operate overflow"><div class="left fl hover pointer" onclick="examine(' +
+                                    cont[i].id + ')"><i class="iconfont iconliulang"></i><span>查看</span></div>'
+                                if (draftcontrol) {
+                                    $text += '<div class="right fl hover pointer" onclick="edition(' + cont[i]
+                                        .id +
+                                        ')"><i class="iconfont iconiconlineedit-"></i><span>编辑</span></div>'
+                                }
+                                $text += '<div class="right fl hover pointer" onclick="noneContri(' + cont[i]
+                                    .id +
+                                    ')"><i class="iconfont icondelete-bin-line"></i><span>删除</span></div></td></tr>';
+                            } else {
+                                var $text = '<tr class="content Semilight"><td class="num"><span>' + ((page -
+                                        1) * 5 + (i + 1)) + '</span></td><td class="type"><span>' + cont[i]
+                                    .channel.name +
+                                    '</span></td><td class="content-title"><span class="block Regular">' + cont[
+                                        i].title + '</span></td><td class="timer"><span>' + cont[i].createTime +
+                                    '</span></td><td class="content-state"><span>审核中</span></td><td class="operate overflow"><div class="left fl hover pointer" onclick="examine(' +
+                                    cont[i].id +
+                                    ')"><i class="iconfont iconliulang"></i><span>查看</span></div></td></tr>';
+                            }
+                            $('.five .inter-table').append($text);
+                        }
+                        if (draftTotalPages != result.data.totalPages) {
+                            draftTotalPages = result.data.totalPages
+                            $(".five .pageDiv").createPage({
+                                pageCount: draftTotalPages, //总页数
+                                current: page, //当前页
+                                turndown: 'true', //是否显示跳转框，显示为true，不显示为false,一定记得加上引号...
+                                backFn: function (p) {
+                                    contribution(p)
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+
+        //查看投稿
+        function examine(id) {
+            $('.contri').addClass('none');
+            $('.gocontribute').removeClass('none');
+            $('.five .save0').hide();
+            $('.five .save').hide();
+            api.GET(('/member/memberinfo/contribute/' + id), {}, function (res) {
+                if (res.code == 200) {
+                    if (res.data.author) {
+                        $('#author').val(res.data.author)
+                    }
+                    if (res.data.channel) {
+                        $('#channnelId').text(res.data.channel.name);
+                        $('#channnelId').attr({
+                            "channnelId": res.data.channel.id
+                        });
+                    }
+                    if (res.data.title) {
+                        $('#title').val( res.data.title);
+                    }
+                    if (res.data.description) {
+                        $('#description').val(res.data.description);
+                    }
+                    if (res.data.contxt) {
+                        UE.getEditor('richText').setContent(res.data.contxt);
+                    }
+                }
+            });
+        }
+
+        var draftContentId = ''
+        //编辑投稿
+        function edition(id) {
+            $('.contri').addClass('none');
+            $('.gocontribute').removeClass('none');
+            $('.five .save0').show();
+            $('.five .save').show();
+            api.GET(('/member/memberinfo/contribute/' + id), {}, function (res) {
+                if (res.code == 200) {
+                    draftContentId = res.data.contentId
+                    if (res.data.author) {
+                        $('#author').attr({
+                            "value": res.data.author
+                        });
+                    }
+                    if (res.data.channel) {
+                        $('#channnelId').text(res.data.channel.name);
+                        $('#channnelId').attr({
+                            "channnelId": res.data.channel.id
+                        });
+                    }
+                    if (res.data.title) {
+                        $('#title').attr({
+                            "value": res.data.title
+                        });
+                    }
+                    if (res.data.description) {
+                        $('#description').val(res.data.description);
+                    }
+                    if (res.data.contxt) {
+                        UE.getEditor('richText').setContent(res.data.contxt);
+                    }
+                }
+            });
+        }
+
+
+        // 进入新建投稿
+        $('.five .contribute').on('click', function () {
+          console.log('a',$('#author').value,draftcontrol)
+            if (draftcontrol) {
+                $('.contri').addClass('none');
+                $('.gocontribute').removeClass('none');
+                $('.five .save0').show();
+                $('.five .save').show();
+                draftContentId = ''
+                // $('#author').attr({
+                //     "value": '本站编辑'
+                // });
+                $('#author').val('本站编辑')
+                $('#channnelId').text('');
+                $('#channnelId').attr({
+                    "channnelId": ''
+                });
+                $('#title').val('');
+                $('#description').val('');
+                UE.getEditor('richText').setContent('');
+                console.log('a',$('#author').val())
+            }
+            
+        });
+
+        // 投稿暂存
+        function newcontri(isSubmit) {
+            var data = {}
+            data.isSubmit = false
+            if ($('#channnelId').attr("channnelId")) {
+                data.channnelId = $('#channnelId').attr("channnelId")
+            } else {
+                myMessage.add('选择投稿栏目', 'error');
+                return
+            }
+            if ($('#title').val()) {
+                data.title = $('#title').val()
+            } else {
+                myMessage.add('请输入标题', 'error');
+                return
+            }
+            data.description = $('#description').val()
+            data.author = $('#author').val()
+            data.contxt = UE.getEditor('richText').getContent()
+            if (draftContentId) {
+                data.contentId = draftContentId
+                api.PUT('/member/memberinfo/contribute', data, function (res) {
+                    if (res.code == 200) {
+                        myMessage.add('暂存成功', 'success');
+                        $('.one').addClass('none');
+                        $('.two').addClass('none');
+                        $('.three').addClass('none');
+                        $('.four').addClass('none');
+                        $('.five').removeClass('none');
+                        $('.contri').removeClass('none');
+                        $('.gocontribute').addClass('none');
+                        draftPage = 1
+                        contribution()
+                    } else {
+                        myMessage.add(res.message, 'error');
+                    }
+                })
+            } else {
+                api.POST('/member/memberinfo/contribute', data, function (res) {
+                    if (res.code == 200) {
+                        myMessage.add('暂存成功', 'success');
+                        $('.one').addClass('none');
+                        $('.two').addClass('none');
+                        $('.three').addClass('none');
+                        $('.four').addClass('none');
+                        $('.five').removeClass('none');
+                        $('.contri').removeClass('none');
+                        $('.gocontribute').addClass('none');
+                        draftPage = 1
+                        contribution()
+                    } else {
+                        myMessage.add(res.message, 'error');
+                    }
+                })
+            }
+        }
+        //删除投稿
+        function noneContri(id) {
+            var data = {
+                'contentId': id
+            }
+            api.DELETE('/member/memberinfo/contribute', data, function (result) {
+                if (result.code == 200) {
+                    contribution();
+                } else {
+                    myMessage.add(result.message, 'error');
+                }
+            });
+        }
+
+        //投稿验证
+        $('#newContri').validate({
+            rules: {
+                title: {
+                    required: true
+                }
+            },
+            messages: {
+                title: {
+                    required: '请输入文章标题'
+                }
+            },
+            //错误提示标签
+            errorElement: 'p',
+            //获得焦点时，错误提示消失
+            focusCleanup: true,
+            //失去焦点时，进行验证
+            onfocusout: function (element) {
+                $(element).valid();
+            },
+            //错误提示的位置
+            errorPlacement: function (error, element) {
+                error.appendTo(element.parent('div').find('.errors'));
+            },
+            submitHandler: function () {
+                var data = {}
+                data.isSubmit = true
+                if ($('#channnelId').attr("channnelId")) {
+                    data.channnelId = $('#channnelId').attr("channnelId")
+                } else {
+                    myMessage.add('选择投稿栏目', 'error');
+                    return
+                }
+                if ($('#title').val()) {
+                    data.title = $('#title').val()
+                } else {
+                    myMessage.add('请输入标题', 'error');
+                    return
+                }
+                data.description = $('#description').val()
+
+                if ($('#author').val()) {
+                    data.author = $('#author').val()
+                } else {
+                    data.author = '本站编辑'
+                }
+                data.contxt = UE.getEditor('richText').getContent()
+                if (draftContentId) {
+                    data.contentId = draftContentId
+                    api.PUT('/member/memberinfo/contribute', data, function (res) {
+                        if (res.code == 200) {
+                            myMessage.add('操作成功', 'success');
+                            $('.one').addClass('none');
+                            $('.two').addClass('none');
+                            $('.three').addClass('none');
+                            $('.four').addClass('none');
+                            $('.five').removeClass('none');
+                            $('.contri').removeClass('none');
+                            $('.gocontribute').addClass('none');
+                            draftPage = 1
+                            contribution()
+                        } else {
+                            myMessage.add(result.message, 'error');
+                        }
+                    })
+                } else {
+                    api.POST('/member/memberinfo/contribute', data, function (res) {
+                        if (res.code == 200) {
+                            myMessage.add('投稿成功', 'success');
+                            $('.one').addClass('none');
+                            $('.two').addClass('none');
+                            $('.three').addClass('none');
+                            $('.four').addClass('none');
+                            $('.five').removeClass('none');
+                            $('.contri').removeClass('none');
+                            $('.gocontribute').addClass('none');
+                            draftPage = 1
+                            contribution()
+                        } else {
+                            myMessage.add(result.message, 'error');
+                        }
+                    })
+                }
+            }
+        });
+
+
+        //用户信息
+        perinfo();
+        //我的互动
+        interaction();
+        //我的互动-查询
+        $('.two .date a').click(function () {
+            if ($('#date1').val() != '') {
+                interactPage = 1
+                interaction();
+            } else {
+                interaction();
+            }
+        })
+
+        //我的收藏
+        collection();
+        //我的收藏-查询
+        $('.three .collect .date a').click(function () {
+            if ($('#date2').val() != '') {
+                collectPage = 1
+                collection();
+            } else {
+                collection();
+            }
+        });
+        //我的点赞
+        supports();
+        //我的投稿
+        contribution();
+        //我的投稿-查询
+        $('.five .contri .collect .date a').click(function () {
+            if ($('#date3').val() != '') {
+                draftPage = 1
+                contribution();
+            } else {
+                contribution();
+            }
+        });
+
+
+        //日期插件-我的互动
+        $("input[name='date1']").daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                format: "YYYY-MM-DD",
+                separator: " - ",
+                applyLabel: "确认",
+                cancelLabel: "清空",
+                fromLabel: "开始时间",
+                toLabel: "结束时间",
+                customRangeLabel: "自定义",
+                daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
+                monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月",
+                    "十二月"
+                ],
+            }
+        }).on('cancel.daterangepicker', function (ev, picker) {
+            $("#date1").val("请选择日期范围");
+            $("#startTime").val("");
+            $("#endTime").val("");
+        }).on('apply.daterangepicker', function (ev, picker) {
+            $("#startTime").val(picker.startDate.format('YYYY-MM-DD'));
+            $("#endTime").val(picker.endDate.format('YYYY-MM-DD'));
+            $("#date1").val(picker.startDate.format('YYYY-MM-DD') + " 至 " + picker.endDate.format(
+                'YYYY-MM-DD'));
+        });
+        //我的收藏
+        $("input[name='date2']").daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                format: "YYYY-MM-DD",
+                separator: " - ",
+                applyLabel: "确认",
+                cancelLabel: "清空",
+                fromLabel: "开始时间",
+                toLabel: "结束时间",
+                customRangeLabel: "自定义",
+                daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
+                monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月",
+                    "十二月"
+                ],
+            }
+        }).on('cancel.daterangepicker', function (ev, picker) {
+            $("#date2").val("请选择日期范围");
+            $("#startTime1").val("");
+            $("#endTime1").val("");
+        }).on('apply.daterangepicker', function (ev, picker) {
+            $("#startTime1").val(picker.startDate.format('YYYY-MM-DD'));
+            $("#endTime1").val(picker.endDate.format('YYYY-MM-DD'));
+            $("#date2").val(picker.startDate.format('YYYY-MM-DD') + " 至 " + picker.endDate.format(
+                'YYYY-MM-DD'));
+        });
+        //我的投稿
+        $("input[name='date3']").daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                format: "YYYY-MM-DD",
+                separator: " - ",
+                applyLabel: "确认",
+                cancelLabel: "清空",
+                fromLabel: "开始时间",
+                toLabel: "结束时间",
+                customRangeLabel: "自定义",
+                daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
+                monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月",
+                    "十二月"
+                ],
+            }
+        }).on('cancel.daterangepicker', function (ev, picker) {
+            $("#date3").val("请选择日期范围");
+            $("#startTime2").val("");
+            $("#endTime2").val("");
+        }).on('apply.daterangepicker', function (ev, picker) {
+            $("#startTime2").val(picker.startDate.format('YYYY-MM-DD'));
+            $("#endTime2").val(picker.endDate.format('YYYY-MM-DD'));
+            $("#date3").val(picker.startDate.format('YYYY-MM-DD') + " 至 " + picker.endDate.format(
+                'YYYY-MM-DD'));
+        });
+
+
+        // 联级选择器
+        //构造函数
+        function Cascader(id, data, fn) {
+            //把创建好的“联级选择器”插入到哪个元素内
+            this.$box = $("#" + id);
+            //data: 是要填充的数据
+            this.init(data);
+
+            //对外提供的接口函数
+            this.clickHandle = fn || function () {};
+
+            //最外层的容器,后期需要把createEl()方法创建的内容都插入到这里面的
+            this.$wrap = null;
+        }
+
+        Cascader.prototype = {
+            constructor: Cascader,
+            init: function (data) {
+                var This = this;
+                this.$wrap = $("<div class='cascader-menus'></div>")
+                //创建里面的元素
+                this.createEl(data, function ($ul) {
+                    This.$wrap.append($ul);
+                    This.$box.append(This.$wrap)
+                });
+            },
+            createEl: function (data, fn) {
+                var This = this;
+                //创建完成以后回调函数
+                var fn = fn || function () {};
+                var $ul = $("<ul class='menus'></ul>");
+
+                //创建li，并把li插入到ul中
+                for (var i = 0; i < data.length; i++) {
+                    if (!data[i].operatingContribute&& !data[i].children) {
+                        var $li = $("<li class='noOperating'>" + data[i].name + "</li>");
+                    } else {
+                        var $li = $("<li>" + data[i].name + "</li>");
+                    }
+                    //给每一个Li加点击事件，点击以后显示子菜单,这里最好采用闭包的形式，不然i传递不进去，当然也可以用es6的let（不过这里没有bable，浏览器会不支持let的，在vue-cli中的话就没问题了）
+                    (function (i) {
+                        $li.click(function () {
+                            $(this).addClass('active').siblings().removeClass('active');
+                            //先需要清除掉后面所有的菜单
+                            $ul.nextAll().remove();
+                            if (data[i].children && data[i].children.length) {
+                                //创建子菜单
+                                This.createEl(data[i].children, function (ul) {
+                                    //把创建好的子菜单插入到上一个菜单的后面
+                                    $ul.after(ul);
+                                });
+                            }
+                            //对外提供的点击接口函数，并把数据给传递出去
+                            This.clickHandle(data[i]);
+                        })
+                    })(i)
+                    $ul.append($li);
+                }
+
+                //创建完成以后回调函数
+                fn($ul)
+            }
+        }
+
+        var treeList = []
+
+        // 可投稿栏目树
+        function channelTree() {
+            api.GET('/channel/tree', {}, function (res) {
+                if (res.code == 200) {
+                    treeList = res.data
+                    newTree()
+                }
+            })
+        }
+        channelTree()
+
+        function newTree() {
+            var c1 = new Cascader("cascadePut", treeList, function (mes) {
+                if (!mes.children && mes.operatingContribute) {
+                    $('#channnelId').text(mes.name)
+                    // $('#channnelId').attr({"value": mes.name});
+                    $('#channnelId').attr({
+                        "channnelId": mes.id
+                    });
+                } else {
+                    $('#channnelId').text('')
+                    $('#channnelId').attr({
+                        "channnelId": ''
+                    });
+                }
+            });
+        }
+
+
+        $('#cascadePut').hide()
+        $('#cascadePut').on('mouseleave', function () {
+            $('#cascadePut').hide()
+        });
+
+        $('#channnelId').off().on('click', function () {
+            $('#cascadePut').show()
+        });
+    </script>
+
+</body>
+
+</html>

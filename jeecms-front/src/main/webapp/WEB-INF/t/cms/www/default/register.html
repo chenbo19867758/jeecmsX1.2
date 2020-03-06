@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>会员注册</title>
+    <link rel="stylesheet" href="${res}/css/jSlider.css">
+    <link rel="stylesheet" href="${res}/css/register.css">
+    <link rel="stylesheet" href="${res}/css/reset.css">
+    <link rel="stylesheet" href="${res}/icon/iconfont.css">
+    <link rel="stylesheet" href="${res}/css/jquery.my-message.1.1.css">
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+    [#include "includes/header.html"/]
+    </div>
+    <!--顶部导航 over-->
+    <!-- 中间部分 -->
+	<!-- <div class="code input" id="registerCode">
+		<label class="Light"><span class="icon">*</span><span class="label">验证码：</span></label>
+		<input type="text" id="captcha" name="captcha" placeholder="请输入验证码">
+		<div class="letter pointer" id="getCapatchImg"><img id="capatchImg"  onclick="genCapatch()" /></div>
+		<div class="help"></div>
+		<div class="errors Light"></div>
+	</div> -->
+    <div class="main">
+        <div class="register overflow">
+            <div class="register-left fl">
+                <div class="reg Regular">
+                    <span>会员注册</span>
+                    <a class="hover" href="${base}/login">立即登录</a>
+                </div>
+                <form action="" id="registerForm">
+                    <div class="model input">
+                        <label class="Light" for=""><span class="icon">*</span><span class="label"></span></label>
+                        <input type="text" name="" id="" placeholder="">
+                        <div class="errors Light"></div>
+                    </div>
+                    <div class="agreementBox Semilight">
+                        <input type="checkbox" id="consent">
+                        <span>我已阅读并接受<a class="pointer" onclick="openProtocol()">《JEECMS注册协议》</a></span>
+                    </div>
+                    <input class="Semilight pointer hover" type="submit" value="确认注册">
+                </form>
+            </div>
+            <div class="register-right fl">
+                <div class="lunbo hover">
+                    <div id="slider1" class="jSlider" data-loop="true" data-navigation="always" data-indicator="always">
+                        <div><a href="javascript:;"><img src="${res}/images/login-register/1.jpg" alt="" /></a>
+                        </div>
+                        <div><a href="javascript:;"><img src="${res}/images/login-register/2.jpg" alt="" /></a>
+                        </div>
+                        <div><a href="javascript:;"><img src="${res}/images/login-register/3.jpg" alt="" /></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="logo-img">
+                    <img class="block" src="${res}/images/login-register/denglulogo.png" alt="">
+                </div>
+            </div>
+        </div>
+		<div class="protocol">
+			<h3 class="Regular">JEECMS用户协议</h3>
+			<p class="protocol-title Semilight">欢迎你使用“JEECMS”软件及相关服务!</p>
+			<p class="protocol-text Semilight"> “JEECMS”软件及相关服务，系指公司通过合法拥有并运营的、标注名称为“JEECMS”的客户端应用程序以及"JEECMS网”jeecms.com)的网站，向你提供的产品与服务，包括但不限于个性化推荐、发布信息、互动交流、搜索查询等核心功能以及其他功能,为创作与交流的平台。《JEECMS用户协议》(以下简称“本协议")是你与公司之间就你注册、登录、使用(以下统称”使用”)“JEECMS”软件及相关服务所订立的协议。</p>
+			<p class="protocol-text Semilight">为了更好地为你提供服务，请你在开始使用”JEECMS”软件及相关服务之前，认真阅读并充分理解本协议，特别是涉及免除或者限制责任的条款、权利许可和信息使用的条款、同意开通和使用特殊单项服务的条款、法律适用和争议解决条款等。<strong>其中，免除或者限制责任条款等重要内容将以加粗形式提示你注意，你应重点阅读。</strong>如你未满18周岁，请在法定监护人陪同下仔细阅读并充分理解本协议,并征得法定监护人的同意后使用“JEECMS”软件及相关服务。</p>
+			<p class="protocol-text Semilight">如你不同意本协议,这将导致我们无法为你提供完整的产品和服务,你也可以选择停止使用<strong>如你自主选择同意或使用“今且头条”软件及相关服务,则视为你已充分理解本协议,并同意作为本协议的一方当事人接受本协议以及其他与”今且头条”软件及相关服务相关的协议和规则(包括但不限于《隐私政策》)的约束。</strong></p>
+			<i class="iconfont iconguanbi" onclick="shutProtocol()"></i>
+		</div>
+    </div>
+    <!-- 底部导航 -->
+    [#include "includes/tipFooter.html"/]
+    <!--底部导航 over-->
+    <script src="${res}/js/jquery-1.12.4.js"></script>
+    <script src="${res}/js/jquery.jSlider.js"></script>
+    <script src="${res}/js/jquery.validate.js"></script>
+    <script src="${res}/js/register.js"></script>
+    <script src="${res}/js/crypto-js.js"></script>
+    <script src="${res}/js/jquery.my-message.1.1.js"></script>
+    <script src="${res}/js/app.js"></script>
+	
+    <script type="text/javascript">
+		//回车注册
+        $('body').keydown(function(event){
+            if(event.keyCode==13){
+                $('input[type="submit"]').click();
+            }
+        });
+        $(function () {
+            getModel();
+            // genCapatch();
+            // $("#getCapatchImg").on("click", function (event) {
+            //     genCapatch();
+            // });
+        });
+		
+		var isCaptcha = false
+		var sessionId = ''
+		// 图形验证码
+		$(function () {
+			$("#getCapatchImg").on("click", function (event) {
+		        genCapatch();
+		    });
+		});
+		function genCapatch() {
+		    $.ajax({
+		        url: "${base}/common/kaptcha",
+		        data: {},
+		        success: function (result) {
+		            document.getElementById('capatchImg').src = "data:image/png;base64," + result.data.img;
+					sessionId=result.data.sessionId
+		        }
+		    });
+		}
+		
+		
+		function openProtocol(){
+			$('.protocol').fadeIn(300)
+		}
+		
+		function shutProtocol(){
+			$('.protocol').fadeOut(300)
+		}
+		
+		function getRules(data){
+			var rules = {}
+			for (var j = 0; j < data.length; j++) {
+				if(data[j].isCustom){
+					var name = data[j].value.name
+					name={}
+					if(data[j].value.isRequired){
+						name.required = data[j].value.isRequired
+					}else if(data[j].value.isInputLimit){
+						name[data[j].value.inputLimit] = data[j].value.isInputLimit
+					}
+					rules[data[j].value.name] = name
+				}else{
+					var name = data[j].value.name
+					name={}
+					name.required = data[j].value.isRequired
+					if(data[j].value.name == 'username'){
+						name.ident=true
+						name.inspectName = true
+					}else if(data[j].value.name == 'email'){
+						name.regEmail= true
+						name.inspectEmail=true
+						if(data[j].value.isRequired){
+							rules.emailCode = {
+								required: true
+							}
+						}
+					}else if(data[j].value.name == 'password'){
+						name.secret= true
+						rules.repsword = {
+							required: true,
+							equalTo: '#password'
+						}
+					}else if(data[j].value.name == 'telephone'){
+						name.inspectTelephone=true
+                        name.regTelephone=true
+						if(data[j].value.isRequired){
+							rules.mobileCode = {
+								required: true
+							}
+						}
+					}
+					rules[data[j].value.name] = name
+				}
+			}
+			if(isCaptcha){
+				rules.captcha={}
+				rules.captcha.required = true
+			}
+			console.log(rules)
+			return rules
+		}
+		
+		function getMessages(data){
+			var messages = {}
+			for (var j = 0; j < data.length; j++) {
+				if(data[j].value.name == 'email'){
+					var obj = {}
+					obj.required = '邮箱验证码必填'
+					messages['emailCode'] = obj
+				}else if(data[j].value.name == 'password'){
+					var obj = {}
+					obj.required = '重复密码必填';
+					obj.equalTo='两次密码输入不一致'
+					messages['repsword'] = obj
+				}else if(data[j].value.name == 'telephone'){
+					var obj = {}
+					obj.required = '手机验证码必填'
+					messages['mobileCode'] = obj
+				}
+				var name = data[j].value.name
+				var obj = {}
+				obj.required = data[j].value.label + '必填'
+				messages[name] = obj
+			}
+			if(isCaptcha){
+				messages.captcha={}
+				messages.captcha.required = '验证码必填'
+			}
+			console.log(messages)
+			return messages
+		}
+		
+		function openVerify(rules,messages){
+			$('#registerForm').validate({
+			    rules: rules,
+				messages:messages,
+			    //错误提示标签
+			    errorElement: 'p',
+			    //获得焦点时，错误提示消失 
+			    // focusCleanup: true,
+			    //失去焦点时，进行验证
+			    onfocusout: function (element) {
+			        $(element).valid();
+			    },
+			    //错误提示的位置
+			    errorPlacement: function (error, element) {
+			        error.appendTo(element.parent('div').find('.errors'));
+			    },
+			    submitHandler: function () {
+			        if ($('#consent').is(':checked')) {
+			            var data = {
+							json: {}
+						}
+                    	for (var i = 0; i < formListBase.length; i++) {
+							var d = formListBase[i]
+							var k = d.value.name
+							if ($('#' + k).val()) {
+								if (k == 'password') {
+									data.password = desEncrypt($('#password').val())
+								} else if (d.isCustom) {
+									data.json[k] = $('#' + k).val()
+								} else {
+									data[k] = $('#' + k).val()
+								}
+							}
+						}
+			            // if ($('#username').val()) {
+			            //     data.username = $('#username').val()
+			            // }
+			            // if ($('#email').val()) {
+			            //     data.email = $('#email').val()
+			            // }
+			            if ($('#emailCode').val()) {
+			                data.emailCode = $('#emailCode').val()
+			            }
+			            // if ($('#telephone').val()) {
+			            //     data.telephone = $('#telephone').val()
+			            // }
+			            // if ($('#mobileCode').val()) {
+			            //     data.mobileCode = $('#mobileCode').val()
+			            // }
+			            // if ($('#password').val()) {
+			            //     data.password = desEncrypt($('#password').val());
+			            // }
+			            // if ($('#realname').val()) {
+			            //     data.realname = $('#realname').val()
+			            // }
+						if (isCaptcha){
+							data.captcha = $('#captcha').val()
+							data.sessionId = sessionId
+						}
+            console.log(data)
+			            api.POST('/register',data,function (result) {
+			                    if (result.code == 200) {
+			                        myMessage.add(result.message, 'success');
+			                        location.href = '${base}/login';
+			                    } else {
+			                        myMessage.add(result.message, 'error');
+			                    }
+			                })
+			        } else {
+			            myMessage.add('请阅读并接受《JEECMS注册协议》', 'warning');
+			        }
+			
+			    }
+			})
+			
+		}
+		var formListBase = []
+		function getModel() {
+            api.GET("/register/addition/model",{}, function (result) {
+                if (result.code === 200) {
+                    var data = result.data.enableJson.formListBase
+					formListBase = data
+                    for (var i = 0; i < data.length; i++) {
+                        var div = $("<div class=" + 'input ' + data[i].value.name + "></div>")
+                        div.html($('.model').html())
+                        div.children("label").children('.label').html(data[i].value.label + '：')
+                        div.children('input').attr('name', data[i].value.name)
+                        div.children('input').attr('id', data[i].value.name)
+                        div.children('input').attr('placeholder', data[i].value.tip)
+						if(data[i].value.max>=0 && data[i].value.isLengthLimit){
+							div.children('input').attr('maxlength',data[i].value.max);
+						}
+						if(!data[i].value.isRequired){
+							div.children("label").children('.icon').hide()
+						}
+                        $('.agreementBox').before(div)
+                        if (data[i].value.name === 'email' && data[i].value.isSmsVerification) {
+                            var getCode = $('<div id="getEmail" class="get-time" onclick="getEmailCode()">获取验证码</div>')
+                            var newDiv = $("<div class='emailCode input'></div>")
+                            newDiv.html($('.model').html())
+                            newDiv.children("label").children('.label').html('邮箱验证码：')
+                            newDiv.children('input').attr('name', 'emailCode')
+                            newDiv.children('input').attr('id', 'emailCode')
+                            newDiv.children('input').attr('placeholder', '请输入邮箱验证码')
+							newDiv.children('input').attr('maxlength','6');
+							newDiv.children('input').after(getCode)
+							if(!data[i].value.isRequired){
+								newDiv.children("label").children('.icon').hide()
+							}
+                            $('.agreementBox').before(newDiv)
+                        } else if (data[i].value.name === 'password') {
+                            div.children('input').attr('type', 'password')
+                            var newDiv = $("<div class='repsword input'></div>")
+                            newDiv.html($('.model').html())
+                            newDiv.children("label").children('.label').html('重复密码：')
+                            newDiv.children('input').attr('name', 'repsword')
+                            newDiv.children('input').attr('type', 'password')
+                            newDiv.children('input').attr('id', 'repsword')
+                            newDiv.children('input').attr('placeholder', '请再次输入密码')
+                            $('.agreementBox').before(newDiv)
+                        } else if (data[i].value.name === 'telephone' && data[i].value.isSmsVerification) {
+                            var getCode = $('<div id="getTelephone" class="get-time" onclick="getTelephoneCode()">获取验证码</div>')
+							var newDiv = $("<div class='mobileCode input'></div>")
+                            newDiv.html($('.model').html())
+                            newDiv.children("label").children('.label').html('手机验证码：')
+                            newDiv.children('input').attr('name', 'mobileCode')
+                            newDiv.children('input').attr('id', 'mobileCode')
+                            newDiv.children('input').attr('placeholder', '请输入手机证码')
+							newDiv.children('input').attr('maxlength','6');
+							newDiv.children('input').after(getCode)
+							if(!data[i].value.isRequired){
+								newDiv.children("label").children('.icon').hide()
+							}
+                            $('.agreementBox').before(newDiv)
+                        }
+					}
+					[#if site.globalConfig.memberRegisterCaptcha??&&site.globalConfig.memberRegisterCaptcha]
+						var code = $('<div class="code input" id="registerCode"><label class="Light"><span class="icon">*</span><span class="label">验证码：</span></label><input type="text" id="captcha" name="captcha" placeholder="请输入验证码"><div class="letter pointer" id="getCapatchImg"><img id="capatchImg"  onclick="genCapatch()" /></div><div class="errors Light"></div></div>')
+						$('.agreementBox').before(code)
+						isCaptcha = true
+						genCapatch();
+					[#else]
+						isCaptcha = false
+						console.log('不需要图片验证')
+					[/#if]
+					var rules = getRules(data)
+					var messages = getMessages(data)
+					openVerify(rules,messages)
+                }
+			})
+        }
+
+        // function genCapatch() {
+        //     $.ajax({
+        //         url: "${base}/common/kaptcha",
+        //         data: {},
+        //         success: function (result) {
+        //             // document.getElementById('capatchImg').src = "data:image/png;base64," + result.data.img;
+        //         }
+        //     });
+        // }
+
+        // 获取邮箱验证码
+        var emailTime = 60
+        function getEmailCode() {
+            var reg = new RegExp(/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/)
+            if (reg.test($('#email').val())) {
+                if (emailTime === 60) {
+                    var data = {
+                        type: 1,
+                        'targetNumber': $('#email').val()
+                    }
+                    api.POST('/register/sendEmailMsg', data, function (data) {
+                        if (data.code === 200) {
+							if(data.data){
+								$('#getEmail').text('('+emailTime+')秒后重新获取')
+								clearInterval(countEmail)
+								var countEmail = setInterval(function () {
+								    emailTime -= 1
+									$('#getEmail').removeClass('get-time')
+								    $('#getEmail').text('('+emailTime+')秒后重新获取')
+								    if (emailTime <= 0) {
+								        clearInterval(countEmail)
+								        emailTime = 60
+										$('#getEmail').addClass('get-time')
+								        $('#getEmail').text('获取验证码')
+								    }
+								}, 1000);
+							}else{
+								myMessage.add(data.message, 'warning')
+							}
+                            
+                        } else {
+                            myMessage.add(data.message, 'warning')
+                        }
+
+                    })
+                }
+            } else {
+                myMessage.add('请输入正确邮箱', 'warning');
+            }
+
+        }
+        // 获取手机验证码
+        var telTime = 60
+        function getTelephoneCode() {
+            var reg = new RegExp(/^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(16[2|6|7])|(18[0-9])|(17([0-1]|[3]|[5-8]))|(19[1|8|9]))\d{8}$/)
+            if (reg.test($('#telephone').val())) {
+                if (telTime === 60) {
+                    api.POST('/register/sendPhoneMsg',{
+                            type: 1,
+                            'targetNumber': $('#telephone').val()
+                        },function(data){
+                        if(data.code===200){
+							if(data.data){
+								$('#getTelephone').text('('+telTime+')秒后重新获取')
+								clearInterval(countTelephone)
+								var countTelephone = setInterval(function () {
+								    telTime -= 1
+									$('#getTelephone').removeClass('get-time')
+								    $('#getTelephone').text('('+telTime+')秒后重新获取')
+								    if (telTime <= 0) {
+								        clearInterval(countTelephone)
+								        telTime = 60
+										$('#getTelephone').addClass('get-time')
+								        $('#getTelephone').text('获取验证码')
+								    }
+								}, 1000)
+							}else{
+								myMessage.add(data.message,'warning')
+							}
+                        }else{
+                            myMessage.add(data.message,'warning')
+                        }
+                    })
+                    
+                }
+            } else {
+                myMessage.add('请输入正确的手机号', 'warning');
+            }
+
+        }
+
+		
+		
+        $(function () {
+            //自定义验证
+            $.validator.addMethod('ident', function (value, element) {
+                var identReg = /^[\u4e00-\u9fa5_a-zA-Z0-9@-]{6,18}$/;
+                return this.optional(element) || (identReg.test(value));
+            }, '请输入正确的用户名格式');
+            $.validator.addMethod('inspectName', function (value, element) {
+                var result = false
+                $.ajax({
+                    url: '/register/username/unique',
+                    type: 'GET',
+                    data: {
+                        'username': value
+                    },
+                    async: false //更改为同步 
+                }).done(function (date) {
+                    if (date.code === 200) {
+                        result = date.data
+                    } else {
+                        result = false
+                    }
+                })
+                return this.optional(element) || result
+            }, '用户名重复');
+            $.validator.addMethod('inspectEmail', function (value, element) {
+                var result = false
+                $.ajax({
+                    url: '/register/mail/unique',
+                    type: 'GET',
+                    data: {
+                        'mail': value
+                    },
+                    async: false //更改为同步 
+                }).done(function (date) {
+                    if (date.code === 200) {
+                        result = date.data
+                    } else {
+                        result = false
+                    }
+                })
+                return this.optional(element) || result
+            }, '邮箱重复');
+            $.validator.addMethod('regTelephone', function (value, element) {
+                var identReg = /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(16[2|6|7])|(18[0-9])|(17([0-1]|[3]|[5-8]))|(19[1|8|9]))\d{8}$/;
+				return this.optional(element) || (identReg.test(value));
+            }, '请输入正确的手机格式');
+            $.validator.addMethod('inspectTelephone', function (value, element) {
+                var result = false
+				if(value.length >= 11){
+					$.ajax({
+					    url: '/register/phone/unique',
+					    type: 'GET',
+					    data: {
+					        'phone': value
+					    },
+					    async: false //更改为同步 
+					}).done(function (date) {
+					    if (date.code === 200) {
+					        result = date.data
+					    } else {
+							newTel = false
+					    }
+					})
+				}
+                return this.optional(element) || result
+            }, '手机号重复');
+            $.validator.addMethod('secret', function (value, element) {
+                var identReg = /^[^\u4e00-\u9fa5]{6,18}$/;
+                return this.optional(element) || (identReg.test(value));
+            }, '请输入正确的密码格式');
+            $.validator.addMethod('regEmail', function (value, element) {
+                var identReg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+                return this.optional(element) || (identReg.test(value));
+            }, '请输入正确的邮箱格式');
+        });
+    </script>
+	<script src="${res}/js/rules.js"></script>
+</body>
+
+</html>

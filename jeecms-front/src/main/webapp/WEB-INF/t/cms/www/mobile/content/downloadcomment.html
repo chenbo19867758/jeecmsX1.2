@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title></title>
+	</head>
+	<body>
+		<!-- 头部导航 -->
+		[#assign type="2" contentTitle='详情'/]
+		[#include "../includes/header.html"]
+		<!-- 头部导航 -->
+
+		<link rel="stylesheet" href="${mobileRes}/css/wtt-common.css" />
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/downloaddetails.css" />
+		<link rel="stylesheet" href="${mobileRes}/css/hotComments.css">
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/element.css" />
+		<script src="${mobileRes}/js/element.js" type="text/javascript" charset="utf-8"></script>
+		<script src="${mobileRes}/js/loading.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="${mobileRes}/css/commentList.css" />
+		<div class="appdetails" id="comment">
+			<div class="inner">
+				<div class="download-list det" style="padding-bottom: 0;">
+					<div class="box" v-if="content">
+						<a href="" class="left">
+							<div>
+								<div class="image" v-if="content.attr&&content.attr.shoujitubiao&&content.attr.shoujitubiao.resUrl" :style="{backgroundImage:'url('+content.attr.shoujitubiao.resUrl+')'}"></div>
+								<div class="image" v-else style="background-image: url('${mobileRes}/images/icon/noImg.png');"></div>
+								<article>
+									<h4 class="Medium" v-text="content.title.slice(0,5)"></h4>
+									<div class="rongliang">
+										<span>
+											<div><span v-text="content.attr.mobileFile.fileSize?content.attr.mobileFile.fileSize:''"></span></div>
+										</span>
+										<span class="line"></span>
+										<span v-text="content.downloads+'次下载'"></span>
+									</div>
+								</article>
+							</div>
+						</a>
+						<a :href="'${base}/download/byField?contentId='+content.id+'&field=mobileFile'" class="down-load">下载</a>
+					</div>
+				</div>
+			</div>
+
+			<div id="tabs" :class="whether?'fixTitle':''"  >
+				<ul class="horizontal" v-if="content">
+					<li>
+						<a :href="content.url" class="Regular ">
+							详情
+
+						</a>
+					</li>
+					<li class="selectActive">
+						<a :href="'${base}/content-downloadcomment.htm?contentId='+contentId" class="Regular ">
+							评论
+						</a>
+					</li>
+					<li>
+						<a :href="'${base}/content-downloaddetails_recommend.htm?contentId='+contentId" class="Regular">
+							推荐
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="box swiper-container">
+				<div class="content swiper-wrapper">
+
+					<div class="con-item show">
+						<div class="commentList hotComments" id="commentList">
+							<div class="input-box">
+								<div class="inner clearfix">
+									<div class="left">
+										<el-input type="textarea" maxlength='150' autosize placeholder="评论" v-model="textarea">
+										</el-input>
+									</div>
+									<button class="Regular" @click="issueComment()">发表</button>
+								</div>
+							</div>
+
+							<div class="inner" v-if="hotCommentList.length">
+								<div class="comments">
+									<h2 class="title">
+										<span class="red-radius"></span>
+										<span class="title-con Regular">热门评论</span>
+									</h2>
+									<ul class="comment-list">
+										<li v-for="(a,index) in hotCommentList" :key="index" class="box">
+											<a class="left">
+												<div>
+													<img v-if="a.user&&a.user.userExt&&a.user.userExt.userImgUrl!=''" :src="a.user.userExt.userImgUrl" alt="">
+													<img src="${mobileRes}/images/photo/touxiang-01.png" alt="" v-else>
+												</div>
+											</a>
+											<div class="right">
+												<div class="right-top">
+													<span v-if="a.user&&a.user.username!=''" class="Light" v-text="a.user.username"></span>
+													<span v-else class="Light">匿名</span>
+													<div class="r-t-r">
+														<div>
+															<div :class="a.isLike?'image':'image red'" @click="commentsDianzan(a,1)">
+																<span :class="a.animationPlus?'animation Light plus':'Light plus'">+1</span>
+																<span :class="a.animationSub?'animation Light sub':'Light sub'">-1</span>
+															</div>
+															<span class="Light" v-text="a.upCount"></span>
+														</div>
+														<div>
+															<a @click="openDetails(a.id)">
+																<img src="${mobileRes}/images/icon/pinglun-m.png" alt="">
+															</a>
+														</div>
+													</div>
+												</div>
+												<div class="right-center">
+													<a @click="openDetails(a.id)">
+														<p class="Regular" v-text="a.commentText"></p>
+													</a>
+												</div>
+												<div class="right-bottom">
+													<ul>
+														<li>
+															<span class="Light" v-text="a.distanceTime"></span>
+														</li>
+														<li>·</li>
+														<li v-if="a.childrenNum > 0"><a @click="openDetails(a.id)"><span class="Light" v-text="a.childrenNum+' 回复'"></span></a></li>
+														<li v-else><a @click="openDetails(a.id)"><span class="Light">回复TA</span></a></li>
+													</ul>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="grey-blank" v-if="hotCommentList.length"></div>
+							<div class="inner" v-if="newCommentList.length">
+								<div class="comments">
+									<h2 class="title">
+										<span class="red-radius"></span>
+										<span class="title-con Regular">最新评论</span>
+									</h2>
+									<ul class="comment-list">
+										<li v-for="(a,index) in newCommentList" :key="index" class="box">
+											<a class="left">
+												<div>
+													<img v-if="a.user&&a.user.userExt&&a.user.userExt.userImgUrl!=''" :src="a.user.userExt.userImgUrl" alt="">
+													<img src="${mobileRes}/images/photo/touxiang-01.png" alt="" v-else>
+												</div>
+											</a>
+											<div class="right">
+												<div class="right-top">
+													<span v-if="a.user&&a.user.username!=''" class="Light" v-text="a.user.username"></span>
+													<span v-else class="Light">匿名用户</span>
+													<div class="r-t-r">
+														<div>
+															<div :class="a.isLike?'image':'image red'" @click="commentsDianzan(a,2)">
+																<span :class="a.animationPlus?'animation Light plus':'Light plus'">+1</span>
+																<span :class="a.animationSub?'animation Light sub':'Light sub'">-1</span>
+															</div>
+															<span class="Light" v-text="a.upCount"></span>
+														</div>
+														<div>
+															<a @click="openDetails(a.id)">
+																<img src="${mobileRes}/images/icon/pinglun-m.png" alt="">
+															</a>
+														</div>
+													</div>
+												</div>
+												<div class="right-center">
+													<a @click="openDetails(a.id)">
+														<p class="Regular" v-text="a.commentText"></p>
+													</a>
+												</div>
+												<div class="right-bottom">
+													<ul>
+														<li>
+															<span class="Light" v-text="a.distanceTime"></span>
+														</li>
+														<li>·</li>
+														<li v-if="a.childrenNum > 0"><a @click="openDetails(a.id)"><span class="Light" v-text="a.childrenNum+' 回复'"></span></a></li>
+														<li v-else><a @click="openDetails(a.id)"><span class="Light">回复TA</span></a></li>
+													</ul>
+												</div>
+											</div>
+										</li>
+									</ul>
+									<my-loading :load="load" :isload="isload"></my-loading>
+								</div>
+							</div>
+							<img src="${mobileRes}/images/blank/meiyoupinglun.png" alt="" class="blank" v-if="!newCommentList.length&&!hotCommentList.length&&!begin">
+						</div>
+						<my-loading load="加载中" v-if="!newCommentList.length&&!hotCommentList.length&&begin"></my-loading>
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+		</div>
+		<script type="text/javascript">
+			api.GET('/content/' + getUrlArg('contentId'), {}, function(res) {
+				if (res.code == 200) {
+					$('.header-contentTitle').text(res.data.title)
+				}
+			})
+			
+			var commentList = new Vue({
+				el: '#comment',
+				data: {
+					contentId: getUrlArg('contentId'),
+					textarea: '',
+					hotCommentList: [],
+
+					getHotData: {
+						contentId: null
+					},
+					getNewData: {
+						contentId: null,
+						page: 1,
+						size: 20
+					},
+					newCommentList: [],
+					newCommentLast: false,
+					load: '加载更多',
+					isload: false,
+					uploading: true,
+					content: null,
+					begin: true,
+					whether:false,
+					tabOffsetTop:''
+				},
+				filters: {
+					ellipsis(value) {
+						if (!value) return ''
+						if (value.length > 5) {
+							return value.slice(0, 5) + '...'
+						}
+						return value
+					}
+				},
+				created() {
+					this.getContent()
+				},
+				mounted() {
+					
+					
+					let tabEle = document.getElementById('tabs')
+					this.tabOffsetTop = tabEle.offsetTop
+					window.addEventListener("scroll", this.handleScroll);
+				},
+				methods: {
+					handleScroll() {
+					      var scrollTop =
+					        window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+					      // console.log(scrollTop)
+					      if(scrollTop>this.tabOffsetTop){
+					        this.whether = true;
+					      }else{
+					        this.whether = false;
+					      }
+					    },
+					
+					// 获取content
+					getContent() {
+						var that = this
+						api.GET('/content/' + this.contentId, {}, function(res) {
+							if (res.code == 200) {
+								that.content = res.data
+								//获取最热评论
+								that.getHotList()
+								//获取最新评论
+								that.getNewList()
+							}
+						})
+					},
+					getHotList() {
+						let _this = this
+						_this.getHotData.contentId = _this.contentId
+						api.GET('/usercomment/mobile/hottest', _this.getHotData, function(res) {
+							if (res.code == 200) {
+								_this.hotCommentList = res.data.list
+								_this.begin = false
+							}
+
+						})
+					},
+					loading() {
+						if (this.uploading) {
+							this.uploading = false
+							if (!this.newCommentLast) {
+								this.load = '加载中'
+								this.isload = true
+								this.getNewData.page += 1
+								this.getNewList()
+							} else {
+								this.load = '没有更多了'
+								this.isload = false
+							}
+						}
+					},
+					getNewList() {
+						let _this = this
+						_this.getNewData.contentId = _this.contentId
+						api.GET('/usercomment/mobile/latest', _this.getNewData, function(res) {
+							if (res.code == 200) {
+								_this.newCommentLast = res.data.page.last
+								if (_this.newCommentLast) {
+									_this.load = '已显示全部内容'
+									_this.isload = false
+								} else {
+									_this.load = '加载更多'
+									_this.isload = false
+								}
+								_this.newCommentList = _this.newCommentList.concat(res.data.page.content)
+								_this.uploading = true
+							}
+
+						})
+					},
+					// 热门评论列表点赞和取消赞
+					commentsDianzan(a, num) {
+						if (num == 1) {
+							this.hotZan(a)
+						} else {
+							this.newZan(a)
+						}
+					},
+					// 热门点赞
+					hotZan(a) {
+						var that = this
+						that.hotCommentList = that.hotCommentList.map(item => {
+							return {
+								...item,
+								animationPlus: false,
+								animationSub: false
+							}
+
+						})
+						if (a.isLike) {
+							api.POST('/usercomment/up', {
+								commentId: a.id
+							}, function(res) {
+								if (res.code == 200) {
+									that.hotCommentList.find(item => item.id == a.id).isLike = false
+									that.hotCommentList.find(item => item.id == a.id).upCount += 1
+									that.hotCommentList.find(item => item.id == a.id).animationPlus = true
+									winTip('点赞成功')
+								} else {
+									errorTip(res.message)
+								}
+							})
+						} else {
+							api.POST('/usercomment/cancel/up', {
+								commentId: a.id
+							}, function(res) {
+								if (res.code == 200) {
+									that.hotCommentList.find(item => item.id == a.id).isLike = true
+									that.hotCommentList.find(item => item.id == a.id).upCount -= 1
+									that.hotCommentList.find(item => item.id == a.id).animationSub = true
+									winTip('取消点赞成功')
+								} else {
+									errorTip(res.message)
+								}
+							})
+						}
+					},
+					// 最新点赞
+					newZan(a) {
+						var that = this
+						that.newCommentList = that.newCommentList.map(item => {
+							return {
+								...item,
+								animationPlus: false,
+								animationSub: false
+							}
+
+						})
+						if (a.isLike) {
+							api.POST('/usercomment/up', {
+								commentId: a.id
+							}, function(res) {
+								if (res.code == 200) {
+									that.newCommentList.find(item => item.id == a.id).isLike = false
+									that.newCommentList.find(item => item.id == a.id).upCount += 1
+									that.newCommentList.find(item => item.id == a.id).animationPlus = true
+									winTip('点赞成功')
+								} else {
+									errorTip(res.message)
+								}
+							})
+						} else {
+							api.POST('/usercomment/cancel/up', {
+								commentId: a.id
+							}, function(res) {
+								if (res.code == 200) {
+									that.newCommentList.find(item => item.id == a.id).isLike = true
+									that.newCommentList.find(item => item.id == a.id).upCount -= 1
+									that.newCommentList.find(item => item.id == a.id).animationSub = true
+									winTip('取消点赞成功')
+								} else {
+									errorTip(res.message)
+								}
+							})
+						}
+					},
+					// 发布评论
+					issueComment() {
+						let _this = this
+						if (_this.textarea) {
+							api.POST('/usercomment', {
+								contentId: _this.contentId,
+								commentText: _this.textarea
+							}, function(res) {
+								if (res.code == 200) {
+									winTip('评论成功')
+									_this.textarea = ''
+
+								} else {
+									errorTip(res.message)
+								}
+							})
+						} else {
+							errorTip('请输入评论内容')
+						}
+					},
+					openDetails(id) {
+						window.location.href = ("${base}/content-commentDetails.htm?contentId=" + this.contentId + "&parentId=" + id)
+					}
+				}
+			})
+		</script>
+
+	</body>
+</html>

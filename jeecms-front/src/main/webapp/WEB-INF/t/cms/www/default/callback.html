@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>第三方快速登录</title>
+    <link rel="stylesheet" href="${res}/css/third-login.css">
+</head>
+
+<body>
+	
+    <!-- 顶部导航 -->
+    <div class="header-children">
+    [#include "includes/header.html"/]
+    </div>
+    <!--顶部导航 over-->
+	<!-- <h1>返回的CODE:${info.code},返回的信息:${info.message},用户信息:${info.data}</h1> -->
+    <!-- 中间部分 -->
+    <div class="main">
+        <div class="third-login">
+            <div class="weixin Regular">微信登录</div>
+			<div class="bind Light">已有账号？马上绑定吧！</div>
+            <div class="login overflow">
+                <div class="left fl">
+                    <div class="info Light">
+                        <span>*</span>您在JEECMS演示站的用户名为:    
+                    </div>
+                    <input type="text"id="nickname">
+                    <a onclick="direct()" class="block Semilight">直接进入</a>
+                </div>
+                <div class="right fl">
+                    <form id="registerForm">
+                        <div class="username">
+                            <label class="Light" for=""><span>*</span>用户名：</label>
+                            <input type="text" name="username" id="username" placeholder="请输入用户名">
+							<div class="errors Light"></div>
+                        </div>
+                        <div class="psword">
+                            <label class="Light" for=""><span>*</span>密码：</label>
+                            <input type="password" name="psw" id="psw" placeholder="请输入密码">
+							<div class="errors Light"></div>
+                            <i class="iconfont iconeye-close-line pointer"></i>
+                            <i class="iconfont iconliulang pointer none"></i>
+                        </div>
+                        <a href="./content-loginfindpsword.htm" class="forget Semilight">忘记密码?</a>
+                        <input class="bind-login Semilight pointer" type="submit" value="绑定并登录">
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 顶部导航 -->
+    [#include "includes/footer.html"/]
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+	<script type="text/javascript">
+		var thirdId = ''
+		var nickname = ''
+		var loginType = ''
+		if(${info.code} == 200){
+			var thirdData = ${info.data}
+			if(thirdData.bind){
+				localStorage.setItem('JEECMS-Auth-Token', thirdData['JEECMS-Auth-Token']);
+				if(thirdData.redirectUrl){
+					location.href = thirdData.redirectUrl;
+				}else{
+					location.href = '${base}/member-vipcenter.htm';
+				}
+				
+			}
+			thirdId = thirdData.uid
+			nickname = thirdData.nickname
+			loginType = thirdData.loginType
+			$('#nickname').val(nickname)
+			if(loginType == 'WEIBO'){
+				$('.weixin').html('微博登录')
+			}else if(loginType == 'QQ'){
+				$('.weixin').html('QQ登录')
+			}else if(loginType == 'WECHAT'){
+				$('.weixin').html('微信登录')
+			}
+		}
+		function direct(){
+			var obj = {}
+			obj.loginWay =1
+			obj.loginType = loginType
+			obj.thirdId = thirdId
+			obj.nickname = nickname
+			if($('#nickname').val()){
+				obj.username = $('#nickname').val()
+			}else{
+				myMessage.add('请输入用户名', 'error');
+				return
+			}
+			
+			api.POST('/thirdParty/bind',obj,function(res){
+				if(res.code==200){
+					if(res.data['JEECMS-Auth-Token']){
+						localStorage.setItem('JEECMS-Auth-Token', result.data['JEECMS-Auth-Token']);
+						if(res.data.redirectUrl){
+							location.href = res.data.redirectUrl
+						}else{
+							location.href = '${base}/member-vipcenter.htm';
+						}
+					}else{
+						 myMessage.add(result.message, 'error');
+					}
+					
+				}else{
+					myMessage.add(result.message, 'error');
+				}
+				
+			})
+		}
+		$('#registerForm').validate({
+		    rules: {
+		        username: {
+		            required: true
+		        },
+		        psw: {
+		            required: true
+		        }
+		    },
+		    messages: {
+		        username: {
+		            required: "请输入用户名"
+		        },
+		        psw: {
+		            required: "请输入密码"
+		        }
+		    },
+		    //错误提示标签
+		    errorElement: 'p',
+		    //获得焦点时，错误提示消失 
+		    // focusCleanup: true,
+		    //失去焦点时，进行验证
+		    onfocusout: function (element) {
+		        $(element).valid();
+		    },
+		    //错误提示的位置
+		    errorPlacement: function (error, element) {
+		        error.appendTo(element.parent('div').find('.errors'));
+		    },
+		    submitHandler: function () {
+		        var obj = {}
+		        obj.loginWay =2
+		        obj.loginType = loginType
+		        obj.thirdId = thirdId
+		        obj.nickname = nickname
+		        obj.username = $('#username').val()
+				obj.psw = desEncrypt($('#psw').val())
+				api.POST('/thirdParty/bind',obj,function(res){
+					if(res.code==200){
+						if(res.data['JEECMS-Auth-Token']){
+							localStorage.setItem('JEECMS-Auth-Token', result.data['JEECMS-Auth-Token']);
+							if(res.data.redirectUrl){
+								location.href = res.data.redirectUrl
+							}else{
+								location.href = '${base}/member-vipcenter.htm';
+							}
+						}else{
+							 myMessage.add(result.message, 'error');
+						}
+						
+					}else{
+						myMessage.add(result.message, 'error');
+					}
+					
+				})
+			}
+		})
+	</script>
+</body>
+
+</html>

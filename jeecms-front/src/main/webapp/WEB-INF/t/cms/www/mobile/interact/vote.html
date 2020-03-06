@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>投票调查详情</title>
+	</head>
+	<body>
+    [@cms_questionnaire id=id]
+    [#if tag_bean??]
+    <!-- 头部导航 -->
+		[#assign type="2" contentTitle=tag_bean.title/]
+    [#include "../includes/header.html"]
+    <link rel="stylesheet" type="text/css" href="${mobileRes}/css/bignav.css" />
+    <link rel="stylesheet" type="text/css" href="${mobileRes}/css/voteView.css">
+    <!-- 引入样式和js文件 -->
+    <link rel="stylesheet" type="text/css" href="${mobileRes}/css/mobileSelect.css">
+    <script src="${mobileRes}/js/mobileSelect.js" type="text/javascript"></script>
+    <script src='https://res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
+    <div id="voteDetail">
+        <div class="t-vote-wrap" >
+            <div class="container overflow">
+              [#if tag_bean.headConfig??&&tag_bean.headConfig.bgImage??] 
+              <div class="t-vote-head">
+                <img class="t-img" src="${base!}${tag_bean.headConfig.bgImageUrl!}" alt="">
+              </div>
+              [/#if]
+              <div class="t-vote-cont"	>
+                <div class="t-vote-title">${tag_bean.title!}</div>
+                <div class="t-vote-detail">${tag_bean.details!}</div>
+                [#list tag_bean.subjects as a]
+                <div class="t-cont-ques">
+                    <div class="t-cont-title">[#if a.isAnswer??&&a.isAnswer]<span class="t-red impro">*</span>[/#if] ${a.title!}</div>
+                    [#if a.prompt??]<div class="t-cont-prompt">${a.prompt!}</div>[/#if]
+                    [#if a.type < 3]
+                    <div class="t-flex">
+                        [#list a.option.options as b]
+                        <div class="t-cont-radios attr_${b.id!}  [#if b.isDefault??&&b.isDefault]active[/#if] [#if b.pic??]active-radio[/#if]"
+                          data-name="${a.id!}" data-id="${b.id!}"  data-type="${a.type!}" data-required="${b.isRequired?string('true','false')}"
+                          style='[#if b.pic??]width:48%[/#if]'
+                          >
+                          [#if b.pic??]
+                            <div class="image-radio">
+                              <div class="radio-img">
+                                <img class="t-img" src="${base}${b.picUrl!}" alt="">
+                              </div>
+                              <div class="margin-top10">
+                                <span class="t-radio  [#if a.type == 1]t-radius radio[/#if]" >
+                                  [#if a.type == 1]<div class="iconfont"></div>[#else]
+                                  <img class="t-img " src="${mobileRes}/images/icon/gouxuan.png" alt="">[/#if]
+                                </span>
+                                <label class=" Semilight">${b.name!}</label>
+                              </div>
+                            </div>
+                            [#else]
+                            <span class="t-radio [#if a.type == 1]t-radius radio[/#if]" >
+                              [#if a.type == 1]<div class="iconfont"></div>[#else]
+                              <img class="t-img " src="${mobileRes}/images/icon/gouxuan.png" alt="">[/#if]
+                            </span>
+                            <label class=" Semilight">${b.name!}</label>
+                          [/#if]
+                          [#if b.isEemty??&&b.isEemty]
+                            <div class="t-radio-emty t-input relative">
+                                [#if b.isRequired??&&b.isRequired]<span class="t-red impro">*</span>[/#if]
+                              <input  class="option-input other_${b.id!}" data-name="other_${b.id!}" type="text" maxlength="50" placeholder="请输入">
+                            </div>
+                          [/#if]
+                        </div>
+                        [/#list]
+                    </div>
+                    [/#if]
+                    [#if a.type == 3]
+                    <div class="t-input t-w414"
+                      :style="'width:${a.option.inputWidth!}%;height:'+Number('${a.option.inputHeight!}')/47.5+'rem;'">
+                      <input class="anwer-input"
+                        maxlength="${a.option.inputNum!150}" data-rule="${a.option.inputType!}"
+                        data-name="${a.id!}"  name="anwer" placeholder="请写下你的建议或意见" >
+                    </div>
+                    [/#if]
+                    [#if a.type == 4]
+                    <div class="relative">
+                        <div class="t-border sel-box select_${a.id}">
+                          <span class="flex-1" id="select_${a.id}">请选择</span>
+                          <span class="t-font12 selece-icon"><img class="t-img " src="${mobileRes}/images/icon/arrow_down.png" alt=""></span>
+                        </div>
+                        [#list a.option.options as b]
+                            [#if b.isEemty??&&b.isEemty]
+                            <div class="t-border-emty t-input relative other_${b.id!}" style="display: none;">
+                                [#if b.isRequired??&&b.isRequired]<span class="t-red impro">*</span>[/#if]
+                                <input  class="option-input other_${b.id!}" data-name="other_${b.id!}" type="text" maxlength="50" placeholder="请输入">
+                            </div>
+                            [/#if]
+                        [/#list]
+                    </div>
+                    [/#if]
+                    [#if a.type == 5]
+                    <div class="cascade-box ">
+                        <div class="t-border sel-box cascade_${a.id}">
+                          <span class="flex-1" id="cascade_${a.id}">请选择</span>
+                          <span class="t-font12  selece-icon"><img class="t-img " src="${mobileRes}/images/icon/arrow_down.png" alt=""></span>
+                        </div>
+                    </div>
+                    [/#if]
+                    [#if a.type == 6]
+                    <div class="t-file-upload">
+                        <div class="t-color99"><img class=" iconfont" src=" ${mobileRes}/images/icon/fujianshangchuan02.png"alt="">
+                        </div>
+                        <div class="t-color66 t-font12 "><span class="t-red t-cursor upload">点击上传文件</span></div>
+                        <input type="file" multiple data-name="${a.id!}" data-numlimit=[#if a.option.fileNumLimit??&&a.option.fileNumLimit]true[#else]false[/#if]
+                        data-unit="${a.option.fileUnit!}" data-sizelimit=[#if a.option.fileSizeLimit??&&a.option.fileSizeLimit]true[#else]false[/#if]
+                        data-size="${a.option.fileSize!}" data-num="${a.option.fileNum!}" data-typelimit=[#if a.option.fileTypeLimit??&&a.option.fileTypeLimit]true[#else]false[/#if]
+                        data-file="${a.option.fileTypes!}" data-dis="${a.option.fileTypeSet!}" class="up-file" />
+                    </div>
+                    <div class="file-list"></div>
+                    [/#if]
+                </div>
+                [/#list]
+                <div class="sub-btn-wrap">
+                  <div class="sub-btn" @click="subForm()"></div>
+                </div>
+              </div>
+        </div>
+        </div>
+        <!-- 弹窗 -->
+        <div class="mode mode-code">
+          <div class="mode-box">
+            <div class="mode-title">验证码</div>
+            <div class="input-box">
+              <input class="mode-input code-input" type="text" placeholder="请输入验证码" />
+              <div class="code letter" id="getCapatchImg"></div>
+            </div>
+            <div class="mode-btns">
+              <span class="mode-btn" @click="cancel">取消</span>
+              <span class="mode-btn" @click="submitQues">确定</span>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="t-nothing">
+      <p>您需要到微信上打开才能参与</p>
+      <p class="t-colorcc t-font14">使用微信扫描二维码打开</p>
+			<div class="nothing-img"></div>
+		</div>
+    [/#if]
+    [/@cms_questionnaire]
+	<!--<div @click="wechatSign">分享</div>-->
+  </body>
+  <script>
+    [@cms_questionnaire id=id]
+    [#if tag_bean??]
+    var formData = {};
+    var subData;
+    var code;
+    var sessionId = ''
+    var isOnlyWechat = "${tag_bean.isOnlyWechat?string('true','false')}"
+    var vote = new Vue({
+        el: '#voteDetail',
+        data: {},
+        mounted() {
+          
+        },
+        methods:{
+          subForm(){
+            submitForm();
+          },
+          cancel(){
+            cancelCode();
+          },
+          submitQues(){
+            $('.mode-code').css('display','none');
+              var value = $('.code-input').val()
+              if(value){
+                subData.append('sessionId',sessionId)
+                subData.append('captcha',value)
+                submitData(subData)
+              } else {
+                winTip('请输入验证码')
+              }
+          }
+        }
+      });
+    
+    
+    function wechatSign() {
+				var url = document.URL
+				if(url.length){
+					api.GET('/wechat/sign', {
+						"url": url
+					}, function(data) {
+						if (data.code === 200) {
+							shareJs(data.data)
+						} else {
+							winTip(data.message)
+						}
+					})
+				}
+			}
+		
+    function shareJs(jssdk, options) {
+	 
+      wx.config({
+          debug: false,//是否开启调试功能，这里关闭！
+          appId: jssdk.appId,//appid
+          timestamp: parseInt(jssdk.timestamp), //时间戳
+          nonceStr: jssdk.nonceStr, //生成签名的随机字符串
+          signature: jssdk.signature,//签名
+          jsApiList: [
+              'onMenuShareTimeline',
+              'onMenuShareAppMessage'
+          ]
+      });
+      var defaults = {
+          title: "${tag_bean.title}",
+          desc: "${tag_bean.descripion!'描述'}",
+          link: location.href, //分享页面地址,不能为空，这里可以传递参数！！！！！！！
+          imgUrl: location.protocol + "//" + location.host + '${tag_bean.shareLogoUrl!}', //分享是封面图片，不能为空
+          success: function () { }, //分享成功触发
+          cancel: function () { } //分享取消触发，需要时可以调用
+      }
+      // 合并对象，后面的替代前面的！
+      options = Object.assign({}, defaults, options);
+       wx.ready(function () {
+          var thatopts = options;
+          // 分享到朋友圈
+          wx.onMenuShareTimeline({
+              title: thatopts.title, // 分享标题
+              desc: thatopts.desc, // 分享描述
+              link: thatopts.link, // 分享链接
+              imgUrl: thatopts.imgUrl, // 分享图标
+              success: function () {
+                   //alert("成功");
+				   //alert(thatopts.imgUrl);
+              },
+              cancel: function () {
+                   //alert("失败")
+              }
+          });
+          // 分享给朋友
+          wx.onMenuShareAppMessage({
+              title: thatopts.title, // 分享标题
+              desc: thatopts.desc, // 分享描述
+              link: thatopts.link, // 分享链接
+              imgUrl: thatopts.imgUrl, // 分享图标
+              success: function () {
+                   //alert("成功");
+				   //alert(thatopts.imgUrl);
+              },
+              cancel: function () {
+                   //alert("失败")
+              }
+          });
+       });
+  }
+    function submitForm(){
+      var data = new FormData();
+      data.append('questionnaireId','${tag_bean.id!}')
+      var canSub = true
+      for(var item in formData){
+        if(formData[item].isRequired&&!formData[item].value){ 
+          if($('.win-tip').length === 0){
+            winTip('请认真填写所有必填项');
+          }
+          canSub = false
+          return
+        } else {
+          if(formData[item].value instanceof Array&&formData[item].value.length){
+            if(formData[item].value[0] instanceof Object){
+              for(var file in formData[item].value) {
+                //  console.log(file)
+                data.append(item,formData[item].value[file])
+              }
+            } else {
+              data.append(item,formData[item].value.join(','))
+            }
+          } else if(formData[item].value!==null) {
+            data.append(item,formData[item].value||'')
+          }
+        }
+      }
+      if(canSub){
+        var verification = "${tag_bean.isVerification?string('true','false')}";
+        if(verification == 'true'){
+          $('.mode-code').css('display','block');
+          genCapatch();
+          subData = data
+        } else {
+          if('${tag_bean.status!}' == 4){
+            $('.mode-success').css('display','block')
+          } else {
+            submitData(data)
+          }
+        }
+        // submitData(data)
+      }
+    }
+    
+    //通过文件名，返回文件的后缀名
+    function fileType(name) {
+        var nameArr = name.split(".");
+        return nameArr[nameArr.length - 1].toLowerCase();
+    };
+    // 删除上传文件
+    function delFile(e,name,i){
+      formData['attr_'+name].value.splice(i,1);
+      $(e.target).parent('.file-item').remove();
+      console.log(formData)
+      console.log(e)
+    };
+    // 重置必填数据
+    function resetFormDataRequired(name){
+      for(var i in formData) {
+        if(i.indexOf('other_') != -1 && i != name){
+          formData[i].isRequired = false
+        }
+      }
+    }
+    function ruleValue(type,val){
+				// ['','只能输入中文',
+				// '只能输入英文',
+				// '只能输入数字(整数或小数)',
+				// '只能输入英文、数字',
+				// '只能输入整数',
+				// '只能输入中文、英文、数字',
+				// '只能输入邮箱',
+				// '只能输入手机号',
+				// '只能输入座机号',
+				// '只能输入手机或座机号',
+				// '只能输入身份证号',
+				// '只能输入邮政编码']
+				var arr = ['',/^[\u4e00-\u9fa5]{0,}$/,/^[A-Za-z]+$/,/^[+-]?(0|([1-9]\d*))(\.\d+)?$/,/^[A-Za-z0-9]+/,/^[1-9]\d*$/,/^[\u4E00-\u9FA5A-Za-z0-9]+$/,/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,/^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/,/^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$/,/^(1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}||((\d{3,4}-)|\d{3.4}-)?\d{7,8})$/,/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/,/[1-9]\d{5}(?!\d)/];
+				var s = arr[parseInt(type)||0]
+				if(s&&s.test(val)){
+					return true
+				} else {
+					return false
+				}
+			};
+    function genCapatch() {
+					$.ajax({
+							url: "${base}/common/kaptcha",
+							data: {},
+							success: function (result) {
+								$('#getCapatchImg').html('<img class="t-img" id="capatchImg" src="'+"data:image/png;base64," + result.data.img+'" onclick="genCapatch()" />')
+								sessionId=result.data.sessionId
+							}
+					});
+			};
+    function cancelCode(){
+        $('.mode-code').css('display','none');
+      };
+		function createCode(){
+					code = '';
+					var codeLength = 4;
+					var codeV = $(".letter"); 
+					var arr = new Array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r', 's','t','u','v','w','x','y','z'); 
+					for(var i = 0; i < codeLength; i++){   
+						var index = Math.floor(Math.random()*26);  
+						code += arr[index]; 
+					} 
+					codeV.text(code);
+				};
+    function submitData(data){
+      $.ajax({
+          type: 'post',
+          url: '${base}/questionnaire',
+          dataType: 'json',
+          data: data,
+          cache: false,
+          processData: false,
+          async: false,
+          contentType:false,
+          headers: {
+              'JEECMS-Auth-Token': localStorage.getItem('JEECMS-Auth-Token'),
+          },
+          success: function (result) {
+              if (result.code == 200) {
+                var i = 3
+                if('${tag_bean.processType!}' == 1){//显示文字信息
+                  // $('.mode-success').css('display','block');
+                  $('.mode-result').css('display','block')
+                  winTip('${tag_bean.prompt!}'||'此次投票已经结束，感谢您的参与！');
+                  setTimeout(() => {
+                    location.href = "[@cms_channel path='tptc' siteId='1'][#if tag_bean??]${base}${tag_bean.url!}[/#if][/@cms_channel]"
+                    // location.href = '${base}/tptc'
+                  }, 1000);
+                } else if('${tag_bean.processType!}' == 2) {//跳转到指定页面
+                    location.href = '${base}${tag_bean.prompt!}'
+                } else {//显示结果
+                  $('.mode-result').css('display','block')
+                  winTip('您的答卷已经提交，感谢您的参与！');
+                  setTimeout(() => {
+                    location.href = '${base}/interact-result.htm?id=${id!}'
+                  }, 3000);
+                }
+                
+              } else{
+                winTip(result.message)
+              }
+              // result
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            errorTip(errorThrown);
+          }
+      });
+    }
+    function initContent(){
+        var len = $('.t-cont-ques').length
+        var obj = {}
+        [#list tag_bean.subjects as sub]
+          obj['attr_${sub.id!}'] = {
+              value:null,
+              isRequired:"${sub.isAnswer?string('true','false')}"=='true'?true:false
+        };
+        [#if sub.type == 1||sub.type == 4]
+          [#list sub.option.options as c]
+            var isDefault = '${c.isDefault?string("true","false")}'
+            if(isDefault == 'true'){
+              obj['attr_${sub.id!}'].value = '${c.id!}';
+            }
+          [/#list]
+        [#elseif sub.type == 2]
+        obj['attr_${sub.id!}'].value = []
+        [#list sub.option.options as c]
+            var isDefault = '${c.isDefault?string("true","false")}'
+            if(isDefault == 'true'){
+              obj['attr_${sub.id!}'].value.push('${c.id!}');
+            }
+          [/#list]
+        [/#if]
+          [#if sub.type == 4]
+            var select = 'mobile${sub_index}'
+            select = new MobileSelect({
+                trigger: '#select_${sub.id!}',
+                title: '',
+                wheels: [{data: [
+                  [#list sub.option.options as b]
+                  {
+                    id:'${b.id!}',
+                    value:'${b.name!}',
+                    name:'${sub.id!}',
+                    isRequired: '${b.isRequired?string("true","false")}'
+                  },
+                  [/#list]
+                ]}],
+                position: [
+                  [#list sub.option.options as b]
+                    [#if b.isDefault]
+                        ${b_index!}
+                    [/#if]
+                  [/#list]
+                ],
+                transitionEnd:function(indexArr, data){
+                    // console.log(data);
+                },
+                callback:function(indexArr, data){
+                    formData['attr_'+data[0].name].value = data[0].id
+                    $(".t-border-emty").hide()
+                    if($('.other_'+ data[0].id).length != 0) {
+                      $('.other_' + data[0].id).show()
+                    }
+                  resetFormDataRequired('other_'+data[0].id)
+                  // 当选项有必填填空的时候，设置成必填
+                  if(formData['other_'+data[0].id]){
+                    formData['other_'+ data[0].id].isRequired = data[0].isRequired =='true'?true:false
+                  }
+                }
+            });
+          [/#if]
+          [#if sub.type == 5||sub.type == 1||sub.type == 2||sub.type == 4]
+            [#list  sub.option.options as a]
+            [#if a.isEemty??&&a.isEemty]
+            obj['other_${a.id!}'] = {
+              value:'',
+              isRequired: false
+            };
+            [/#if]
+            [/#list]
+          [/#if]
+          [#if sub.type == 5]
+            var select = 'mobile${sub_index}'
+            select = new MobileSelect({
+                trigger: '#cascade_${sub.id!}',
+                title: '',
+                wheels: [{data: [
+                  [#list sub.option.options as b]
+                  {
+                    id:'${b.name!}',
+                    value:'${b.name!}',
+                    name:'${sub.id!}',
+                    childs:[
+                      [#if b.children??&&b.children?size>0]
+                      [#list b.children as c]
+                        {
+                          id:'${c.name!}',
+                          value:'${c.name!}',
+                          name:'${sub.id!}',
+                          childs:[
+                          [#if c.children??&&c.children?size>0]
+                            [#list c.children as v]
+                              {
+                                id:'${v.name!}',
+                                value:'${v.name!}',
+                                name:'${sub.id!}',
+                                childs:[
+                                [#if v.children??&&v.children?size>0]
+                                [#list v.children as d]
+                                  {
+                                    id:'${d.name!}',
+                                    value:'${d.name!}',
+                                    name:'${sub.id!}',
+                                    childs:[]
+                                  },
+                                [/#list]
+                                [/#if]
+                                ]
+                              },
+                            [/#list]
+                            [/#if]
+                          ]
+                        },
+                      [/#list]
+                      [/#if]
+                    ]
+                  },
+                  [/#list]
+                ]}],
+                position:[0],
+                transitionEnd:function(indexArr, data){
+                    // console.log(data);
+                },
+                callback:function(indexArr, data){
+                  var name = '${sub.id!}';
+                  var text = []
+                  for(var i = 0;i<data.length;i++){
+                    text.push(data[i].id)
+                  }
+                  formData['attr_'+name].value = text
+                }
+            });
+          [/#if]
+          [/#list]
+          formData = obj
+            [#list tag_bean.subjects as sub]
+            [#if sub.type == 4]
+              [#list sub.option.options as b]
+                [#if b.isDefault]
+                    formData['attr_${sub.id!}'].value = '${b.id!}'
+                    $('#select_${sub.id!}').text('${b.name!}')
+                    $('.other_${b.id!}').show()
+                [/#if]
+              [/#list]
+            [/#if]
+            [/#list]
+            $('.t-vote-wrap').css({
+              backgroundColor:'${tag_bean.bgConfig.bgType!}'==1?'':'${tag_bean.bgConfig.bgColor!}',
+              backgroundImage:'${tag_bean.bgConfig.bgType!}'==1?'url(' + 
+              (('${tag_bean.bgConfig.bgImageUrl!}').indexOf('//')>-1?
+              '${tag_bean.bgConfig.bgImageUrl!}':'${base}${tag_bean.bgConfig.bgImageUrl!}') + ')':'',
+              backgroundPosition:'${tag_bean.bgConfig.alignType!}',
+              backgroundRepeat:'${tag_bean.bgConfig.isRepeat!}'==1? 'repeat' : 'no-repeat',
+              opacity: Number('${tag_bean.bgConfig.opacity!}') / 100
+            });
+            $('.t-vote-cont').css({
+              backgroundColor:'${tag_bean.contConfig.bgColor!"#fff"}',
+              borderColor:'${tag_bean.contConfig.hasBorder}' == 1 ? '${tag_bean.contConfig.borderColor!"#e8e8e8"}' : '#e8e8e8',
+              borderWidth:'${tag_bean.contConfig.hasBorder}' == 1 ?  Number('${tag_bean.contConfig.borderWidth!}')/100+'rem' : '0.01rem',
+              borderRadius: Number('${tag_bean.contConfig.borderRadius!"0"}')/100 + "rem"
+            });
+            $('.t-vote-title').css({
+              color:'${tag_bean.fontConfig.titleStyle.fontColor!"#333"}',
+              lineHeight:1.5,
+              fontSize:Number('${tag_bean.fontConfig.titleStyle.fontSize!24}')/60+'rem',
+              fontWeight:'${tag_bean.fontConfig.titleStyle.fontWigth!600}',
+              textAlign:'${tag_bean.fontConfig.titleStyle.fontAlign!"center"}'
+            })
+            $('.t-vote-detail').css({
+              color:'${tag_bean.fontConfig.descStyle.fontColor!"#333"}',
+              lineHeight:1.5,
+              fontSize:Number('${tag_bean.fontConfig.descStyle.fontSize!0.14}')/39+'rem',
+              fontWeight:'${tag_bean.fontConfig.descStyle.fontWigth!400}',
+              textAlign:'${tag_bean.fontConfig.descStyle.fontAlign!"left"}'
+            });
+            $('.t-cont-ques .t-cont-title').css({
+              color:'${tag_bean.fontConfig.stemStyle.fontColor!"#333"}',
+              lineHeight:1.5,
+              fontSize:Number('${tag_bean.fontConfig.stemStyle.fontSize!14}')/36.8+'rem',
+              fontWeight:'${tag_bean.fontConfig.stemStyle.fontWigth!600}'
+            });
+            $('.t-cont-ques .t-cont-radios').css({
+              color:'${tag_bean.fontConfig.optStyle.fontColor!"#333"}',
+              lineHeight:1.5,
+              fontSize:Number('${tag_bean.fontConfig.optStyle.fontSize!14}')/39+'rem',
+              fontWeight:'${tag_bean.fontConfig.optStyle.fontWigth!400}'
+            });
+            $('.sub-btn').html('${tag_bean.subConfig.text!}');
+            $('.sub-btn').css({
+              backgroundColor:'${tag_bean.subConfig.bgColor!}',
+              width:Number('${tag_bean.subConfig.btnWidth!}')/56+'rem',
+              height:Number('${tag_bean.subConfig.btnHeight!}')/54+'rem',
+              lineHeight:Number('${tag_bean.subConfig.btnHeight!}')/54+'rem',
+              borderColor:'${tag_bean.subConfig.borderColor!}',
+              borderRadius:Number('${tag_bean.subConfig.borderRadius!0.08}')/50+'rem',
+              borderWidth:'${tag_bean.subConfig.hasBorder}'==1?Number('${tag_bean.subConfig.borderWidth!}')/100+'rem':'0rem',
+              fontSize:'${tag_bean.subConfig.fontStyle.fontSize!}'/39+'rem',
+              fontWeight:'${tag_bean.subConfig.fontStyle.fontWigth!}',
+              color:'${tag_bean.subConfig.fontStyle.fontColor!}'
+            });
+            // 输入框
+            $('.anwer-input').on('change',function(){
+              var name = $(this).attr('data-name');
+              var rule = $(this).attr('data-rule');
+              if(rule){
+                console.log(ruleValue(rule,$(this).val()))
+                if(ruleValue(rule,$(this).val())){
+                  formData['attr_'+name].value = $(this).val()
+                } else {
+                  var arr = ['','只能输入中文','只能输入英文','只能输入数字(整数或小数)','只能输入英文、数字','只能输入整数','只能输入中文、英文、数字','只能输入邮箱','只能输入手机号','只能输入座机号','只能输入手机或座机号','只能输入身份证号','只能输入邮政编码']
+                  winTip(arr[parseInt(rule)]);
+                  formData['attr_'+name].value = ''
+                  $(this).val('')
+                }
+              } else {
+                formData['attr_'+name].value = $(this).val()
+              }
+            });
+            // 选项填空 赋值
+            $('.option-input').on('change', function(){
+              var name = $(this).attr('data-name');
+              formData[name].value = $(this).val()
+            })
+      };
+        $(function(){
+          var ua =navigator.userAgent.toLowerCase();
+          var isWeixin = ua.indexOf('micromessenger') != -1;
+          // 只有微信能打开
+          if(isOnlyWechat == 'true'&&!isWeixin){
+              $('.t-nothing').show();
+              $('#voteDetail').hide();
+              $('.nothing-img').html('<img class="t-img" src="${tag_bean.qrCodeUrl!}" />')
+            } else {
+              $('#voteDetail').show();
+              $('.t-nothing').hide();
+              if(isWeixin){
+                wechatSign();//请求微信接口-分享
+              }
+              createCode();//验证码初始化
+              initContent();//初始化数据
+            }
+            $('.up-file').on('change',function(e){
+                  // $(this).parent().siblings('.file-list').html('')
+                  var name = $(this).attr('data-name');
+                  // 是否限制类型
+                  var typelimit = $(this).attr('data-typelimit');
+                  // 限制类型
+                  var fileType = $(this).attr('data-file');
+                  // 是否限制大小
+                  var sizelimit = $(this).attr('data-sizelimit');
+                  // 限制大小
+                  var size = $(this).attr('data-size');
+                  var unit = $(this).attr('data-unit');
+                  // 是否限制数量
+                  var numlimit = $(this).attr('data-numlimit');
+                  // 限制数量
+                  var num = $(this).attr('data-num');
+                  // 文件限制或允许
+                  var isDis = $(this).attr('data-dis') == 1?true:false;
+                  var canUpload = true;
+                  var arr = [];
+                  var html = '';
+                  // 判断文件数量是否大于限制数量
+                  console.log(formData)
+                  console.log(formData['attr_'+name].value)
+                  if(numlimit){
+                    if(formData['attr_'+name].value != null &&(formData['attr_'+name].value.length >= parseInt(num) ||$(this)[0].files.length > parseInt(num) )){
+                      canUpload = false
+                      winTip('文件数量不得大于'+num);
+                      return
+                    }
+                  }
+                  for(var i = 0;i<$(this)[0].files.length;i++){
+                    // 单个文件大小
+                      var fileSize = ($(this)[0].files[i].size / 1024).toFixed(0);
+                      var fileUnit = $(this)[0].files[i].name.substring($(this)[0].files[i].name.lastIndexOf(".") + 1);
+                      if(typelimit && fileType){
+                        if(isDis&&fileType.indexOf(fileUnit) > -1){
+                            canUpload = false
+                            winTip('不支持这种类型的文件');
+                            return
+                        } else if (!isDis&&fileType.indexOf(fileUnit) < 0){
+                            canUpload = false
+                            winTip('不支持这种类型的文件');
+                            return
+                        }
+                      }
+                      console.log(sizelimit+'--'+size+'--'+unit)
+                      if(sizelimit=='true'&&size){
+                      var	sizeNum = unit == 'MB'?size*1024:size
+                        if(fileSize>sizeNum){
+                            canUpload = false
+                            winTip('文件大小不得大于'+size+(unit == 'MB'?'MB':'KB'));
+                            return
+                        }
+                      }
+                      if(canUpload){
+                        arr.push($(this)[0].files[i])
+                        html+='<div class="file-item">'+$(this)[0].files[i].name+' <img src="${mobileRes}/images/icon/cuowu.png" class="file-del" onclick="delFile(event,'+name+','+i+')"></img></div>'
+                      }
+                  }
+                  // 判断里面是否有数据
+                  if(formData['attr_'+name].value === null) {
+                    formData['attr_'+name].value = arr
+                  }else{
+                    formData['attr_'+name].value = formData['attr_'+name].value.concat(arr)
+                  }
+                  $(this).parent().siblings('.file-list').append(html)
+                  console.log(formData)
+                  console.log(e)
+                  e.target.value = ''
+                });
+            // 上传
+            $('.upload').click(function(){
+              $(this).parent().siblings('.up-file').click()
+            });
+            // 选择题
+            $('.t-cont-radios').click(function(e){
+                          // 判断点击的是否是input 如果是input的话，不执行下面方法
+                          if (e.target.className.indexOf('t-input') != -1 || e.target.className.indexOf('option-input') != -1) return
+                  var type = $(this).attr('data-type')
+                  var id = $(this).attr('data-id')
+                  var name = $(this).attr('data-name')
+                            var required = $(this).attr('data-required')
+                            resetFormDataRequired('other_'+id)
+                  if(formData['other_'+id]){
+                    // 判断当前按钮是否被选中
+                                if($(this).hasClass('active')) {
+                                  formData['other_'+id].isRequired = false
+                                }else{
+                                  formData['other_'+id].isRequired = required=='true'?true:false
+                                }
+                  }
+                  if(type == 1){
+                    formData['attr_'+name].value = id
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+                  } else {
+                    if(formData['attr_'+name].value&&formData['attr_'+name].value.indexOf(id) > -1){
+                      $(this).removeClass('active');
+                      formData['attr_'+name].value.splice(formData['attr_'+name].value.indexOf(id),1)
+                    } else {
+                      formData['attr_'+name].value = formData['attr_'+name].value?formData['attr_'+name].value.concat([id]):[id]
+                      $(this).siblings().removeClass('active');
+                      for(var i = 0;i<formData['attr_'+name].value.length;i++){
+                        $(this).addClass('active');
+                        $(this).siblings('.attr_'+formData['attr_'+name].value[i]).addClass('active');
+                      }
+                    }
+                  }
+                });
+            //验证码
+            $('.letter').on('click',function(){
+                createCode();
+            });
+            $("#getCapatchImg").on("click", function (event) {
+                genCapatch();
+            });
+            
+            $('.code-no').click(function(){
+              $('.mode-code').css('display','none')
+            })
+            $('.code-yes').click(function(){
+              $('.mode-code').css('display','none')
+              var value = $('.code-input').val()
+              if(value){
+                subData.append('sessionId',sessionId)
+                subData.append('captcha',value)
+                submitData(subData)
+              } else {
+                myMessage.add('请输入验证码', 'warning');
+              }
+            })
+      })
+      
+
+      [/#if]
+      [/@cms_questionnaire]
+    </script>
+    
+</html>

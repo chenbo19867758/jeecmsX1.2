@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+	</head>
+	<body>
+		<!-- 头部导航 -->
+		[#assign type="2" contentTitle="查看投票结果"/]
+		[#include "../includes/header.html"]
+		<!-- 头部导航 -->
+    <link rel="stylesheet" type="text/css" href="${mobileRes}/css/result.css" />
+    <script src="${mobileRes}/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="${mobileRes}/js/loading.js" type="text/javascript" charset="utf-8"></script>
+    <!-- 问卷内容 -->
+    <div id="questionnaire">
+      <div class="queTop">
+        <div class="title1">
+          <div class="queTitle">{{list.title}}</div>
+          <div class="peopleNum">参与人数：{{list.number}}人</div>
+        </div>
+      </div>
+      <div class="questContent" >
+        <ul v-for='(item,a) in list.subjects' class="itemList">
+          <li class="select" v-if='item.type===1 || item.type===2 || item.type===4'>
+            <p class="text"><span class="ident">*</span>{{item.title}}</p>
+            <ul>
+              <li v-for='(option,i) in item.options'>
+                  <div class="selectText">{{option.name}}</div>
+                  <div class="skillbar clearfix ">
+                    <div class="skillbar-bar" :style="'background: #45A5FF;width:'+option.rate+'%'"></div>
+                    <div class="skill-bar-percent">{{Math.round(option.rate)}}%</div>
+                  </div>
+              </li>
+            </ul>
+          </li>
+          <li class="shortAnswer" v-else-if="item.type===3">
+              <p class="text"></span><span class="ident">*</span>{{item.title}}<span class="answerList" @click="view(item.id)">查看</span></p>
+          </li>
+          <li class="cascade" v-else-if="item.type===5">
+              <p class="text"><span class="ident">*</span>{{item.title}}</p>
+              <div :id="'pieChart_'+a" style="width: 100%;height:6.9rem;" :a='a' :options='JSON.stringify(item.options)'></div>
+          </li>
+        </ul>        
+      </div>
+      <div class="popupBg" v-if='isShow'>
+        <div class="commentList">
+            <div><img src="${mobileRes}/images/icon/guanbi-b.png" @click="back()" class="clear"></div>
+            <p class="title">你的建议或者意见？</p>
+            <ul id='scroll'>
+              <li class="item" v-for='list in commentList' v-if='list.answer'>{{list.answer}}</li>
+              <my-loading :load="load" :isload="isload" :bind-scroll="'scroll'"></my-loading>
+            </ul>
+        </div>
+      </div>
+    </div>
+	</body>
+	<script>
+		var news = new Vue({
+			el: '#questionnaire',
+			data: {
+        load: '加载更多',
+				uploading: true,
+				getData: {
+					orderBy: 1,
+					page: 1,
+          size: 10,
+          subjectId:null,
+				},
+				isload: false,
+				list: [],
+				newPage: [],
+				last: false,
+				uped: false,
+        options:'',
+        commentList: [],
+        subjectId:null,//问答题id
+        isShow:false,// 弹窗是否显示
+        option:{
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{b} : {d}%"
+                },
+                legend: {
+                    left: 'center',
+                    bottom: '0',
+                    data:[]
+                },
+                color:['#3FA1FF', '#3ECBCB','#50CB73','#FBD444','#F2637B'],
+                series : [
+                    {
+                        // name: '访问来源'
+                        type: 'pie',
+                        radius : '62.5%',
+                        center: ['50%', '47.5%'],
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'outside',
+                                formatter: '{b}: {d}%',//模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。{d}数据会根据value值计算百分比
+                                textStyle : {                   
+                                  align : 'center',
+                                  baseline : 'middle',
+                                  fontSize : 12,
+                                  color:'#666666'
+                              }
+                            },
+                        },
+                        labelLine: {
+                            length: 10,
+                            length2: 0,
+                        },
+                        data:[]
+                    }
+                ]
+              }
+			},
+			mounted() {
+        this.getContentlist()
+      },
+			methods: {
+        back() {
+          this.isShow=false
+          $('body').css('overflow','auto')
+        },
+        loading() {
+					if (this.uploading) {
+						this.uploading = false
+						if (!this.last) {
+							this.load = '加载更多'
+							this.isload = true
+              this.getData.page += 1
+              this.getContentPage(this.getData.subjectId)
+						} else {
+							this.load = '没有更多了'
+							this.isload = false
+						}
+					}
+				},
+        processData(key,options){
+          var options = JSON.parse(options)
+          var seriesData =[]
+          var legendData=[]
+          for(var k=0;k<options.length;k++){
+              var obj={}
+              obj.value=options[k].rate
+              obj.name=options[k].name
+              seriesData.push(obj)
+              var obj2={}
+              obj2.name=options[k].name
+              obj2.icon='circle'
+              legendData.push(obj2)                 
+            } 
+            this.option.legend.data =legendData
+            this.option.series[0].data =seriesData
+            this.options[key]=this.option
+        },
+        view(id){
+          if(this.getData.page > 1){
+            this.getData.page = 1
+          }
+          this.isShow=!this.isShow
+          $('body').css('overflow','hidden')
+          this.getContentPage(id)
+          this.commentList=[]
+        },
+				getContentlist() {
+					var _this = this
+					api.GET('/questionnaire/result',{questionnaireId:'${id!}'},function(res){
+						if(res.code===200){
+              _this.list = res.data
+              _this.$nextTick(()=>{
+              for(var z=0;z<$("[id^='pieChart']").length;z++){
+                    var a=$("[id^='pieChart']").eq(z).attr('a')
+                    var options=$("[id^='pieChart']").eq(z).attr('options')
+                      _this.processData(a,options)
+                      echarts.init($("[id^='pieChart']").eq(z)[0]).setOption(_this.option);
+                   } 
+                })
+            }
+          })
+        },
+        getContentPage(id) {
+          var that = this
+          this.getData.subjectId=id
+          console.log(id)
+          this.getData.questionnaireId='${id!}'
+					api.GET('/questionnaire/list', that.getData, function(res) {
+						if (res.code == 200) {
+							that.last = res.data.last
+							if (!that.last) {
+								that.load = '加载更多'
+								that.isload = true
+							} else {
+								that.load = '没有更多了'
+								that.isload = false
+							}
+							that.newPage = res.data.content;
+							that.commentList = that.commentList.concat(that.newPage)
+							that.uploading = true
+            }
+          })
+				}
+			}
+		})
+	</script>
+</html>

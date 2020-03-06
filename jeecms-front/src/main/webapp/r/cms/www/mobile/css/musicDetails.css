@@ -1,0 +1,57 @@
+.videoDetails{
+	padding: 0.4rem;
+}
+.videoDetails audio{
+	display: block;
+	margin: 0.8rem auto;
+}
+.videoDetails h3{
+	margin-top: 0.6rem;
+	font-size: 0.4rem;
+	color: #333333;
+}
+.videoDetails .text{
+	margin-top: 0.4rem;
+	display: flex;
+	justify-content: space-between;
+	font-size: 0.26rem;
+}
+.videoDetails .text p:first-child{
+	color: #4D4D4D;
+}
+.videoDetails .text p:nth-child(2){
+	color: #B3B3B3;
+}
+.videoDetails .text p:last-child{
+	color: #999999;
+}
+.videoDetails .text p:last-child img{
+	width: 0.28rem;
+	height: 0.24rem;
+}
+.videoDetails .like-big{
+	display: flex;
+	justify-content: center;
+}
+.videoDetails .Like{
+	padding: 0.2rem 0.55rem 0.2rem 0.4rem;
+	margin: 0 anto;
+	margin-top: 0.8rem;
+	font-size: 0.32rem;
+	color: #333333;
+	margin-bottom: 0.6rem;
+	border: 1px solid #CCCCCC;
+	border-radius: 0.5rem;
+	line-height: 0.32rem;
+}
+.videoDetails .Like img{
+	width: 0.43rem;
+	height: 0.4rem;
+	margin-right: 0.1rem;
+}
+.videoDetails .Like .zan{
+	margin-right: 0.1rem;
+}
+.videoDetails .Like span{
+	margin-top: -0.1rem;
+}

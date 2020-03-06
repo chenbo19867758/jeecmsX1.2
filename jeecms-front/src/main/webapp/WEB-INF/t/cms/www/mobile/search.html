@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>搜索</title>
+</head>
+	
+<body>
+	[#assign type="2" contentTitle="搜索"/]
+	[#include "includes/header.html"]
+	<link rel="stylesheet" type="text/css" href="${mobileRes}/css/newsList.css"/>
+	<link rel="stylesheet" type="text/css" href="${mobileRes}/css/search.css"/>
+	<script src="${mobileRes}/js/loading.js" type="text/javascript" charset="utf-8"></script>
+	<div id="searchPage">
+		<div class="search-header">
+			<img class="search-icon" src="${mobileRes}/images/icon/sousuo-hei.png" >
+			<input type="text" @keyup.enter="searchs()" v-model="searchText" id="search" placeholder="大家都在搜什么"/>
+			<img v-if="searchText" @click="clear()" class="search-shut" src="${mobileRes}/images/icon/guanbi-b.png" >
+		</div>
+		<div v-if="!isSearch" class="search-hot">
+			<div class="hot-title Medium">热门搜索</div>
+			[@cms_search_word_list count='10']
+			<ul>
+			[#list tag_list as a]
+			    <li class="Regular"><a class="Regular" @click="upHot('${a.word!}')">${a.word!}</a></li>
+			 [/#list]                  
+			</ul>
+			 [/@cms_search_word_list] 
+		</div>
+		<div v-if="isSearch" class="search-content">
+			<div class="no-search" v-if="islength">
+				<img src="${mobileRes}/images/blank/wusousuo.png" >
+				<p class="noSearch Regular">搜索无结果，换个词试试吧~</p>
+			</div>
+			<div class="yes-search" v-if="searchList.length>0">
+				<div class="yes-search-header Medium">
+					<div class="search-left">
+						<p><span v-text="oderBy"></span><img @click="isSelect=true" src="${mobileRes}/images/icon/xiala.png"></p>
+						<ul v-if="isSelect">
+							<li class="Regular" :class="oderBy=='相关度'?'oderRed':'oderDark'" @touchStart="oderBy1($event)" @touchEnd="loosen1($event)">相关度</li>
+							<li class="Regular" :class="oderBy=='发布时间'?'oderRed':'oderDark'" @touchStart="oderBy2($event)" @touchEnd="loosen2($event)">发布时间</li>
+						</ul>
+					</div>
+					<p class="search-right">共<span v-text="totalElements"></span>条结果</p>
+				</div>
+				<div class="important-top-yes" v-for="(item,i) in searchList">
+					<!-- 新闻模型 -->
+					<div class="important-top" v-if="item.contentFrontVo.modelId == '912'">
+						<div class="important-top-left">
+							<a :href='item.url'><h4 class="Medium keywords" v-html="item.title"></h4></a>
+							<p class="Regular">
+								<span v-if='item.source&&item.source.sourceName' class="Regular" v-text="item.source.sourceName"></span>
+								<span v-if='!item.source'>jeecms演示站</span>
+								<span v-text="item.releaseTime"></span>
+								</p>
+						</div>
+						<div v-if="item.contentFrontVo.imageJson.shoujiliebiaotu&&item.contentFrontVo.imageJson.shoujiliebiaotu.url" class="important-top-right">
+							<a :href='item.url' :style="'background-image: url('+item.contentFrontVo.imageJson.shoujiliebiaotu.url+');'">
+							</a>
+						</div>
+					</div>
+					<!-- 图片模型 -->
+					<div class="important-top" v-if="item.contentFrontVo.modelId == '913'">
+						<div class="important-top-left">
+							<a :href='item.url'><h4 class="Medium keywords" v-html="item.title"></h4></a>
+							<p class="Regular">
+								<span v-if='item.source&&item.source.sourceName' class="Regular" v-text="item.source.sourceName"></span>
+								<span v-if='!item.source'>jeecms演示站</span>
+								<span v-text="item.releaseTime"></span>
+								</p>
+						</div>
+						<div v-if="item.contentFrontVo.imageJson.shoujidatu&&item.contentFrontVo.imageJson.shoujidatu.url" class="important-top-right">
+							<a :href='item.url' :style="'background-image: url('+item.contentFrontVo.imageJson.shoujidatu.url+');'">
+							</a>
+						</div>
+					</div>
+					<!-- 视频模型 -->
+					<div class="important-top" v-if="item.contentFrontVo.modelId == '963'">
+						<div class="important-top-left">
+							<a :href='item.url'><h4 class="Medium keywords" v-html="item.title"></h4></a>
+							<p class="Regular">
+								<span v-if='item.source&&item.source.sourceName' class="Regular" v-text="item.source.sourceName"></span>
+								<span v-if='!item.source'>jeecms演示站</span>
+								<span v-text="item.releaseTime"></span>
+								</p>
+						</div>
+						<div v-if="item.contentFrontVo.imageJson.shoujidatu&&item.contentFrontVo.imageJson.shoujidatu.url" class="important-top-right">
+							<a :href='item.url' :style="'background-image: url('+item.contentFrontVo.imageJson.shoujidatu.url+');'">
+								<img class="video-btn" src="${mobileRes}/images/icon/bofan-b.png" class="bofang">
+							</a>
+						</div>
+						<div v-else class="important-top-right">
+							<a :href='item.url' class="no-video" style="background-image: url('${mobileRes}/images/icon/noImg.png');">
+								<img class="video-btn" src="${mobileRes}/images/icon/bofan-b.png" class="bofang">
+							</a>
+						</div>
+					</div>
+					<!-- 文库模型 -->
+					<div class="important-top" v-if="item.contentFrontVo.modelId == '961'">
+						<div class="important-top-left">
+							<a :href='item.url'><h4 class="Medium keywords" v-html="item.title"></h4></a>
+							<p class="Regular">
+								<span v-if='item.source&&item.source.sourceName' class="Regular" v-text="item.source.sourceName"></span>
+								<span v-if='!item.source'>jeecms演示站</span>
+								<span v-text="item.releaseTime"></span>
+								</p>
+						</div>
+						<div v-if="item.docResource.suffix=='.txt'" class="important-top-right">
+							<a :href='item.url' class="txt right-img"></a>
+						</div>
+						<div v-else-if="item.docResource.suffix=='.xls'|| item.docResource.suffix=='.xlsx'" class="important-top-right">
+							<a :href='item.url' class="excel right-img"></a>
+						</div>
+						<div v-else-if="item.docResource.suffix=='.doc'||item.docResource.suffix=='.docx'" class="important-top-right">
+							<a :href='item.url' class="word right-img"></a>
+						</div>
+						<div v-else-if="item.docResource.suffix=='.pptx'" class="important-top-right">
+							<a :href='item.url' class="ppt right-img"></a>
+						</div>
+						<div v-else class="important-top-right">
+							<a :href='item.url' class="pdf right-img"></a>
+						</div>
+					</div>
+					<!-- 下载模型 -->
+					<div class="important-top" v-if="item.contentFrontVo.modelId == '962'">
+						<div class="important-top-left">
+							<a :href='item.url'><h4 class="Medium keywords" v-html="item.title"></h4></a>
+							<p class="Regular">
+								<span v-if='item.source&&item.source.sourceName' class="Regular" v-text="item.source.sourceName"></span>
+								<span v-if='!item.source'>jeecms演示站</span>
+								<span v-text="item.releaseTime"></span>
+								</p>
+						</div>
+						<div v-if="item.contentFrontVo.imageJson.shoujitubiao&&item.contentFrontVo.imageJson.shoujitubiao.url" class="important-top-right">
+							<a :href='item.url' :style="'background-image: url('+item.contentFrontVo.imageJson.shoujitubiao.url+');'" class="right-img">
+							</a>
+						</div>
+					</div>
+				</div>
+				<my-loading :load="load" :isload="isload"></my-loading>
+			</div>
+		</div>
+	</div>
+</body>
+	<script type="text/javascript">
+		new Vue({
+			el: '#searchPage',
+			data: {
+				isSearch:false,
+				searchText:'',
+				searchList:[],
+				searchData:{
+					keyword:'',
+					oderBy:'',
+					page:1,
+					size:20
+				},
+				last:false,
+				isSelect:false,
+				oderBy:'相关度',
+				load:'加载更多',
+				isload:false,
+				uploading:true,
+				islength:false,
+				totalElements:''
+			},
+			methods:{
+				upHot(word){
+					this.searchText=word
+					this.searchs()
+				},
+				clear(){
+					this.searchText=''
+					this.isSearch = false
+				},
+				searchs(){
+					this.searchData.page=1
+					this.searchList=[]
+					this.getSearch()
+				},
+				oderBy1(e){
+					e.srcElement.className="Regular shutDark"
+				},
+				oderBy2(e){
+					e.srcElement.className="Regular shutDark"
+				},
+				loosen1(e){
+					e.srcElement.className="Regular"
+					this.oderBy='相关度'
+					this.searchData.oderBy=''
+					this.isSelect=false
+					this.searchs()
+				},
+				loosen2(e){
+					e.srcElement.className="Regular"
+					this.oderBy='发布时间'
+					this.searchData.oderBy=27
+					this.isSelect=false
+					this.searchs()
+				},
+				getSearch(){
+					let _this = this
+					_this.searchData.keyword=_this.searchText
+					api.GET('/content/search',_this.searchData,function(res){
+						_this.totalElements = res.totalElements
+						_this.last = res.last
+						if(_this.last){
+							_this.load='已显示全部内容'
+							_this.isload=false
+						}else{
+							_this.load='加载更多'
+							_this.isload=false
+						}
+						_this.isSearch = true
+						_this.searchList = _this.searchList.concat(res.content)
+						for(var i = 0;i<_this.searchList.length;i++){
+							_this.searchList[i].title = _this.searchList[i].title.replace(_this.searchText, '<span class="highlight">'+_this.searchText+'</span>')
+						}
+						if(_this.searchList.length == 0){
+							_this.islength=true
+						}else{
+							_this.islength=false
+						}
+						_this.uploading=true
+					})
+				},
+				loading(){
+					if(this.uploading){
+						this.uploading=false
+						if(!this.last){
+							this.load='加载中'
+							this.isload=true
+							this.searchData.page+=1
+							this.getSearch()
+						}else{
+							this.load='没有更多了'
+							this.isload=false
+						}
+					}
+					
+					
+				}
+			}
+		});
+	</script>
+</html>

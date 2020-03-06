@@ -1,0 +1,104 @@
+body {
+	width: 7.5rem;
+	line-height: 1;
+}
+.download-suggest{
+	margin-top: 0.96rem;
+}
+.lunbo {
+	margin-top: 0.53rem;
+	width: 6.68rem;
+	margin-left: 0.42rem;
+}
+.swiper-container {
+	width: 6.68rem;
+	border-radius: 0.10rem;
+	overflow: hidden;
+	height: 3.2rem;
+}
+.swiper-container a {
+	width: 100%;
+	display: block;
+}
+.swiper-container a .image {
+	width: 100%;
+	height: 3.2rem;
+	background-size: 100% 100%;
+	border-radius: 0.1rem;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets {
+	display: flex;
+	align-items: center;
+	left: 2.5rem;
+	bottom: 0.33rem;
+	height: 0.18rem;
+	width: auto;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+	width: 0.16rem;
+	height: 0.16rem;
+	border: 1px solid rgba(255, 255, 255, 1);
+	border-radius: 50%;
+	background: transparent;
+	opacity: 1;
+	width: 0.16rem;
+	height: 0.16rem;
+	margin: 0 0.2rem;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet.swiper-pagination-bullet-active {
+	background: rgba(255, 255, 255, 1);	
+}
+.hot-list {
+	width: 6.7rem;
+	margin: 0 auto;
+}
+.hot-list .box {
+	width: 100%;
+	margin-top: 0.4rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.hot-list .box a>div {
+	display: flex;
+}
+.hot-list .box a>div .image,
+.hot-list .box a>div img {
+	width: 1.2rem;
+	margin-right: 0.29rem;
+	height: 1.2rem;
+}
+.hot-list .box a>div h4 {
+	font-size: 0.3rem;
+	font-family: PingFang SC;
+	color: rgba(51, 51, 51, 1);
+	padding-top: 0.19rem;
+	padding-bottom: 0.29rem;
+}
+.hot-list .box a>div .rongliang{
+	display: flex;
+	align-items: center;
+}
+.hot-list .box a>div span{
+	font-size:0.24rem;
+font-family:PingFang SC;
+font-weight:300;
+color:rgba(179,179,179,1);
+}
+.hot-list .box a>div span.line{
+	width:1px;
+	height:0.2rem;
+	background:rgba(230,230,230,1);
+	border-radius:1px;
+}
+.hot-list .box:first-child,
+.hot-list .box:first-child+.box,
+.hot-list .box:first-child+.box+.box,
+.hot-list .box:first-child+.box+.box+.box{
+	display: none;
+}
+.box img{
+	width: 1.2rem;
+	height: 1.2rem;
+}
+

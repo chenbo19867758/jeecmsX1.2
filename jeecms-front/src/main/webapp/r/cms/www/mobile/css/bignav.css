@@ -1,0 +1,43 @@
+.channel{
+	border-color: rgba(245,245,245,1);
+	border-top-width: 0.01rem;
+	border-style:solid;
+	background: #FFFFFF;
+}
+ .channel ul{
+	height: 0.8rem;
+}
+.channel li a{
+	font-size:0.30rem;
+	padding-top: 0.26rem;
+	padding-bottom: 0.26rem;
+	line-height: 1;
+	color:rgba(51,51,51,1);
+}
+.channel li .mark-red{
+	font-size: 0.32rem;
+	padding-top: 0.24rem;
+	border-color: rgba(227,11,32,1);
+	border-bottom-width: 0.04rem;
+	border-style:solid;
+	margin-bottom: 0.01rem;
+	padding-bottom: 0.2rem;
+}
+.news .channel li,
+.newschild .channel li{
+	justify-content: flex-start;
+}
+.news .channel li+li,.news .channel li:first-child,
+.newschild .channel li+li,.newschild .channel li:first-child{
+	margin-right: 0.57rem;
+}
+.news .channel li:last-child,
+.newschild .channel li:last-child{
+	margin-right: 0;
+}
+.header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}

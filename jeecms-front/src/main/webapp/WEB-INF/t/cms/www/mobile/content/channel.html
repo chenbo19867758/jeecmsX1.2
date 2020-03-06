@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/reset.css" />
+		<link rel="stylesheet" href="${mobileRes}/css/wtt-common.css">
+		<link rel="stylesheet" href="${mobileRes}/css/channel.css">
+		<title></title>
+	</head>
+	<script src="${mobileRes}/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="${mobileRes}/js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+	</script>
+	<body>
+		<div class="caidan" id="caidan">
+			<div class="inner">
+				<h2 class="title">
+					<div>
+						<span class="red-radius"></span>
+						<span class="title-con Regular">全部频道</span>
+						<p class="Regular">点击进入频道</p>
+					</div>
+
+					<i ><img src="${mobileRes}/images/icon/guanbi-b.png" @click="back()"></i>
+				</h2>
+				[@cms_channel_list ]
+				<ul>
+					[#list tag_list as a]
+					<li>
+						<a class="bbox Regular" href="${a.url!}" :class="${a.id!} == isChannelId ? 'channel-yes':'no'">
+							${a.name!}
+						</a>
+						[@cms_channel_list parentId=a.id]
+						<div class="content">
+							[#list tag_list as c]
+							<a class="box Light" href="${c.url!}" name="${c.id!}" :class="${c.id!} == isChannelId ? 'channel-yes':'no'">${c.name!}</a>
+							[/#list]
+						</div>
+						[/@cms_channel_list]
+					</li>
+					[/#list]
+				</ul>
+				[/@cms_channel_list]
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		var caidan = new Vue({
+			el: "#caidan",
+			data: {
+				isChannelId:getUrlArg('channelId')
+			},
+			methods: {
+				back() {
+					window.history.go(-1)
+				}
+			}
+		})
+	</script>
+</html>

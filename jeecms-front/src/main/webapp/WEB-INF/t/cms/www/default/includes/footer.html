@@ -1,0 +1,137 @@
+<link rel="stylesheet" type="text/css" href="${res}/css/footer.css"/>
+<div class="footer">
+	<div class="typeArea">
+		<div class="blogroll none Regular">
+           [@cms_link_list linkTypeId='132']
+			<ul class="blogroll-list Regular">
+            [#list tag_list as a]
+				<li ><a class="Regular" href="${a.linkUrl!}" target="_blank">${a.linkName!}</a></li>
+			[/#list]
+			</ul>
+            [/@cms_link_list]
+			<div class="arrows"></div>
+		</div>
+		<div class="body-top">
+			<div class="body-top-logo">
+				<a href="${base}/"><img src="${res}/images/index/logo-foot.png" alt=""></a>
+			</div>
+			<div class="dody-top-line"></div>
+			<div class="body-top-nav">
+            [@cms_channel_list parentId='1945']
+				<ul>
+                [#list tag_list as c]
+					<li [#if c.path='yqlj']class="link"[/#if]><a [#if c.path='yqlj'][#else]href="${c.url!}"[/#if] target="_blank">${c.name!}</a></li>
+				[/#list]
+				</ul>
+                [/@cms_channel_list]
+			</div>
+		</div>
+		<div class="body-bottom">
+			<div class="body-bottom-function">
+				<div class="phone">
+					<a href="javascript:;" class="iconfont iconshoujiduan">
+                    <!--
+						<div class="erweima-box">
+							<img src="${res}/images/index/erweima.png" alt="">
+							<div class="arrows"></div>
+						</div>
+                        -->
+					</a>
+				</div>
+
+				<div class="weixin">
+					<a href="javascript:;" class="iconfont iconweixin">
+                    <!--
+						<div class="erweima-box">
+							<img src="${res}/images/index/erweima.png" alt="">
+							<div class="arrows"></div>
+						</div>
+                         -->
+					</a>
+				</div>
+				<div class="applet">
+					<a href="javascript:;" class="iconfont iconxiaochengxu">
+                    <!--
+						<div class="erweima-box">
+							<img src="${res}/images/index/erweima.png" alt="">
+							<div class="arrows"></div>
+						</div>
+                         -->
+					</a>
+				</div>
+				<div class="weibo">
+					<a href="javascript:;" class="iconfont iconweibo1">
+                    <!--
+						<div class="erweima-box">
+							<img src="${res}/images/index/erweima.png" alt="">
+							<div class="arrows"></div>
+						</div>
+                         -->
+					</a>
+				</div>
+			</div>
+			<div class="statistics">
+				<ul class="clicks">
+					<li><a href="javascript:;" class="reds">今日</a></li>
+					<li><a href="javascript:;">昨日</a></li>
+					<li><a href="javascript:;">历史峰值</a></li>
+					<li><a href="javascript:;">累计</a></li>
+				</ul>
+				<div class="click-content">
+					<ul class="quantity">
+						<li class="left">浏览量(PV):<span id="todayPv"></span></li>
+						<li class="middle">访客数(UV):<span id="todayUv"></span></li>
+						<li class="right">IP数:<span id="todayIp"></span></li>
+					</ul>
+					<ul class="quantity none">
+						<li class="left">浏览量(PV):<span id="yesterdayPv"></span></li>
+						<li class="middle">访客数(UV):<span id="yesterdayUv"></span></li>
+						<li class="right">IP数:<span id="yesterdayIp"></span ></li>
+					</ul>
+					<ul class="quantity none">
+						<li class="left">浏览量(PV):<span id="peakPv"></span></li>
+						<li class="middle">访客数(UV):<span id="peakUv"></span></li>
+						<li class="right">IP数:<span id="peakIp"></span></li>
+					</ul>
+					<ul class="quantity none">
+						<li class="left">浏览量(PV):<span id="pvTotal"></span></li>
+						<li class="middle">访客数(UV):<span id="uvTotal"></span></li>
+						<li class="right">IP数:<span id="ipTotal"></span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="putonrecords">
+				<p>
+					ICP备案号：赣ICP备13005266号 Powered by <a href="http://www.jeecms.com/" target="_blank">JEECMS</a> Copyright
+					<br />
+					&copy; 2007-2019 www.jeecms.com, All Rights Reserved
+				</p>
+			</div>
+		</div>
+	</div>
+	
+</div>
+<script src="${res}/js/front.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".blogroll").css("right",(405-(($(".blogroll").width())/2)));
+		$('.body-top-nav .link').on('mouseenter',function(){
+		    $('.blogroll').show()
+		})
+		$('.body-top-nav .link').on('mouseleave',function(){
+		    $('.blogroll').hide()
+		})
+		$('.blogroll').on('mouseleave',function(){
+		    $('.blogroll').hide()
+		});
+		$('.statistics .clicks li').click(function(){
+			var index = $(this).index();
+			$('.statistics .clicks li a').removeClass('reds');
+			$(this).find('a').addClass('reds');
+			$(".statistics .click-content .quantity").eq(index).removeClass("none").siblings().addClass("none");
+		});
+	});
+	$(function () {
+		Cms.siteFlow("${base}"); 
+	});
+</script>

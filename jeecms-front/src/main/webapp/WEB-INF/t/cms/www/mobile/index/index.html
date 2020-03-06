@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+
+	</head>
+	<body>
+		[#assign type="3" headerBack="#e30b20"/]
+		[#include "../includes/header.html"]
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/newsList.css" />
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="${mobileRes}/css/swiper.min.css" />
+		<script type="text/javascript" src="${mobileRes}/js/swiper.min.js"></script>
+		<script src="${mobileRes}/js/loading.js" type="text/javascript" charset="utf-8"></script>
+		[@cms_channel_list count='6']
+		<ul class="index-title">
+			<li class="title-red Medium">首页</li>
+			[#list tag_list as a]
+			<li><a class="Regular" href="${a.url!}">${a.name!}</a></li>
+			[/#list]
+		</ul>
+		[/@cms_channel_list]
+		
+		<h4 class="hot-title"><span class="headline">头条</span>
+			[@cms_content_list channelPath='news' typeId='149' orderBy='29' count='1' siteId='1']
+			[#list tag_list as a]
+			<span class="title-top Medium"><a href="${a.url}">
+					[@text_cut s=a.title len=20 append='...' /]
+				</a></span>
+			[/#list]
+			[/@cms_content_list]
+		</h4>
+		
+		<!-- 轮播部分 -->
+		<div class="lunbo">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					[@cms_content_list channelPath='news' typeId='175' orderBy='29' siteId='1']
+					[#list tag_list as a]
+					<div class="swiper-slide">
+						<a href="${a.url!}">
+							<div class="image" style="background-image: url('${(a.attr.shoujibannertu.resUrl)!}');"></div>
+							<div class="text Regular"><h4>[@text_cut s=a.title len=20 append='...'/]</h4></div>
+						</a>
+					</div>
+					[/#list]
+					[/@cms_content_list]
+				</div>
+				<!-- 如果需要分页器 -->
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+		<div id="app">
+			<!-- 灰色分隔 -->
+			<div class="separate"></div>
+			<div class="important">
+				<h3 class="important-title"><i></i><span class="Medium">今日要闻</span></h3>
+				[@cms_content_list channelPath='news,photo,video' orderBy='29' count='10' siteId='1']
+				<ul class="important-list">
+					[#list tag_list as a]
+					<li class="Medium">
+						[#if a.modelId == 912]
+						[#if (a.attr.shoujiliebiaotu.resUrl)??&&(a.attr.shoujiliebiaotu.resUrl)!='']
+						<div class="important-top-yes">
+							<div class="important-top-left">
+								<a href="${a.url!}">
+									<h4 class="Medium">[@text_cut s=a.title len=22 append='...'/]</h4>
+								</a>
+								<p class="Regular"><span class="Regular">[#if (a.source.sourceName)?? && (a.source.sourceName) !=
+										""]${(a.source.sourceName)}[#else]JEECMS演示站[/#if]</span><span>${a.releaseTimeString!}</span></p>
+							</div>
+							<div class="important-top-right">
+								<a href="${a.url!}">
+									<img src="${(a.attr.shoujiliebiaotu.resUrl)!}">
+								</a>
+							</div>
+						</div>
+						[#else]
+						<div class="important-top-no">
+							<a href="${a.url!}">
+								<h4 class="Medium">[@text_cut s=a.title len=40 append='...'/]</h4>
+							</a>
+							<p class="Regular"><span class="Regular">[#if (a.source.sourceName)?? && (a.source.sourceName) !=
+									""]${(a.source.sourceName)}[#else]JEECMS演示站[/#if]</span><span>${a.releaseTimeString!}</span></p>
+						</div>
+						[/#if]
+						[#elseif a.modelId == 913]
+						[#if (a.attr.shoujidatu.resUrl)??&&(a.attr.shoujidatu.resUrl)!='']
+						<div class="important-top-video">
+							<div class="video-play">
+								<a href="${a.url!}"><img class="big-img" src="${(a.attr.shoujidatu.resUrl)!}"></a>
+								<p class="photoNum">[#if
+									a.attr.photos??&&a.attr.photos.contentAttrRes??&&(a.attr.photos.contentAttrRes)?size>0]${(a.attr.photos.contentAttrRes)?size}[#else]1[/#if]图</p>
+							</div>
+						</div>
+						[/#if]
+						<div class="important-top-no">
+							<a href="${a.url!}">
+								<h4 class="Medium">[@text_cut s=a.title len=40 append='...'/]</h4>
+							</a>
+							<p class="Regular"><span>[#if (a.source.sourceName)?? && (a.source.sourceName) !=
+									""]${(a.source.sourceName)}[#else]JEECMS演示站[/#if]</span><span>${a.releaseTimeString!}</span></p>
+						</div>
+						[#elseif a.modelId == 963]
+						<div class="important-top-video">
+							<div class="video-play">
+								[#if (a.attr.shoujidatu.resUrl)??&&(a.attr.shoujidatu.resUrl)!='']
+								<a href="${a.url!}"><img class="big-img" src="${(a.attr.shoujidatu.resUrl)!}"></a>
+								<img class="play-icon" src="${mobileRes}/images/icon/bofan-b.png">
+								<div class="play-time">
+									<div class="you">
+										<img src="${mobileRes}/images/icon/xiaobofang.png" class="bofang">
+										<span class="Regular">${(a.attr.videoSrc.resDuration)!'00:00:00'}</span>
+									</div>
+								</div>
+								[#else]
+								<a href="${a.url!}">
+									<div class="no-img"></div>
+									<img class="play-icon" src="${mobileRes}/images/icon/bofan-b.png">
+									<div class="play-time no-imgtime">
+										<div class="you">
+											<img src="${mobileRes}/images/icon/xiaobofang.png" class="bofang">
+											<span class="Regular">${(a.attr.videoSrc.resDuration)!'00:00:00'}</span>
+										</div>
+									</div>
+								</a>
+								[/#if]
+							</div>
+						</div>
+						<div class="important-top-no">
+							<a href="${a.url!}">
+								<h4 class="Medium">[@text_cut s=a.title len=40 append='...'/]</h4>
+							</a>
+							<p class="Regular"><span>[#if (a.source.sourceName)?? && (a.source.sourceName) !=
+									""]${(a.source.sourceName)}[#else]JEECMS演示站[/#if]</span><span>${a.releaseTimeString!}</span></p>
+						</div>
+						[/#if]
+						<!-- 底部 -->
+						<div class="important-bottom">
+							<a href="${a.url!}">
+								<div>
+									<img src="${mobileRes}/images/icon/liulanliang-l.png">
+									<span class="Regular">${a.views!}</span>
+								</div>
+							</a>
+
+							<a href="${a.url!}">
+								<div>
+									<img src="${mobileRes}/images/icon/pinglun-i.png">
+									<span class="Regular">${a.comments!}</span>
+								</div>
+							</a>
+							<a href="${a.url!}">
+								<div>
+									<img src="${mobileRes}/images/icon/dianzan-l.png">
+									<span class="Regular">${a.ups!}</span>
+								</div>
+							</a>
+						</div>
+					</li>
+					[#if a_index == 1]
+					<li style="padding-bottom: 0;border-bottom: none;">
+						<img class="duoduoImg" src="${mobileRes}/images/index/duoduo.png" >
+					</li>
+					[/#if]
+					[/#list]
+				</ul>
+				[/@cms_content_list]
+				<ul class="important-list" v-for="(item,i) in searchList">
+					<li class="Medium">
+						<div v-if="item.modelId == '912'" class="important-top-yes">
+							<div class="important-top-left">
+								<a :href="item.url" v-if="item.attr && item.attr.shoujiliebiaotu&&item.attr.shoujiliebiaotu.resUrl">
+									<h4 class="Medium" v-if="item.title.length <= 22" v-text="item.title"></h4>
+									<h4 class="Medium" v-else v-text="item.title.slice(0,22)+'...'"></h4>
+								</a>
+								<a :href="item.url" v-else>
+									<h4 class="Medium" v-if="item.title.length <= 40" v-text="item.title"></h4>
+									<h4 class="Medium" v-else v-text="item.title.slice(0,40)+'...'"></h4>
+								</a>
+								<p class="Regular"><span v-if="item.source && item.source.sourceName" class="Regular" v-text="item.source.sourceName"></span><span
+									 v-if="!item.source || !item.source.sourceName">JEECMS演示站</span><span v-text="item.releaseTimeString"></span></p>
+							</div>
+							<div v-if="item.attr && item.attr.shoujiliebiaotu&&item.attr.shoujiliebiaotu.resUrl" class="important-top-right">
+								<a :href="item.url">
+									<img :src="(item.attr.shoujiliebiaotu.resUrl)">
+								</a>
+							</div>
+						</div>
+						<div class="important-top-yes" v-if="item.modelId == '913'&& item.attr.shoujidatu&&item.attr.shoujidatu.resUrl">
+							<div v-if="item.attr && item.attr.shoujidatu && item.attr.shoujidatu.resUrl" class="important-top-video">
+								<div class="video-play">
+									<a href="item.url"><img class="big-img" :src="item.attr.shoujidatu.resUrl"></a>
+									<p class="photoNum" v-if="(item.attr.photos.contentAttrRes.length)>0" v-text="(item.attr.photos.contentAttrRes.length)+'图'"></p>
+									<p class="photoNum" v-if="!(item.attr.photos.contentAttrRes.length)">1图</p>
+								</div>
+							</div>
+							
+						</div>
+						
+						<div v-if="item.modelId == '963'" class="important-top-video">
+							<div class="video-play">
+								<a v-if="item.attr && item.attr.shoujidatu && item.attr.shoujidatu.resUrl" :href="item.url">
+									<img class="big-img" :src="(item.attr.shoujidatu.resUrl)">
+									<img v-if="item.attr && item.attr.shoujidatu && item.attr.shoujidatu.resUrl" class="play-icon" src="${mobileRes}/images/icon/bofan-b.png">
+									<div v-if="item.attr && item.attr.shoujidatu && item.attr.shoujidatu.resUrl" class="play-time">
+										<div class="you">
+											<img src="${mobileRes}/images/icon/xiaobofang.png" class="bofang">
+											<span class="Regular" v-if="(item.attr.videoSrc.resDuration)" v-text="(item.attr.videoSrc.resDuration)"></span>
+											<span class="Regular" v-if="!(item.attr.videoSrc.resDuration)">00:00:00</span>
+										</div>
+									</div>
+								</a>
+								<a v-if="!item.attr || !item.attr.shoujidatu || !item.attr.shoujidatu.resUrl" href="item.url">
+									<div class="no-img"></div>
+									<img v-if="!item.attr || !item.attr.shoujidatu || !item.attr.shoujidatu.resUrl" class="play-icon" src="${mobileRes}/images/icon/bofan-b.png">
+									<div v-if="!item.attr || !item.attr.shoujidatu || !item.attr.shoujidatu.resUrl" class="play-time no-imgtime">
+										<div class="you">
+											<img src="${mobileRes}/images/icon/xiaobofang.png" class="bofang">
+											<span class="Regular" v-if="(item.attr.videoSrc.resDuration)" v-text="(item.attr.videoSrc.resDuration)"></span>
+											<span class="Regular" v-if="!(item.attr.videoSrc.resDuration)">00:00:00</span>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div v-if="item.modelId != '912'" class="important-top-no">
+							<a :href="item.url">
+								<h4 class="Medium" v-if="item.title.length <= 40" v-text="item.title"></h4>
+								<h4 class="Medium" v-else v-text="item.title.slice(0,40)+'...'"></h4>
+							</a>
+							<p class="Regular"><span v-if="item.source && item.source.sourceName" class="Regular" v-text="item.source.sourceName"></span><span
+								 v-if="!item.source || !item.source.sourceName">JEECMS演示站</span><span v-text="item.releaseTimeString"></span></p>
+						</div>
+						<!-- 底部 -->
+						<div class="important-bottom">
+							<a :href="item.url">
+								<div>
+									<img src="${mobileRes}/images/icon/liulanliang-l.png">
+									<span class="Regular" v-text="item.views"></span>
+								</div>
+							</a>
+
+							<a :href="item.url">
+								<div>
+									<img src="${mobileRes}/images/icon/pinglun-i.png">
+									<span class="Regular" v-text="item.comments"></span>
+								</div>
+							</a>
+							<a :href="item.url">
+								<div>
+									<img src="${mobileRes}/images/icon/dianzan-l.png">
+									<span class="Regular" v-text="item.ups"></span>
+								</div>
+							</a>
+						</div>
+					</li>
+				</ul>
+				<my-loading :load="load" :isload="isload"></my-loading>
+			</div>
+		</div>
+		[#include "../includes/footerTabbar.html"]
+		<script type="text/javascript">
+			var mySwiper = new Swiper('.swiper-container', {
+				autoplay: {
+					delay: 1000, //4.0自动切换滚动 间隔时间1秒   单位是毫秒
+					disableOnInteraction: false //4.0用户操作swiper后是否禁止autoplay,默认为t					rue静止。
+				},
+				speed: 1000, //定义切换的速度
+				loop: true, //定义循环播放 true  (false 为默认值 不循环)
+				pagination: { //4.0的分页器
+					el: ".swiper-pagination"
+				}
+			})
+			// $(function() {
+			// 	//获取要定位元素距离浏览器顶部的距离
+			// 	var navH = $(".index-title").offset().top;
+			// 	// console.log(navH);
+			// 	//滚动条事件
+			// 	$(window).scroll(function() {
+			// 		//获取滚动条的滑动距离
+			// 		var scroH = $(this).scrollTop();
+			// 		// console.log(scroH);
+			// 		//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+			// 		if (scroH >= navH) {
+			// 			$(".index-title").css({
+			// 				"position": "sticky",
+			// 				"top": '0.96rem',
+			// 				"z-index": 10
+			// 			});
+
+			// 		} else if (scroH < navH) {
+			// 			$(".index-title").css({
+			// 				"position": "static"
+			// 			});
+			// 		}
+			// 	})
+			// })
+			new Vue({
+				el: '#app',
+				data: {
+					load: '加载更多',
+					isload: false,
+					searchData: {
+						channelPaths: 'news,photo,video',
+						orderBy: 27,
+						page: 1,
+						size: 10
+					},
+					searchList: [],
+					last: false,
+					uploading: true
+				},
+				methods: {
+					loading() {
+						if (this.uploading) {
+							this.uploading = false
+							if (!this.last) {
+								this.load = '加载中'
+								this.isload = true
+								this.searchData.page += 1
+								this.getContentPage()
+							} else {
+								this.load = '没有更多了'
+								this.isload = false
+							}
+						}
+					},
+					getContentPage() {
+						let _this = this
+						api.GET('/content/page', _this.searchData, function(res) {
+							_this.last = res.data.last
+							if (_this.last) {
+								_this.load = '已显示全部内容'
+								_this.isload = false
+							} else {
+								_this.load = '加载更多'
+								_this.isload = false
+							}
+							_this.searchList = _this.searchList.concat(res.data.content)
+							_this.uploading = true
+						})
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

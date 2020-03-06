@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd"
+       default-lazy-init="true">
+    <bean id="cms_pagination"
+          class="com.jeecms.front.controller.directive.PaginationDirective"/>
+    <bean id="text_cut"
+          class="com.jeecms.front.controller.directive.TextCutDirective"/>
+    <bean id="cms_channel_page"
+          class="com.jeecms.front.controller.directive.ChannelDirectivePage"/>
+    <bean id="cms_channel_list"
+          class="com.jeecms.front.controller.directive.ChannelDirectiveList"/>
+    <bean id="cms_channel"
+          class="com.jeecms.front.controller.directive.ChannelDirectiveBean"/>
+    <bean id="cms_content_list"
+          class="com.jeecms.front.controller.directive.ContentDirectiveList"/>
+    <bean id="cms_content_page"
+          class="com.jeecms.front.controller.directive.ContentDirectivePage"/>
+    <bean id="cms_content"
+          class="com.jeecms.front.controller.directive.ContentDirectiveBean"/>
+    <bean id="cms_tag_list"
+          class="com.jeecms.front.controller.directive.ContentTagDirectiveList"/>
+    <bean id="cms_hot_word_list"
+          class="com.jeecms.front.controller.directive.HotWordDirectiveList"/>
+    <bean id="cms_link_category_list"
+          class="com.jeecms.front.controller.directive.LinkCategoryDirectiveList"/>
+    <bean id="cms_link_list"
+          class="com.jeecms.front.controller.directive.LinkDirectiveList"/>
+    <bean id="cms_search_word_list"
+          class="com.jeecms.front.controller.directive.SearchWordDirectiveList"/>
+    <bean id="cms_questionnaire_page"
+          class="com.jeecms.front.controller.directive.QuestionnaireDirectivePage"/>
+    <bean id="cms_questionnaire_list"
+          class="com.jeecms.front.controller.directive.QuestionnaireDirectiveList"/>
+    <bean id="cms_questionnaire"
+          class="com.jeecms.front.controller.directive.QuestionnaireDirectiveBean"/>
+
+<!--    <bean id="cms_letter_page"-->
+<!--          class="com.jeecms.front.controller.letter.directive.CmsLetterDirectivePage"/>-->
+</beans>

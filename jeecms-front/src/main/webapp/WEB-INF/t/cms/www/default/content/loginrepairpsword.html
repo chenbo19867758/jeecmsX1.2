@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>修改密码</title>
+    <link rel="stylesheet" href="${res}/css/login-repairpsword.css">
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+    [#include "../includes/header.html"/]
+    </div>
+    <!--顶部导航 over-->
+
+    <!-- 中间部分 -->
+    <div class="main">
+        <div class="login-part overflow">
+            <div class="reg Regular">
+                <span>修改密码</span>
+            </div>
+            <form action="">
+                <div class="username">
+                    <label class="Light" for=""><span>*</span>新密码:</label>
+                    <input type="password" name="" id="" placeholder="请输入新密码">
+                </div>
+                <div class="psword">
+                    <label class="Light" for=""><span>*</span>确认新密码:</label>
+                    <input type="password" name="" id="" placeholder="请再次输入新密码">
+                </div>
+                <a class="Semilight pointer block" href="#">取消</a>
+                <input class="Semilight pointer" type="submit" value="登录">
+            </form>
+        </div>
+    </div>
+
+    <!-- 顶部导航 -->
+    [#include "../includes/footer.html"/]
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <script src="${res}/js/login.js"></script>
+</body>
+
+</html>

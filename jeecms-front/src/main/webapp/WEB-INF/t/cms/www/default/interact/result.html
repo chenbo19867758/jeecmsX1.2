@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<!-- 引入element -->
+	<!-- <link rel="stylesheet" href="../../src/css/element.css"> -->
+	<!-- <script src="../../src/js/element.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="${res}/css/voteResult.css"/>
+  <link rel="stylesheet" href="${res}/css/header.css" />
+  <link rel="stylesheet" type="text/css" href="${res}/css/reset.css"/>
+  <link rel="stylesheet" href="${res}/css/reset.css" />
+  <link rel="stylesheet" href="${res}/icon/iconfont.css" />
+  <link rel="stylesheet" href="${res}/fonts/iconfont.css">
+  <link rel="stylesheet" href="${res}/css/jquery.my-message.1.1.css"/>
+  <script src="${res}/js/jquery-1.12.4.js"></script>
+  <script src="${res}/js/crypto-js.js"></script>
+  <script src="${res}/js/jquery.my-message.1.1.js"></script>
+  <script src="${res}/js/jquery.validate.js"></script>
+  <script src="${res}/js/jquery.page.js"></script>
+  <script src="${res}/js/chinese.js"></script>
+  <script src="${res}/js/public.js" type="text/javascript" charset="utf-8"></script>
+  <script src="${res}/js/app.js"></script>
+	<body>
+  
+    <!-- 问卷区域 -->
+    <div class="questionnaire">
+      <!-- 问卷头部 -->
+      <div class="queTop">
+      </div>
+      <!-- 问卷内容 -->
+      <div class="questContent">
+      </div>
+    </div>
+    <script src="${res}/js/echarts.min.js"></script>
+    <script>
+      $(document).ready(function(){
+              api.GET('/questionnaire/result', {
+                'questionnaireId': '${id!}',
+            },function (result) {
+              var options={}
+              var option = {
+                          tooltip : {
+                              trigger: 'item',
+                              formatter: "{b} : {d}%"
+                          },
+                          legend: {
+                              left: 'center',
+                              bottom: '0',
+                              data: []
+                          },
+                          color:['#3FA1FF', '#3ECBCB','#50CB73','#FBD444','#F2637B'],
+                          series : [
+                              {
+                                  // name: '访问来源'
+                                  type: 'pie',
+                                  radius : '62.5%',
+                                  center: ['50%', '47.5%'],
+                                  label: {
+                                      normal: {
+                                          show: true,
+                                          position: 'outside',
+                                          formatter: '{b}: {d}%',//模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。{d}数据会根据value值计算百分比
+                                          textStyle : {                   
+                                            align : 'center',
+                                            baseline : 'middle',
+                                            fontSize : 14,
+                                            color:'#666666'
+                                        }
+                                      },
+                                  },
+                                  labelLine: {
+                                      length: 30,
+                                      length2: 0,
+                                  },
+                                  data:[]
+                              }
+                          ] 
+                        };
+              var subjects = result.data.subjects||[];
+              if(subjects.length){
+                var $title = '<span class="queTitle">'+result.data.title+'</span><span class="peopleNum">参与人数：'+result.data.number+'人</span>'
+              }else{
+                var $title = '<span class="queTitle">当前暂无数据</span>'
+              }   
+              $('.queTop').append($title);
+              var $text = '<ul>'
+                  for(var i = 0; i < subjects.length; i++){
+                    if(subjects[i].type===1||subjects[i].type===2||subjects[i].type===4){
+                        $text += '<li class="radio">'
+                          if(subjects[i].isMust){
+                            $text += '<span class="ident" style="display:inline-block">*</span>'
+                          }else{
+                            $text += '<span class="ident" style="display:display:none">*</span>'
+                          }
+                        $text +=  '<span class="text">'+subjects[i].title+'</span>'
+                        $text +=  '<ul>'
+                        for(var j = 0; j < subjects[i].options.length; j++){
+                          $text +=  '<li>'
+                          $text +=  '<div class="selectText">'+subjects[i].options[j].name+'</div>'
+                          $text +=  '<div class="skillbar clearfix " data-percent='+subjects[i].options[j].rate+'%>'
+                          $text +=  '<div class="skillbar-bar" style="background: #45A5FF;"></div>'
+                          $text +=  '<div class="skill-bar-percent">'+subjects[i].options[j].rate+'%</div>'
+                          $text +=  '</div>'
+                          $text +=  '</li>'
+                        }
+                        $text +=  '</ul>'
+                    } else if(subjects[i].type===3){
+                      var subjectId= subjects[i].id
+                        $text += '<li class="shortAnswer" style="position: relative;">'
+                          if(subjects[i].isMust){
+                            $text += '<span class="ident" style="display:inline-block">*</span>'
+                          }else{
+                            $text += '<span class="ident" style="display:display:none">*</span>'
+                          }
+                        $text += '<span class="text">'+subjects[i].title+'</span><span class="answerList" option='+subjects[i].id+'>查看</span>'
+                        $text += '<div class="box">'
+                        $text += '<div class="boxContent">'
+                        $text += '<span class="top">'+subjects[i].title+'</span><span class="icon iconfont clear">&#xe665;</span>'
+                        $text += '<div class="content">'
+                        $text += '<ul class="innerbox">'
+                        $text += '</ul>'
+                        $text += '</div>'
+                        $text += '<div class="foot"><div class="pageDiv"></div></div>'
+                        $text += '</div>'
+                        $text += '</div>'
+                        $text += '</li>'
+                    } else if(subjects[i].type===5){
+                       $text += '<li class="cascade">'
+                        if(subjects[i].isMust){
+                          $text += '<span class="ident" style="display:inline-block">*</span>'
+                        }else{
+                          $text += '<span class="ident" style="display:display:none">*</span>'
+                        }
+                       $text += '<span class="text">'+subjects[i].title+'</span>'
+                       $text += '<div id="pieChart_'+i+'" style="width: 600px;height:480px;" option='+i+'></div>'
+                       $text += '</li>'
+                       var data =[]
+                       var legendData=[]
+                       for(var k=0;k<subjects[i].options.length;k++){
+                         var obj={}
+                         obj.value=subjects[i].options[k].rate
+                         obj.name=subjects[i].options[k].name
+                         data.push(obj)
+                         var obj2={}
+                         obj2.name=subjects[i].options[k].name
+                         obj2.icon='circle'
+                         legendData.push(obj2)                 
+                       } 
+                        option.legend.data =legendData
+                        option.series[0].data =data
+                        options[i]=option
+                    }
+                  }
+                  $text += '</ul>'
+                  $('.questContent').append($text)    
+                   //生成饼状图
+                  for(var z=0;z<$("[id^='pieChart']").length;z++){
+                      echarts.init($("[id^='pieChart']").eq(z)[0])
+                      .setOption(options[$("[id^='pieChart']").eq(z).attr('option')]);
+                  } 
+                  $('.skillbar').each(function(){
+                      $(this).find('.skillbar-bar').width($(this).attr('data-percent'))
+                    });
+                  $('.box').hide()
+                  //打开弹窗
+                  $('.answerList').click(function(){
+                    $(this).next().toggle()
+                      var draftPage = 1
+                      var draftTotalPages = Number
+                      var id=$(this).attr('option')
+                      function contribution(p) {
+                        var page = ''
+                          if (p) {
+                              page = p
+                              draftPage = p
+                          } else {
+                              page = draftPage
+                          }
+                            api.GET('/questionnaire/list', {
+                                        'questionnaireId': '${id!}',
+                                        'subjectId':id,
+                                        'page': page,
+                                        'size': 10
+                                    },function (res) {
+                                      if(res.code===200){
+                                        $(".innerbox").empty()
+                                        var $li =''
+                                        for(var m = 0; m < res.data.content.length; m++){
+                                          $li += '<li>'+res.data.content[m].answer+'</li>'
+                                        }
+                                        $('.innerbox').append($li)
+                                        if (draftTotalPages != res.data.totalPages) {
+                                              draftTotalPages = res.data.totalPages
+                                              $(".pageDiv").createPage({
+                                                  pageCount: draftTotalPages, //总页数
+                                                  current: page, //当前页
+                                                  turndown: 'true', //是否显示跳转框，显示为true，不显示为false,一定记得加上引号...
+                                                  backFn: function (p) {
+                                                      contribution(p) 
+                                                  } 
+                                              });
+                                          }
+                                      }
+                                    })
+                          }
+                          contribution()
+                    })
+                    //关闭弹窗
+                  $('.box .clear').click(function(){
+                    $(this).parents('.box').hide()
+                  })
+            })        
+      })    
+    </script>
+	</body>
+</html>

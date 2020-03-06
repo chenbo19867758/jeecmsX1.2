@@ -1,0 +1,79 @@
+<style>
+	.footer-tabbar{
+		background-color: #F5F5F5;
+	}
+	.footer-tabbar .tabbar-top{
+		padding: 0.3rem 0;
+	}
+	.footer-tabbar .tabbar-top .btn-list{
+		display: flex;
+		justify-content: space-between;
+	}
+	.footer-tabbar .tabbar-top .btn-list .footer_item{
+		width: 33%;
+		text-align: center;
+		color: #333333;
+		font-size: 0.3rem;
+		border-right: 1px solid #CCCCCC;
+	}
+	.footer-tabbar .tabbar-top .btn-list .footer_item:last-child{
+		border-right: none;
+	}
+	.tabbar-bottom{
+		padding-bottom: 0.3rem;
+		font-size: 0.26rem;
+		color: #999999;
+		text-align: center;
+	}
+</style>
+<div class="footer-tabbar" id="footerTab">
+	<div class="tabbar-top">
+		<ul class="t-flex footer btn-list">
+			<li class="footer_item Regular">
+				<a href="/">首页</a>
+			</li>
+			<li class="footer_item Regular">
+				[#if (channel.id)??]
+				<a href="${base}/content-channel.htm?channelId=${(channel.id)!}">导航</a>
+				[#else]
+				<a href="${base}/content-channel.htm">导航</a>
+				[/#if]
+			</li>
+			[#if site.globalConfig.memberOpen??&&site.globalConfig.memberOpen]
+			[#if user??]
+			<li class="footer_item Regular">
+				<a href="${base}/h5center/index.html#/pages/personal/index/index">个人中心</a>
+			</li>
+			[#else]
+			<li class="footer_item Regular">
+				<a href="${base}/h5center/index.html#/pages/login/login">登录</a>
+			</li>
+			[/#if]
+			[/#if]
+		</ul>
+	</div>
+	<div class="tabbar-bottom Light">
+		赣ICP备13005266号 Powered by JeeCms
+	</div>
+</div>
+
+<script src="${mobileRes}/js/front.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+$(function () {
+		Cms.siteFlow("${base}"); 
+	});
+</script> 
+<!-- <script type="text/javascript" src="https://js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.1.5.1.js"></script>
+
+<script type="text/javascript">
+	document.addEventListener('UniAppJSBridgeReady', function() {
+		document.querySelector('.btn-list').addEventListener('click', function(evt) {
+			var target = evt.target;
+			var action = target.getAttribute('data-src');
+			// console.log(action)
+			uni.navigateTo({
+				url: action
+			});
+		});
+	});
+</script> -->

@@ -1,0 +1,83 @@
+.big-img { height: 300px; width: 100%; }
+.big-img img { width: 100%; display: block; }
+
+.container .lunbo-part { margin-top: 60px; margin-bottom: 60px; }
+.container .lunbo-part .part-left { margin-right: 44px; }
+.container .lunbo-part .part-left .lunbo { float: left; position: relative; width: 700px; height: 430px; border-radius: 4px; behavior: url(../src/pie/PIE.htc); }
+.container .lunbo-part .part-left .lunbo .text { position: absolute; bottom: 0; width: 100%; height: 60px; background-color: rgba(0, 0, 0, 0.5); z-index: 9; line-height: 60px; }
+.container .lunbo-part .part-left .lunbo .text a { margin-left: 20px; color: #fff; font-size: 20px; }
+.container .lunbo-part .part-left .lunbo .jSlider .navigator .prev { margin-left: -10px; }
+.container .lunbo-part .part-left .lunbo .jSlider .navigator .next { margin-right: -10px; }
+.container .lunbo-part .part-left .lunbo .jSlider .controller .indicator { text-align: right; margin-right: 30px; z-index: 10; }
+.container .lunbo-part .part-left .lunbo .jSlider .controller .indicator span { filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000, endColorstr=#66000000); }
+.container .lunbo-part .part-left .lunbo .jSlider .controller .indicator .selected { background-color: #fff; width: 20px; }
+.container .lunbo-part .part-right { width: 456px; }
+.container .lunbo-part .part-right span { display: block; margin-top: 25px; font-size: 24px; color: #333; margin-bottom: 29px; }
+.container .lunbo-part .part-right p { color: #333; font-size: 14px; line-height: 24px; }
+.container .lunbo-part .part-right p a { color: #2676B5; }
+.container .lunbo-part .part-right span.two { margin-top: 48px; margin-bottom: 23px; }
+.container .lunbo-part .part-right .word { font-size: 18px; color: #333; margin-top: 24px; }
+.container .hot-page { width: 100%; position: relative; padding-left: 10px; border-left: 4px solid #e30b20; color: #333; font-size: 16px; margin-bottom: 30px; }
+.container .hot-page div { border-bottom: 1px solid #e5e5e5; width: 1100px; position: absolute; top: 10px; left: 100px; }
+.container .img-list { width: 100%; margin-bottom: 60px; }
+.container .img-list div { margin-left: 20px; float: left; width: 285px; }
+.container .img-list div img { display: block; }
+.container .img-list div .text { font-size: 16px; line-height: 24px; color: #000000; padding-top: 20px; margin-left: 0; }
+.container .img-list div.first { margin-left: 0; }
+.container .lunbo-part .part-left .lunbo #b04 {
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+}
+
+.container .lunbo-part .part-left .lunbo #b04 .dots {
+	position: absolute;
+	right: 10px;
+	bottom: 18px;
+	z-index: 999;
+}
+.container .lunbo-part .part-left .lunbo #b04 .dots li{
+	width: 12px;
+	display: inline-block;
+	height: 12px;
+	background-color: #fff;
+	opacity: 0.5;
+	border-radius: 50%;
+	behavior: url(../pie/PIE.htc);
+	cursor: pointer;
+	margin-right: 10px;
+}
+.container .lunbo-part .part-left .lunbo #b04 .dots li.active{
+	width: 20px;
+    opacity: 1;
+	border-radius: 6px;
+	behavior: url(../pie/PIE.htc);
+}
+
+.container .lunbo-part .part-left .lunbo #b04 .arrow {
+	position: absolute;
+	top: 200px;
+}
+.container .lunbo-part .part-left .lunbo #b04 #al { left: 20px;top:222px;color: #fff;font-size: 56px;opacity: 0.5;}
+.container .lunbo-part .part-left .lunbo #b04 #al:hover{color: #E30B20;opacity: 1;}
+.container .lunbo-part .part-left .lunbo #b04 #ar { right: 20px;top:222px;color: #fff;font-size: 56px;opacity: 0.5;}
+.container .lunbo-part .part-left .lunbo #b04 #ar:hover{color: #E30B20;opacity: 1;}
+
+.container .lunbo-part .part-left .lunbo #b04 ul li {
+    float: left;
+    width: 100%; 
+    height: 100%;
+}
+.container .lunbo-part .part-left .lunbo #b04 ul li a{
+    width: 100%; 
+    height: 100%;
+    display: block;
+}
+.container .lunbo-part .part-left .lunbo #b04 ul li a img{
+    width: 100%; 
+    height: 100%;
+    display: block;
+}
+
+/*# sourceMappingURL=subjectDetails.css.map */

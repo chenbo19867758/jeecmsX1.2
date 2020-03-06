@@ -1,0 +1,1088 @@
+.container .details-left {
+	width: 790px;
+	float: left;
+}
+
+.container .details-left .details-guide {
+	font-size: 12px;
+	margin-top: 26px;
+	color: #999;
+	margin-left: -5px;
+}
+
+.container .details-left .details-guide .black {
+	color: #666;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.container .details-left .details-guide .gray {
+	color: #999;
+	margin-left: 5px;
+}
+
+.container .details-left .big-title {
+	line-height: 50px;
+	font-size: 36px;
+	font-weight: bold;
+	color: #333;
+}
+
+.container .details-left .main-text {
+	width: 100%;
+	margin-top: 43px;
+}
+
+.container .details-left .main-text .left-share {
+	padding-left: 10px;
+	padding-right: 37px;
+	border-right: 1px solid #e5e5e5;
+}
+
+.container .details-left .main-text .left-share .share {
+	color: #666;
+	font-size: 14px;
+	margin-bottom: 13px;
+	text-align: center;
+}
+
+.container .details-left .main-text .left-share #share-2 a {
+	display: block;
+	margin: 10px auto;
+	font-size: 47px;
+}
+
+.container .details-left .main-text .left-share i {
+	font-size: 45px;
+	cursor: pointer;
+	display: block;
+	color: #BBBBBB;
+	margin-bottom: 10px;
+}
+
+.container .details-left .main-text .left-share .line {
+	width: 36px;
+	margin-top: 30px;
+	margin: 0 auto;
+	border-top: 1px solid #E6E6E6;
+}
+
+.container .details-left .main-text .left-share .bottom div {
+	margin-top: 30px;
+	text-align: left;
+}
+
+.container .details-left .main-text .left-share .bottom div i {
+	width: 33px;
+	cursor: pointer;
+	display: block;
+	margin: 0 auto;
+	color: #BBBBBB;
+	font-size: 32px;
+	border-color: #E5E5E5;
+}
+.container .details-left .main-text .left-share .bottom .cartoon{
+	position: relative;
+}
+.container .details-left .main-text .left-share .bottom .cartoon .bubble{
+	position: absolute;
+	width: 34px;
+	height: 18px;
+	border-radius: 9px;
+	line-height: 18px;
+	left: 7px;
+	top: -10px;
+	opacity: 0;
+	color: #FFFFFF;
+}
+.container .details-left .main-text .left-share .bottom .cartoon .plus{
+	background-color: #F45050;
+}
+.container .details-left .main-text .left-share .bottom .cartoon .sub{
+	background-color: #CCCCCC;
+}
+.container .details-left .main-text .left-share .bottom div i:hover{
+	color: #E30B20;
+}
+
+.container .details-left .main-text .left-share .bottom div i.iconheart-fill {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .left-share .bottom div i.iconthumb-up-fill {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .left-share .bottom div p {
+	color: #666666;
+	font-size: 14px;
+	text-align: center;
+}
+
+.container .details-left .main-text .left-share .bottom div span {
+	margin-left: 5px;
+}
+
+.container .details-left .main-text .left-share .bottom .discuss {
+	margin-bottom: 125px;
+}
+
+.container .details-left .main-text .right-text {
+	margin-left: 30px;
+	width: 660px;
+}
+
+.container .details-left .main-text .right-text img {
+	max-width: 100%;
+	height: auto;
+}
+
+.container .details-left .main-text .right-text .message ul li {
+	float: left;
+	color: #999999;
+	margin-right: 80px;
+	font-size: 14px;
+}
+
+.container .details-left .main-text .right-text .message ul .reading {
+	margin-right: 0;
+	float: right;
+}
+
+.container .details-left .main-text .right-text .intro {
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+	padding: 28px 61px;
+	width: 100%;
+	margin-top: 46px;
+	position: relative;
+	background-color: #F5F5F5;
+}
+
+.container .details-left .main-text .right-text .intro .left {
+	width: 27px;
+	height: 24px;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+
+.container .details-left .main-text .right-text .intro .left img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.container .details-left .main-text .right-text .intro .middle {
+	width: 544px;
+	font-size: 16px;
+	color: #333333;
+	line-height: 25px;
+	margin-left: 4px;
+}
+
+.container .details-left .main-text .right-text .intro .right {
+	width: 27px;
+	height: 24px;
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+}
+
+.container .details-left .main-text .right-text .intro .right img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.container .details-left .main-text .right-text .context {
+	margin-top: 50px;
+	margin-bottom: 80px;
+	font-size: 18px;
+	overflow: hidden;
+}
+
+.container .details-left .main-text .right-text .context p {
+	line-height: 40px;
+}
+
+.container .details-left .main-text .right-text .context textarea {
+	height: 200px;
+	overflow: hidden;
+	font-size: 18px;
+	line-height: 40px;
+	color: #333333;
+	width: 663px;
+	resize: none;
+}
+
+.container .details-left .main-text .right-text .page-link {
+	margin-bottom: 90px;
+	height: 24px;
+}
+
+.container .details-left .main-text .right-text .page-link .prev {
+	height: 24px;
+	line-height: 24px;
+	width: 50%;
+}
+
+.container .details-left .main-text .right-text .page-link .prev span {
+	color: #666666;
+	display: block;
+	font-size: 14px;
+}
+
+.container .details-left .main-text .right-text .page-link .prev a {
+	color: #333;
+	display: block;
+	font-size: 14px;
+}
+.container .details-left .main-text .right-text .page-link i.red:hover{
+	color: #FB0C23;
+}
+.container .details-left .main-text .right-text .page-link .prev a:hover {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .page-link i {
+	margin-right: 10px;
+	display: block;
+	font-size: 20px;
+	color: #E30B20;
+	margin-left: 1px;
+}
+.container .details-left .main-text .right-text .page-link i.red:hover{
+	color: #fb0c23;
+}
+
+.container .details-left .main-text .right-text .page-link .next {
+	height: 24px;
+	line-height: 24px;
+	max-width: 50%;
+}
+
+.container .details-left .main-text .right-text .page-link .next span {
+	color: #666666;
+	display: inline-block;
+	font-size: 14px;
+}
+
+.container .details-left .main-text .right-text .page-link .next a,.container .details-left .main-text .right-text .page-link .next h2 {
+	color: #333;
+	display: inline-block;
+	font-size: 14px;
+}
+
+.container .details-left .main-text .right-text .page-link .next a:hover {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .page-link .next i {
+	display: inline-block;
+	font-size: 22px;
+	color: #E30B20;
+	margin-left: 12px;
+}
+.container .details-left .main-text .right-text .page-link  i.grey{
+	color: #F5F5F5;
+}
+
+.container .details-left .main-text .right-text .comment-area {
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.container .details-left .main-text .right-text .comment-area .big {
+	font-size: 26px;
+	color: #333333;
+}
+
+.container .details-left .main-text .right-text .comment-area .small {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 14px;
+}
+
+.container .details-left .main-text .right-text .comment-area .small span {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .comment-input {
+	position: relative;
+}
+
+.container .details-left .main-text .right-text .comment-input textarea {
+	width: 663px;
+	height: 109px;
+	overflow: hidden;
+	resize: none;
+	border: 2px solid #E5E5E5;
+	border-radius: 4px;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.container .details-left .main-text .right-text .comment-input .limit {
+	height: 30px;
+	line-height: 30px;
+	color: #666666;
+	font-size: 12px;
+	text-align: right;
+}
+
+.container .details-left .main-text .right-text .comment-input .success {
+	position: absolute;
+	top: 20px;
+	left: 208px;
+	height: 65px;
+	width: 210px;
+	border-radius: 4px;
+	box-shadow: 0 0 12px #f2f2f2;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.container .details-left .main-text .right-text .comment-input .success .text {
+	text-align: center;
+	line-height: 65px;
+	height: 65px;
+	color: #333333;
+}
+
+.container .details-left .main-text .right-text .comment-input .success .text i {
+	color: #2bae1d;
+	margin-right: 16px;
+}
+
+.container .details-left .main-text .right-text .comment-input a {
+	margin-top: -6px;
+	display: block;
+	color: #fff;
+	text-align: center;
+	line-height: 45px;
+	border-radius: 24px;
+	font-size: 16px;
+	width: 131px;
+	height: 45px;
+	background-color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .comment-input a:hover {
+	background-color: #FB0C23;
+}
+
+.container .details-left .main-text .right-text .hot-title {
+	margin-top: 56px;
+	margin-bottom: 24px;
+	font-size: 20px;
+}
+
+.container .details-left .main-text .right-text .hot-comment {
+	width: 100%;
+}
+
+.container .details-left .main-text .right-text .hot-comment .user-icon {
+	width: 50px;
+	height: 50px;
+	position: relative;
+}
+
+.container .details-left .main-text .right-text .hot-comment .user-icon i {
+	font-size: 50px;
+	position: absolute;
+	top: -5px;
+	color: #cccccc;
+}
+
+.container .details-left .main-text .right-text .hot-comment .user-icon img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	behavior: url(../src/pie/PIE.htc);
+	border: 1px solid #E5E5E5;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text {
+	width: 610px;
+	margin-bottom: 20px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .user-line {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .user-line .username {
+	font-size: 16px;
+	margin-left: 20px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .user-line .time {
+	color: #999999;
+	font-size: 12px;
+	margin-left: 20px;
+	margin-top: 3px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .user-line .warning {
+	color: #999999;
+	font-size: 12px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .user-line .nowarning {
+	color: #999999;
+	font-size: 14px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .user-line .warning i {
+	margin-right: 5px;
+	font-size: 14px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .user-line .warning:hover {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .user-text {
+	color: #333;
+	margin-left: 20px;
+	font-size: 14px;
+	line-height: 24px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details {
+	width: 100%;
+	background-color: whitesmoke;
+	margin-top: 20px;
+	padding: 0 20px 20px 20px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list {
+	width: 100%;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list .list-title {
+	width: 100%;
+	font-size: 14px;
+	padding-top: 20px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list .others {
+	margin-top: 10px;
+	padding-bottom: 14px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list .others:last-child {
+	border-bottom: none
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list .others a {
+	font-size: 12px;
+	color: #999999;
+	margin-right: 5px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list .others a span {
+	margin-left: 5px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list .others .common-red:hover {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list .others .sign-red {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list .others .hidden {
+	display: none;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list .others .back {
+	display: none;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list:hover .hidden {
+	display: block;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list .send-input {
+	width: 100%;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list .send-input textarea {
+	width: 100%;
+	height: 80px;
+	resize: none;
+	border: 1px solid #E5E5E5;
+	border-radius: 4px;
+	behavior: url(../src/pie/PIE.htc);
+	overflow: hidden;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list .send-input a {
+	width: 77px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	margin-top: 10px;
+	font-size: 14px;
+	color: #fff;
+	background-color: #E30B20;
+	border-radius: 16px;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .text-list .send-input a:hover {
+	background-color: #FB0C23;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .send-input {
+	width: 100%;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .send-input textarea {
+	margin-left: 21px;
+	width: 96%;
+	height: 80px;
+	resize: none;
+	border: 1px solid #E5E5E5;
+	border-radius: 4px;
+	behavior: url(../src/pie/PIE.htc);
+	overflow: hidden;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .send-input a {
+	margin-left: 20px;
+	width: 77px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	margin-top: 10px;
+	font-size: 14px;
+	color: #fff;
+	background-color: #E30B20;
+	border-radius: 16px;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .send-input a:hover {
+	background-color: #FB0C23;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .send-number {
+	margin-top: 16px;
+	font-size: 14px;
+	color: #999999;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .text-details .send-number span {
+	margin: 0 5px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .zan-send {
+	margin-top: 12px;
+	font-size: 12px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .zan-send i {
+	color: #999999;
+	margin-right: 5px;
+	font-size: 14px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .zan-send .yeslike {
+	margin-left: 25px;
+	margin-right: 35px;
+	margin-bottom: 10px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .zan-send .yeslike i {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .zan-send .zan {
+	margin-left: 25px;
+	margin-right: 35px;
+	margin-bottom: 10px;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .zan-send .common-red:hover {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .zan-send .zan:hover {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .zan-send .zan:hover i {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .zan-send .send:hover {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .zan-send .send:hover i {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .hot-comment .hot-text .zan-send .packup {
+	margin-top: 2px;
+}
+
+.container .details-left .main-text .right-text .lookingAll {
+	width: 100%;
+	margin-bottom: 60px;
+	height: 50px;
+	line-height: 50px;
+	background-color: #F5F5F5;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 4px;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.container .details-left .main-text .right-text .lookingAll a {
+	color: #333333;
+}
+
+.container .details-left .main-text .right-text .lookingAll:hover {
+	background-color: #EDEDED;
+}
+
+.container .details-left .main-text .right-text .lookingAll:hover a {
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .tuijian {
+	width: 100%;
+	margin-bottom: 10px;
+	text-indent: 20px;
+	height: 50px;
+	line-height: 50px;
+	background-color: #F5F5F5;
+	font-size: 16px;
+	color: #333333;
+	border-radius: 4px;
+	behavior: url(../src/pie/PIE.htc);
+}
+
+.container .details-left .main-text .right-text .bottom-tuijian {
+	width: 100%;
+	margin-bottom: 60px;
+}
+
+.container .details-left .main-text .right-text .bottom-tuijian .item {
+	width: 100%;
+	height: 170px;
+	padding-bottom: 18px;
+	padding-top: 20px;
+	border-bottom: 1px solid #E5E5E5;
+}
+
+.container .details-left .main-text .right-text .bottom-tuijian .item:hover {
+	background-color: #F5F5F5;
+}
+
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-left {
+	float: left;
+	height: 130px;
+	width: 220px;
+}
+
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-left img {
+	height: 125px;
+	width: 220px;
+	display: block;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+}
+
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-right {
+	float: left;
+	margin-top: 5px;
+	width: 427px;
+	padding-left: 20px;
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-right a {
+	color: #333;
+	font-size: 20px;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-right>a:hover{
+	color: #E30B20;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-right .bottom {
+	position: absolute;
+	top: 100px;
+	width: 100%
+}
+
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-right .bottom ul .time {
+	margin-left: 10px;
+	color: #999;
+}
+
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-right .bottom ul li {
+	font-size: 12px;
+	display: inline-block;
+	color: #666;
+	margin-right: 10px;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-right .bottom ul li.hover{
+	cursor: pointer;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-right .bottom ul li.hover:hover{
+	color: #E30B20;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-right .bottom ul li.hover:hover i{
+	color: #E30B20;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-right .bottom ul .last {
+	margin-right: 20px;
+}
+
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-right .bottom ul li i {
+	font-size: 14px;
+	margin-right: 5px;
+	margin-left: 20px;
+	color: #999;
+}
+
+
+
+.container .details-left .main-text .right-text .bottom-tuijian .item .item-right .addone {
+	text-align: center;
+	height: 15px;
+	line-height: 15px;
+	color: #fff;
+	background-color: #E30B20;
+	font-size: 10px;
+	width: 30px;
+	border-radius: 20px;
+	behavior: url(../src/pie/PIE.htc);
+	position: absolute;
+	right: 84px;
+	bottom: 35px;
+}
+
+.container .details-right {
+	float: left;
+	width: 368px;
+	margin-left: 42px;
+	margin-top: 110px;
+}
+
+.container .details-right .hot-search {
+	width: 100%;
+	position: relative;
+	padding-left: 15px;
+	font-size: 16px;
+}
+
+.container .details-right .hot-search .hot-right {
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 4px;
+	border-radius: 0 4px 4px 0;
+	background-color: #E30B20;
+}
+
+.container .details-right .hot-search div {
+	border-bottom: 1px solid #e5e5e5;
+	width: 267px;
+	position: absolute;
+	top: 10px;
+	left: 100px;
+}
+
+.container .details-right .right-tag {
+	margin-top: 30px;
+	width: 382px;
+	margin-right: -14px;
+}
+
+.container .details-right .right-tag ul li {
+	float: left;
+	text-align: center;
+}
+
+.container .details-right .right-tag ul li a {
+	display: block;
+	font-size: 16px;
+	color: #333;
+	padding: 0 24px;
+	border-radius: 20px;
+	behavior: url(../src/pie/PIE.htc);
+	margin-right: 14px;
+	margin-bottom: 20px;
+	background-color: #F5F5F5;
+	height: 40px;
+	line-height: 40px;
+}
+
+.container .details-right .right-tag ul li a:hover {
+	background-color: #E30B20;
+	color: #fff;
+}
+
+.container .details-right .today-news {
+	width: 100%;
+	position: relative;
+	padding-left: 15px;
+	margin-top: 30px;
+	font-size: 16px;
+	color: #333;
+}
+
+.container .details-right .today-news .hot-right {
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 4px;
+	border-radius: 0 4px 4px 0;
+	background-color: #E30B20;
+}
+
+.container .details-right .today-news div.cut {
+	border-bottom: 1px solid #E5E5E5;
+	width: 207px;
+	position: absolute;
+	top: 10px;
+	left: 85px;
+}
+
+.container .details-right .today-news div.update {
+	font-size: 14px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	color: #999;
+}
+.container .details-right .today-news div.update i{
+	margin-right: 5px;
+}
+
+.container .details-right .today-news div.update:hover {
+	color: #E30B20;
+	cursor: pointer;
+}
+.container .details-right .today-news div.update:hover i{
+	transform: rotate(180deg);
+	transform-origin: center center;
+}
+.container .details-right .today-news div.update i {
+	-webkit-transition: -webkit-transform 0.4s ease-out;
+	-moz-transition: -moz-transform 0.4s ease-out;
+	transition: transform 0.4s ease-out;
+}
+
+.container .details-right .today-news div.update i.trans {
+	color: #e30b20;
+	cursor: pointer;
+	transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	transform-origin: center center; 
+}
+
+.container .details-right .right-main-news {
+	width: 100%;
+	overflow: hidden;
+}
+
+.container .details-right .right-main-news .main-news {
+	overflow: hidden;
+	width: 100%;
+	margin-top: 30px;
+}
+
+.container .details-right .right-main-news .main-news .left-img {
+	float: left;
+	margin-right: 20px;
+	height: 90px;
+	width: 160px;
+}
+
+.container .details-right .right-main-news .main-news .left-img img {
+	height: 90px;
+	width: 160px;
+	display: block;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+}
+
+.container .details-right .right-main-news .main-news .right-text {
+	width: 188px;
+	height: 90px;
+	float: left;
+	position: relative;
+}
+
+.container .details-right .right-main-news .main-news .right-text a {
+	color: #333;
+	font-size: 16px;
+}
+
+.container .details-right .right-main-news .main-news .right-text div {
+	position: absolute;
+	bottom: 0;
+	font-size: 12px;
+	color: #333;
+}
+
+.container .details-right .right-main-news .main-news .right-text div i {
+	font-size: 14px;
+	margin-right: 10px;
+	color: #999;
+}
+
+.container .details-right .right-main-news .main-news:hover .right-text a {
+	color: #E30B20;
+}
+
+.container .details-right .hot-sort {
+	margin-top: 30px;
+	width: 100%;
+	position: relative;
+	padding-left: 15px;
+	color: #333;
+	font-size: 16px;
+	margin-bottom: 27px;
+}
+
+.container .details-right .hot-sort .hot-right {
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	top: 1px;
+	left: 0;
+	height: 20px;
+	width: 4px;
+	background-color: #E30B20;
+}
+
+.container .details-right .hot-sort div {
+	border-bottom: 1px solid #E5E5E5;
+	width: 283px;
+	position: absolute;
+	top: 10px;
+	left: 85px;
+}
+
+.container .details-right .sorting .item {
+	margin-bottom: 18px;
+}
+
+.container .details-right .sorting .item .number {
+	font-size: 20px;
+	color: #999;
+	width: 38px;
+	font-style: italic;
+}
+
+.container .details-right .sorting .item .text {
+	color: #333;
+	font-size: 16px;
+}
+
+.container .details-right .sorting .item .text a:hover {
+	color: #E30B20;
+}
+
+.container .details-right .sorting .item .before-three {
+	color: #E30B20;
+}
+
+.noComment {
+	width: 100%;
+	height: 221px;
+	margin-bottom: 30px;
+	background: #fff url(../images/VIP/blank_small.png) no-repeat center center;
+}
+.container .details-left #share-2 a {
+	font-size: 45px;
+}
+.container .details-left #share-2 a:hover{
+	text-decoration:none; transition-duration:0ms; -moz-transition-duration:0ms; -webkit-transition-duration:0ms; -o-transition-duration:0ms;
+}
+.container .details-left #share-2 a::after {
+	content: '';
+	width: 50px;
+	height: 50px;
+	background-color: #bbb;
+	display: block;
+	border-radius: 50%;
+	margin-top: -48px;
+	margin-left: -1.55px;
+	position: relative;
+	z-index: -1;
+}
+.container .details-left #share-2 a.icon-wechat:hover::after{
+	background-color: #7bc549;
+} 
+.container .details-left #share-2 a.icon-qq:hover::after{
+	background-color: #56b6e7;
+}
+.container .details-left #share-2 a.icon-weibo:hover::after{
+	background-color: #ff763b;
+}
+.container .details-left #share-2 a.icon-qzone:hover::after{
+	background-color: #FDBE3D;
+}
+.container .details-left #share-2 a.icon-douban:hover::after{
+	background-color: #33b045;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .bottom ul li {
+	font-size: 12px;
+	display: inline-block;
+	color: #333333;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .bottom ul a {
+	font-size: 12px;
+	color: #333333;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .bottom ul li.box{
+	float: right;
+	margin-left: -20px;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .bottom ul li.box a{
+	display: block;
+	float: left;
+	margin-left: 20px;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .bottom ul li.box a.hover:hover i{
+	color: #E30B20;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .bottom ul li.box a.hover:hover{
+	color: #E30B20;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .bottom ul li i {
+	font-size: 14px;
+	margin-right: 10px;
+	color: #999;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .bottom ul .uicon span{
+	font-size: 12px;
+}
+.container .details-left .main-text .right-text .bottom-tuijian .bottom ul .uicon.hover:hover i{
+	color: #E30B20;
+}
+
+.container .details-left .main-text .right-text .bottom-tuijian .bottom ul .uicon.hover:hover span{
+	color: #E30B20;
+}
+
+/*# sourceMappingURL=newsDetails.css.map */

@@ -1,0 +1,111 @@
+.photo{
+	margin-top: 0.96rem;
+}
+.box {
+	padding: 0.4rem 0;
+	border-bottom-width: 1px;
+	border-color: rgba(240,240,240,1);
+	border-style: solid;
+}
+
+.box .top {
+	position: relative;
+	width: 6.7rem;
+	height: 3.8rem;
+	margin-bottom: 0.22rem;
+}
+.channel li {
+	width: 28%;
+}
+.channel li:last-child{
+	justify-content: flex-start;
+}
+.box .top .image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 6.7rem;
+	height: 3.8rem;
+	border-radius: 0.1rem;
+}
+
+.box .top .num {
+	position: absolute;
+	right: 0.2rem;
+	bottom: 0.2rem;
+	padding: 0.09rem 0.2rem;
+	background: rgba(0, 0, 0, 1);
+	opacity: 0.7;
+	border-radius: 0.20rem;
+	font-size: 0.22rem;
+	font-family: PingFang SC;
+	color: rgba(255, 255, 255, 1);
+}
+
+.box h4 {
+	font-size: 0.32rem;
+	font-family: PingFang SC;
+	color: rgba(51, 51, 51, 1);
+	margin-bottom: 0.14rem;
+	line-height:0.48rem;
+}
+
+.box .from {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.3rem;
+}
+
+.box .from span:first-child {
+	font-size: 0.20rem;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: rgba(51, 51, 51, 1);
+	margin-right: 0.48rem;
+}
+
+.box .from span:last-child {
+	font-size: 0.20rem;
+	font-family: PingFang SC;
+	color: rgba(153, 153, 153, 1);
+}
+
+.box .bottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.box .bottom a {
+	width: 25%;
+}
+
+.box .bottom a div {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.box .bottom a:last-child div {
+	justify-content: flex-end;
+}
+
+.box .bottom a:first-child+a+a div {
+	justify-content: center;
+}
+
+.box .bottom a div img,
+.box .bottom a div .image {
+	width: 0.3rem;
+	height: 0.28rem;
+	margin-right: 0.15rem;
+}
+
+.box .bottom a div {
+	font-size: 0.28rem;
+	font-family: PingFang SC;
+	color: rgba(102, 102, 102, 1);
+}
+.important-bottom{
+	margin-top: 0;
+}

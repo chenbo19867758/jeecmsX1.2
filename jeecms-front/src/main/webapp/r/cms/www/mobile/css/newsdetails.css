@@ -1,0 +1,27 @@
+body {
+	width: 7.5rem;
+	line-height: 1;
+}
+.txt p{
+	max-width: 100% !important;
+}
+.txt{
+	margin-top: 0.7rem;
+	font-size: 0.3rem !important;
+	line-height:0.50rem !important;
+}
+.txt p{
+	font-size:0.3rem !important;
+	font-family:PingFang SC !important;
+	color:rgba(77,77,77,1) !important;
+	line-height:0.50rem !important;
+}
+.txt img{
+	width: 100% !important;
+	height: auto !important;
+}
+
+
+
+
+

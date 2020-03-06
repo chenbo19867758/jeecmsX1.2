@@ -1,0 +1,256 @@
+<link rel="stylesheet" type="text/css" href="${mobileRes}/css/bottom.css" />
+<!-- <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> -->
+<!-- <script src="${mobileRes}/js/vue.js" type="text/javascript" charset="utf-8"></script> -->
+<div class="fixed-bottom" id="bottom">
+	<div class="inner">
+		<input type="text" :class="!focus?'Light tubiao':'Light' " maxlength="150" placeholder="我也说两句..." @focus="focus=true"
+		 v-model="inputText" @keydown.enter="addComment" @blur.prevent="blur">
+		<a :href="'${base}/content-commentList.htm?contentId='+contentId">
+			<div class="image">
+				<span :class="commentsNum.length==1?'round Light':'Light'" v-text="comments"></span>
+			</div>
+		</a>
+		<img :src="!collection?'${mobileRes}/images/icon/shoucang-b.png':'${mobileRes}/images/icon/shoucang-b-h.png'" alt=""
+		 @click="collect">
+		<!-- <img src="${mobileRes}/images/icon/fenxiang-b.png" alt="" @click="share"> -->
+	</div>
+	<!-- <div class="modal-con">
+		<div class="modal-black" @click="modal=false" v-if="modal"></div>
+		<div class="modal" v-if="modal">
+			<div class="top">
+				<div class="inner">
+					<a @click="friend()">
+						<img src="${mobileRes}/images/icon/weixin.png" alt="">
+						<span class="Light">微信好友</span>
+					</a>
+					<a>
+						<img src="${mobileRes}/images/icon/pengyouquan.png" alt="">
+						<span class="Light">朋友圈</span>
+					</a>
+					<a>
+						<img src="${mobileRes}/images/icon/QQTIM.png" alt="">
+						<span class="Light">QQ/TIM</span>
+					</a>
+					<a>
+						<img src="${mobileRes}/images/icon/xinalng.png" alt="">
+						<span class="Light">新浪微博</span>
+					</a>
+				</div>
+			</div>
+			<div class="bottom" @click="modal=false">
+				<div class="inner">
+					<button class="Light">取消</button>
+				</div>
+
+			</div>
+		</div>
+	</div> -->
+</div>
+
+<script type="text/javascript">
+	new Vue({
+		el: "#bottom",
+		data: {
+			contentId: '${contentId}',
+			focus: false,
+			comments: 0,
+			collection: false,
+			inputText: '',
+			modal: false,
+			wechatSignObj: {},
+			title: '${title!}', //分享标题
+			desc: '${desc!}', //分享描述
+			imgUrl: '${imgUrl!}', //分享图片
+			link: window.location.href,
+			prefix: window.location.protocol + '//' + window.location.host
+		},
+		computed: {
+			commentsNum() {
+				if(this.comments){
+					return this.comments.toString()
+				}else{
+					return '0'
+				}
+				
+			}
+		},
+		created() {
+			var that = this
+			that.getContent(that.contentId)
+			this.getCount(this.contentId)
+		},
+		mounted() {
+			this.wechatSign()
+		},
+		methods: {
+			// 获取内容信息
+			getContent(contentId) {
+				var that = this
+				// 获取内容信息
+				api.GET("/content/" + contentId, {}, function(res) {
+					that.collection = res.data.collection
+				})
+			},
+			// 查询该内容拥有的所有评论数量
+			getCount(contentId) {
+				var that = this
+				api.GET("/usercomment/count/" + contentId, {}, function(res) {
+					that.comments = res.data
+				})
+			},
+			// 输入框评论操作
+			addComment() {
+				var that = this
+				if (this.inputText.trim()) {
+					api.POST('/usercomment', {
+						contentId: that.contentId,
+						commentText: that.inputText
+					}, function(res) {
+						if (res.code == 200) {
+							that.inputText = ''
+							winTip('评论成功')
+						} else {
+							errorTip(res.message)
+						}
+					})
+				} else {
+					errorTip('评论不能为空')
+				}
+			},
+			// 分享
+			share() {
+				this.modal = true
+			},
+			//收藏操作
+			collect() {
+				var that = this
+				if (!this.collection) {
+					this.toCollect(this.contentId)
+				} else {
+					this.cancelCollect(this.contentId)
+				}
+			},
+			//收藏
+			toCollect(contentId) {
+				var that = this
+				api.POST('/usercollections', {
+					contentId: contentId
+				}, function(res) {
+					if (res.code == 200) {
+						that.getContent(contentId)
+						winTip('收藏成功')
+					} else {
+						errorTip(res.message)
+					}
+				})
+			},
+			cancelCollect(contentId) {
+				var that = this
+				api.GET('/member/usercollections/recall', {
+					id: contentId
+				}, function(res) {
+					if (res.code == 200) {
+						that.getContent(contentId)
+						winTip('取消收藏成功')
+					} else {
+						errorTip(res.message)
+					}
+				})
+			},
+			// 输入框失去焦点
+			blur() {
+				if (!this.inputText.trim()) {
+					this.focus = false
+					this.inputText = ''
+				}
+			},
+			wechatSign() {
+				let _this = this
+				api.GET('http://cm.ngrok2.xiaomiqiu.cn/wechat/sign?url=' + _this.link, {}, function(res) {
+					if (res.code == 200) {
+						_this.wechatSignObj = res.data
+						_this.startWechat()
+					}
+
+				})
+			},
+			startWechat() {
+				let _this = this
+				wx.config({
+					debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+					appId: _this.wechatSignObj.appId, // 必填，公众号的唯一标识
+					timestamp: _this.wechatSignObj.timestamp, // 必填，生成签名的时间戳
+					nonceStr: _this.wechatSignObj.nonceStr, // 必填，生成签名的随机串
+					signature: _this.wechatSignObj.signature, // 必填，签名
+					jsApiList: ['onMenuShareAppMessage', 'updateTimelineShareData'] // 必填，需要使用的JS接口列表
+				});
+
+				wx.onMenuShareAppMessage({
+					title: _this.title, // 分享标题
+					desc: _this.desc, // 分享描述
+					link: _this.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+					imgUrl: _this.prefix + _this.imgUrl, // 分享图标
+					success: function() {
+						// 用户点击了分享后执行的回调函数
+					},
+					cancel: function() {
+						// 用户取消分享后执行的回调函数  
+					},
+				});
+				wx.updateTimelineShareData({
+					title: _this.title, // 分享标题
+					desc: _this.desc, // 分享描述
+					link: _this.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+					imgUrl: _this.prefix + _this.imgUrl, // 分享图标
+					success: function() {
+						// 用户确认分享后执行的回调函数  
+					},
+					cancel: function() {
+						// 用户取消分享后执行的回调函数  
+					}
+				});
+			},
+			// friend(){
+			// 	alert('调试朋友')
+			// 	
+			// 	alert('调试朋友结束')
+			// }
+			// circle(){
+			// 	alert('调试朋友圈')
+
+			// },
+			// shareQq(){
+			// 	alert('调试QQ')
+			// 	wx.updateAppMessageShareData({
+			// 		title: '分享标题', // 分享标题  
+			// 		desc: '分享描述', // 分享描述  
+			// 		link: 'http://cm.ngrok2.xiaomiqiu.cn/yw/2354', // 分享链接  
+			// 		imgUrl: 'https://www.baidu.com/img/bd_logo1.png', // 分享图标  
+			// 		success: function() {
+			// 			alert('分享QQ成功')
+			// 			// 用户确认分享后执行的回调函数  
+			// 		},
+			// 		cancel: function() {
+			// 			// 用户取消分享后执行的回调函数  
+			// 		}
+			// 	});
+			// },
+			// shareSina(){
+			// 	alert('调试微博')
+			// 	wx.updateTimelineShareData({
+			// 		title: '分享标题', // 分享标题  
+			// 		desc: '分享描述', // 分享描述  
+			// 		link: 'http://cm.ngrok2.xiaomiqiu.cn/yw/2354', // 分享链接  
+			// 		imgUrl: 'https://www.baidu.com/img/bd_logo1.png', // 分享图标  
+			// 		success: function() {
+			// 			alert('分享微博成功')
+			// 			// 用户确认分享后执行的回调函数  
+			// 		},
+			// 		cancel: function() {
+			// 			// 用户取消分享后执行的回调函数  
+			// 		}
+			// 	});
+			// }
+		},
+	})
+</script>

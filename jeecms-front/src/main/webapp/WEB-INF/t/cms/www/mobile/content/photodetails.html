@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+	</head>
+	<body>
+		<!-- 头部导航 -->
+		[#assign type="1" channelTitle="图片详情"/]
+		[#include "../includes/header.html"]
+		<!-- 头部导航 -->
+		<script type="text/javascript">
+			$(function() {
+				Cms.viewCount("${base}", "${content.id}");
+			});
+		</script>
+		<link rel="stylesheet" href="${mobileRes}/css/wtt-common.css" />
+		<link rel="stylesheet" href="${mobileRes}/css/photodetails.css" />
+		<div class="newsdetails photodetails" id="photodetails">
+			<div class="inner">
+				<h4 class="bigtitle Regular">${content.title!}</h4>
+				<div class="from">
+					<div class="left">
+						[#if (content.source)??&&(content.source.sourceName)??&&(content.source.sourceName)!='']
+						<a href="${(content.source.sourceLink)!}">
+							<span class="Regular">来源：${(content.source.sourceName)!}</span>
+						</a>
+						[#else]
+						<span>来源：JEECMS演示站</span>
+						[/#if]
+					</div>
+					<div class="center">
+						<span class="Regular" >${content.releaseTimeString!}</span>
+					</div>
+					<div class="right">
+						<div class="image" style="background-image: url('${mobileRes}/images/icon/liualnliang-m.png');"></div>
+						<span class="Regular" >${content.views!}</span>
+					</div>
+				</div>
+				<div class="txt">
+					[#if (content.attr.photos)??&&(content.attr.photos.contentAttrRes)??]
+					[#list content.attr.photos.contentAttrRes as a]
+					<img src="${a.resUrl!}" alt="">
+					<div class="bot">
+						<p class="num"><span>${a_index+1}</span>/${(content.attr.photos.contentAttrRes)?size}   &nbsp;&nbsp;&nbsp;   &nbsp;      ${a.description!}</p>
+					</div>
+					[/#list]
+					[/#if]
+				</div>
+			</div>
+		</div>
+		[#assign contentId=content.id ups=content.ups/]
+		[#include "hotComments.html"]
+		<div class="relate">
+			<div class="r-title">
+				<h4 class="Light">相关推荐</h4>
+				<span class="Light"></span>
+			</div>
+			<div class="relate-con clearfix">
+				[@cms_content_list channelPath='photo' count='4' orderBy='3' siteId='1']
+				[#list tag_list as a]
+				<div class="box">
+					<a href="${a.url}">
+						<div class="image" style="background-image: url('${(a.attr.shoujidatu.resUrl)!}');"></div>
+						<h4 class="Medium">[@text_cut s=a.title len=24 append='...' /]</h4>
+						<div class="bottom">
+							<div>
+								<img src="${mobileRes}/images/icon/liulanliang-xs.png" alt="">
+								<span class="Regular">
+									${a.views!}
+								</span>
+							</div>
+							<div>
+								<span class="Regular">${a.releaseTimeString!}</span>
+							</div>
+						</div>
+					</a>
+				</div>
+				[/#list]
+				[/@cms_content_list]
+			</div>
+			<a class="read-more Light" href="${(content.channel.url)!}">
+				阅读更多图片
+			</a>
+
+		</div>
+
+		[#assign contentId=content.id comments=content.comments title=content.title desc=content.description imgUrl=content.attr.shoujidatu.resUrl/]
+		[#include "bottom.html"]
+	</body>
+	<script type="text/javascript">
+		$('.txt p').addClass('Light')
+	</script>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>视频列表页-最新视频</title>
+    <link rel="stylesheet" href="${res}/css/videoList-newest.css">
+    <link rel="stylesheet" href="${res}/css/jSlider.css">
+    <meta name="title" content="${site.seoTitle!}" />
+    <meta name="keywords" content="${site.seoKeyword!}" />
+    <meta name="description" content="${site.seoDescription!}" />
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+        [#include "../includes/header.html"/]
+    </div>
+    <!--顶部导航 over-->
+
+    <!-- 中间部分 -->
+    <div class="container overflow">
+        <div class="left fl Regular">
+            [@cms_channel path='video' siteId='1']<a href="${tag_bean.url!}"
+                class="active block">最新视频</a>[/@cms_channel]
+            [@cms_channel path='rbpx' siteId='1']<a href="${tag_bean.url!}"
+                class="no-active block">${tag_bean.name!}</a>[/@cms_channel]
+        </div>
+        <div class="right fl">
+            <!-- 轮播图模块 -->
+            <div class="lunbo">
+                <!-- <div id="slider1" class="jSlider" data-loop="true" data-navigation="always" data-indicator="always">
+                    [@cms_content_list channelPath='video' isTop='1' orderBy='29' siteId='1']
+                    [#list tag_list as a]
+                    <div>
+                        <a href="${a.url}" target="_blank"><img src="${a.iconUrl!}" alt="" />
+                            <div class="text">
+                                <div class="big Regular hover">[@text_cut s=a.title len=25 append='...' /]</div>
+                            </div>
+                        </a>
+                    </div>
+                    [/#list]
+                    [/@cms_content_list]
+
+                </div> -->
+                <div class="banner" id="b04">
+                    [@cms_content_list channelPath='video' isTop='1' orderBy='29' siteId='1']
+                    <ul>
+                        [#list tag_list as a]
+                        <li>
+                            <a href="${a.url}" target="_blank"><img src="${(a.attr.bannershangchuang.resUrl)!}" alt="" />
+                                <div class="text">
+                                    <div class="big Regular hover">[@text_cut s=a.title len=25 append='...' /]</div>
+                                </div>
+                            </a>
+                        </li>
+                        [/#list]
+                    </ul>
+                    [/@cms_content_list]
+                    <a href="javascript:void(0);" class="unslider-arrow04 prev hover">
+                        <i class="iconfont iconjiaodiantujiantouzuo arrow" id="al"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="unslider-arrow04 next hover">
+                        <i class="iconfont iconjiaodiantujiantou arrow" id="ar"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- 视频列表模块 -->
+            <div class="video-list overflow">
+                <!-- 视频模块左边 -->
+                <div class="video-left fl">
+                    [@cms_content_list channelPath='video' isTop='0' count='10' orderBy='29' siteId='1']
+                    [#list tag_list as a]
+                    <div class="video-item">
+                        <a class="video-img" href="${a.url}" target="_blank"><img src="${(a.attr.shipingliebiaotu.resUrl)!}" alt="" class="hover"></a>
+                        <div class="video-title Bold hover"><a href="${a.url}" target="_blank">[@text_cut s=a.title
+                                len=25
+                                append='...' /]</a></div>
+                        <div class="small Semilight overflow">
+                            <div class="small-left fl">${a.releaseTime!}</div>
+                            <div class="small-right fr overflow">
+                                <!--<div class="icon-item fl"><i class="iconfont iconshare-line hover"></i>500</div>-->
+                               <a href="" class="fl  uicon">
+                               	<i class="iconfont iconliulang"></i><span>${a.views!}</span>
+                               </a>
+                               <a href="" class="fl hover pointer uicon">
+                               	<i class="iconfont iconthumb-up-line"></i><span>${a.ups!}</span>
+                               </a>
+                               <a href="${a.url}?comments=1" class="fl hover pointer uicon comments">
+                               	<i
+                                       class="iconfont iconmessage--line1"></i><span>${a.comments!}</span>
+                               </a>
+                            </div>
+                        </div>
+                        <div class="player pointer"><i class="iconfont iconbofang"></i></div>
+                        <div class="player-time pointer"><i
+                                class="iconfont iconbofang"></i><span>${(a.attr.videoSrc.resDuration)!'00:00:00'}</span></div>
+                    </div>
+                    [/#list]
+                    [/@cms_content_list]
+                    <!-- 加载更多 -->
+                    <div class="loading Semilight hover" id="upLoading" onclick="loading(${channel.id})">加载更多</div>
+                </div>
+                <!-- 视频模块右边 -->
+                <div class="video-right fl">
+                    <div class="video-tuijian Regular">相关推荐
+                        <div class="cut"></div>
+                        <div class="hot-right"></div>
+                        <!-- <div class="update Semilight hover">
+                            <i class="iconfont iconhuanyipi"></i>换一批
+                        </div>
+                        -->
+                    </div>
+                    [@cms_content_list channelPath='video' count='5' orderBy='3' siteId='1']
+                    [#list tag_list as a]
+                    <div class="small-video Regular">
+                        <a href="${a.url}" target="_blank"><img src="${(a.attr.shipingliebiaotu.resUrl)!}" alt="" class="hover"></a>
+                        <div class="content hover"><a href="${a.url}" target="_blank">[@text_cut s=a.title len=20
+                                append='...'
+                                /]</a></div>
+                        <div class="small-time pointer"><i
+                                class="iconfont iconbofang"></i><span>${(a.attr.videoSrc.resDuration)!'00:00:00'}</span></div>
+                    </div>
+                    [/#list]
+                    [/@cms_content_list]
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 顶部导航 -->
+    [#include "../includes/footer.html"/]
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <script src="${res}/js/jquery.jSlider.js"></script>
+    <script src="${res}/js/unslider.min.js"></script>
+    <script src="${res}/js/video.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            var unslider04 = $('#b04').unslider({
+                    dots: true,
+                    speed: 1000,
+					delay:4000
+                }),
+                data04 = unslider04.data('unslider');
+
+            $('.unslider-arrow04').click(function () {
+                var fn = this.className.split(' ')[1];
+                data04[fn]();
+            });
+			$('.uicon.comments').hover(function() {
+				$(this).children('i').removeClass("iconmessage--line1").addClass('iconmessage--fill')
+			}, function() {
+				$(this).children('i').addClass("iconmessage--line1").removeClass('iconmessage--fill')
+			});
+        });
+    </script>
+</body>
+
+</html>

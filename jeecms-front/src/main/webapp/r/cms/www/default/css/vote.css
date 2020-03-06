@@ -1,0 +1,89 @@
+.vote {
+	width: 1200px;
+	padding-bottom: 30px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+.vote .empty{
+  font-size:24px;
+  color: #333333;
+  line-height: 1;
+}
+.vote ul li {
+	height: 170px;
+	padding: 20px 0;
+  border-bottom: 1px solid rgba(229, 229, 229, 1);
+}
+.vote ul li:hover{
+	background-color: #F5F5F5;
+  cursor: pointer;
+}
+.vote ul li .rest-box .rest-title a{
+
+}
+.vote ul li .rest-box .rest-title a:hover{
+	color: #E30B20;
+}
+.vote ul li .image {
+	float: left;
+	width: 220px;
+	height: 130px;
+	border-radius: 4px;
+  overflow: hidden;
+  background-color: #E8E8E8;
+}
+
+.vote ul li .image img:hover {
+	transform: scale(1.1);
+}
+
+.vote ul li .rest-box {
+	float: left;
+	padding: 6px 0 0 20px;
+}
+
+.vote ul li .rest-box .rest-title {
+	color: #333333;
+  font-size: 20px;
+  font-weight:400;
+  line-height: 1;
+}
+
+.vote ul li .rest-box .rest-content{
+  font-size:14px;
+  color: #333333;
+  line-height: 1;
+  padding-top: 20px;
+  width: 950px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.vote ul li .rest-box .rest-bottom {
+  height: 30px;
+  padding-top: 42px;
+  box-sizing: border-box;
+  line-height: 30px;
+}
+.vote ul li .rest-box .rest-bottom .status-box3 {
+  padding: 0 20px;
+  background-color: #E9E9E9;
+  display: inline-block;
+  border-radius:4px;
+  font-size: 14px;
+  color: #6AC043;
+}
+.vote ul li .rest-box .rest-bottom .status-box4 {
+  padding: 0 20px;
+  background-color: #E9E9E9;
+  display: inline-block;
+  border-radius:4px;
+  font-size: 14px;
+  color: #999999;
+}
+.vote ul li .rest-box .rest-bottom .detail {
+  padding-left: 20px;
+  color: #999999;
+  line-height: 1;
+  font-size: 12px;
+}

@@ -1,0 +1,478 @@
+.library-details {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.library-details .top-little {
+	margin-bottom: 38px;
+	color: #999
+}
+
+.library-details .top-little a {
+	font-size: 12px;
+	color: #666666;
+}
+
+.library-details .top-little span {
+	font-size: 12px;
+}
+
+.library-details .content {
+	width: 100%;
+}
+
+.library-details .content .content-left {
+	float: left;
+	width: 787px;
+	margin-right: 44px;
+	margin-bottom: 60px;
+}
+
+.library-details .content .content-left .big-title {
+	color: #333333;
+	font-size: 36px;
+	margin-bottom: 36px;
+}
+
+.library-details .content .content-left .subtitle {
+	width: 100%;
+	margin-bottom: 43px;
+	font-size: 14px;
+	color: #999999;
+}
+
+.library-details .content .content-left .subtitle span {
+	float: left;
+	margin-left: 65px;
+}
+
+.library-details .content .content-left .subtitle span:first-child {
+	margin-left: 0;
+}
+
+.library-details .content .content-left .subtitle span:last-child {
+	margin-left: 0;
+	float: right;
+}
+
+.library-details .content .content-left .explain {
+	width: 100%;
+	background: whitesmoke;
+	border-radius: 4px;
+	padding: 24px 54px 23px 41px;
+	font-size: 16px;
+	color: #333333;
+	margin-bottom: 30px;
+	line-height: 24px;
+}
+
+.library-details .content .content-left .download {
+	width: 100%;
+	height: 171px;
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+	padding: 47px 0;
+	margin-top: 26px;
+	margin-bottom: 60px;
+}
+
+.library-details .content .content-left .download a {
+	width: 131px;
+	height: 45px;
+	background: #e30b20;
+	border-radius: 23px;
+	margin: 0 auto;
+	line-height: 45px;
+	font-size: 16px;
+	text-align: center;
+	display: block;
+	color: #ffffff;
+}
+
+.library-details .content .content-left .download a:hover {
+	background-color: #FB0C23
+}
+
+.library-details .content .content-left .download .download-explain {
+	width: 220px;
+	margin: 0 auto;
+	margin-top: 19px;
+	font-size: 12px;
+	color: #999;
+}
+
+.library-details .content .content-left .download .download-explain span {
+	float: left;
+}
+
+.library-details .content .content-left .download .download-explain span:last-child {
+	float: right;
+}
+
+.library-details .content .content-left .recommend {
+	height: 50px;
+	background: whitesmoke;
+	color: #333333;
+	font-size: 16px;
+	padding-left: 19px;
+	line-height: 50px;
+	margin-bottom: 14px;
+}
+
+.library-details .content .content-left .library-item {
+	width: 100%;
+	height: 164px;
+	border-bottom: 1px solid #E5E5E5;
+}
+
+.library-details .content .content-left .library-item:hover {
+	background-color: #F5F5F5;
+	cursor: pointer;
+}
+
+.library-details .content .content-left .library-item .item-left {
+	float: left;
+	margin-top: 16px;
+	margin-bottom: 16px;
+	margin-right: 20px;
+	width: 220px;
+	height: 125px;
+}
+
+.library-details .content .content-left .library-item .item-left img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+}
+
+.library-details .content .content-left .library-item .item-right {
+	float: left;
+	margin-top: 18px;
+	margin-bottom: 16px;
+	width: 545px;
+	height: 130px;
+	position: relative;
+}
+
+.library-details .content .content-left .library-item .item-right a {
+	color: #333333;
+	font-size: 20px;
+}
+
+.library-details .content .content-left .library-item .item-right a:hover {
+	color: #E30B20;
+}
+
+.library-details .content .content-left .library-item .item-right .bottom {
+	position: absolute;
+	bottom: 5px;
+	width: 100%;
+}
+
+.library-details .content .content-left .library-item .item-right .bottom .color6 {
+	color: #666;
+}
+
+.library-details .content .content-left .library-item .item-right .bottom ul .time {
+	margin-right: 160px;
+	color: #a2a2a2;
+}
+
+.library-details .content .content-left .library-item .item-right .bottom ul li {
+	font-size: 12px;
+	display: block;
+	color: #333333;
+	margin-right: 20px;
+}
+
+.library-details .content .content-left .library-item .item-right .bottom ul li i {
+	font-size: 10px;
+	margin-right: 10px;
+	color: #999999;
+}
+
+.library-details .content .content-left .library-item .item-right .bottom ul li:hover {
+	color: #E30B20;
+}
+
+.library-details .content .content-left .library-item .item-right .addone {
+	text-align: center;
+	height: 15px;
+	line-height: 15px;
+	color: #fff;
+	background-color: #E30B20;
+	font-size: 10px;
+	width: 30px;
+	border-radius: 20px;
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	right: 84px;
+	bottom: 35px;
+}
+
+.library-details .content .content-left .library-bottom-border{
+	width: 770px;
+	height: 28px;
+	background-color: #353535;
+	margin-top: -32px;
+	position: relative;
+}
+.library-details .content .content-right {
+	float: left;
+	width: 369px;
+	margin-top: 10px;
+}
+
+.library-details .content .content-right .hot-search {
+	width: 100%;
+	position: relative;
+	padding-left: 15px;
+	font-size: 16px;
+}
+
+.library-details .content .content-right .hot-search div {
+	border-bottom: 1px solid #e5e5e5;
+	width: 267px;
+	position: absolute;
+	top: 11px;
+	left: 100px;
+}
+
+.library-details .content .content-right .hot-search .hot-right {
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 4px;
+	border-radius: 0 4px 4px 0;
+	background-color: #E30B20;
+}
+
+.library-details .content .content-right .right-tag {
+	margin-top: 30px;
+	width: 384px;
+	margin-right: -14px;
+}
+
+.library-details .content .content-right .right-tag ul li {
+	float: left;
+	text-align: center;
+}
+
+.library-details .content .content-right .right-tag ul li a {
+	display: block;
+	font-size: 16px;
+	color: #333;
+	line-height: 40px;
+	border-radius: 20px;
+	behavior: url(../pie/PIE.htc);
+	margin-right: 14px;
+	margin-bottom: 20px;
+	padding: 0 25px;
+	height: 40px;
+	background-color: #F5F5F5;
+}
+
+.library-details .content .content-right .right-tag ul li a:hover {
+	background-color: #E30B20;
+	color: #fff;
+}
+
+.library-details .content .content-right .today-news {
+	width: 100%;
+	position: relative;
+	padding-left: 15px;
+	margin-top: 40px;
+	font-size: 16px;
+	color: #333;
+}
+
+.library-details .content .content-right .today-news div.cut {
+	border-bottom: 1px solid #e5e5e5;
+	width: 200px;
+	position: absolute;
+	top: 10px;
+	left: 83px;
+}
+
+.library-details .content .content-right .today-news .hot-right {
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 4px;
+	border-radius: 0 4px 4px 0;
+	background-color: #E30B20;
+}
+
+.library-details .content .content-right .today-news div.update {
+	border-bottom: 0;
+	font-size: 14px;
+	position: absolute;
+	left: 293px;
+	top: 0;
+	color: #999999;
+}
+
+.library-details .content .content-right .today-news div.update i {
+	margin-right: 10px;
+	font-size: 14px;
+	margin-top: 3px;
+}
+
+.library-details .content .content-right .today-news div.update:hover {
+	color: #e30b20;
+	cursor: pointer;
+}
+
+.library-details .content .content-right .right-main-news {
+	width: 100%;
+}
+
+.library-details .content .content-right .right-main-news .main-news {
+	width: 100%;
+	margin-top: 30px;
+}
+
+.library-details .content .content-right .right-main-news .main-news .left-img {
+	float: left;
+	margin-right: 20px;
+	width: 160px;
+	height: 90px;
+}
+
+.library-details .content .content-right .right-main-news .main-news .left-img img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	border-radius: 4px;
+	behavior: url(../pie/PIE.htc);
+}
+
+.library-details .content .content-right .right-main-news .main-news .right-text {
+	width: 188px;
+	height: 89px;
+	float: left;
+	position: relative;
+}
+
+.library-details .content .content-right .right-main-news .main-news .right-text a {
+	color: #333;
+	font-size: 16px;
+	display: block;
+	margin-top: -1px;
+}
+
+.library-details .content .content-right .right-main-news .main-news .right-text div {
+	position: absolute;
+	bottom: 0;
+	font-size: 12px;
+	color: #333;
+}
+
+.library-details .content .content-right .right-main-news .main-news .right-text div i {
+	font-size: 14px;
+	margin-right: 10px;
+	color: #999;
+}
+
+.library-details .content .content-right .right-main-news .main-news:hover .right-text a {
+	color: #e30b20;
+}
+
+.library-details .content .content-right .hot-sort {
+	margin-top: 60px;
+	width: 100%;
+	position: relative;
+	padding-left: 15px;
+	color: #333;
+	font-size: 16px;
+	margin-bottom: 30px;
+}
+
+.library-details .content .content-right .hot-sort div {
+	border-bottom: 1px solid #e5e5e5;
+	width: 283px;
+	position: absolute;
+	top: 10px;
+	left: 83px;
+}
+
+.library-details .content .content-right .hot-sort .hot-right {
+	behavior: url(../pie/PIE.htc);
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 4px;
+	border-radius: 0 4px 4px 0;
+	background-color: #E30B20;
+}
+
+.library-details .content .content-right .sorting .item {
+	margin-bottom: 16px;
+	font-size: 14px;
+}
+
+.library-details .content .content-right .sorting .item .number {
+	width: 38px;
+	font-size: 20px;
+	color: #999999;
+	font-style: italic;
+}
+
+.library-details .content .content-right .sorting .item .text {
+	color: #333;
+	font-size: 16px;
+}
+
+.library-details .content .content-right .sorting .item .text a:hover {
+	color: #E30B20;
+}
+
+.library-details .content .content-right .sorting .item .before-three {
+	color: #E30B20;
+}
+
+/*# sourceMappingURL=libraryDetails.css.map */
+.library-details .content .content-left .library-item .item-right .box {
+	font-size: 12px;
+	display: inline-block;
+	color: #333333;
+}
+.library-details .content .content-left .library-item .item-right .box a {
+	font-size: 12px;
+	color: #333333;
+}
+.library-details .content .content-left .library-item .item-right .box{
+	float: right;
+	margin-left: -20px;
+}
+.library-details .content .content-left .library-item .item-right .box a{
+	display: block;
+	float: left;
+	margin-left: 20px;
+}
+.library-details .content .content-left .library-item .item-right .box a.hover:hover i{
+	color: #E30B20;
+}
+.library-details .content .content-left .library-item .item-right .box a.hover:hover{
+	color: #E30B20;
+}
+.library-details .content .content-left .library-item .item-right i {
+	font-size: 14px;
+	margin-right: 10px;
+	color: #999;
+}
+
+.library-details .content .content-left .library-item .item-right .uicon.hover:hover i{
+	color: #E30B20;
+}
+
+.library-details .content .content-left .library-item .item-right .uicon.hover:hover span{
+	color: #E30B20;
+}

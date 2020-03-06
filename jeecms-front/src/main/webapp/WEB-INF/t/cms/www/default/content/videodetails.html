@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>${content.title!}-${site.name}</title>
+    <link rel="stylesheet" href="${res}/fonts/share.min.css">
+	<link rel="stylesheet" href="${res}/css/videoDetails.css">
+    <script src="${res}/js/front.js" type="text/javascript" charset="utf-8"></script> 
+	<meta name="title" content="${site.seoTitle!}" />
+    <meta name="keywords" content="${site.seoKeyword!}" />
+	<meta name="description" content="${site.seoDescription!}" />
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+    [#include "../includes/header.html"/]
+	 <script type="text/javascript">
+        $(function () {
+            Cms.viewCount("${base}", "${content.id}");
+            getUsercomment("${content.id}")
+genPermCheck("${content.id}")
+        });
+function genPermCheck(contentId,channelId) {
+            $.ajax({
+                url: "${base}/permCheck",
+                data: {
+                    contentId:contentId,
+                    channelId:channelId
+                },
+                success: function (result) {
+                   if(result.data!=1){location.href = "${base}/login"}
+                }
+            });
+        }
+    </script>
+	<script src="${res}/js/newsDetails.js" type="text/javascript" charset="utf-8"></script>
+    </div>
+    <!--顶部导航 over-->
+
+    <!-- 中间部分 -->
+    <div class="container overflow">
+        <div class="details-guide Semilight">
+        <a href="${base}/" class="black Semilight">首页</a> > [#list content.channel.nodeList as n]<a target="_blank" href="${n.url}" class="black Semilight" >${n.name}</a>[#if n_has_next] > [/#if][/#list] > <span class="gray Semilight">正文</span>
+        </div>
+        <div class="big-title Bold">
+            <div class="left fl">${content.title!}</div>
+            <div class="right fr Semilight">
+                <div class="heart cartoon">
+					<p class="Semilight plus bubble">+1</p>
+					<p class="Semilight sub bubble">-1</p>
+                [#if content.collection??&&content.collection]
+                	<i id="heart" name="1" onclick="Collect('${content.id}')" class="iconfont iconheart-fill"></i>
+                	<p>收藏</p>
+                [#else]
+                	<i id="heart" name="2" onclick="Collect('${content.id}')" class="iconfont iconheart hover"></i>
+                	<p>收藏</p>
+                [/#if]
+                </div>
+                <div class="zan cartoon">
+					<p class="Semilight plus bubble">+1</p>
+					<p class="Semilight sub bubble">-1</p>
+                	<i id="isZan" name="2" onclick="like('${content.id}')" class="iconfont iconthumb-up-line hover"></i>
+                	<p>点赞<span id="contentUp">${content.ups!}</span></p>
+                </div>
+				<div class="comment">
+					<i  class="iconfont iconmessage--line1 hover"></i>
+					<p>评论<span id="contentUp">${content.comments!}</span></p>
+				</div>
+            </div>
+			<div class="clearfix"></div>
+		</div>
+        <div class="info Semilight clearfix">
+            <div class="left fl">
+                <span>${content.releaseTime!}</span>
+				<a href="${(content.source.sourceLink)!}" [#if content.source??&&content.source.isOpenTarget ]target="_blank"[/#if]><span>来源：[#if (content.source.sourceName)?? && (content.source.sourceName) != ""]${(content.source.sourceName)}[#else]JEECMS演示站[/#if]</span></a>
+                <span>作者：[#if content.author?? && content.author != ""]${content.author}[#else]本站编辑[/#if]</span>
+                <span>阅读量：${content.views!}</span>
+                <!-- <span>视频长度：${(content.attr.videoSrc.resDuration)!0}</span> -->
+            </div>
+            <div class="right fr">
+                <span class="share block fl">分享</span>
+                <div id="share-2"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!-- 视频模块 -->
+        <div class="video-list">
+            <video src="${content.attr.videoSrc.resUrl!}" autoplay controls width="1176" height="600"></video>
+        </div>
+        <div class="video-text Semilight">
+            ${content.description!}
+        </div>
+
+        <div class="comment-area overflow Regular">
+            <div class="big fl">评论</div>
+            <div class="small fr">已有<span id="totalElements">${content.comments!}条</span>评论</div>
+        </div>
+        <div class="comment-input">
+            <textarea id="usercomments" maxlength="150"></textarea>
+            <div class="limit Semilight" id="commentsLength">0/150</div>
+            <!-- <div class="success none Semilight">
+                <div class="text"><i class="iconfont iconliulangwanbi"></i>提交成功</div>
+            </div> -->
+            <a onclick="toUsercomment('${content.id}')" class="Regular">提交</a>
+        </div>
+        <div class="hot-title Regular">热门评论</div>
+        <div class="hot-comment overflow">
+            <!-- <div class="user-icon pointer fl">
+                <img src="${res}/images/pagelist/TP_XJD01.png" alt="">
+            </div>
+            <div class="hot-text fl">
+                <div class="user-line overflow Semilight">
+                    <span class="username block fl">阿瑾</span>
+                    <span class="time block fl">20秒前</span>
+                    <div class="warning fr hover pointer"><i class="iconfont iconalarm-warning-fill"></i>举报</div>
+                </div>
+                <div class="user-text Regular">
+                    走在前，作表率”，这六个字是习近平总书记对中央和国家机关党的建设工作所提出的明确要求。对此，中央和国家机关党员干部倍感振奋光荣。“走在前，作表率”，这六个字是习近平总书记对中央和国家机关党的
+                </div>
+                <div class="text-details">
+                    <div class="text-list pointer hover">
+                        <a href="javascript:;"
+                            class="list-title block overfow-text Semilight">暗號.：党的建设质量，在深入学习贯彻党的思想理论上作表率，深入在始终同党中央保持高度一致</a>
+                        <div class="others overflow Semilight">
+                            <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                            <a href="javascript:;" class="sending block fl">·<span
+                                    class="common-red hover">回复</span></a>
+                            <a href="javascript:;" class="back block fl">·<span class="common-red hover">收起</span></a>
+                            <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                            <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                        </div>
+                        <div class="send-input none">
+                            <textarea></textarea>
+                            <a href="javascript:;" class="Semilight block">回复</a>
+                        </div>
+                    </div>
+                    <div class="text-list pointer hover">
+                        <a href="javascript:;" class="list-title block overfow-text Semilight">阿瑾：党中央现在发展的越来越好</a>
+                        <div class="others overflow Semilight">
+                            <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                            <a href="javascript:;" class="block fl">·<span class="common-red hover">回复</span></a>
+                            <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                            <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                        </div>
+                    </div>
+                    <div class="text-list pointer hover">
+                        <a href="javascript:;" class="list-title block overfow-text Semilight">暗號 回复 阿瑾：对，你说的很对！</a>
+                        <div class="others overflow Semilight">
+                            <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                            <a href="javascript:;" class="block fl">·<span class="common-red hover">回复</span></a>
+                            <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                            <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                        </div>
+                    </div>
+                    <div class="send-number pointer Semilight">
+                        查看全部<span class="font-hover">34</span>条回复 >
+                    </div>
+                </div>
+                <div class="zan-send overflow Semilight">
+                    <div class="zan fl hover pointer">
+                        <i class="iconfont iconthumb-up-fill"></i>赞1100
+                    </div>
+                    <div class="send fl hover pointer">
+                        <i class="iconfont iconmessage--fill"></i>回复
+                    </div>
+                </div>
+                <div class="lookingAll pointer hover Semilight">
+                    <a href="javascript:;">查看全部评论</a>
+                </div>
+            </div> -->
+        </div>
+		<div onclick="uplookingAll('${content.id}')" class="lookingAll pointer hover Semilight">
+		    <a>查看更多评论</a>
+		</div>
+        <div class="hot-video Regular">热门视频<div></div><div class="hot-right"></div>
+        </div>
+        <div class="img-list overflow">
+            [@cms_content_list channelPath='video' count='4' orderBy='3' siteId='1']
+							[#list tag_list as a]
+            <div class="first">
+				<a href="${a.url}" target="_blank"><img src="${(a.attr.shipingliebiaotu.resUrl)!}" alt="" class="hover"></a>
+                <div class="text Regular"><a href="${a.url}" target="_blank" class="hover">[@text_cut s=a.title len=30 append='...' /]</a></div>
+                <div class="video-timer Regular pointer"><i class="iconfont iconbofang"></i><span>${(a.attr.videoSrc.resDuration)!'00:00:00'}</span></div>
+            </div>
+        [/#list]
+            [/@cms_content_list]
+        </div>
+    </div>
+
+    <!-- 顶部导航 -->
+    [#include "../includes/footer.html"/]
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <script src="${res}/js/videoDetails.js"></script>
+    <script src="${res}/js/jquery.share.min.js"></script>
+    <script>
+        $('#share-2').share({sites: ['wechat', 'qq', 'weibo','qzone','douban']});
+		// 打开全部评论
+		function uplookingAll(){
+			 window.open('${base}/content-commentList.htm?contentId='+'${content.id}');  
+		}
+		$(function(){
+			if(getUrlArg('comments')){
+				var height=$('.comment-area').offset().top-56;
+				$("html,body").animate({ scrollTop: height}, 500);
+			}
+		})
+    </script>
+</body>
+
+</html>

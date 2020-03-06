@@ -1,0 +1,125 @@
+#questionnaire{
+  padding: 0 0.4rem;
+	border-top: 1px solid #F5F5F5;
+}
+.queTop{
+  text-align: center;
+}
+.queTop .queTitle{
+  color: #333333;
+  font-size: 0.4rem;
+  padding:0.45rem 0.35rem 0 0.35rem;
+  line-height: 0.5rem;
+}
+.queTop .title1{
+  display: inline-block;
+}
+.queTop .peopleNum{
+  color: #333333;
+  font-size: 0.32rem;
+  padding-top: 0.23rem;
+  padding-left: 0.35rem;
+  line-height: 1;
+  text-align: left;
+}
+.questContent{
+  padding-top: 0.7rem;
+}
+.questContent .itemList{
+  padding-bottom: 0.8rem;
+}
+.questContent .ident{
+  color: #ff2200;
+  font-size: 0.3rem;
+}
+.questContent .text{
+  color: #333333;
+  font-size: 0.38rem;
+  line-height: 0.54rem;
+}
+.questContent .select ul{
+  padding-top: 0.1rem;
+}
+.questContent .selectText{
+  padding-top: 0.34rem;
+  padding-bottom: 0.1rem;
+  font-size: 0.36rem;
+  line-height: 0.54rem;
+}
+.questContent .answerList{
+  padding-left: 0.47rem;
+  color: #45A5FF;
+}
+
+
+/* 进度条样式 */
+.skillbar {
+	position:relative;
+	display:block;
+	width:6.04rem;
+	background:#eee;
+	height:0.3rem;
+	border-radius:0.02rem;
+}
+
+.skillbar-bar {
+	height:0.3rem;
+	width:0px;
+	background:#6adcfa;
+	border-radius:0.02rem;
+}
+
+.skill-bar-percent {
+	position:absolute;
+  left:6.2rem;
+	top:0;
+	font-size:0.24rem;
+	height:0.3rem;
+	color:#333333;
+}
+
+.popupBg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  }
+
+.popupBg .commentList{
+  background-color: #fff;
+  width: 6.7rem;
+  margin: 0.9rem auto 0 auto;
+  height: 86.43%;
+  border-radius:0.1rem;
+  position: relative;
+}
+.popupBg .commentList .clear{
+  width: 0.3rem;
+  height: 0.3rem;
+  position: absolute;
+  top: 0.32rem;
+  right: 0.3rem;
+  color: #333333;
+}
+.popupBg .commentList .title{
+  color: #333333;
+  font-size: 0.38rem;
+  line-height: 0.54rem;
+  padding: 0.6rem 0.46rem 0.32rem 0.46rem;
+}
+.popupBg .commentList ul{
+  height: 87.5%;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.popupBg .commentList .item{
+  border-bottom:0.01rem solid #F0F0F0 ;
+  color: #333333;
+  font-size: 0.34rem;
+  line-height: 0.5rem;
+  padding: 0.22rem 0;
+  margin: 0 0.34rem 0 0.45rem;
+}

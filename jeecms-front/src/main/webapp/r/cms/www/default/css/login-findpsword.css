@@ -1,0 +1,18 @@
+.main { background-color: #ebeced; height: 758px; padding-top: 221px; }
+.main .login-part { position: relative; width: 545px; height: 306px; background-color: #fff; margin: auto; border-radius: 4px; padding: 40px; behavior: url(../src/pie/PIE.htc); }
+.main .login-part .reg { margin-bottom: 37px; }
+.main .login-part .reg span { color: #333; font-size: 20px; }
+.main .login-part form input::-webkit-input-placeholder { font-weight: 300; color: #999; font-size: 14px; }
+.main .login-part form input::-moz-placeholder { /* Mozilla Firefox 19+ */ font-weight: 300; color: #999; font-size: 14px; }
+.main .login-part form input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ font-weight: 300; color: #999; font-size: 14px; }
+.main .login-part form input:-ms-input-placeholder { /* Internet Explorer 10-11 */ font-weight: 300; color: #999; font-size: 14px; }
+.main .login-part form div { height: 28px; line-height: 28px; margin-bottom: 22px; position: relative; position: relative; }
+.main .login-part form div label { font-size: 14px; color: #666; text-align: right; display: inline-block; width: 88px; margin-right: 6px; }
+.main .login-part form div label span { color: #E30B20; margin-right: 2px; }
+.main .login-part form div input { padding-left: 5px; height: 28px; width: 365px; border: 0; border-bottom: 1px solid #E5E5E5; }
+.main .login-part form div .getcode { color: #333333; font-size: 14px; position: absolute; right: 0; top: 0; }
+.main .login-part form a { width: 175px; height: 43px; line-height: 43px; color: #333; font-size: 16px; text-align: center; border-radius: 21px; border: 1px solid #E6E6E6; behavior: url(../src/pie/PIE.htc); position: absolute; right: 235px; bottom: 40px; }
+.main .login-part form input[type="submit"] { width: 175px; height: 43px; line-height: 43px; background-color: #E30B20; color: #fff; font-size: 16px; text-align: center; border-radius: 21px; border: 0; behavior: url(../src/pie/PIE.htc); position: absolute; right: 40px; bottom: 40px; }
+.main .login-part form a.next{background-color: #E30B20; color: #fff;right: 40px; bottom: 40px;}
+.main .login-part form .errors p{font-weight: 300 !important;font-size: 14px !important;margin-left: 104px;color: #E30B20;}
+/*# sourceMappingURL=login-findpsword.css.map */

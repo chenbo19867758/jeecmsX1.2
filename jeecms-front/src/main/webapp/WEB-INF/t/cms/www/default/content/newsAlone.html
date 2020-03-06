@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>${content.title!}-${site.name}</title>
+    <link rel="stylesheet" href="${res}/css/newsDetails.css">
+    <link rel="stylesheet" href="${res}/fonts/share.min.css">
+    <link rel="stylesheet" href="${res}/fonts/iconfont.css">
+    <script src="${res}/js/front.js" type="text/javascript" charset="utf-8"></script>
+
+
+</head>
+<style>
+</style>
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+        [#include "../includes/headerAlone.html"/]
+    </div>
+    <!--顶部导航 over-->
+   <script type="text/javascript">
+			$(function () {
+				Cms.viewCount("${base}", "${content.id}");
+				getContentUp("${content.id}");
+				getUsercomment("${content.id}");
+				genPermCheck("${content.id}")
+			});
+			function genPermCheck(contentId,channelId) {
+				$.ajax({
+					url: "${base}/permCheck",
+					data: {
+						contentId:contentId,
+						channelId:channelId
+					},
+					success: function (result) {
+						if(result.data!=1){location.href = "${base}/login"}
+					}
+				});
+			}
+		</script>
+    <!-- 中间部分 -->
+    <div class="container">
+        <!-- 新闻详情左侧 -->
+        <div class="details-left">
+            <div class="details-guide">
+                <a href="${base}/" class="black Semilight">首页</a> > [#list content.channel.nodeList as n]<a
+                    target="_blank" href="${n.url}" class="black Semilight">${n.name}</a>[#if n_has_next] >
+                [/#if][/#list] > <span class="gray Semilight">正文</span>
+            </div>
+            <div class="big-title bold">${content.title!}</div>
+            <div class="main-text">
+                <div class="left-share fl">
+                    <div class="share Semilight">分享</div>
+                    <div id="share-2"></div>
+                    <div class="line"></div>
+                    <div class="bottom Semilight">
+                        <div class="heart cartoon">
+							<p class="Semilight plus bubble">+1</p>
+							<p class="Semilight sub bubble">-1</p>
+							[#if content.collection??&&content.collection]
+							<i id="heart" name="1" onclick="Collect('${content.id}')" class="iconfont iconheart-fill"></i>
+							<p>收藏</p>
+							[#else]
+							<i id="heart" name="2" onclick="Collect('${content.id}')" class="iconfont iconheart hover"></i>
+							<p>收藏</p>
+							[/#if]
+						</div>
+						<div class="zan cartoon">
+							<p class="Semilight plus bubble">+1</p>
+							<p class="Semilight sub bubble">-1</p>
+							<i id="isZan" name="2" onclick="like('${content.id}')" class="iconfont iconthumb-up-line hover"></i>
+							<p>点赞<span id="contentUp">${content.ups!}</span></p>
+						</div>
+                        <div class="discuss"><a href="#comment"><i
+                                    class="iconfont iconmessage--line1 hover"></i></a><p>评论${content.comments!}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-text fl">
+                    <div class="message overflow Semilight">
+                        <ul>
+                            <li>${content.releaseTime!}</li>
+							<a href="${(content.source.sourceLink)!}" [#if content.source??&&content.source.isOpenTarget ]target="_blank"[/#if]>
+								<li>来源：[#if (content.source.sourceName)?? && (content.source.sourceName) !=""]${(content.source.sourceName)}[#else]JEECMS演示站[/#if]</li>
+							</a>
+                            <li>作者：${content.author!}</li>
+                            <li class="reading" id="views">阅读量：<span>${content.views!}</span></li>
+                        </ul>
+                    </div>
+                    [#if (content.description)??]
+                    <div class="intro">
+                    	<div class="left"><img src="${res}/images/newslist/left.png" alt=""></div>
+                    	<div class="middle Semilight">${content.description!}</div>
+                    	<div class="right"><img src="${res}/images/newslist/right.png" alt=""></div>
+                    </div>
+                    [/#if]
+                    <div class="context">
+                        ${txt!}
+                    </div>
+                    <div class="page-link overflow">
+                        <div class="prev fl Semilight">
+							[@cms_content id=content.id next='0' channelId=content.channel.id][#if tag_bean??]<a
+							    href="${tag_bean.url}"><i class="iconfont iconshangyiye fl pointer"></i></a>[#else]<i class="iconfont iconshangyiye fl pointer" style="color: #eeeeee;"></i>[/#if][/@cms_content]
+                            <span class="fl">上一篇：</span>
+                            [@cms_content id=content.id next='0' channelId=content.channel.id][#if tag_bean??]<a
+                                href="${tag_bean.url}">[@text_cut s=tag_bean.title len=10
+                                append='...'/]</a>[#else]没有了[/#if][/@cms_content]
+                        </div>
+                        <div class="next fr Semilight">
+                            <span>下一篇：</span>
+                            [@cms_content id=content.id next='1' channelId=content.channel.id][#if tag_bean??]<a
+                                href="${tag_bean.url}">[@text_cut s=tag_bean.title len=10
+                                append='...'/]</a>[#else]没有了[/#if][/@cms_content]
+							[@cms_content id=content.id next='1' channelId=content.channel.id][#if tag_bean??]<a
+								href="${tag_bean.url}"><i class="iconfont iconxiayiye pointer"></i></a>[#else]<i class="iconfont iconxiayiye pointer" style="color: #eeeeee;"></i>[/#if][/@cms_content]
+                        </div>
+                    </div>
+                    <div class="comment-area overflow Regular" id="comment">
+                        <div class="big fl">评论</div>
+                        <div class="small fr">已有<span>${content.comments!}条</span>评论</div>
+                    </div>
+                    <div class="comment-input">
+                        <textarea id="usercomments" maxlength="150"></textarea>
+                        <div class="limit Semilight" id="commentsLength">0/150</div>
+                        <!-- <div class="success none Semilight">
+                            <div class="text"><i class="iconfont iconliulangwanbi"></i>提交成功</div>
+                        </div> -->
+                        <a onclick="toUsercomment('${content.id}')" class="Regular">提交</a>
+                    </div>
+                    <div class="hot-title Regular">热门评论</div>
+                    <div class="hot-comment overflow">
+                        <!-- <div class="user-icon pointer fl">
+                            <img src="${res}/images/newslist/XWXQ_YW05.png" alt="">
+                        </div>
+                        <div class="hot-text fl">
+                            <div class="user-line overflow Semilight">
+                                <span class="username block fl">阿瑾</span>
+                                <span class="time block fl">20秒前</span>
+                                <div class="warning fr hover pointer"><i class="iconfont iconalarm-warning-fill"></i>举报
+                                </div>
+                            </div>
+                            <div class="user-text Regular">
+                                走在前，作表率”，这六个字是习近平总书记对中央和国家机关党的建设工作所提出的明确要求。对此，中央和国家机关党员干部倍感振奋光荣。“走在前，作表率”，这六个字是习近平总书记对中央和国家机关党的
+                            </div>
+                            <div class="text-details">
+                                <div class="text-list pointer hover">
+                                    <a
+                                        class="list-title block overfow-text Semilight">暗號.：党的建设质量，在深入学习贯彻党的思想理论上作表率，深入在始终同党中央保持高度一致</a>
+                                    <div class="others overflow Semilight">
+                                        <a class="block fl common-red hover">赞4</a>
+                                        <a class="sending block fl">·<span class="common-red hover">回复</span></a>
+                                        <a class="fewer back block fl">·<span class="common-red hover">收起</span></a>
+                                        <a class="block fl">·<span>9小时前</span></a>
+                                        <a class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                                    </div>
+                                    <div class="send-input none">
+                                        <textarea></textarea>
+                                        <a class="Semilight block">回复</a>
+                                    </div>
+                                </div>
+                                <div class="send-number pointer Semilight">
+                                    查看全部<span class="font-hover">34</span>条回复 >
+                                </div>
+                            </div>
+                            <div class="zan-send overflow Semilight">
+                                <div class="zan fl hover pointer">
+                                    <i class="iconfont iconthumb-up-fill"></i>赞1100
+                                </div>
+                                <div class="send replys fl hover pointer">
+                                    <i class="iconfont iconmessage--fill"></i>回复
+                                </div>
+                            </div>
+
+                        </div> -->
+                    </div>
+                    <div onclick="uplookingAll('${content.id}')" class="lookingAll pointer hover Semilight">
+                        <a>查看更多评论</a>
+                    </div>
+                    <div class="tuijian bold">相关推荐</div>
+                    <div class="bottom-tuijian">
+                        [@cms_content_list channelPath='news' count='5' relate='2' orderBy='29' siteId='1']
+                        [#list tag_list as a]
+                        <div class="item overflow">
+                            <div class="item-left">
+                                <a href="${a.url!}" target="_blank"><img src="${(a.attr.xinwenliebiaotu.resUrl)!}" alt=""></a>
+                            </div>
+                            <div class="item-right">
+                                <a href="${a.url!}" target="_blank" class="Regular">[@text_cut s=a.title len=35
+                                    append='...' /]</a>
+                                <div class="bottom Semilight">
+                                    <ul>
+                                        <li>${a.channelName}</li>
+                                        <li class="time">${a.releaseTimeString!}</li>
+                                        <!--<li><i class="iconfont iconshare-line"></i>500</li>-->
+                                        <li class="fr hover last"><i class="iconfont iconmessage--line1"></i>${a.comments!}</li>
+                                        <li class="fr hover"><i class="iconfont iconthumb-up-line"></i>${a.ups!}</li>
+                                        <li class="fr"><i class="iconfont iconliulang"></i>${a.views!}</li>
+                                    </ul>
+                                </div>
+                                <div class="addone none">+1</div>
+                            </div>
+                        </div>
+                        [/#list]
+                        [/@cms_content_list]
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+        <!-- 新闻详情右侧 -->
+        <div class="details-right">
+            <div class="hot-search Regular">热搜关键词<div></div><div class="hot-right"></div>
+            </div>
+            <div class="right-tag Semilight overflow">
+                [@cms_search_word_list count='12']
+                <ul>
+                    [#list tag_list as a]
+                    <li><a href="${base}/search.htm?keyword=${a.word!}"  target='_blank'>${a.word!}</a></li>
+                    [/#list]
+                    <div class="clearfix"></div>
+
+                </ul>
+                [/@cms_search_word_list]
+            </div>
+            <div class="today-news Regular">今日要闻<div class="cut"></div>
+                <div class="update Semilight hover clearfix" onclick="inabatch()"><i class="iconfont iconhuanyipi hover fl"></i>换一批</div><div class="hot-right"></div>
+            </div>
+            <div class="right-main-news">
+                [@cms_content_list channelPath='news' orderBy='29' count='5' siteId='1']
+                [#list tag_list as a]
+                <div class="main-news pointer">
+                    <div class="left-img"><a href="${a.url!}" target="_blank"><img src="${(a.attr.xinwenliebiaotu.resUrl)!}" alt=""></a></div>
+                    <div class="right-text Semilight">
+                        <a href="${a.url!}" target="_blank">[@text_cut s=a.title len=20 append='...' /]</a>
+                        <div><i class="iconfont iconliulang"></i>${a.views!}</div>
+                    </div>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+            </div>
+            <div class="hot-sort Regular">热点排行<div></div><div class="hot-right"></div>
+            </div>
+            <div class="sorting overflow">
+                [@cms_content_list orderBy='3' count='10' siteId='1']
+                [#list tag_list as a]
+                <div class="item overflow">
+                    [#if a_index<3]<div class="number fl before-three Bold">[#else]<div class="number fl Bold">
+                            [/#if]${a_index+1}</div>
+                        <div class="text fl Semilight"><a href="${a.url}" target="_blank">[@text_cut s=a.title len=20 append='...'
+                                /]</a></div>
+                </div>
+                [/#list]
+                [/@cms_content_list]
+            </div>
+
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <!-- 顶部导航 -->
+    [#include "../includes/footer.html"/]
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <script src="${res}/js/newsDetails.js"></script>
+    <script src="${res}/js/jquery.share.min.js"></script>
+    <script>
+		// 打开全部评论
+		function uplookingAll(){
+			 window.open('${base}/content-commentList.htm?contentId='+'${content.id}');  
+		}
+        $('#share-2').share({
+            sites: ['wechat', 'qq', 'weibo', 'qzone', 'douban']
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>新闻内容详情</title>
+    <link rel="stylesheet" href="${res}/css/newsDetails.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+    [#include "../includes/header.html"/]
+<script type="text/javascript">
+			$(function () {
+				Cms.viewCount("${base}", "${content.id}");
+				getContentUp("${content.id}");
+				getUsercomment("${content.id}");
+				genPermCheck("${content.id}")
+			});
+			function genPermCheck(contentId,channelId) {
+				$.ajax({
+					url: "${base}/permCheck",
+					data: {
+						contentId:contentId,
+						channelId:channelId
+					},
+					success: function (result) {
+						if(result.data!=1){location.href = "${base}/login"}
+					}
+				});
+			}
+		</script>
+    </div>
+	<!--顶部导航 over-->
+	 
+    <!-- 中间部分 -->
+    <div class="container overflow">
+        <!-- 新闻详情左侧 -->
+        <div class="details-left">
+            <div class="details-guide overflow">
+                <div class="black fl Semilight">首页>新闻>高级动态></div>
+                <div class="gray fl Semilight">正文</div>
+            </div>
+            <div class="big-title bold">习近平在中央和国家机关党建工作会议上的重要讲话引发热烈反响</div>
+            <div class="main-text overflow">
+                <div class="left-share fl">
+                    <div class="share Semilight">分享</div>
+                    <i class="iconfont iconweixin"></i>
+                    <i class="iconfont iconQQ"></i>
+                    <i class="iconfont iconweibo1"></i>
+                    <i class="iconfont iconQQkongjian"></i>
+                    <i class="iconfont icondouban"></i>
+                    <div class="line"></div>
+                    <div class="bottom Semilight">
+                        <div class="heart"><i class="iconfont iconheart hover"></i><span>收藏</span></div>
+                        <div class="zan"><i class="iconfont iconthumb-up-line hover"></i><span>点赞7000</span></div>
+                        <div class="discuss"><i class="iconfont iconmessage--line1 hover"></i><span>评论5000</span></div>
+                    </div>
+                </div>
+                <div class="right-text fl">
+                    <div class="message overflow Semilight">
+                        <ul>
+                            <li>2019-05-24 0:33:01</li>
+                            <li>来源：JEECMS新闻网</li>
+                            <li>作者：本站编辑</li>
+                            <li class="reading">阅读量：3307</li>
+                        </ul>
+                    </div>
+                    <div class="intro">
+                        <div class="left">“</div>
+                        <div class="middle Semilight">“走在前，作表率”，这六个字是习近平总书记对中央和国家机关党的建设工作所提出的明确要求。对此，中央和国家机关党员干部倍感振奋光荣。</div>
+                        <div class="right">”</div>
+                    </div>
+                    <div class="context">
+                        <textarea class="text-spacing Semilight" readonly="readonly">“走在前，作表率”，这六个字是习近平总书记对中央和国家机关党的建设工作所提出的明确要求。对此，中央和国家机关党员干部倍感振奋光荣。</textarea>
+                    </div>
+                    <div class="page-link overflow">
+                        <div class="prev fl Semilight">
+                            <i class="iconfont iconshangyiye fl pointer"></i>
+                            <span class="fl">上一篇：</span>
+                            <a class="fl overfow-text" href="javascript:;">党中央推进民族工作创新发展建设工作</a>
+                        </div>
+                        <div class="next fr Semilight">
+                            <span class="fl">上一篇：</span>
+                            <a class="fl overfow-text" href="javascript:;">党中央推进民族工作创新发展建设工作</a>
+                            <i class="iconfont iconxiayiye fl pointer"></i>
+                        </div>
+                    </div>
+                    <div class="comment-area overflow Regular">
+                        <div class="big fl">评论</div>
+                        <div class="small fr">已有<span>1000条</span>评论</div>
+                    </div>
+                    <div class="comment-input">
+                        <textarea></textarea>
+                        <div class="limit Semilight">0/150</div>
+                        <div class="success none Semilight"><div class="text"><i class="iconfont iconliulangwanbi"></i>提交成功</div></div>
+                        <a href="javascript:;" class="Regular">提交</a>
+                    </div>
+                    <div class="hot-title Regular">热门评论</div>
+                    <div class="hot-comment overflow">
+                        <div class="user-icon pointer fl">
+                            <img src="${res}/images/newslist/XWXQ_YW05.png" alt="">
+                        </div>
+                        <div class="hot-text fl">
+                            <div class="user-line overflow Semilight">
+                                <span class="username block fl">阿瑾</span>
+                                <span class="time block fl">20秒前</span>
+                                <div class="warning fr hover pointer"><i class="iconfont iconalarm-warning-fill"></i>举报</div>
+                            </div>
+                            <div class="user-text Regular">
+                                走在前，作表率”，这六个字是习近平总书记对中央和国家机关党的建设工作所提出的明确要求。对此，中央和国家机关党员干部倍感振奋光荣。“走在前，作表率”，这六个字是习近平总书记对中央和国家机关党的
+                            </div>
+                            <div class="text-details">
+                                <div class="text-list pointer hover">
+                                    <a href="javascript:;" class="list-title block overfow-text Semilight">暗號.：党的建设质量，在深入学习贯彻党的思想理论上作表率，深入在始终同党中央保持高度一致</a>
+                                    <div class="others overflow Semilight">
+                                        <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                                        <a href="javascript:;" class="sending block fl">·<span class="common-red hover">回复</span></a>
+                                        <a href="javascript:;" class="back block fl">·<span class="common-red hover">收起</span></a>
+                                        <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                                        <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                                    </div>
+                                    <div class="send-input none">
+                                        <textarea></textarea>
+                                        <a href="javascript:;" class="Semilight block">回复</a>
+                                    </div>
+                                </div>
+                                <div class="text-list pointer hover">
+                                    <a href="javascript:;" class="list-title block overfow-text Semilight">阿瑾：党中央现在发展的越来越好</a>
+                                    <div class="others overflow Semilight">
+                                        <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                                        <a href="javascript:;" class="block fl">·<span class="common-red hover">回复</span></a>
+                                        <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                                        <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                                    </div>
+                                </div>
+                                <div class="text-list pointer hover">
+                                    <a href="javascript:;" class="list-title block overfow-text Semilight">暗號 回复 阿瑾：对，你说的很对！</a>
+                                    <div class="others overflow Semilight">
+                                        <a href="javascript:;" class="block fl common-red hover">赞4</a>
+                                        <a href="javascript:;" class="block fl">·<span class="common-red hover">回复</span></a>
+                                        <a href="javascript:;" class="block fl">·<span>9小时前</span></a>
+                                        <a href="javascript:;" class="hidden block fl">·<span class="common-red hover">举报</span></a>
+                                    </div>
+                                </div>
+                                <div class="send-number pointer Semilight">
+                                    查看全部<span class="font-hover">34</span>条回复 >
+                                </div>
+                            </div>
+                            <div class="zan-send overflow Semilight">
+                                <div class="zan fl hover pointer">
+                                    <i class="iconfont iconthumb-up-fill"></i>赞1100
+                                </div>
+                                <div class="send fl hover pointer">
+                                    <i class="iconfont iconmessage--fill"></i>回复
+                                </div>
+                            </div>
+                            <div class="lookingAll pointer hover Semilight">
+                                <a href="javascript:;">查看全部评论</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tuijian bold">相关推荐</div>
+                    <div class="bottom-tuijian">
+                        <div class="item overflow">
+                            <div class="item-left">
+                                <img src="${res}/images/newslist/SSJG_01.png" alt="">
+                            </div>
+                            <div class="item-right">
+                                <a href="javasraipt:;" class="Regular">习近平在观察陆军步兵学院时强调 全面提高办学育人水平为强军事业提供有力人才支持</a>
+                                <div class="bottom Semilight">
+                                    <ul>
+                                        <li>新闻网</li>
+                                        <li class="time">1小时前</li>
+                                        <li><i class="iconfont iconshare-line"></i>500</li>
+                                        <li><i class="iconfont iconliulang"></i>931</li>
+                                        <li><i class="iconfont hover iconthumb-up-line"></i>80</li>
+                                        <li><i class="iconfont hover iconmessage--line1"></i>500</li>
+                                    </ul>
+                                </div>
+                                <div class="addone none">+1</div>
+                            </div>
+                        </div>
+                        <div class="item overflow">
+                            <div class="item-left">
+                                <img src="${res}/images/newslist/SSJG_01.png" alt="">
+                            </div>
+                            <div class="item-right">
+                                <a href="javasraipt:;" class="Regular">习近平在观察陆军步兵学院时强调 全面提高办学育人水平为强军事业提供有力人才支持</a>
+                                <div class="bottom Semilight">
+                                    <ul>
+                                        <li>新闻网</li>
+                                        <li class="time">1小时前</li>
+                                        <li><i class="iconfont iconshare-line"></i>500</li>
+                                        <li><i class="iconfont iconliulang"></i>931</li>
+                                        <li><i class="iconfont iconthumb-up-line"></i>80</li>
+                                        <li><i class="iconfont iconmessage--line1"></i>500</li>
+                                    </ul>
+                                </div>
+                                <div class="addone none">+1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 新闻详情右侧 -->
+        <div class="details-right">
+            <div class="hot-search Regular">热搜关键词<div></div></div>
+            <div class="right-tag Semilight overflow">
+                <ul>
+                    <li><a href="javascript:;">华为</a></li>
+                    <li><a href="javascript:;">谷歌</a></li>
+                    <li><a href="javascript:;">小米</a></li>
+                    <li><a href="javascript:;">动漫</a></li>
+                    <li><a href="javascript:;">影视剧</a></li>
+                    <li><a href="javascript:;">消费</a></li>
+                    <li><a href="javascript:;">出国留学</a></li>
+                    <li><a href="javascript:;">相亲</a></li>
+                    <li><a href="javascript:;">电影</a></li>
+                    <li><a href="javascript:;">社保</a></li>
+                    <li><a href="javascript:;">教育</a></li>
+                </ul>
+            </div>
+            <div class="today-news Regular">今日要闻<div class="cut"></div>
+                <div class="update Semilight"><i class="iconfont iconhuanyipi"></i>换一批</div>
+            </div>
+            <div class="right-main-news">
+                <div class="main-news pointer">
+                    <div class="left-img"><img src="${res}/images/newslist/XWXQ_YW01.png" alt=""></div>
+                    <div class="right-text Semilight">
+                        <a href="javasraipt:;">重磅！不一样的长三角主要领导座谈会</a>
+                        <div><i class="iconfont iconliulang"></i>951</div>
+                    </div>
+                </div>
+                <div class="main-news pointer">
+                    <div class="left-img"><img src="${res}/images/newslist/XWXQ_YW02.png" alt=""></div>
+                    <div class="right-text Semilight">
+                        <a href="javasraipt:;">重磅！不一样的长三角主要领导座谈会</a>
+                        <div><i class="iconfont iconliulang"></i>951</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hot-sort Regular">热点排行<div></div></div>
+            <div class="sorting overflow">
+                <div class="item overflow">
+                    <div class="number fl before-three Bold">1</div>
+                    <div class="text fl Semilight"><a href="javascript:;">习近平：奋力开创中部地区崛起局面</a></div>
+                </div>
+                <div class="item overflow">
+                    <div class="number fl before-three Bold">2</div>
+                    <div class="text fl Semilight"><a href="javascript:;">习近平：奋力开创中部地区崛起局面</a></div>
+                </div>
+                <div class="item overflow">
+                    <div class="number fl before-three Bold">3</div>
+                    <div class="text fl Semilight"><a href="javascript:;">习近平：奋力开创中部地区崛起局面</a></div>
+                </div>
+                <div class="item overflow">
+                    <div class="number fl Bold">4</div>
+                    <div class="text fl Semilight"><a href="javascript:;">习近平：奋力开创中部地区崛起局面</a></div>
+                </div>
+                <div class="item overflow Bold">
+                    <div class="number fl">5</div>
+                    <div class="text fl Semilight"><a href="javascript:;">习近平：奋力开创中部地区崛起局面</a></div>
+                </div>
+                <div class="item overflow Bold">
+                    <div class="number fl">6</div>
+                    <div class="text fl Semilight"><a href="javascript:;">习近平：奋力开创中部地区崛起局面</a></div>
+                </div>
+            </div>
+            
+        </div>
+
+
+    </div>
+
+    <!-- 顶部导航 -->
+	[#include "../includes/footer.html"/]
+	<!--顶部导航 over-->
+	<!-- 底部模块 -->
+    <script src="${res}/js/newsDetails.js"></script>
+</body>
+</html>

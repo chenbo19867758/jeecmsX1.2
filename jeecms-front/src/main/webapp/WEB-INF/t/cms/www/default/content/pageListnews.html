@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>图片列表页-时事速递</title>
+    <link rel="stylesheet" href="${res}/css/pageList-news.css">
+    <link rel="stylesheet" href="${res}/css/jSlider.css">
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header-children">
+    [#include "../includes/header.html"/]
+<script type="text/javascript">
+			$(function () {
+				Cms.viewCount("${base}", "${content.id}");
+				getContentUp("${content.id}");
+				getUsercomment("${content.id}");
+				genPermCheck("${content.id}")
+			});
+			function genPermCheck(contentId,channelId) {
+				$.ajax({
+					url: "${base}/permCheck",
+					data: {
+						contentId:contentId,
+						channelId:channelId
+					},
+					success: function (result) {
+						if(result.data!=1){location.href = "${base}/login"}
+					}
+				});
+			}
+		</script>
+    </div>
+    <!--顶部导航 over-->
+
+    <!-- 中间部分 -->
+    <div class="container overflow">
+        <div class="left fl Regular">
+            <a href="javascript:;" class="active block">时事速递</a>
+            <a href="javascript:;" class="no-active block">热图排行</a>
+        </div>
+        <div class="right fl">
+            <div class="right-theme Regular">时事速递</div>
+            <!-- 轮播图模块 -->
+            <div class="lunbo">
+                <div id="slider1" class="jSlider" data-loop="true" data-navigation="always" data-indicator="always">
+                    <div><a href="javascript:;"><img src="${res}/images/pagelist/TU_JD01.png" alt="" /></a></div>
+                    <div><a href="javascript:;"><img src="${res}/images/pagelist/TU_JD02.png" alt="" /></a></div>
+                    <div><a href="javascript:;"><img src="${res}/images/pagelist/TU_JD03.png" alt="" /></a></div>
+                </div>
+                <div class="text overflow">
+                    <div class="time fl Semilight">2019-07-12 | 时政</div>
+                    <div class="big fl Regular">关键雷达和指挥车到手！第二批次系统装备启运土耳其</div>
+                </div>
+            </div>
+            <!-- 新闻列表 -->
+            <div class="newslist-item overflow">
+                <div class="item-left fl">
+                    <img src="${res}/images/pagelist/TU_LB01.png" alt="">
+                </div>
+                <div class="item-right fl">
+                    <div class="big-title Bold">日媒：中国海警舰艇编队15日在钓鱼岛海域巡航</div>
+                    <div class="time Semilight">时政<span>2019-5-24 0:33:01</span></div>
+                    <div class="tag overflow Semilight hover">
+                        <div class="fl hover pointer"><i class="iconfont iconshare-line"></i>500</div>
+                        <div class="fl hover pointer"><i class="iconfont iconliulang"></i>931</div>
+                        <div class="fl hover pointer"><i class="iconfont iconthumb-up-line"></i>80</div>
+                        <div class="fl hover pointer"><i class="iconfont iconmessage--line1"></i>500</div>
+                    </div>
+                    <p class="Semilight">
+                        这是2000年我在帕劳蓝洞潜水时拍的照片。当时我在水下四十米左右，还能看到光线透进水里，水下的世界非常安静，只能听到自己和潜伴的呼吸声音。你会忘了陆地世界的喧嚣，心情是非常放松的。</p>
+                </div>
+            </div>
+            <div class="newslist-item overflow">
+                <div class="item-left fl">
+                    <img src="${res}/images/pagelist/TU_LB02.png" alt="">
+                </div>
+                <div class="item-right fl">
+                    <div class="big-title Bold">日媒：中国海警舰艇编队15日在钓鱼岛海域巡航</div>
+                    <div class="time Semilight">时政<span>2019-5-24 0:33:01</span></div>
+                    <div class="tag overflow Semilight">
+                        <div class="fl hover pointer"><i class="iconfont iconshare-line"></i>500</div>
+                        <div class="fl hover pointer"><i class="iconfont iconliulang"></i>931</div>
+                        <div class="fl hover pointer"><i class="iconfont iconthumb-up-line"></i>80</div>
+                        <div class="fl hover pointer"><i class="iconfont iconmessage--line1"></i>500</div>
+                    </div>
+                    <p class="Semilight">
+                        这是2000年我在帕劳蓝洞潜水时拍的照片。当时我在水下四十米左右，还能看到光线透进水里，水下的世界非常安静，只能听到自己和潜伴的呼吸声音。你会忘了陆地世界的喧嚣，心情是非常放松的。</p>
+                </div>
+            </div>
+            <div class="loading Semilight hover"><a href="javascript:;">加载更多</a></div>
+        </div>
+    </div>
+
+    <!-- 顶部导航 -->
+    [#include "../includes/footer.html"/]
+    <!--顶部导航 over-->
+    <!-- 底部模块 -->
+    <script src="${res}/js/jquery.jSlider.js"></script>
+</body>
+
+</html>
