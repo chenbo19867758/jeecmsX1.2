@@ -19,7 +19,7 @@ import com.jeecms.common.base.domain.RequestLoginTarget;
 
 /**
  * LoginToken
- * 
+ * 前后端分离，前端系统访问后端，返回的 JWT(json web token)
  * @author: tom
  * @date: 2019年3月5日 下午4:48:37
  * @Copyright: 江西金磊科技发展有限公司 All rights reserved.Notice 仅限于授权后使用，禁止非授权传阅以及私自用于商业目的。
@@ -49,8 +49,11 @@ public class LoginToken extends AbstractIdDomain<Integer> implements Serializabl
                 }
         }
 
+        // 基础平台 登录标志
         public static Short LOGIN_TARGET_PLATFORM = 1;
+        // 商城 登录标志
         public static Short LOGIN_TARGET_STORE = 2;
+        // 会员 登录标志
         public static Short LOGIN_TARGET_MEMBER = 3;
 
         private static final long serialVersionUID = 1L;

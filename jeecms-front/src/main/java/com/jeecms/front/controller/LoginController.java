@@ -19,6 +19,7 @@ import com.jeecms.common.web.util.RequestUtils;
 import com.jeecms.util.FrontUtils;
 
 /**
+ * 前台用户登录
  * 登录页控制器
  * 
  * @author: tom

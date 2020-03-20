@@ -3,7 +3,8 @@
  */
 package com.jeecms.common.web.filter;
 
-/**   
+/**
+ *
 * TODO
 * @author: tom
 * @date:   2019年8月15日 下午5:29:45     
@@ -19,7 +20,7 @@ import java.io.IOException;
 
 /**
  * 跨域过滤器
- * 
+ * 可参考：https://www.cnblogs.com/yuansc/p/9076604.html
  * @author: tom
  * @date: 2019年8月15日 下午5:47:04
  */
@@ -46,10 +47,14 @@ public class HeaderCorsFilter implements Filter {
 		req.setAttribute(START_TIME, time);
 		HttpServletResponse resp = (HttpServletResponse) response;
 		resp.setHeader("Access-Control-Allow-Origin", "*");
+		//  真实请求允许的方法
 		resp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE,PUT");
+		// 预检请求的有效期，单位为秒。有效期内，不会重复发送预检请求
 		resp.setHeader("Access-Control-Max-Age", "3600");
+		// 服务器允许使用的字段
 		resp.setHeader("Access-Control-Allow-Headers",
 				SysConstants.DEFAULT_ALLOW_HEADERS + tokenHeader + "," + redirectHeader + "," + siteIdHeader);
+		// 是否允许用户发送、处理 cookie
 		resp.setHeader("Access-Control-Allow-Credentials", "true");
 		chain.doFilter(request, resp);
 		time = System.currentTimeMillis() - time;

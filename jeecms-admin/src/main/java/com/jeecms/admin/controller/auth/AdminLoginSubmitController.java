@@ -42,6 +42,17 @@ public class AdminLoginSubmitController extends LoginSubmitController {
 	@Autowired
 	private CoreUserService coreUserService;
 
+	/**
+	 * 后台登录入口
+	 * @param request
+	 *                HttpServletRequest
+	 * @param response
+	 *                HttpServletResponse
+	 * @param requestLoginUser
+	 *                RequestLoginUser
+	 * @return
+	 * @throws GlobalException
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = WebConstants.LOGIN_URL, method = RequestMethod.POST)
 	@ContentSecurity

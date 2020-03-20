@@ -9,9 +9,12 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import com.jeecms.common.web.CustomerArgumentResolver;
 import org.apache.commons.lang3.StringUtils;
 
 import com.jeecms.common.constants.WebConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * XssFilter
@@ -22,6 +25,9 @@ import com.jeecms.common.constants.WebConstants;
  *             仅限于授权后使用，禁止非授权传阅以及私自用于商业目的。
  */
 public class XssFilter implements Filter {
+
+	private Logger logger = LoggerFactory.getLogger(XssFilter.class);
+
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -46,6 +52,15 @@ public class XssFilter implements Filter {
 		if (StringUtils.isNoneBlank(ctx)) {
 			uri = uri.substring(ctx.length());
 		}
+
+
+		//logger.debug("请求访问的路径："+uri);
+
+		if (!uri.startsWith("/r/cms/www/") && !uri.startsWith("/jeecms/")) {
+			System.out.println("请求访问的路径："+uri);
+		}
+
+
 		if (uri.startsWith(WebConstants.ADMIN_PREFIX + "/template")) {
 			return true;
 		}

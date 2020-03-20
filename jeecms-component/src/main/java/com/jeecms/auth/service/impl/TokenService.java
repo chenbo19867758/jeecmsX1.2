@@ -24,7 +24,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 /**
  * token 操作类
- * 
+ * token 权限判断实现类
  * @Author tom
  */
 @Component

@@ -28,7 +28,7 @@ import com.jeecms.common.constants.WebConstants;
 
 /**
  * 启用 Spring Security web 安全的功能 Spring Security 的配置类
- * 
+ * 权限配置
  * @Author tom
  */
 @Configuration
