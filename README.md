@@ -33,7 +33,7 @@ jc_tr_menu_api menu_management_id api_body_information_id
 CoreApi=jc_sys_api  取 api_url字段的值作为权限路径。
 CoreMenu=jc_sys_menu
 
-前端后端的权限都放在同一个表中。
+前端后端的权限都放在同一个表中。 
 
 SpringBoot2 快速开发框架 
 SpringMVC 5.0   
