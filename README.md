@@ -11,6 +11,8 @@
 
 登录成功的时候访问：AuthenticationTokenFilter loginService.tryTokenLogin(httpRequest, httpResponse);
 
+MyAuthenticationFailHandler->onAuthenticationFailure：登录失败
+
 前端登录先进入：MyAuthenticationFailHandler，验证失败直接返回json数据
 退出登录：
 请求访问的路径：/logout
@@ -20,6 +22,18 @@
 
 后台登录访问的接口地址：http://localhost:8082/admin/login
 对应 com.jeecms.admin.controller.auth.AdminLoginSubmitController.login
+
+Authentication: 认证,身份验证,鉴别,身份认证
+
+SpringSecurity 咱们需要牢记自定义认证业务逻辑返回的UserDetails对象中一定要放置权限信息啊！
+UserDetailImpl this.setAuthorities(authorities);
+权限路径取的是操作员能访问的路径
+jc_tr_menu_api menu_management_id api_body_information_id 
+查询 
+CoreApi=jc_sys_api  取 api_url字段的值作为权限路径。
+CoreMenu=jc_sys_menu
+
+前端后端的权限都放在同一个表中。
 
 SpringBoot2 快速开发框架 
 SpringMVC 5.0   
