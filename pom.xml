@@ -21,7 +21,7 @@
 		<spring-boot-starter-mobile.version>1.5.19.RELEASE</spring-boot-starter-mobile.version>
 		<!-- 缓存组件 2.10.5 -->
 		<ehcache-core.version>2.6.11</ehcache-core.version>
-		<quartz.version>2.3.0</quartz.version>
+		<quartz.version>2.3.2</quartz.version>
 		<!-- Apache公共基础组件 -->
 		<commons-lang3.version>3.7</commons-lang3.version>
 		<!-- Apache公共网络组件 -->
