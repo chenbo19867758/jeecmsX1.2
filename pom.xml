@@ -34,7 +34,7 @@
 		<!-- HTML解析组件 -->
 		<htmlparser.version>2.1</htmlparser.version>
 		<!-- Ant组件 -->
-		<ant.version>1.10.1</ant.version>
+		<ant.version>1.10.8</ant.version>
 		<jjwt.version>0.9.0</jjwt.version>
 		<fastjson.version>1.2.58</fastjson.version>
 		<kaptcha.version>2.3.2</kaptcha.version>
