@@ -43,7 +43,7 @@
 		<commons-codec.version>1.11</commons-codec.version>
 		<lucene.version>7.7.1</lucene.version>
 		<elasticsearch.version>6.8.0</elasticsearch.version>
-		<xstream.version>1.4.10</xstream.version>
+		<xstream.version>1.4.16</xstream.version>
 		<easypoi.version>3.2.0</easypoi.version>
 		<google.zxing>3.0.0</google.zxing>
 		<bcprov.version>1.54</bcprov.version>
