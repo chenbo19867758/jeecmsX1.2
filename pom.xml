@@ -27,7 +27,7 @@
 		<!-- Apache公共网络组件 -->
 		<commons-net.version>3.6</commons-net.version>
 		<!-- Apache公共IO组件 -->
-		<commons-io.version>2.6</commons-io.version>
+		<commons-io.version>2.7</commons-io.version>
 		<commons-beanutils.version>1.9.2</commons-beanutils.version>
 		<commons-collections.version>3.2.2</commons-collections.version>
 		<commons-email.version>1.5</commons-email.version>
